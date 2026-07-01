@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="DevByte Labs | Criação de Sites Profissionais e Bots Inteligentes sob medida para você e seu negócio.">
+    <meta name="keywords" content="desenvolvimento web, bots discord, bot ia, servidor discord, site profissional, programador discord">
+    <meta name="author" content="DevByte Labs">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="DevByte Labs | Sites Profissionais e Bots Inteligentes">
+    <meta property="og:description" content="Do seu site ao seu servidor do Discord, nós cuidamos de tudo para você. Soluções completas em um só lugar!">
+    <meta property="og:type" content="website">
+    
+    <title>DevByte Labs | Sites Profissionais e Bots Inteligentes para Discord</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="no-scroll" data-global-mode="web">
+
+    <!-- ==========================================
+       TELA SPLIT INICIAL (Boas-vindas)
+       ========================================== -->
+    <div class="welcome-split-overlay" id="welcome-overlay">
+        <!-- Lado Esquerdo - WEB -->
+        <div class="split-side left" id="split-left-web">
+            <div class="glow-split glow-left"></div>
+            <div class="split-content-wrapper">
+                <span class="split-badge">Websites</span>
+                <h2>Preciso de um Site Profissional</h2>
+                <p>Landing pages de alta conversão, portfólios, e-commerces e sistemas modernos rápidos.</p>
+                <button class="btn btn-primary">Entrar no Modo Web</button>
+            </div>
+        </div>
+        
+        <!-- Lado Direito - DISCORD -->
+        <div class="split-side right" id="split-right-discord">
+            <div class="glow-split glow-right"></div>
+            <div class="split-content-wrapper">
+                <span class="split-badge">Bots e Discord</span>
+                <h2>Preciso de Servidor ou Bot</h2>
+                <p>Estruturação de servidores, cargos, segurança e bots de inteligência artificial exclusivos.</p>
+                <button class="btn btn-primary" style="background: var(--discord-blurple); box-shadow: 0 4px 15px rgba(88, 101, 242, 0.35);">Entrar no Modo Discord</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Header / Navbar -->
+    <header class="header" id="header">
+        <div class="container navbar-container">
+            <a href="#" class="logo" id="logo-brand">
+                <img src="logo.jpg" alt="DevByte Labs Logo" class="logo-img" style="width: 32px; height: 32px; border-radius: 6px; object-fit: cover;">
+                <div class="logo-text-wrapper">
+                    <span class="logo-text-main">Dev<span class="highlight">Byte</span></span>
+                    <span class="logo-text-sub">Labs</span>
+                </div>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#hero" class="nav-link active">Início</a></li>
+                    <li><a href="#servicos" class="nav-link">Serviços</a></li>
+                    <li><a href="#demonstracao" class="nav-link">Demonstração</a></li>
+                    <li><a href="#orcamento" class="nav-link">Orçamento</a></li>
+                    <li><a href="#precos" class="nav-link">Planos</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <!-- Toggle Deslizante Moderno (2 Páginas em 1) -->
+                <div class="mode-pill-toggle" id="mode-selector-pill">
+                    <button class="mode-pill-btn active" data-mode="web">Web</button>
+                    <button class="mode-pill-btn" data-mode="discord">Discord</button>
+                    <span class="pill-active-bg"></span>
+                </div>
+                
+                <a href="#contato" class="btn btn-primary btn-sm header-cta" id="nav-cta-btn">Faça um Orçamento</a>
+                
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir Menu">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="glow-bg glow-hero-1"></div>
+            <div class="glow-bg glow-hero-2"></div>
+            
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    
+                    <!-- CONTEÚDO EXCLUSIVO MODO WEB -->
+                    <div class="mode-web-only">
+                        <div class="badge-new badge-web">
+                            <span class="badge-dot"></span>
+                            <span class="badge-text">Desenvolvimento Web Profissional</span>
+                        </div>
+                        <h1 class="hero-title">
+                            Sites Modernos que Geram <span class="gradient-text">Resultados</span> reais
+                        </h1>
+                        <p class="hero-lead">
+                            Landing pages de alta conversão, lojas virtuais e portfólios sob medida. Otimizados e extremamente rápidos em todos os dispositivos, prontos para converter visitantes em clientes e escalar o seu faturamento no mercado.
+                        </p>
+                    </div>
+                    
+                    <!-- CONTEÚDO EXCLUSIVO MODO DISCORD -->
+                    <div class="mode-discord-only">
+                        <div class="badge-new badge-discord">
+                            <span class="badge-dot"></span>
+                            <span class="badge-text">Automação e Comunidades no Discord</span>
+                        </div>
+                        <h1 class="hero-title">
+                            Servidores Únicos e <span class="highlight-text-discord">Bots com IA</span> customizados
+                        </h1>
+                        <p class="hero-lead">
+                            Configuração completa de comunidades blindadas contra invasões com bots inteligentes integrados. Mantenha seus membros ativos com inteligência artificial.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="mode-web-only" style="position: relative; width: 100%; height: 320px; margin-top: 20px;">
+                        <!-- Main Desktop Browser Window Mockup -->
+                        <div class="browser-mockup glass" style="width: 85%; height: 210px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); position: absolute; top: 10px; left: 0; animation: float-desktop 5s ease-in-out infinite;">
+                            <div class="window-header" style="background: rgba(0,0,0,0.3); padding: 0.5rem 0.75rem; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); height: 25px; box-sizing: border-box;">
+                                <div class="dots" style="display: flex; gap: 4px; margin-right: 1rem;">
+                                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #ff5f56; display: inline-block;"></span>
+                                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
+                                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
+                                </div>
+                                <div style="font-size: 0.6rem; color: var(--text-muted); font-family: monospace; letter-spacing: 0.05em; margin: 0 auto 0 0;">devbytelabs.com.br</div>
+                            </div>
+                            <!-- Mock website content (Scrollable!) -->
+                            <div class="browser-page-content" style="padding: 1rem; background: linear-gradient(135deg, #0d0e15 0%, #06070a 100%); height: calc(100% - 25px); overflow-y: auto; box-sizing: border-box; color: #fff; scroll-behavior: smooth;">
+                                <!-- Nav -->
+                                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.55rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.35rem; margin-bottom: 0.8rem; width: 100%;">
+                                    <span style="font-weight: bold; color: var(--secondary); font-size: 0.6rem;">DevByte Labs</span>
+                                    <div style="display: flex; gap: 10px; color: var(--text-muted);">
+                                        <span>Serviços</span>
+                                        <span>Preços</span>
+                                    </div>
+                                    <span style="background: var(--primary); color: #000; padding: 2px 6px; border-radius: 3px; font-weight: bold; font-size: 0.5rem;">Contato</span>
+                                </div>
+                                <!-- Hero Section -->
+                                <div style="display: flex; gap: 1rem; align-items: center; width: 100%; margin-bottom: 1.5rem;">
+                                    <div style="width: 65%;">
+                                        <div style="font-size: 0.8rem; font-weight: bold; line-height: 1.25; margin-bottom: 0.3rem; background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Design que Vende &amp; IA que Atende</div>
+                                        <div style="font-size: 0.48rem; color: var(--text-muted); line-height: 1.35; margin-bottom: 0.4rem;">Landing pages profissionais e automação com robôs de Inteligência Artificial para converter visitantes em clientes 24h por dia no piloto automático.</div>
+                                        <a href="#orcamento" style="background: var(--primary); color: #000; font-size: 0.45rem; font-weight: bold; padding: 4px 8px; border-radius: 3px; text-decoration: none; display: inline-block;">Garantir Meu Projeto</a>
+                                    </div>
+                                    <div style="width: 35%; height: 50px; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 80%), rgba(255,255,255,0.01); border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; position: relative;">
+                                        <img src="logo.jpg" alt="Logo DevByte" style="width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--secondary); object-fit: cover; box-shadow: 0 0 15px rgba(255,255,255,0.1);">
+                                    </div>
+                                </div>
+                                <!-- Features Section -->
+                                <div style="margin-bottom: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.8rem;">
+                                    <div style="font-size: 0.45rem; color: var(--secondary); text-transform: uppercase; font-weight: bold; letter-spacing: 0.05em; text-align: center; margin-bottom: 0.6rem;">Nossos Diferenciais</div>
+                                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; width: 100%;">
+                                        <div style="background: rgba(255,255,255,0.02); padding: 0.4rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.04); text-align: center;">
+                                            <div style="font-size: 0.58rem; font-weight: bold; color: #fff; margin-bottom: 2px;">⚡ Velocidade</div>
+                                            <div style="font-size: 0.42rem; color: var(--text-muted); line-height: 1.2;">Carregamento abaixo de 1s.</div>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.02); padding: 0.4rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.04); text-align: center;">
+                                            <div style="font-size: 0.58rem; font-weight: bold; color: #fff; margin-bottom: 2px;">🤖 Suporte IA</div>
+                                            <div style="font-size: 0.42rem; color: var(--text-muted); line-height: 1.2;">Bots inteligentes integrados.</div>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.02); padding: 0.4rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.04); text-align: center;">
+                                            <div style="font-size: 0.58rem; font-weight: bold; color: #fff; margin-bottom: 2px;">🔒 Blindado</div>
+                                            <div style="font-size: 0.42rem; color: var(--text-muted); line-height: 1.2;">Permissões avançadas anti-raid.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CTA Section -->
+                                <div style="background: rgba(255,255,255,0.01); border-radius: 4px; border: 1px dashed rgba(255,255,255,0.08); padding: 0.8rem; text-align: center; margin-bottom: 0.5rem;">
+                                    <div style="font-size: 0.72rem; font-weight: bold; color: #fff; margin-bottom: 0.35rem;">Pronto para escalar seu faturamento?</div>
+                                    <div style="font-size: 0.46rem; color: var(--text-muted); margin-bottom: 0.6rem; max-width: 200px; margin-left: auto; margin-right: auto; line-height: 1.3;">Fale conosco e tenha um ecossistema completo desenhado para sua marca.</div>
+                                    <a href="#contato" style="background: var(--primary); color: #000; font-size: 0.45rem; font-weight: bold; padding: 4px 10px; border-radius: 3px; text-decoration: none; display: inline-block;">Falar com Especialista</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Overlapping Mobile Phone Mockup -->
+                        <div class="phone-mockup glass" style="width: 26%; height: 180px; border-radius: 16px; border: 2px solid rgba(255,255,255,0.12); overflow: hidden; box-shadow: 0 25px 45px rgba(0,0,0,0.65); position: absolute; bottom: 10px; right: 20px; z-index: 5; background: #07080a; animation: float-phone 4.2s ease-in-out infinite;">
+                            <!-- Speaker/camera bar -->
+                            <div style="height: 10px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; padding-top: 2px;">
+                                <span style="width: 25px; height: 3px; border-radius: 2px; background: #222; display: inline-block;"></span>
+                            </div>
+                            <!-- Mock website mobile content -->
+                            <div style="padding: 0.65rem 0.5rem; background: #0d0e15; height: 100%; box-sizing: border-box; text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+                                <div>
+                                    <div style="font-weight: bold; font-size: 0.5rem; color: var(--secondary); margin-bottom: 0.4rem;">DevByte Labs</div>
+                                    <div style="font-size: 0.68rem; font-weight: bold; line-height: 1.15; margin-bottom: 0.3rem; color: #fff;">Venda 24/7 com IA</div>
+                                    <div style="font-size: 0.44rem; color: var(--text-muted); line-height: 1.3; margin-bottom: 0.4rem;">Atendimento automático de leads e carregamento instantâneo.</div>
+                                </div>
+                                <div style="background: var(--primary); color: #000; font-size: 0.45rem; font-weight: bold; padding: 4px; border-radius: 4px; display: inline-block; width: 85%; margin: 0 auto 0.5rem;">Começar Agora</div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Tech Card: PageSpeed 100% -->
+                        <div style="position: absolute; top: -10px; right: 10%; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 6px; padding: 6px 10px; display: flex; align-items: center; gap: 6px; z-index: 6; backdrop-filter: blur(8px); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15); animation: float-card-1 3.5s ease-in-out infinite;">
+                            <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block; box-shadow: 0 0 8px #10b981;"></span>
+                            <span style="font-size: 0.6rem; font-weight: bold; color: #10b981; font-family: monospace; letter-spacing: 0.05em;">PageSpeed 100%</span>
+                        </div>
+
+                        <!-- Floating Tech Card: Leads -->
+                        <div style="position: absolute; bottom: 35px; left: -15px; background: rgba(28,28,33,0.65); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 6px; padding: 6px 10px; display: flex; align-items: center; gap: 6px; z-index: 6; backdrop-filter: blur(8px); box-shadow: 0 10px 20px rgba(0,0,0,0.35); animation: float-card-2 4.6s ease-in-out infinite;">
+                            <span style="font-size: 0.75rem;">💬</span>
+                            <div style="text-align: left;">
+                                <div style="font-size: 0.5rem; color: var(--text-muted);">Novo Lead de Vendas</div>
+                                <div style="font-size: 0.58rem; font-weight: bold; color: #fff; line-height: 1.1;">Lead Enviado</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- VISUAL MODO DISCORD (Bot Profile Card) -->
+                    <div class="mode-discord-only">
+                        <div class="discord-profile-card glass" style="margin-top: 20px; animation: float-desktop 5s ease-in-out infinite;">
+                            <!-- Profile Banner -->
+                            <div class="profile-banner"></div>
+                            
+                            <!-- Avatar Container -->
+                            <div class="profile-avatar-container">
+                                <img src="logo.jpg" alt="DevByte Labs Logo" class="profile-avatar" style="object-fit: cover;">
+                                <div class="profile-status-dot"></div>
+                            </div>
+                            
+                            <!-- Profile Details -->
+                            <div class="profile-details-body">
+                                <div class="profile-name-row">
+                                    <h3>DevByte Bot</h3>
+                                    <span class="profile-bot-tag">BOT</span>
+                                </div>
+                                <span class="profile-username">devbyte_bot</span>
+                                
+                                <div class="profile-divider"></div>
+                                
+                                <div class="profile-section">
+                                    <h4>Sobre Mim</h4>
+                                    <p style="line-height: 1.4; margin: 0;">🛡️ Seu parceiro para cuidar do servidor! Moderação, tickets, segurança, comunidade e muito mais em um só bot.<br><br>💬 Entre na DevByte: <a href="https://discord.gg/bAkkPwNGbq" target="_blank" style="color: #00a8fc; text-decoration: none; font-weight: 500;">discord.gg/bAkkPwNGbq</a></p>
+                                </div>
+                                
+                                <div class="profile-section">
+                                    <h4>Membro desde</h4>
+                                    <p>30 de jun. de 2026</p>
+                                </div>
+                                
+                                <div class="profile-section">
+                                    <h4>Cargos</h4>
+                                    <div class="profile-roles-grid">
+                                        <span class="role-badge" style="--badge-color: #5865F2;">🤖 Bot Integrado</span>
+                                        <span class="role-badge" style="--badge-color: #10b981;">🛡️ Auto-Moderação</span>
+                                        <span class="role-badge" style="--badge-color: #f59e0b;">💳 Gateway VIP</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section section-padding" id="servicos">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Nossos Serviços</span>
+                    
+                    <div class="mode-web-only">
+                        <h2 class="section-title">Soluções Completas para sua Presença Web</h2>
+                        <p class="section-lead">Do design à entrega de códigos limpos, rápidos e focados em gerar vendas.</p>
+                    </div>
+                    <div class="mode-discord-only">
+                        <h2 class="section-title">Soluções Avançadas de Servidores e Bots</h2>
+                        <p class="section-lead">Organização, automação e inteligência artificial para comunidades de alto rendimento.</p>
+                    </div>
+                </div>
+                
+                <!-- SERVICES GRID -->
+                <div class="services-grid">
+                    
+                    <!-- WEB SERVICES -->
+                    <div class="service-card glass hover-lift mode-web-only">
+                        <div class="service-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 17 12 22 22 17"></polyline>
+                            </svg>
+                        </div>
+                        <h3>LANDING PAGES & SITES</h3>
+                        <ul class="service-bullet-list">
+                            <li>Landing Pages de conversão para vendas expressas</li>
+                            <li>Sites institucionais e portfolios modernos</li>
+                            <li>Design UI/UX exclusivo (sem templates prontos)</li>
+                            <li>Responsividade perfeita em todos os aparelhos</li>
+                            <li>Estrutura leve para carregamento imediato</li>
+                        </ul>
+                        <a href="#orcamento" class="service-link btn-select-service" data-service="Web Full Stack">Simular Orçamento <span>&rarr;</span></a>
+                    </div>
+                    
+                    <div class="service-card glass hover-lift mode-web-only">
+                        <div class="service-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                        </div>
+                        <h3>LOJAS VIRTUAIS & E-COMMERCE</h3>
+                        <ul class="service-bullet-list">
+                            <li>E-commerce completo com catálogo de produtos</li>
+                            <li>Integração de checkout seguro (Pix e Cartão)</li>
+                            <li>Carrinho de compras dinâmico e inteligente</li>
+                            <li>Painel de gerenciamento de pedidos e estoque</li>
+                            <li>Certificado SSL configurado para transações seguras</li>
+                        </ul>
+                        <a href="#orcamento" class="service-link btn-select-service" data-service="E-commerce">Simular Orçamento <span>&rarr;</span></a>
+                    </div>
+                    
+                    <div class="service-card glass hover-lift mode-web-only">
+                        <div class="service-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                            </svg>
+                        </div>
+                        <h3>OTIMIZAÇÃO & SISTEMAS (APIS)</h3>
+                        <ul class="service-bullet-list">
+                            <li>Refatoração de códigos e aceleração de páginas lentas</li>
+                            <li>Pontuação máxima no Google PageSpeed Insights</li>
+                            <li>Integração com CRMs, planilhas e emails automáticos</li>
+                            <li>Integração de APIs e ferramentas de terceiros</li>
+                            <li>Suporte técnico dedicado pós-lançamento</li>
+                        </ul>
+                        <a href="#orcamento" class="service-link btn-select-service" data-service="Sites/Landing Page Sob Medida">Simular Orçamento <span>&rarr;</span></a>
+                    </div>
+                    
+                    <!-- DISCORD SERVICES -->
+                    <div class="service-card glass hover-lift mode-discord-only">
+                        <div class="service-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--discord-blurple);">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M9 10h.01"></path>
+                                <path d="M15 10h.01"></path>
+                                <path d="M8 15h8"></path>
+                            </svg>
+                        </div>
+                        <h3>SERVIDOR COMPLETO & TEMATIZADO</h3>
+                        <div style="font-size: 0.8rem; font-weight: bold; color: var(--text-muted); margin-bottom: 0.85rem;">A partir de R$ 450 · Entrega em 1 a 2 dias</div>
+                        <ul class="service-bullet-list">
+                            <li>Configuração profissional completa do zero do servidor</li>
+                            <li>Arquitetura lógica e design visual de canais de texto e voz</li>
+                            <li>Sistema de cargos e design de permissões avançadas</li>
+                            <li>Integração de bots padrão (Boas-vindas, regras, música)</li>
+                            <li><strong>Cada projeto é desenvolvido de forma única e exclusiva!</strong></li>
+                        </ul>
+                        <a href="#orcamento" class="service-link btn-select-service" data-service="Servidor Completo e Tematizado">Simular Orçamento <span>&rarr;</span></a>
+                    </div>
+                    
+                    <div class="service-card glass hover-lift mode-discord-only">
+                        <div class="service-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--discord-blurple);">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h3>BOTS DE IA & AUTOMAÇÕES</h3>
+                        <div style="font-size: 0.8rem; font-weight: bold; color: var(--text-muted); margin-bottom: 0.85rem;">R$ 199 a R$ 999 · Entrega em 2 a 5 dias</div>
+                        <ul class="service-bullet-list">
+                            <li>Assistentes de Inteligência Artificial inteligentes (Gemini/GPT)</li>
+                            <li>Painéis de vendas profissionais exclusivos e integrados</li>
+                            <li>Comandos personalizados para jogos (GTA RP, Valorant, etc.)</li>
+                            <li>Toda a estrutura de mensagens e avisos em Embed v2</li>
+                            <li><strong>Cada projeto é desenvolvido de forma única e exclusiva!</strong></li>
+                        </ul>
+                        <a href="#orcamento" class="service-link btn-select-service" data-service="Bots com IA e Automações">Simular Orçamento <span>&rarr;</span></a>
+                    </div>
+                    
+                    <div class="service-card glass hover-lift mode-discord-only">
+                        <div class="service-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--discord-blurple);">
+                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <h3>BLINDAGEM & ECOSSISTEMAS</h3>
+                        <div style="font-size: 0.8rem; font-weight: bold; color: var(--text-muted); margin-bottom: 0.85rem;">Orçamento sob medida · Suporte incluso</div>
+                        <ul class="service-bullet-list">
+                            <li>Sistemas robustos de proteção contra invasão (Anti-Raid)</li>
+                            <li>Logs avançados de auditoria e controle fino de membros</li>
+                            <li>Sistemas de backups constantes automáticos do servidor</li>
+                            <li>Integração total do site web com ações do bot no Discord</li>
+                            <li><strong>Cada projeto é desenvolvido de forma única e exclusiva!</strong></li>
+                        </ul>
+                        <a href="#orcamento" class="service-link btn-select-service" data-service="Blindagem e Ecossistema Integrado">Simular Orçamento <span>&rarr;</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Demonstration Section -->
+        <section class="demonstracao-section section-padding" id="demonstracao">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Demonstração Interativa</span>
+                    
+                    <div class="mode-web-only">
+                        <h2 class="section-title">Qual é o Plano Ideal para o seu Negócio?</h2>
+                        <p class="section-lead">Responda a este teste rápido e veja visualmente a estrutura que melhor atende às suas necessidades.</p>
+                    </div>
+                    <div class="mode-discord-only">
+                        <h2 class="section-title">Fale agora mesmo com o nosso bot do Discord</h2>
+                        <p class="section-lead">Clique nos comandos sugeridos para simular respostas automáticas do nosso assistente virtual.</p>
+                    </div>
+                </div>
+                
+                <!-- WEB DEMO: Comparador de Planos Dinâmico (Passo a Passo + Blueprint Visual) -->
+                <div class="mode-web-only">
+                    <div class="comparator-container glass">
+                        <!-- Diagnostic Quiz (Left Side) -->
+                        <div class="comparator-quiz">
+                            <div class="quiz-step active" data-step="1">
+                                <div class="quiz-step-count">PERGUNTA 1 DE 3</div>
+                                <h4>Qual é o seu objetivo principal com o site?</h4>
+                                <div class="quiz-options">
+                                    <button type="button" class="quiz-opt-btn" data-value="lp" data-next="2">
+                                        <span class="opt-letter">A</span>
+                                        <div class="opt-desc">
+                                            <strong>Atrair clientes rápidos via anúncios</strong>
+                                            <span>Quero uma página de alta velocidade com foco total em capturar contatos de leads.</span>
+                                        </div>
+                                    </button>
+                                    <button type="button" class="quiz-opt-btn" data-value="corp" data-next="2">
+                                        <span class="opt-letter">B</span>
+                                        <div class="opt-desc">
+                                            <strong>Montar uma estrutura comercial robusta</strong>
+                                            <span>Quero ter catálogo de produtos, blog, múltiplas páginas institucionais ou loja virtual.</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-step" data-step="2" style="display: none;">
+                                <div class="quiz-step-count">PERGUNTA 2 DE 3</div>
+                                <h4>Você precisa alterar os dados do site no seu dia a dia?</h4>
+                                <div class="quiz-options">
+                                    <button type="button" class="quiz-opt-btn" data-value="lp" data-next="3">
+                                        <span class="opt-letter">A</span>
+                                        <div class="opt-desc">
+                                            <strong>Não, prefiro um site fixo e econômico</strong>
+                                            <span>Os textos não mudam muito. Se eu precisar alterar no futuro, chamo o programador.</span>
+                                        </div>
+                                    </button>
+                                    <button type="button" class="quiz-opt-btn" data-value="corp" data-next="3">
+                                        <span class="opt-letter">B</span>
+                                        <div class="opt-desc">
+                                            <strong>Sim, preciso cadastrar coisas sozinho</strong>
+                                            <span>Quero um Painel Administrativo para alterar produtos, preços ou banners sem ajuda externa.</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-step" data-step="3" style="display: none;">
+                                <div class="quiz-step-count">PERGUNTA 3 DE 3</div>
+                                <h4>Como os visitantes vão chegar até você?</h4>
+                                <div class="quiz-options">
+                                    <button type="button" class="quiz-opt-btn" data-value="lp" data-finish="true">
+                                        <span class="opt-letter">A</span>
+                                        <div class="opt-desc">
+                                            <strong>Anúncios patrocinados (Tráfego Pago)</strong>
+                                            <span>Vou promover links diretos no Facebook Ads, Google Ads ou Instagram.</span>
+                                        </div>
+                                    </button>
+                                    <button type="button" class="quiz-opt-btn" data-value="corp" data-finish="true">
+                                        <span class="opt-letter">B</span>
+                                        <div class="opt-desc">
+                                            <strong>Buscas orgânicas no Google (SEO)</strong>
+                                            <span>Quero ranquear organicamente em várias páginas e ser visto como líder de mercado.</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Quiz Result State -->
+                            <div class="quiz-result-state" id="quiz-result" style="display: none;">
+                                <div class="result-badge">Recomendação DevByte Labs</div>
+                                <h3 class="result-title-text" id="quiz-result-title">Landing Page Start</h3>
+                                <p class="result-desc-text" id="quiz-result-desc">Este plano atende perfeitamente ao seu negócio. É focado em capturar contatos de anúncios rápidos e convertê-los em clientes com taxa máxima de velocidade.</p>
+                                <div class="result-features-list">
+                                    <ul id="quiz-result-features">
+                                        <li>Foco em conversão direta de tráfego pago</li>
+                                        <li>Interface ultra rápida no celular</li>
+                                        <li>Formulários de captação de leads otimizados</li>
+                                    </ul>
+                                </div>
+                                <div class="result-price-estimate">
+                                    <span class="price-estimate-label">Investimento Total Estimado:</span>
+                                    <span class="price-estimate-value highlight-color" id="quiz-calculated-price">R$ 599</span>
+                                </div>
+                                <div class="result-action-row">
+                                    <button type="button" class="btn btn-primary btn-sm" id="btn-select-quiz-plan">Selecionar este plano</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" id="btn-restart-quiz">Refazer teste</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Visual Blueprint Preview (Right Side) -->
+                        <div class="comparator-visual">
+                            <div class="blueprint-frame glass">
+                                <div class="blueprint-header">
+                                    <span class="blueprint-dot"></span>
+                                    <span class="blueprint-title">ESTRUTURA EM PROCESSO — BLUEPRINT</span>
+                                </div>
+                                <div class="blueprint-body">
+                                    <!-- Base sections (Landing Page and Corp) -->
+                                    <div class="blueprint-block active" id="bp-hero">
+                                        <div class="bp-box">
+                                            <div class="bp-icon-wrapper">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                            </div>
+                                            <div class="bp-text-wrapper">
+                                                <strong>Apresentação Impactante (Hero)</strong>
+                                                <span>Destaque imediato com velocidade de abertura extrema.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blueprint-block active" id="bp-benefits">
+                                        <div class="bp-box">
+                                            <div class="bp-icon-wrapper">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                            </div>
+                                            <div class="bp-text-wrapper">
+                                                <strong>Grade de Diferenciais</strong>
+                                                <span>Apresentação lógica das vantagens comerciais do seu negócio.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Complex sections (Grayed out initially, glow active for Corporate) -->
+                                    <div class="blueprint-block locked" id="bp-pages">
+                                        <div class="bp-box">
+                                            <div class="bp-icon-wrapper">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                            </div>
+                                            <div class="bp-text-wrapper">
+                                                <strong>Múltiplas Páginas Corporativas</strong>
+                                                <span>Páginas de Sobre, Portfólio, FAQs e Termos.</span>
+                                            </div>
+                                            <span class="bp-lock-badge">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="blueprint-block locked" id="bp-ecommerce">
+                                        <div class="bp-box">
+                                            <div class="bp-icon-wrapper">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                                            </div>
+                                            <div class="bp-text-wrapper">
+                                                <strong>Catálogo de Produtos &amp; Checkout</strong>
+                                                <span>Carrinho de compras para receber pagamentos online.</span>
+                                            </div>
+                                            <span class="bp-lock-badge">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="blueprint-block locked" id="bp-admin">
+                                        <div class="bp-box">
+                                            <div class="bp-icon-wrapper">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+                                            </div>
+                                            <div class="bp-text-wrapper">
+                                                <strong>Painel Admin do Cliente</strong>
+                                                <span>Gerencie todo o conteúdo do site sem depender de suporte.</span>
+                                            </div>
+                                            <span class="bp-lock-badge">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DISCORD DEMO: Simulador do Servidor Real DevByte Labs -->
+                <div class="mode-discord-only">
+                    <div class="discord-app-mockup glass">
+                        <!-- Server bar -->
+                        <div class="discord-servers-bar">
+                            <div class="discord-server-icon active">
+                                <span class="server-text-logo">DB</span>
+                                <div class="active-indicator"></div>
+                            </div>
+                            <div class="discord-server-icon"><span>🎮</span></div>
+                            <div class="discord-server-icon"><span>🚀</span></div>
+                            <div class="discord-server-add"><span>+</span></div>
+                        </div>
+                        
+                        <!-- Channels bar -->
+                        <div class="discord-channels-bar">
+                            <a href="https://discord.gg/BtmFUf5tXK" target="_blank" class="server-name-header" style="text-decoration: none; color: inherit; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;">
+                                <h4>DevByte Labs</h4>
+                                <span style="background: var(--discord-blurple); color: #fff; font-size: 0.62rem; padding: 3px 6px; border-radius: 3px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block;">Entrar 🚀</span>
+                            </a>
+                            <div class="channels-list">
+                                <!-- INICIO -->
+                                <div class="category-header">👋 | INICIO</div>
+                                <div class="channel-item active" data-channel="inicio">
+                                    <span class="channel-icon-emoji">👋</span> · inicio
+                                </div>
+                                <div class="channel-item" data-channel="regras">
+                                    <span class="channel-icon-emoji">📜</span> · regras
+                                </div>
+                                <div class="channel-item" data-channel="novidades">
+                                    <span class="channel-icon-emoji">📢</span> · novidades
+                                </div>
+                                <div class="channel-item" data-channel="status">
+                                    <span class="channel-icon-emoji">📊</span> · status
+                                </div>
+                                
+                                <!-- LOJA -->
+                                <div class="category-header">📦 | LOJA</div>
+                                <div class="channel-item" data-channel="servicos">
+                                    <span class="channel-icon-emoji">🛠</span> · servicos
+                                </div>
+                                <div class="channel-item" data-channel="comprar">
+                                    <span class="channel-icon-emoji">🛒</span> · comprar
+                                </div>
+                                
+                                <!-- ATENDIMENTO -->
+                                <div class="category-header">🎫 | ATENDIMENTO</div>
+                                <div class="channel-item" data-channel="atendimento">
+                                    <span class="channel-icon-emoji">🎫</span> · atendimento
+                                </div>
+                                <div class="channel-item" data-channel="duvidas">
+                                    <span class="channel-icon-emoji">❓</span> · duvidas
+                                </div>
+                            </div>
+                            <div class="user-status-footer">
+                                <div class="user-avatar-small bg-blue">TU</div>
+                                <div class="user-details">
+                                    <span class="user-name-small">Visitante</span>
+                                    <span class="user-status-text">#0001</span>
+                                </div>
+                                <div class="user-controls">🎤 🎧 ⚙️</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Area -->
+                        <div class="discord-chat-container">
+                            <div class="chat-header" style="justify-content: space-between; display: flex; width: 100%; align-items: center; padding-right: 1rem; box-sizing: border-box;">
+                                <div style="display: flex; align-items: center;">
+                                    <span class="hash-header">#</span>
+                                    <span class="channel-name-header" id="current-channel-name">👋 · inicio</span>
+                                    <span class="divider-header">|</span>
+                                    <span class="channel-desc-header" id="current-channel-desc">Início da nossa comunidade</span>
+                                </div>
+                                <a href="https://discord.gg/BtmFUf5tXK" target="_blank" class="discord-btn discord-btn-primary" style="text-decoration: none; font-size: 0.72rem; padding: 0.35rem 0.8rem; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; background: var(--discord-blurple); box-shadow: 0 4px 12px rgba(88, 101, 242, 0.25); color: #fff;">
+                                    💬 Entrar no Servidor Real
+                                </a>
+                            </div>
+                            
+                            <div class="chat-messages-area" id="discord-messages">
+                                <!-- Default Message loaded: #inicio Welcome Embed -->
+                                <div class="discord-message-group">
+                                    <img src="logo.jpg" alt="DevByte Labs Logo" class="user-avatar-small" style="object-fit: cover;">
+                                    <div class="message-content-wrapper">
+                                        <div class="message-meta">
+                                            <span class="bot-author-name">DevByte Business</span>
+                                            <span class="bot-tag app-tag">APP</span>
+                                            <span class="message-timestamp">Hoje às 15:13</span>
+                                        </div>
+                                        <div class="discord-embed border-purple">
+                                            <div class="embed-subheader">DevByte Labs > Início > Boas-vindas</div>
+                                            <div class="embed-title" style="font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0; color: #fff;">Boas-vindas ao DevByte Labs!</div>
+                                            <div class="embed-desc" style="color: #b9bbbe; font-size: 0.82rem; margin-bottom: 0.85rem; line-height: 1.45;">Aqui você encontra os melhores robôs para moderação, economia e IA do Discord, além de soluções completas de desenvolvimento para o seu negócio.</div>
+                                            
+                                            <div class="embed-fields" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                                <div class="embed-field">
+                                                    <div class="field-name" style="color: #fff; font-size: 0.85rem; display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.25rem;">Como começar?</div>
+                                                    <div class="field-value" style="color: #b9bbbe; font-size: 0.8rem; line-height: 1.45; padding-left: 1.25rem;">Navegue pelos canais do servidor na barra lateral esquerda! Visite o canal #servicos ou compre um plano em #comprar.</div>
+                                                </div>
+                                                <div class="embed-field">
+                                                    <div class="field-name" style="color: #fff; font-size: 0.85rem; display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.25rem;">Servidor Real</div>
+                                                    <div class="field-value" style="color: #b9bbbe; font-size: 0.8rem; line-height: 1.45; padding-left: 1.25rem;">Quer fazer parte da nossa comunidade oficial e acompanhar nossos projetos? Clique no botão abaixo!</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="discord-btn-row" style="margin-top: 0.85rem;">
+                                                <a href="https://discord.gg/BtmFUf5tXK" target="_blank" class="discord-btn discord-btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; padding: 0.35rem 0.8rem; border-radius: 4px; color: #fff; background: var(--discord-blurple); box-shadow: 0 4px 12px rgba(88, 101, 242, 0.25);">
+                                                    💬 Entrar no Servidor Real
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="discord-input-bar">
+                                <div class="plus-icon-chat">+</div>
+                                <input type="text" id="discord-input" placeholder="Conversar em # 👋 · inicio" disabled>
+                                <div class="gif-emoji-panel">GIF 🎁 🙂</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Budget Calculator Section (Fully Separated Web vs Discord) -->
+        <section class="calculator-section section-padding" id="orcamento">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Simulador de Valores</span>
+                    <h2 class="section-title">Estime o Custo do seu Projeto</h2>
+                    <p class="section-lead">Ajuste as opções de acordo com sua necessidade e tenha uma base de valores instantânea.</p>
+                </div>
+                
+                <div class="calculator-grid glass">
+                    <div class="calc-inputs">
+                        
+                        <!-- SELETOR WEB EXCLUSIVO -->
+                        <div class="mode-web-only">
+                            <div class="input-group">
+                                <label for="web-base-plan">Selecione o tipo de Site:</label>
+                                <div class="custom-dropdown" id="web-base-plan-dropdown">
+                                    <div class="dropdown-trigger">
+                                        <span class="selected-text">Landing Page Start — R$ 599</span>
+                                        <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <div class="dropdown-option active" data-value="599">Landing Page Start — R$ 599</div>
+                                        <div class="dropdown-option" data-value="1499">Site Corporativo / E-commerce — R$ 1.499</div>
+                                        <div class="dropdown-option" data-value="1999">Combo Total: Web + Servidor Discord — R$ 1.999</div>
+                                    </div>
+                                    <input type="hidden" id="web-base-plan" value="599">
+                                </div>
+                            </div>
+                            
+                            <div class="input-group" id="web-addons-group" style="margin-top: 1.5rem;">
+                                <label>Selecione os adicionais do Site:</label>
+                                <div class="checkbox-options-grid">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="addon-checkbox-web" value="300" id="web-addon-seo">
+                                        <span class="checkmark"></span>
+                                        <div class="checkbox-label-wrapper">
+                                            <strong>SEO Avançado (+ R$ 300)</strong>
+                                            <span>Otimização profunda para ser encontrado no Google.</span>
+                                        </div>
+                                    </label>
+
+                                    
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="addon-checkbox-web" value="500" id="web-addon-painel">
+                                        <span class="checkmark"></span>
+                                        <div class="checkbox-label-wrapper">
+                                            <strong>Painel de Administração (+ R$ 500)</strong>
+                                            <span>Painel próprio para cadastrar e alterar produtos/textos.</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- SELETOR DISCORD EXCLUSIVO -->
+                        <div class="mode-discord-only">
+                            <div class="input-group">
+                                <label for="disc-base-plan">Selecione o plano do Servidor:</label>
+                                <div class="custom-dropdown" id="disc-base-plan-dropdown">
+                                    <div class="dropdown-trigger">
+                                        <span class="selected-text">Servidor Completo — R$ 300</span>
+                                        <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <div class="dropdown-option" data-value="0">Já possuo servidor (Apenas Adicionais) — R$ 0</div>
+                                        <div class="dropdown-option active" data-value="300">Servidor Completo — R$ 300</div>
+                                        <div class="dropdown-option" data-value="1999">Combo Total: Servidor Discord + Site LP — R$ 1.999</div>
+                                    </div>
+                                    <input type="hidden" id="disc-base-plan" value="300">
+                                </div>
+                            </div>
+                            
+                            <div class="input-group" id="disc-addons-group" style="margin-top: 1.5rem;">
+                                <label>Selecione os adicionais do Servidor:</label>
+                                <div class="checkbox-options-grid">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="addon-checkbox-disc" value="150" id="disc-addon-tematizado">
+                                        <span class="checkmark"></span>
+                                        <div class="checkbox-label-wrapper">
+                                            <strong>Tematização & Canais Personalizados (+ R$ 150)</strong>
+                                            <span>Estruturação visual de categorias, canais e emojis adaptados ao tema do seu nicho.</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="addon-checkbox-disc" value="100" id="disc-addon-bots">
+                                        <span class="checkmark"></span>
+                                        <div class="checkbox-label-wrapper">
+                                            <strong>Integração de Bots Essenciais (+ R$ 100)</strong>
+                                            <span>Sistemas básicos de música, moderação padrão, auto-roles e boas-vindas.</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="addon-checkbox-disc" value="350" id="disc-addon-exclusive">
+                                        <span class="checkmark"></span>
+                                        <div class="checkbox-label-wrapper">
+                                            <strong>Bot Exclusivo Sob Medida (+ R$ 350)</strong>
+                                            <span>Desenvolvimento de bot único programado do zero para funções exclusivas do seu projeto.</span>
+                                        </div>
+                                    </label>
+
+                                    
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="addon-checkbox-disc" value="250" id="disc-addon-commands">
+                                        <span class="checkmark"></span>
+                                        <div class="checkbox-label-wrapper">
+                                            <strong>Comandos de Customização de Estruturas (+ R$ 250)</strong>
+                                            <span>Lógica interna para criar, redefinir ou customizar canais e cargos dinamicamente.</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="addon-checkbox-disc" value="200" id="disc-addon-security">
+                                        <span class="checkmark"></span>
+                                        <div class="checkbox-label-wrapper">
+                                            <strong>Blindagem Anti-Raid & Backup Automático (+ R$ 200)</strong>
+                                            <span>Proteção robusta contra ataques maliciosos, spam de links e backup periódico do servidor.</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" class="addon-checkbox-disc" value="250" id="disc-addon-ia-pessoal">
+                                        <span class="checkmark"></span>
+                                        <div class="checkbox-label-wrapper">
+                                            <strong>Assistente de IA Pessoal / Staff (+ R$ 250)</strong>
+                                            <span>IA pessoal para responder comandos específicos, consultar informações de clientes e gerenciar demandas da equipe.</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="calc-results">
+                        <div class="results-title">Estimativa do Projeto</div>
+                        
+                        <div class="result-cards">
+                            <div class="result-card primary-glow">
+                                <span class="result-label">Investimento Total Estimado</span>
+                                <span class="result-big-num highlight-color" id="calc-project-price">R$ 599</span>
+                                <span class="result-detail">Possibilidade de parcelamento facilitado</span>
+                            </div>
+                            
+                            <div class="result-card secondary-glow">
+                                <span class="result-label">Tempo Médio de Desenvolvimento</span>
+                                <span class="result-big-num" id="calc-project-time">5 a 10 dias</span>
+                                <span class="result-detail">Prazo focado na entrega rápida com qualidade</span>
+                            </div>
+                        </div>
+                        
+                        <div class="roi-summary-text">
+                            * O valor final do orçamento é detalhado e acordado na proposta. Clique abaixo para aplicar essa configuração no formulário de contato.
+                        </div>
+                        
+                        <button class="btn btn-primary btn-full" id="btn-apply-calculator">Aplicar Configuração no Contato</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section (Planos e Preços Separados) -->
+        <section class="pricing-section section-padding" id="precos">
+            <div class="glow-bg glow-pricing"></div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Investimento</span>
+                    
+                    <div class="mode-web-only">
+                        <h2 class="section-title">Nossos Planos de Desenvolvimento Web</h2>
+                        <p class="section-lead">Preços justos e transparentes focados no crescimento comercial da sua marca.</p>
+                    </div>
+                    <div class="mode-discord-only">
+                        <h2 class="section-title">Nossos Planos de Configurações Discord</h2>
+                        <p class="section-lead">Estrutura blindada e robôs inteligentes para sua comunidade prosperar.</p>
+                    </div>
+                </div>
+                
+                <!-- Pricing Grid container -->
+                <div class="pricing-grid">
+                    
+                    <!-- PLANOS EXCLUSIVOS WEB -->
+                    <div class="pricing-card glass mode-web-only" id="plan-web-lp">
+                        <div class="plan-header">
+                            <h3>Landing Page Start</h3>
+                            <p class="plan-desc">Página única de altíssima conversão ideal para atração rápida de clientes.</p>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="price-amount">599</span>
+                                <span class="period">/taxa única</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><span>&#10003;</span> Layout Responsivo (Celular/Desktop)</li>
+                            <li><span>&#10003;</span> Design modernizado e personalizado</li>
+                            <li><span>&#10003;</span> Formulário de contato profissional integrado</li>
+                            <li><span>&#10003;</span> Configuração de Botões e CTAs eficientes</li>
+                            <li><span>&#10003;</span> SEO básico com indexação no Google</li>
+                            <li><span>&#10003;</span> Certificado de Segurança SSL Grátis</li>
+                            <li class="disabled"><span>&times;</span> Banco de Dados & Painel Administrativo</li>
+                        </ul>
+                        <div class="plan-action">
+                            <a href="#contato" class="btn btn-secondary btn-full btn-buy-plan" data-plan="Landing Page Start (Web)">Escolher LP</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-card glass featured mode-web-only" id="plan-web-corp">
+                        <div class="popular-tag">Recomendado</div>
+                        <div class="plan-header">
+                            <h3>Corporativo / E-commerce</h3>
+                            <p class="plan-desc">Portal completo com múltiplas páginas ou loja com carrinho de vendas.</p>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="price-amount">1.499</span>
+                                <span class="period">/taxa única</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><span>&#10003;</span> Até 5 páginas estruturadas exclusivas</li>
+                            <li><span>&#10003;</span> Carrinho de compras e checkouts de pagamento</li>
+                            <li><span>&#10003;</span> Integração com bancos de dados de controle</li>
+                            <li><span>&#10003;</span> Painel Administrativo do cliente completo</li>
+                            <li><span>&#10003;</span> Otimização de velocidade e SEO Avançado</li>
+                            <li><span>&#10003;</span> Certificado de Segurança SSL Grátis</li>
+                        </ul>
+                        <div class="plan-action">
+                            <a href="#contato" class="btn btn-primary btn-full btn-buy-plan" data-plan="Site Corporativo / E-commerce (Web)">Contratar Site</a>
+                        </div>
+                    </div>
+                    
+                    <!-- PLANOS EXCLUSIVOS DISCORD -->
+                    <div class="pricing-card glass mode-discord-only" id="plan-disc-start">
+                        <div class="plan-header">
+                            <h3>Servidor Completo</h3>
+                            <p class="plan-desc">Configuração ágil e profissional completa para organizar sua comunidade.</p>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="price-amount">300</span>
+                                <span class="period">/taxa única</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><span>&#10003;</span> Layout de canais e categorias organizados</li>
+                            <li><span>&#10003;</span> Sistema completo de cargos e permissões lógicas</li>
+                            <li><span>&#10003;</span> Bots essenciais integrados (Boas-vindas e moderação)</li>
+                            <li><span>&#10003;</span> Prazo de entrega express: 1 a 2 dias</li>
+                            <li><span>&#10003;</span> <strong>Cada projeto é desenvolvido de forma única e exclusiva!</strong></li>
+                            <li class="disabled"><span>&times;</span> Customizações visuais e tematizações complexas</li>
+                        </ul>
+                        <div class="plan-action">
+                            <a href="#contato" class="btn btn-secondary btn-full btn-buy-plan" data-plan="Servidor Completo (Discord) - R$ 300" data-buy-plan="300">Escolher Servidor</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-card glass featured mode-discord-only" id="plan-disc-pro">
+                        <div class="popular-tag">Mais Vendido</div>
+                        <div class="plan-header">
+                            <h3>Bot IA & Automações</h3>
+                            <p class="plan-desc">Automações robustas de suporte com inteligência artificial própria e comandos exclusivos.</p>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="price-amount" style="font-size: 2.2rem; letter-spacing: -1px;">199 a 999</span>
+                                <span class="period">/taxa única</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><span>&#10003;</span> Assistente com Inteligência Artificial humana integrada</li>
+                            <li><span>&#10003;</span> Painéis de vendas comerciais profissionais exclusivos</li>
+                            <li><span>&#10003;</span> Comandos para jogos customizados (GTA RP, Valorant, etc.)</li>
+                            <li><span>&#10003;</span> Mensagens e avisos desenhados em Embed v2</li>
+                            <li><span>&#10003;</span> Prazo de entrega express: 2 a 5 dias</li>
+                            <li><span>&#10003;</span> <strong>Cada projeto é desenvolvido de forma única e exclusiva!</strong></li>
+                        </ul>
+                        <div class="plan-action">
+                            <a href="#contato" class="btn btn-primary btn-full btn-buy-plan" data-plan="Bot IA & Automações (Discord) - R$ 199 a R$ 999" data-buy-plan="600">Contratar Bot</a>
+                        </div>
+                    </div>
+                    
+                    <!-- PLANO COMBO TOTAL (Visível em ambos os modos) -->
+                    <div class="pricing-card glass" id="plan-combo-total">
+                        <div class="popular-tag">Combo Ecossistema</div>
+                        <div class="plan-header">
+                            <h3>Ecossistema Integrado</h3>
+                            <p class="plan-desc">A união perfeita de site profissional e servidor do Discord automáticos.</p>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="price-amount">1.999</span>
+                                <span class="period">/taxa única</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><span>&#10003;</span> 1 Landing Page profissional otimizada</li>
+                            <li><span>&#10003;</span> 1 Servidor do Discord Pro configurado</li>
+                            <li><span>&#10003;</span> 1 Bot inteligente integrado ao Gemini/GPT</li>
+                            <li><span>&#10003;</span> Integração: Leads do site geram cargos automáticos</li>
+                            <li><span>&#10003;</span> Recomendação de hospedagem + ensino</li>
+                            <li><span>&#10003;</span> 30 dias de suporte dedicado a atualizações</li>
+                        </ul>
+                        <div class="plan-action">
+                            <a href="#contato" class="btn btn-secondary btn-full btn-buy-plan" data-plan="Ecossistema Integrado (Combo Web+Discord)">Contratar Combo</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Info de Assinaturas Mensais (Apenas Discord) -->
+                    <div class="pricing-notice mode-discord-only glass">
+                        <div class="notice-icon">⚡</div>
+                        <div class="notice-text-wrapper">
+                            <h4>Assinatura Mensal de Bots Profissionais</h4>
+                            <p>Prefere não investir em taxas únicas de desenvolvimento? Oferecemos planos de <strong>assinatura mensal</strong> para bots profissionais prontos com hospedagem inclusa, suporte dedicado e atualizações recorrentes. <a href="#contato" class="notice-link">Consulte-nos &rarr;</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section section-padding" id="contato">
+            <div class="glow-bg glow-contact"></div>
+            <div class="container contact-container">
+                <div class="contact-info-block">
+                    <span class="section-subtitle">Dê o Primeiro Passo</span>
+                    <h2 class="section-title">Vamos transformar sua ideia em realidade?</h2>
+                    <p class="section-lead">
+                        Solicite o seu orçamento sem compromisso. Nossa equipe responderá em até 24 horas úteis por e-mail ou telefone.
+                    </p>
+                    
+                    <div class="trust-indicators-list">
+                        <div class="trust-indicator-item">
+                            <span class="trust-icon">💬</span>
+                            <div class="trust-text">
+                                <strong>ATENDIMENTO RÁPIDO E AMIGÁVEL</strong>
+                                <span>Atendimento direto e sem burocracia.</span>
+                            </div>
+                        </div>
+                        <div class="trust-indicator-item">
+                            <span class="trust-icon">✔️</span>
+                            <div class="trust-text">
+                                <strong>ENTREGA COM QUALIDADE</strong>
+                                <span>Projetos desenvolvidos sob rigorosos testes.</span>
+                            </div>
+                        </div>
+                        <div class="trust-indicator-item">
+                            <span class="trust-icon">🔒</span>
+                            <div class="trust-text">
+                                <strong>100% SEGURO E CONFIÁVEL</strong>
+                                <span>Garantia de uptime, estabilidade e clareza nos termos.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-block glass" id="contact-form-container">
+                    <form id="lead-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="form-name">Seu Nome *</label>
+                            <input type="text" id="form-name" required placeholder="Ex: Roberto Silva">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="form-email">Seu E-mail *</label>
+                                <input type="email" id="form-email" required placeholder="roberto@empresa.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-phone">Seu Celular / Telefone *</label>
+                                <input type="tel" id="form-phone" required placeholder="(11) 99999-9999">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="form-interest">Serviço de Interesse *</label>
+                                <select id="form-interest" required class="form-select-native">
+                                    <option value="">Selecione...</option>
+                                    
+                                    <!-- Options filtered by active mode -->
+                                    <option class="option-web" value="Landing Page Start (Web) — R$ 599">Web: Landing Page Start — R$ 599</option>
+                                    <option class="option-web" value="Site Corporativo / E-commerce (Web) — R$ 1499">Web: Corporativo / E-commerce — R$ 1499</option>
+                                    
+                                    <option class="option-disc" value="Servidor Completo (Discord) — R$ 300">Discord: Servidor Completo — R$ 300</option>
+                                    <option class="option-disc" value="Bot IA & Automações (Discord) — R$ 199 a R$ 999">Discord: Bot IA & Automações — R$ 199 a R$ 999</option>
+                                    <option class="option-disc" value="Apenas Adicionais (Discord)">Discord: Apenas Adicionais / Bots</option>
+                                    <option class="option-disc" value="Assinatura Bot Mensal (Discord)">Discord: Assinatura Mensal de Bot</option>
+                                    
+                                    <option value="Ecossistema Integrado (Combo) — R$ 1999">Combo: Ecossistema Integrado — R$ 1999</option>
+                                    <option value="Personalizado / Outro">Outro / Orçamento Customizado</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-budget-est">Valor Estimado (Calculadora)</label>
+                                <input type="text" id="form-budget-est" readonly placeholder="Nenhuma simulação aplicada" style="background:rgba(255,255,255,0.01); color:var(--secondary); font-weight:bold;">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="form-message">Como podemos te ajudar? *</label>
+                            <textarea id="form-message" required rows="4" placeholder="Fale um pouco sobre o projeto que você deseja tirar do papel."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full btn-lg" id="submit-btn">
+                            <span class="btn-text">Chame Agora e Faça um Orçamento! 🚀</span>
+                            <span class="loader-spinner" style="display: none;"></span>
+                        </button>
+                    </form>
+                    
+                    <!-- Success State -->
+                    <div class="form-success-state" id="form-success-message" style="display: none;">
+                        <div class="success-icon-wrapper">
+                            <div class="success-icon">&#10003;</div>
+                        </div>
+                        <h3>Proposta Recebida com Sucesso!</h3>
+                        <p>Obrigado pelo contato! Seus dados foram salvos com sucesso. Nossa equipe de especialistas retornará seu contato em menos de 24 horas úteis por e-mail ou telefone.</p>
+                        <button class="btn btn-secondary btn-sm" id="reset-form-btn">Enviar outra proposta</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <img src="logo.jpg" alt="DevByte Labs Logo" class="logo-img" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
+                    <span class="logo-text">Dev<span class="highlight">Byte</span> <span style="font-size: 0.75rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-left: 2px;">Labs</span></span>
+                </a>
+                <p class="footer-desc">
+                    DevByte Labs LTDA.<br>
+                    Criação de sites de alta performance e automações avançadas no Discord.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#demonstracao">Demonstração</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="#orcamento">Orçamento</a></li>
+                    <li><a href="#precos">Preços</a></li>
+                    <li><a href="#contato">Falar Conosco</a></li>
+                    <li><a href="admin.html" target="_blank" style="opacity: 0; font-size: 0.75rem; user-select: none; cursor: pointer;">🔑 Área Restrita</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Redes</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-link" aria-label="Instagram">IG</a>
+                    <a href="#" class="social-link" aria-label="Discord">DC</a>
+                    <a href="#" class="social-link" aria-label="GitHub">GH</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>&copy; 2026 DevByte Labs. Todos os direitos reservados. Exemplo de portfólio de vendas.</p>
+                <p>Criado em parceria para atração de clientes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Supabase SDK & Config -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = "https://dtrhfstjfzpqxufuwyum.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0cmhmc3RqZnpwcXh1ZnV3eXVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4NzEzMzAsImV4cCI6MjA5ODQ0NzMzMH0.lOXdDTxgXNMDaER4Zn4KYdJqyQaastDwUN9WNZ3GB4U";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    </script>
+
+    <!-- JS Principal -->
+    <script src="app.js"></script>
+</body>
+</html>

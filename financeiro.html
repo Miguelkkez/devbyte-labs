@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevByte Labs - Gestão Financeira</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <style>
+        :root {
+            --bg-dark: #0B0C10;
+            --bg-card: rgba(17, 18, 20, 0.75);
+            --border-glow: rgba(88, 101, 242, 0.15);
+            --border-light: rgba(255, 255, 255, 0.06);
+            --primary: #5865F2; /* Discord Blurple */
+            --secondary: #00FFCC; /* Cyan */
+            --text-main: #f2f3f5;
+            --text-muted: #949ba4;
+            --success: #23a55a;
+            --warning: #f0b232;
+            --danger: #f23f43;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        html {
+            background-color: #0B0C10;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-x: hidden;
+            padding: 2.5rem 2rem;
+            
+            /* Initial state for depth focus transitions */
+            opacity: 0;
+            transform: scale(1.02);
+            filter: blur(10px);
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Ambient Glow backgrounds */
+        .glow-bg {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.07) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .glow-top-right {
+            top: -15%;
+            right: -15%;
+        }
+
+        .glow-bottom-left {
+            bottom: -15%;
+            left: -15%;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.08) 0%, rgba(0,0,0,0) 70%);
+        }
+
+        /* Dividores de Seção Premium */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(88, 101, 242, 0) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(88, 101, 242, 0) 100%);
+            margin: 2.25rem 0;
+            border: none;
+        }
+
+        /* ==========================================================
+           CONTAINER PRINCIPAL
+           ========================================================== */
+        #finance-container {
+            width: 100%;
+            max-width: 1200px;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            animation: containerFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes containerFade {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header / Navbar */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .admin-badge {
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            color: var(--secondary);
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .admin-nav {
+            margin-left: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link.active {
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            box-shadow: 0 0 8px var(--primary);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .client-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .btn-logout {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-logout:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: rgba(242, 63, 67, 0.05);
+        }
+
+        /* Métricas Financeiras */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.25rem;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .metric-card.highlight-card {
+            border-color: rgba(0, 255, 204, 0.25);
+            box-shadow: 0 4px 25px rgba(0, 255, 204, 0.05);
+            background: radial-gradient(circle at top right, rgba(0, 255, 204, 0.03), var(--bg-card));
+        }
+
+        .metric-card.highlight-card:hover {
+            border-color: var(--secondary);
+        }
+
+        .metric-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .metric-card.highlight-card .metric-value {
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.15);
+        }
+
+        /* Seção Analítica: Metas e Gráficos */
+        .analytics-section {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.25rem;
+        }
+
+        @media (max-width: 992px) {
+            .analytics-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .analytics-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-heading {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Meta Mensal UI */
+        .goal-top-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .goal-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .goal-target-val {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .goal-progress-percent {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--secondary);
+            line-height: 1;
+            text-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+        }
+
+        /* Barra de Progresso Neon */
+        .progress-bar-container {
+            width: 100%;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 50px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50px;
+            box-shadow: 0 0 12px var(--secondary);
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .goal-motivation-text {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            background: rgba(0, 255, 204, 0.02);
+            border: 1px solid rgba(0, 255, 204, 0.05);
+            border-radius: 8px;
+            padding: 0.85rem;
+        }
+
+        /* Distribuição de Serviço (Barras Horizontais) */
+        .distribution-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+        }
+
+        .dist-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .dist-info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .dist-label {
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dist-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .dist-values {
+            color: var(--text-muted);
+        }
+
+        .dist-values strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .dist-bar-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .dist-bar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================================
+           CONTROLES & TABELA DE TRANSAÇÕES
+           ========================================================== */
+        .controls-panel {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 2.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .controls-left {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.25rem;
+            flex: 1;
+        }
+
+        .search-wrapper {
+            position: relative;
+            min-width: 250px;
+            flex: 1.2;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.88rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .search-input:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(88, 101, 242, 0.15);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Custom Dropdowns */
+        .custom-dropdown {
+            position: relative;
+            min-width: 190px;
+            user-select: none;
+        }
+
+        .dropdown-trigger {
+            width: 100%;
+            padding: 0.7rem 1.25rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dropdown-trigger:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .custom-dropdown.open .dropdown-trigger {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(88, 101, 242, 0.15);
+        }
+
+        .arrow-icon {
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .custom-dropdown.open .arrow-icon {
+            transform: rotate(180deg);
+            color: #fff;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            width: 100%;
+            background: #111214;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 5px;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            transform: translateY(-12px);
+            opacity: 0;
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        .custom-dropdown.open .dropdown-menu {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .dropdown-option {
+            padding: 0.65rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-option:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+        }
+
+        .dropdown-option.active {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .controls-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-action {
+            padding: 0.7rem 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-action:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255,255,255,0.03);
+            color: #fff;
+        }
+
+        /* Histórico Tabela */
+        .table-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin-bottom: 2rem;
+        }
+
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.88rem;
+        }
+
+        .transactions-table th {
+            background: rgba(255, 255, 255, 0.015);
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            padding: 1.15rem 1.5rem;
+        }
+
+        .transactions-table td {
+            padding: 1.15rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+            transition: background 0.25s ease;
+        }
+
+        .transactions-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .transactions-table tr:hover td {
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .client-cell {
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .category-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-light);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+
+        .val-badge {
+            font-weight: 800;
+            font-size: 0.92rem;
+        }
+
+        .val-positive {
+            color: var(--success);
+        }
+
+        .val-neutral {
+            color: var(--primary);
+        }
+
+        .val-negative {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        /* Status de Transações */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+        }
+
+        .pill-pago {
+            background: rgba(35, 165, 90, 0.08);
+            border-color: rgba(35, 165, 90, 0.15);
+            color: var(--success);
+        }
+
+        .pill-pendente {
+            background: rgba(88, 101, 242, 0.08);
+            border-color: rgba(88, 101, 242, 0.15);
+            color: var(--primary);
+        }
+
+        .pill-cancelado {
+            background: rgba(242, 63, 67, 0.08);
+            border-color: rgba(242, 63, 67, 0.15);
+            color: var(--danger);
+        }
+
+        /* Estado Vazio */
+        .empty-state {
+            background: var(--bg-card);
+            border: 1px dashed var(--border-light);
+            border-radius: 16px;
+            padding: 6rem 2rem;
+            text-align: center;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
+            animation: emptyAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes emptyAppear {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .empty-icon {
+            color: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        .empty-text {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.25rem;
+            }
+
+            .admin-nav {
+                margin-left: 0;
+                width: 100%;
+                justify-content: flex-start;
+                margin-top: 0.5rem;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .controls-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .controls-left {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-wrapper {
+                max-width: none;
+            }
+
+            .controls-right {
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Supabase Session Validation -->
+    <script>
+        const SUPABASE_URL = "https://dtrhfstjfzpqxufuwyum.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0cmhmc3RqZnpwcXh1ZnV3eXVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4NzEzMzAsImV4cCI6MjA5ODQ0NzMzMH0.lOXdDTxgXNMDaER4Zn4KYdJqyQaastDwUN9WNZ3GB4U";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Oculta o corpo da página até que a autenticação seja verificada com sucesso
+        document.documentElement.style.display = 'none';
+
+        async function verifyAuth() {
+            const { data: { user }, error } = await supabase.auth.getUser();
+            if (error || !user) {
+                window.location.href = 'admin.html';
+            } else {
+                document.documentElement.style.display = 'block';
+            }
+        }
+        verifyAuth();
+    </script>
+
+    <!-- Ambient Glow effects -->
+    <div class="glow-bg glow-top-right"></div>
+    <div class="glow-bg glow-bottom-left"></div>
+
+    <div id="finance-container">
+        <!-- Header / Navigation -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <img src="logo.jpg" alt="DevByte Labs Logo" class="logo-img">
+                <span class="logo-text">DevByte Labs</span>
+                <span class="admin-badge">Dono</span>
+                
+                <nav class="admin-nav">
+                    <a href="admin.html" class="nav-link">📋 Projetos & Leads</a>
+                    <a href="financeiro.html" class="nav-link active">💰 Financeiro</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <span class="client-date" id="live-time-display">Carregando painel...</span>
+                <button class="btn-logout" id="btn-logout">Logout</button>
+            </div>
+        </header>
+
+        <!-- Seção de Métricas Financeiras -->
+        <section class="metrics-grid">
+            <div class="metric-card highlight-card">
+                <span class="metric-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--secondary);">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    Faturamento Líquido
+                </span>
+                <div class="metric-value" id="val-faturamento-total">R$ 0</div>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    Receita Projetada
+                </span>
+                <div class="metric-value" id="val-faturamento-projetado">R$ 0</div>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                    Ticket Médio
+                </span>
+                <div class="metric-value" id="val-ticket-medio">R$ 0</div>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Taxa de Conversão
+                </span>
+                <div class="metric-value" id="val-taxa-conversao">0%</div>
+            </div>
+        </section>
+
+        <!-- Seção Analítica: Metas e Distribuição -->
+        <section class="analytics-section">
+            <!-- Card de Metas -->
+            <div class="analytics-card">
+                <div class="card-header-row">
+                    <h3 class="card-heading">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        Meta de Faturamento Mensal
+                    </h3>
+                </div>
+                
+                <div class="goal-top-details">
+                    <div class="goal-label">
+                        <span>Progresso acumulado</span>
+                        <span class="goal-target-val">Alvo: R$ 15.000,00</span>
+                    </div>
+                    <div class="goal-progress-percent" id="goal-percent-text">0%</div>
+                </div>
+
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="goal-progress-fill"></div>
+                </div>
+
+                <p class="goal-motivation-text" id="goal-motivation-msg">
+                    Continue convertendo as propostas da Caixa de Entrada! Concluir projetos ativos aumenta o faturamento consolidado.
+                </p>
+            </div>
+
+            <!-- Card de Distribuição por Categoria -->
+            <div class="analytics-card">
+                <div class="card-header-row">
+                    <h3 class="card-heading">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                        Receitas por Categoria
+                    </h3>
+                </div>
+
+                <div class="distribution-list">
+                    <!-- Web services -->
+                    <div class="dist-item">
+                        <div class="dist-info-row">
+                            <span class="dist-label"><span class="dist-dot" style="background:#5865F2;"></span>Web (Sites / Landings)</span>
+                            <span class="dist-values" id="dist-web-val">R$ 0 (<strong>0%</strong>)</span>
+                        </div>
+                        <div class="dist-bar-container">
+                            <div class="dist-bar-fill" id="dist-web-fill" style="background:#5865F2;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Discord services -->
+                    <div class="dist-item">
+                        <div class="dist-info-row">
+                            <span class="dist-label"><span class="dist-dot" style="background:#00FFCC;"></span>Discord (Bots / Servidores)</span>
+                            <span class="dist-values" id="dist-discord-val">R$ 0 (<strong>0%</strong>)</span>
+                        </div>
+                        <div class="dist-bar-container">
+                            <div class="dist-bar-fill" id="dist-discord-fill" style="background:#00FFCC;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Combo services -->
+                    <div class="dist-item">
+                        <div class="dist-info-row">
+                            <span class="dist-label"><span class="dist-dot" style="background:#23a55a;"></span>Combo Ecossistema</span>
+                            <span class="dist-values" id="dist-combo-val">R$ 0 (<strong>0%</strong>)</span>
+                        </div>
+                        <div class="dist-bar-container">
+                            <div class="dist-bar-fill" id="dist-combo-fill" style="background:#23a55a;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Custom services -->
+                    <div class="dist-item">
+                        <div class="dist-info-row">
+                            <span class="dist-label"><span class="dist-dot" style="background:#f0b232;"></span>Orçamentos Customizados</span>
+                            <span class="dist-values" id="dist-custom-val">R$ 0 (<strong>0%</strong>)</span>
+                        </div>
+                        <div class="dist-bar-container">
+                            <div class="dist-bar-fill" id="dist-custom-fill" style="background:#f0b232;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filtros e Busca -->
+        <div class="controls-panel">
+            <div class="controls-left">
+                <div class="search-wrapper">
+                    <span class="search-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input type="text" id="search-input" class="search-input" placeholder="Filtrar transações por cliente ou serviço...">
+                </div>
+
+                <!-- Custom Dropdown: Tipo de Transação -->
+                <div class="custom-dropdown" id="dropdown-filter-type">
+                    <div class="dropdown-trigger">
+                        <span class="selected-text">Todas as Transações</span>
+                        <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-option active" data-value="all">Todas as Transações</div>
+                        <div class="dropdown-option" data-value="pago">Pagas (Entregues)</div>
+                        <div class="dropdown-option" data-value="pendente">Pendentes (Em Produção)</div>
+                        <div class="dropdown-option" data-value="cancelado">Canceladas / Ignoradas</div>
+                    </div>
+                </div>
+
+                <!-- Custom Dropdown: Ordenação -->
+                <div class="custom-dropdown" id="dropdown-sort-order">
+                    <div class="dropdown-trigger">
+                        <span class="selected-text">Ordenar por: Recentes</span>
+                        <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-option active" data-value="recent">Mais Recentes</div>
+                        <div class="dropdown-option" data-value="highest">Maior Valor</div>
+                        <div class="dropdown-option" data-value="lowest">Menor Valor</div>
+                        <div class="dropdown-option" data-value="oldest">Mais Antigos</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls-right">
+                <button class="btn-action" id="btn-export-csv" title="Exportar dados financeiros como CSV">Exportar CSV</button>
+            </div>
+        </div>
+
+        <!-- Tabela de Transações -->
+        <main class="table-container" id="table-wrapper">
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Serviço Solicitado</th>
+                        <th>Data de Início</th>
+                        <th>Status</th>
+                        <th style="text-align: right;">Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-list">
+                    <!-- Preenchido via Javascript -->
+                </tbody>
+            </table>
+        </main>
+
+        <!-- Estado Vazio (Empty State) -->
+        <div class="empty-state" id="empty-state-view">
+            <span class="empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+            </span>
+            <div class="empty-text">Nenhuma transação financeira correspondente encontrada.</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializa Supabase
+            const SUPABASE_URL = "https://dtrhfstjfzpqxufuwyum.supabase.co";
+            const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0cmhmc3RqZnpwcXh1ZnV3eXVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4NzEzMzAsImV4cCI6MjA5ODQ0NzMzMH0.lOXdDTxgXNMDaER4Zn4KYdJqyQaastDwUN9WNZ3GB4U";
+            const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+            let currentProjects = [];
+            let currentLeads = [];
+
+            // Animação de Entrada: Foco Dinâmico com Escala (Lens Focus Transition)
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+                document.body.style.transform = 'scale(1)';
+                document.body.style.filter = 'blur(0px)';
+            }, 20);
+
+            // Intercepta cliques de navegação e executa a transição de saída (Lens Defocus Transition)
+            document.querySelectorAll('.admin-nav .nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetUrl = link.getAttribute('href');
+                    if (targetUrl && !link.classList.contains('active') && targetUrl !== '#') {
+                        e.preventDefault();
+                        
+                        document.body.style.opacity = '0';
+                        document.body.style.transform = 'scale(0.98)';
+                        document.body.style.filter = 'blur(10px)';
+                        
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 220);
+                    }
+                });
+            });
+
+            const liveTimeDisplay = document.getElementById('live-time-display');
+            const btnLogout = document.getElementById('btn-logout');
+
+            // Métricas DOM
+            const valFaturamentoTotal = document.getElementById('val-faturamento-total');
+            const valFaturamentoProjetado = document.getElementById('val-faturamento-projetado');
+            const valTicketMedio = document.getElementById('val-ticket-medio');
+            const valTaxaConversao = document.getElementById('val-taxa-conversao');
+
+            // Meta DOM
+            const goalPercentText = document.getElementById('goal-percent-text');
+            const goalProgressFill = document.getElementById('goal-progress-fill');
+            const goalMotivationMsg = document.getElementById('goal-motivation-msg');
+
+            // Distribuição DOM
+            const distWebVal = document.getElementById('dist-web-val');
+            const distWebFill = document.getElementById('dist-web-fill');
+            const distDiscordVal = document.getElementById('dist-discord-val');
+            const distDiscordFill = document.getElementById('dist-discord-fill');
+            const distComboVal = document.getElementById('dist-combo-val');
+            const distComboFill = document.getElementById('dist-combo-fill');
+            const distCustomVal = document.getElementById('dist-custom-val');
+            const distCustomFill = document.getElementById('dist-custom-fill');
+
+            // Filtros / Listagem
+            const searchInput = document.getElementById('search-input');
+            const transactionsList = document.getElementById('transactions-list');
+            const tableWrapper = document.getElementById('table-wrapper');
+            const emptyStateView = document.getElementById('empty-state-view');
+            const btnExportCsv = document.getElementById('btn-export-csv');
+
+            // Estado de Filtros
+            let activeTypeFilter = "all";
+            let activeSortOrder = "recent";
+
+            // Tempo
+            updateTime();
+            setInterval(updateTime, 1000);
+
+            function updateTime() {
+                const now = new Date();
+                liveTimeDisplay.textContent = now.toLocaleDateString('pt-BR') + ' - ' + now.toLocaleTimeString('pt-BR');
+            }
+
+            // Logout
+            btnLogout.addEventListener('click', async () => {
+                await supabase.auth.signOut();
+                window.location.href = 'admin.html';
+            });
+
+            // Inicializa Dropdowns Customizados
+            bindCustomDropdownEvents(document.getElementById('dropdown-filter-type'), (val) => {
+                activeTypeFilter = val;
+                renderFinanceData();
+            });
+
+            bindCustomDropdownEvents(document.getElementById('dropdown-sort-order'), (val) => {
+                activeSortOrder = val;
+                renderFinanceData();
+            });
+
+            // Gerencia cliques externos para fechar dropdowns
+            document.addEventListener('click', () => {
+                document.querySelectorAll('.custom-dropdown').forEach(d => {
+                    d.classList.remove('open');
+                });
+            });
+
+            function bindCustomDropdownEvents(dropdownEl, onChangeCallback) {
+                const trigger = dropdownEl.querySelector('.dropdown-trigger');
+                const menu = dropdownEl.querySelector('.dropdown-menu');
+                
+                trigger.onclick = (e) => {
+                    e.stopPropagation();
+                    const isOpen = dropdownEl.classList.contains('open');
+                    
+                    document.querySelectorAll('.custom-dropdown').forEach(d => {
+                        if (d !== dropdownEl) d.classList.remove('open');
+                    });
+                    
+                    dropdownEl.classList.toggle('open', !isOpen);
+                };
+                
+                const options = menu.querySelectorAll('.dropdown-option');
+                options.forEach(opt => {
+                    opt.onclick = (e) => {
+                        e.stopPropagation();
+                        
+                        options.forEach(o => o.classList.remove('active'));
+                        opt.classList.add('active');
+                        
+                        const selectedText = dropdownEl.querySelector('.selected-text');
+                        selectedText.textContent = opt.textContent;
+                        
+                        dropdownEl.classList.remove('open');
+                        
+                        const val = opt.dataset.value;
+                        onChangeCallback(val);
+                    };
+                });
+            }
+
+            async function loadAndRenderFinanceData() {
+                try {
+                    const { data: projects, error: errProj } = await supabase.from('projects').select('nome, servico, estimativa, production_status, start_date, created_at').order('created_at', { ascending: false });
+                    const { data: leads, error: errLeads } = await supabase.from('leads').select('status').order('created_at', { ascending: false });
+                    if (errProj) throw errProj;
+                    if (errLeads) throw errLeads;
+
+                    currentProjects = projects || [];
+                    currentLeads = leads || [];
+
+                    renderFinanceData();
+                } catch (err) {
+                    console.error("Erro ao carregar dados do Supabase:", err);
+                }
+            }
+
+            // Renderiza os dados financeiros
+            function renderFinanceData() {
+                const projects = currentProjects;
+                const leads = currentLeads;
+
+                // Extrai valores
+                let totalPago = 0;
+                let totalProjetado = 0;
+                let countPago = 0;
+                let countAtivo = 0;
+
+                // Categoria totais
+                let catWebVal = 0;
+                let catDiscordVal = 0;
+                let catComboVal = 0;
+                let catCustomVal = 0;
+
+                projects.forEach(p => {
+                    const price = extractNumericPrice(p.estimativa || p.estimativaCalculadora);
+                    const status = p.production_status || p.productionStatus || "Não Iniciado";
+                    const serviceStr = (p.servico || "").toLowerCase();
+
+                    // Identifica categoria
+                    let cat = 'custom';
+                    if (serviceStr.includes('web') || serviceStr.includes('landing page') || serviceStr.includes('site')) {
+                        cat = 'web';
+                    } else if (serviceStr.includes('discord') || serviceStr.includes('adicionais') || serviceStr.includes('bot')) {
+                        cat = 'discord';
+                    } else if (serviceStr.includes('combo') || serviceStr.includes('ecossistema') || serviceStr.includes('integrado')) {
+                        cat = 'combo';
+                    }
+
+                    if (status === 'Entregue & Pago') {
+                        totalPago += price;
+                        countPago++;
+
+                        // Adiciona ao total da categoria apenas se pago
+                        if (cat === 'web') catWebVal += price;
+                        else if (cat === 'discord') catDiscordVal += price;
+                        else if (cat === 'combo') catComboVal += price;
+                        else catCustomVal += price;
+
+                    } else if (status !== 'Cancelado') {
+                        totalProjetado += price;
+                        countAtivo++;
+                    }
+                });
+
+                // Atualiza Cards Básicos
+                valFaturamentoTotal.textContent = `R$ ${totalPago.toLocaleString('pt-BR')}`;
+                valFaturamentoProjetado.textContent = `R$ ${totalProjetado.toLocaleString('pt-BR')}`;
+
+                // Ticket Médio (Pago e Ativo)
+                const totalCalculableCount = countPago + countAtivo;
+                const totalCalculableValue = totalPago + totalProjetado;
+                const ticketMedio = totalCalculableCount > 0 ? (totalCalculableValue / totalCalculableCount) : 0;
+                valTicketMedio.textContent = `R$ ${ticketMedio.toLocaleString('pt-BR', {maximumFractionDigits: 0})}`;
+
+                // Taxa de Conversão (Projetos / (Projetos + Leads Recusados))
+                const recusadosCount = leads.filter(l => l.status === 'Recusado').length;
+                const totalPropostasRecebidas = projects.length + recusadosCount + leads.filter(l => l.status === 'Pendente').length;
+                const taxaConversao = totalPropostasRecebidas > 0 ? Math.round(((projects.length) / totalPropostasRecebidas) * 100) : 0;
+                valTaxaConversao.textContent = `${taxaConversao}%`;
+
+                // Metas Mensais (Meta de R$ 15.000,00)
+                const goalTarget = 15000;
+                const goalPercent = Math.min(Math.round((totalPago / goalTarget) * 100), 100);
+                goalPercentText.textContent = `${goalPercent}%`;
+                goalProgressFill.style.width = `${goalPercent}%`;
+
+                // Mensagem motivacional meta
+                if (goalPercent >= 100) {
+                    goalMotivationMsg.innerHTML = `🎉 **Meta batida!** Faturamento superou R$ 15.000,00 este mês. Excelente trabalho de conversão!`;
+                    goalMotivationMsg.style.borderColor = 'rgba(35, 165, 90, 0.2)';
+                    goalMotivationMsg.style.background = 'rgba(35, 165, 90, 0.02)';
+                } else if (goalPercent >= 70) {
+                    goalMotivationMsg.innerHTML = `🚀 **Quase lá!** Você atingiu ${goalPercent}% da meta mensal. Mais algumas entregas e você alcança o alvo!`;
+                } else {
+                    goalMotivationMsg.innerHTML = `💡 Continue convertendo propostas na Caixa de Entrada e entregando projetos para bater sua meta mensal de R$ 15.000,00.`;
+                }
+
+                // Gráfico Distribuição Categorias
+                const catTotal = catWebVal + catDiscordVal + catComboVal + catCustomVal;
+                
+                const percentWeb = catTotal > 0 ? Math.round((catWebVal / catTotal) * 100) : 0;
+                const percentDiscord = catTotal > 0 ? Math.round((catDiscordVal / catTotal) * 100) : 0;
+                const percentCombo = catTotal > 0 ? Math.round((catComboVal / catTotal) * 100) : 0;
+                const percentCustom = catTotal > 0 ? Math.round((catCustomVal / catTotal) * 100) : 0;
+
+                distWebVal.innerHTML = `R$ ${catWebVal.toLocaleString('pt-BR')} (<strong>${percentWeb}%</strong>)`;
+                distWebFill.style.width = `${percentWeb}%`;
+                
+                distDiscordVal.innerHTML = `R$ ${catDiscordVal.toLocaleString('pt-BR')} (<strong>${percentDiscord}%</strong>)`;
+                distDiscordFill.style.width = `${percentDiscord}%`;
+
+                distComboVal.innerHTML = `R$ ${catComboVal.toLocaleString('pt-BR')} (<strong>${percentCombo}%</strong>)`;
+                distComboFill.style.width = `${percentCombo}%`;
+
+                distCustomVal.innerHTML = `R$ ${catCustomVal.toLocaleString('pt-BR')} (<strong>${percentCustom}%</strong>)`;
+                distCustomFill.style.width = `${percentCustom}%`;
+
+                // Tabela de Transações
+                transactionsList.innerHTML = '';
+                const searchVal = searchInput.value.toLowerCase().trim();
+
+                // Filtra dados da tabela
+                let filteredTransactions = projects.map(p => {
+                    const price = extractNumericPrice(p.estimativa || p.estimativaCalculadora);
+                    const status = p.production_status || p.productionStatus || "Não Iniciado";
+                    
+                    let pillClass = 'pill-pendente';
+                    let valClass = 'val-neutral';
+                    let displayStatusText = status;
+
+                    if (status === 'Entregue & Pago') {
+                        pillClass = 'pill-pago';
+                        valClass = 'val-positive';
+                        displayStatusText = 'Pago';
+                    } else if (status === 'Cancelado') {
+                        pillClass = 'pill-cancelado';
+                        valClass = 'val-negative';
+                        displayStatusText = 'Cancelado';
+                    } else {
+                        displayStatusText = 'Produção';
+                    }
+
+                    return {
+                        nome: p.nome,
+                        servico: p.servico,
+                        startDate: p.start_date || p.projectStartDate || new Date(p.created_at || p.timestamp).toLocaleDateString('pt-BR'),
+                        timestamp: new Date(p.created_at || p.timestamp).getTime(),
+                        rawStatus: status,
+                        displayStatus: displayStatusText,
+                        pillClass: pillClass,
+                        valClass: valClass,
+                        price: price,
+                        estimativa: p.estimativa || p.estimativaCalculadora
+                    };
+                });
+
+                // Aplica filtros de texto
+                filteredTransactions = filteredTransactions.filter(t => {
+                    const nameMatch = t.nome.toLowerCase().includes(searchVal);
+                    const serviceMatch = t.servico.toLowerCase().includes(searchVal);
+                    const searchMatch = nameMatch || serviceMatch;
+
+                    let typeMatch = true;
+                    if (activeTypeFilter === 'pago') {
+                        typeMatch = (t.rawStatus === 'Entregue & Pago');
+                    } else if (activeTypeFilter === 'pendente') {
+                        typeMatch = (t.rawStatus !== 'Entregue & Pago' && t.rawStatus !== 'Cancelado');
+                    } else if (activeTypeFilter === 'cancelado') {
+                        typeMatch = (t.rawStatus === 'Cancelado');
+                    }
+
+                    return searchMatch && typeMatch;
+                });
+
+                // Ordenação
+                if (activeSortOrder === 'recent') {
+                    filteredTransactions.sort((a, b) => b.timestamp - a.timestamp);
+                } else if (activeSortOrder === 'oldest') {
+                    filteredTransactions.sort((a, b) => a.timestamp - b.timestamp);
+                } else if (activeSortOrder === 'highest') {
+                    filteredTransactions.sort((a, b) => b.price - a.price);
+                } else if (activeSortOrder === 'lowest') {
+                    filteredTransactions.sort((a, b) => a.price - b.price);
+                }
+
+                // Exibe Tabela ou Estado Vazio
+                if (filteredTransactions.length === 0) {
+                    tableWrapper.style.display = 'none';
+                    emptyStateView.style.display = 'flex';
+                    return;
+                }
+
+                tableWrapper.style.display = 'block';
+                emptyStateView.style.display = 'none';
+
+                // Renderiza linhas
+                filteredTransactions.forEach(t => {
+                    const cleanServico = t.servico.split(' — ')[0];
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td class="client-cell">${t.nome}</td>
+                        <td><span class="category-badge">${cleanServico}</span></td>
+                        <td>${t.startDate.split(' ')[0]}</td>
+                        <td><span class="status-pill ${t.pillClass}">${t.displayStatus}</span></td>
+                        <td class="val-badge ${t.valClass}" style="text-align: right;">R$ ${t.price.toLocaleString('pt-BR')}</td>
+                    `;
+                    transactionsList.appendChild(row);
+                });
+            }
+
+            // Pesquisa dinâmica
+            searchInput.addEventListener('input', () => {
+                renderFinanceData();
+            });
+
+            // Extrai valor numérico de strings formatadas
+            function extractNumericPrice(priceText) {
+                if (!priceText) return 0;
+                const clean = priceText.replace(/[^\d]/g, '');
+                return parseInt(clean) || 0;
+            }
+
+            // Exportar Relatório em CSV
+            btnExportCsv.addEventListener('click', () => {
+                const projects = currentProjects;
+                
+                let csvContent = "data:text/csv;charset=utf-8,";
+                csvContent += "Cliente,Servico,Data Inicio,Status,Valor (R$)\n";
+
+                projects.forEach(p => {
+                    const name = p.nome.replace(/,/g, '');
+                    const servico = p.servico.split(' — ')[0].replace(/,/g, '');
+                    const date = (p.start_date || p.projectStartDate || "").split(' ')[0] || new Date(p.created_at || p.timestamp).toLocaleDateString('pt-BR');
+                    const status = p.production_status || p.productionStatus || "Não Iniciado";
+                    const price = extractNumericPrice(p.estimativa || p.estimativaCalculadora);
+
+                    csvContent += `"${name}","${servico}","${date}","${status}",${price}\n`;
+                });
+
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `devbyte_financeiro_report_${new Date().toLocaleDateString('pt-BR')}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+            });
+
+            // Carregamento Inicial
+            loadAndRenderFinanceData();
+        });
+    </script>
+</body>
+</html>

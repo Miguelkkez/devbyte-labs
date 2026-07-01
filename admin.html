@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevByte Labs - Painel do Dono</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <style>
+        :root {
+            --bg-dark: #0B0C10;
+            --bg-card: rgba(17, 18, 20, 0.75);
+            --border-glow: rgba(88, 101, 242, 0.15);
+            --border-light: rgba(255, 255, 255, 0.06);
+            --primary: #5865F2; /* Discord Blurple */
+            --secondary: #00FFCC; /* Cyan */
+            --text-main: #f2f3f5;
+            --text-muted: #949ba4;
+            --success: #23a55a;
+            --warning: #f0b232;
+            --danger: #f23f43;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        html {
+            background-color: #0B0C10;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            
+            /* Initial state for depth focus transitions */
+            opacity: 0;
+            transform: scale(1.02);
+            filter: blur(10px);
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Ambient Glow backgrounds */
+        .glow-bg {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.12) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .glow-top-left {
+            top: -10%;
+            left: -10%;
+        }
+
+        .glow-bottom-right {
+            bottom: -10%;
+            right: -10%;
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.08) 0%, rgba(0,0,0,0) 70%);
+        }
+
+        /* Dividores de Seção Premium */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(88, 101, 242, 0) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(88, 101, 242, 0) 100%);
+            margin: 2.25rem 0;
+            border: none;
+        }
+
+        /* ==========================================================
+           TELA DE LOGIN
+           ========================================================== */
+        #login-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(88, 101, 242, 0.05);
+            text-align: center;
+            z-index: 10;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2.login-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        p.login-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(88, 101, 242, 0.2);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--primary);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.25);
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-login:hover {
+            background: #4752c4;
+            transform: translateY(-1px);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: 0.75rem;
+            display: none;
+        }
+
+        /* ==========================================================
+           DASHBOARD PRINCIPAL (PAINEL DO DONO)
+           ========================================================== */
+        #dashboard-container {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            padding: 2.5rem 2rem;
+            z-index: 5;
+            align-self: flex-start;
+            flex-direction: column;
+        }
+
+        /* Header do Painel */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1.5rem;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-nav {
+            margin-left: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link.active {
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            box-shadow: 0 0 8px var(--primary);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .admin-badge {
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            color: var(--secondary);
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .btn-logout {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-logout:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: rgba(242, 63, 67, 0.05);
+        }
+
+        /* Cards de Métricas */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .metric-card.highlight-card {
+            border-color: rgba(0, 255, 204, 0.25);
+            box-shadow: 0 4px 25px rgba(0, 255, 204, 0.05);
+            background: radial-gradient(circle at top right, rgba(0, 255, 204, 0.03), var(--bg-card));
+        }
+
+        .metric-card.highlight-card:hover {
+            border-color: var(--secondary);
+        }
+
+        .metric-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .metric-card.highlight-card .metric-value {
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.15);
+        }
+
+        /* Abas de Navegação (Tabs) */
+        .tabs-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .tabs-list {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 800;
+            padding: 0.75rem 0.25rem;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: #fff;
+        }
+
+        .tab-btn.active {
+            color: #fff;
+        }
+
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            box-shadow: 0 -2px 10px rgba(88, 101, 242, 0.5);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-btn.active::after {
+            width: 100%;
+        }
+
+        /* Controles (Filtros, Busca e Ações) */
+        .controls-panel {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 2.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .controls-left {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.25rem;
+            flex: 1;
+        }
+
+        .search-wrapper {
+            position: relative;
+            min-width: 250px;
+            flex: 1.2;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.88rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .search-input:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(88, 101, 242, 0.15);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Custom Dropdowns */
+        .custom-dropdown {
+            position: relative;
+            min-width: 190px;
+            user-select: none;
+        }
+
+        .dropdown-trigger {
+            width: 100%;
+            padding: 0.7rem 1.25rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dropdown-trigger:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .custom-dropdown.open .dropdown-trigger {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(88, 101, 242, 0.15);
+        }
+
+        .arrow-icon {
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .custom-dropdown.open .arrow-icon {
+            transform: rotate(180deg);
+            color: #fff;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            width: 100%;
+            background: #111214;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 5px;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            transform: translateY(-12px);
+            opacity: 0;
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        .custom-dropdown.open .dropdown-menu {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .dropdown-option {
+            padding: 0.65rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-option:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+        }
+
+        .dropdown-option.active {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .controls-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-action {
+            padding: 0.7rem 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-action:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255,255,255,0.03);
+            color: #fff;
+        }
+
+        .btn-danger-action {
+            border-color: rgba(242, 63, 67, 0.15);
+            color: #f23f43;
+        }
+
+        .btn-danger-action:hover {
+            border-color: var(--danger);
+            background: rgba(242, 63, 67, 0.05);
+            color: #f23f43;
+        }
+
+        /* Listas de Cards */
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+            min-height: 250px;
+        }
+
+        .empty-state {
+            background: var(--bg-card);
+            border: 1px dashed var(--border-light);
+            border-radius: 12px;
+            padding: 5rem 2rem;
+            text-align: center;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
+            animation: cardAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .empty-icon {
+            color: var(--text-muted);
+            opacity: 0.45;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .empty-text {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Lead / Project Card */
+        .data-card {
+            background: rgba(17, 18, 20, 0.85);
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: cardAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .data-card:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .data-card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        /* Topo do Card */
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 1rem;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .client-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        .client-name-box {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .client-name {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .client-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .card-meta-badges {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .service-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-light);
+            color: #fff;
+            font-size: 0.72rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .price-badge {
+            background: rgba(0, 255, 204, 0.06);
+            border: 1px solid rgba(0, 255, 204, 0.15);
+            color: var(--secondary);
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 800;
+        }
+
+        /* Custom status dropdown in cards */
+        .card-status-dropdown {
+            min-width: 140px;
+        }
+
+        .card-status-dropdown .dropdown-trigger {
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            transition: all 0.25s ease;
+        }
+
+        .card-status-dropdown .dropdown-menu {
+            top: calc(100% + 4px);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            min-width: 150px;
+            right: 0;
+            left: auto;
+        }
+
+        .card-status-dropdown .dropdown-option {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* Color schemes for card status triggers */
+        .status-trigger.st-pendente {
+            background-color: rgba(88, 101, 242, 0.12) !important;
+            border-color: rgba(88, 101, 242, 0.25) !important;
+            color: #5865f2 !important;
+        }
+
+        .status-trigger.st-em-atendimento {
+            background-color: rgba(0, 255, 204, 0.08) !important;
+            border-color: rgba(0, 255, 204, 0.2) !important;
+            color: var(--secondary) !important;
+        }
+
+        .status-trigger.st-recusado {
+            background-color: rgba(148, 155, 164, 0.1) !important;
+            border-color: rgba(148, 155, 164, 0.25) !important;
+            color: var(--text-muted) !important;
+        }
+
+        .status-trigger.sp-não-iniciado {
+            background-color: rgba(240, 178, 50, 0.08) !important;
+            border-color: rgba(240, 178, 50, 0.2) !important;
+            color: var(--warning) !important;
+        }
+
+        .status-trigger.sp-em-andamento {
+            background-color: rgba(0, 255, 204, 0.08) !important;
+            border-color: rgba(0, 255, 204, 0.2) !important;
+            color: var(--secondary) !important;
+        }
+
+        .status-trigger.sp-aprovação-testes {
+            background-color: rgba(88, 101, 242, 0.12) !important;
+            border-color: rgba(88, 101, 242, 0.25) !important;
+            color: #5865f2 !important;
+        }
+
+        .status-trigger.sp-entregue-pago {
+            background-color: rgba(35, 165, 90, 0.08) !important;
+            border-color: rgba(35, 165, 90, 0.2) !important;
+            color: var(--success) !important;
+        }
+
+        .status-trigger.sp-cancelado {
+            background-color: rgba(242, 63, 67, 0.08) !important;
+            border-color: rgba(242, 63, 67, 0.2) !important;
+            color: var(--danger) !important;
+        }
+
+        /* Detalhes do Card */
+        .card-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            font-size: 0.88rem;
+        }
+
+        .contact-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+        }
+
+        .contact-item strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.78rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(88, 101, 242, 0.15);
+            color: #fff;
+        }
+
+        .card-message-box {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-light);
+            padding: 0.85rem 1.1rem;
+            border-radius: 8px;
+            color: var(--text-main);
+            max-height: 120px;
+            overflow-y: auto;
+            line-height: 1.45;
+        }
+
+        /* Rodapé do Card (Ações) */
+        .card-actions-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-left-actions {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-card-action {
+            padding: 0.55rem 0.95rem;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-card-action:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255,255,255,0.03);
+            color: #fff;
+        }
+
+        .btn-promote {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(88, 101, 242, 0.15);
+        }
+
+        .btn-promote:hover {
+            background: #4752c4;
+            border-color: #4752c4;
+        }
+
+        .btn-delete-card {
+            border-color: rgba(242, 63, 67, 0.15);
+            color: var(--danger);
+        }
+
+        .btn-delete-card:hover {
+            border-color: var(--danger);
+            background: rgba(242, 63, 67, 0.05);
+            color: var(--danger);
+        }
+
+        #btn-clear-completed:hover {
+            border-color: var(--warning) !important;
+            background: rgba(240, 178, 50, 0.05) !important;
+            color: var(--warning) !important;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            #dashboard-container {
+                padding: 1rem;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.25rem;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .controls-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .controls-left {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-wrapper {
+                max-width: none;
+            }
+
+            .controls-right {
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Ambient Glow effects -->
+    <div class="glow-bg glow-top-left"></div>
+    <div class="glow-bg glow-bottom-right"></div>
+
+    <!-- ==========================================================
+       TELA DE LOGIN
+       ========================================================== -->
+    <div id="login-container">
+        <div class="logo-header">
+            <img src="logo.jpg" alt="DevByte Labs Logo" class="logo-img">
+            <span class="logo-text">DevByte Labs</span>
+        </div>
+        <h2 class="login-title">Painel do Dono</h2>
+        <p class="login-subtitle">Entre com suas credenciais de administrador</p>
+        
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" class="form-input" required autocomplete="username" placeholder="Usuário Admin">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" class="form-input" required autocomplete="current-password" placeholder="••••••••">
+            </div>
+            
+            <button type="submit" class="btn-login">
+                Entrar no Sistema
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+            <div class="error-message" id="login-error">Usuário ou senha incorretos!</div>
+        </form>
+    </div>
+
+    <!-- ==========================================================
+       DASHBOARD PRINCIPAL
+       ========================================================== -->
+    <div id="dashboard-container">
+        <!-- Top bar -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <img src="logo.jpg" alt="DevByte Labs Logo" class="logo-img">
+                <span class="logo-text">DevByte Labs</span>
+                <span class="admin-badge">Dono</span>
+                
+                <nav class="admin-nav">
+                    <a href="admin.html" class="nav-link active">📋 Projetos & Leads</a>
+                    <a href="financeiro.html" class="nav-link">💰 Financeiro</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <span class="client-date" id="live-time-display">Carregando painel...</span>
+                <button class="btn-logout" id="btn-logout">Logout</button>
+            </div>
+        </header>
+
+        <!-- Seção de Métricas -->
+        <section class="metrics-grid">
+            <div class="metric-card highlight-card">
+                <span class="metric-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--secondary);">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    Faturamento Concluído
+                </span>
+                <div class="metric-value" id="val-faturamento-pago">R$ 0</div>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                    </svg>
+                    Pipeline de Produção
+                </span>
+                <div class="metric-value" id="val-pipeline-producao">R$ 0</div>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Projetos Ativos
+                </span>
+                <div class="metric-value" id="val-projetos-ativos">0</div>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Leads Pendentes
+                </span>
+                <div class="metric-value" id="val-leads-inbox">0</div>
+            </div>
+        </section>
+
+        <!-- Divisor -->
+        <hr class="divider">
+
+        <!-- Abas de Navegação -->
+        <div class="tabs-row">
+            <nav class="tabs-list">
+                <button class="tab-btn active" id="tab-inbox" data-tab="inbox">Caixa de Entrada</button>
+                <button class="tab-btn" id="tab-production" data-tab="production">Projetos em Produção</button>
+                <button class="tab-btn" id="tab-delivered" data-tab="delivered">Projetos Entregues</button>
+            </nav>
+        </div>
+
+        <!-- Filtros e Busca -->
+        <div class="controls-panel">
+            <div class="controls-left">
+                <div class="search-wrapper">
+                    <span class="search-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input type="text" id="search-input" class="search-input" placeholder="Buscar por nome, e-mail ou telefone...">
+                </div>
+                
+                <!-- Custom Dropdown: Serviços -->
+                <div class="custom-dropdown" id="dropdown-filter-service">
+                    <div class="dropdown-trigger">
+                        <span class="selected-text">Todos os Serviços</span>
+                        <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-option active" data-value="all">Todos os Serviços</div>
+                        <div class="dropdown-option" data-value="web">Serviços Web</div>
+                        <div class="dropdown-option" data-value="discord">Serviços Discord</div>
+                        <div class="dropdown-option" data-value="combo">Combo Ecossistema</div>
+                        <div class="dropdown-option" data-value="custom">Orçamento Customizado</div>
+                    </div>
+                </div>
+                
+                <!-- Custom Dropdown: Status -->
+                <div class="custom-dropdown" id="dropdown-filter-status">
+                    <div class="dropdown-trigger">
+                        <span class="selected-text">Todos os Status</span>
+                        <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="dropdown-menu">
+                        <!-- Populado dinamicamente via JS -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls-right">
+                <button class="btn-action" id="btn-clear-completed" style="display: none; border-color: rgba(240, 178, 50, 0.25); color: var(--warning);" title="Limpar projetos entregues e cancelados do histórico">Limpar Concluídos</button>
+                <button class="btn-action" id="btn-export-json" title="Exportar dados como JSON">Exportar JSON</button>
+                <button class="btn-action btn-danger-action" id="btn-clear-all" title="Limpar dados do localstorage">Excluir Todos</button>
+            </div>
+        </div>
+
+        <!-- Divisor -->
+        <hr class="divider">
+
+        <!-- Tabela / Lista de Registros -->
+        <main class="list-container" id="cards-list">
+            <!-- Cards populated by JS -->
+        </main>
+
+        <!-- Estado Vazio (Empty State) -->
+        <div class="empty-state" id="empty-state-view">
+            <span class="empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </span>
+            <div class="empty-text" id="empty-state-text">Nenhum registro encontrado nesta aba.</div>
+        </div>
+    </div>
+
+    <!-- JavaScript Lógica do Painel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animação de Entrada: Foco Dinâmico com Escala (Lens Focus Transition)
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+                document.body.style.transform = 'scale(1)';
+                document.body.style.filter = 'blur(0px)';
+            }, 20);
+
+            // Intercepta cliques de navegação e executa a transição de saída (Lens Defocus Transition)
+            document.querySelectorAll('.admin-nav .nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetUrl = link.getAttribute('href');
+                    if (targetUrl && !link.classList.contains('active') && targetUrl !== '#') {
+                        e.preventDefault();
+                        
+                        document.body.style.opacity = '0';
+                        document.body.style.transform = 'scale(0.98)';
+                        document.body.style.filter = 'blur(10px)';
+                        
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 220);
+                    }
+                });
+            });
+
+            // Inicializa Supabase
+            const SUPABASE_URL = "https://dtrhfstjfzpqxufuwyum.supabase.co";
+            const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0cmhmc3RqZnpwcXh1ZnV3eXVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4NzEzMzAsImV4cCI6MjA5ODQ0NzMzMH0.lOXdDTxgXNMDaER4Zn4KYdJqyQaastDwUN9WNZ3GB4U";
+            const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+            let currentLeads = [];
+            let currentProjects = [];
+
+            // Elementos DOM de Login
+            const loginContainer = document.getElementById('login-container');
+            const loginForm = document.getElementById('login-form');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const loginError = document.getElementById('login-error');
+
+            // Elementos DOM do Dashboard
+            const dashboardContainer = document.getElementById('dashboard-container');
+            const btnLogout = document.getElementById('btn-logout');
+            const liveTimeDisplay = document.getElementById('live-time-display');
+
+            // Abas
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            let currentTab = 'inbox'; // 'inbox', 'production', 'delivered'
+
+            // Controles
+            const searchInput = document.getElementById('search-input');
+            const btnExportJson = document.getElementById('btn-export-json');
+            const btnClearAll = document.getElementById('btn-clear-all');
+
+            // Filtros Ativos (Estado Interno)
+            let activeServiceFilter = "all";
+            let activeStatusFilter = "all";
+
+            // Grade de Cards
+            const cardsList = document.getElementById('cards-list');
+            const emptyStateView = document.getElementById('empty-state-view');
+            const emptyStateText = document.getElementById('empty-state-text');
+
+            // Elementos de Estatísticas
+            const statFaturamentoPago = document.getElementById('val-faturamento-pago');
+            const statPipelineProducao = document.getElementById('val-pipeline-producao');
+            const statProjetosAtivos = document.getElementById('val-projetos-ativos');
+            const statLeadsInbox = document.getElementById('val-leads-inbox');
+
+            // Autenticação Session Check Real com Supabase Auth
+            async function checkSession() {
+                const { data: { user }, error } = await supabase.auth.getUser();
+                if (user && !error) {
+                    showDashboard();
+                } else {
+                    loginContainer.style.display = 'block';
+                    loginContainer.style.opacity = '1';
+                    loginContainer.style.transform = 'scale(1)';
+                    dashboardContainer.style.display = 'none';
+                    document.body.style.alignItems = 'center';
+                }
+            }
+            checkSession();
+
+            // Submissão do Login (Autenticação real via Supabase Auth)
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const u = usernameInput.value.trim();
+                const p = passwordInput.value.trim();
+
+                // Mapeamento automático: se digitar só o username amamosjaponesas007,
+                // converte para amamosjaponesas007@devbyte.com para bater com o formato de e-mail do Supabase Auth
+                let email = u;
+                if (!email.includes('@')) {
+                    email = `${u}@devbyte.com`;
+                }
+
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: p
+                });
+
+                if (!error && data.session) {
+                    loginError.style.display = 'none';
+                    
+                    loginContainer.style.opacity = '0';
+                    loginContainer.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        loginContainer.style.display = 'none';
+                        showDashboard();
+                    }, 400);
+                } else {
+                    console.error("Erro na autenticação:", error);
+                    loginError.style.display = 'block';
+                    passwordInput.value = '';
+                }
+            });
+
+            // Ação de Logout
+            btnLogout.addEventListener('click', async () => {
+                await supabase.auth.signOut();
+                dashboardContainer.style.display = 'none';
+                loginContainer.style.opacity = '1';
+                loginContainer.style.transform = 'scale(1)';
+                loginContainer.style.display = 'block';
+                usernameInput.value = '';
+                passwordInput.value = '';
+                document.body.style.alignItems = 'center';
+            });
+
+            function showDashboard() {
+                loginContainer.style.display = 'none';
+                dashboardContainer.style.display = 'flex';
+                document.body.style.alignItems = 'flex-start';
+                
+                updateTime();
+                setInterval(updateTime, 1000);
+
+                // Inicializa os dropdowns customizados
+                bindCustomDropdownEvents(document.getElementById('dropdown-filter-service'), (val) => {
+                    activeServiceFilter = val;
+                    animateListRefresh();
+                });
+
+                // Mostra/oculta botão baseado na aba inicial
+                const btnClearCompleted = document.getElementById('btn-clear-completed');
+                if (btnClearCompleted) {
+                    btnClearCompleted.style.display = (currentTab === 'delivered') ? 'inline-flex' : 'none';
+                }
+
+                syncStatusFilter();
+                loadDashboardData();
+            }
+
+            function updateTime() {
+                const now = new Date();
+                liveTimeDisplay.textContent = now.toLocaleDateString('pt-BR') + ' - ' + now.toLocaleTimeString('pt-BR');
+            }
+
+            // Alternar entre abas com transições suaves e re-filtragem
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentTab = btn.dataset.tab;
+
+                    // Mostra o botão "Limpar Concluídos" apenas na aba de entregues
+                    const btnClearCompleted = document.getElementById('btn-clear-completed');
+                    if (btnClearCompleted) {
+                        btnClearCompleted.style.display = (currentTab === 'delivered') ? 'inline-flex' : 'none';
+                    }
+
+                    // Efeito de transição na mudança de aba
+                    cardsList.style.opacity = '0';
+                    cardsList.style.transform = 'translateY(8px)';
+                    
+                    setTimeout(() => {
+                        syncStatusFilter();
+                        loadDashboardData();
+                        cardsList.style.opacity = '1';
+                        cardsList.style.transform = 'translateY(0)';
+                    }, 150);
+                });
+            });
+
+            // Gerencia cliques para fechar dropdowns ao clicar fora
+            document.addEventListener('click', () => {
+                document.querySelectorAll('.custom-dropdown').forEach(d => {
+                    d.classList.remove('open');
+                });
+            });
+
+            // Função para vincular a lógica de dropdowns customizados
+            function bindCustomDropdownEvents(dropdownEl, onChangeCallback) {
+                const trigger = dropdownEl.querySelector('.dropdown-trigger');
+                const menu = dropdownEl.querySelector('.dropdown-menu');
+                
+                trigger.onclick = (e) => {
+                    e.stopPropagation();
+                    const isOpen = dropdownEl.classList.contains('open');
+                    
+                    document.querySelectorAll('.custom-dropdown').forEach(d => {
+                        if (d !== dropdownEl) d.classList.remove('open');
+                    });
+                    
+                    dropdownEl.classList.toggle('open', !isOpen);
+                };
+                
+                const options = menu.querySelectorAll('.dropdown-option');
+                options.forEach(opt => {
+                    opt.onclick = (e) => {
+                        e.stopPropagation();
+                        
+                        options.forEach(o => o.classList.remove('active'));
+                        opt.classList.add('active');
+                        
+                        const selectedText = dropdownEl.querySelector('.selected-text');
+                        selectedText.textContent = opt.textContent;
+                        
+                        dropdownEl.classList.remove('open');
+                        
+                        const val = opt.dataset.value;
+                        onChangeCallback(val);
+                    };
+                });
+            }
+
+            // Sincroniza as opções do seletor de status com base na aba ativa (e reconecta eventos)
+            function syncStatusFilter() {
+                const statusMenu = document.querySelector('#dropdown-filter-status .dropdown-menu');
+                const triggerText = document.querySelector('#dropdown-filter-status .selected-text');
+                
+                activeStatusFilter = "all";
+                triggerText.textContent = "Todos os Status";
+
+                let html = '<div class="dropdown-option active" data-value="all">Todos os Status</div>';
+                if (currentTab === 'inbox') {
+                    html += `
+                        <div class="dropdown-option" data-value="Pendente">Pendente</div>
+                        <div class="dropdown-option" data-value="Em Atendimento">Em Produção</div>
+                        <div class="dropdown-option" data-value="Recusado">Recusada</div>
+                    `;
+                } else if (currentTab === 'production') {
+                    html += `
+                        <div class="dropdown-option" data-value="Não Iniciado">Não Iniciado</div>
+                        <div class="dropdown-option" data-value="Em Andamento">Em Andamento</div>
+                        <div class="dropdown-option" data-value="Aprovação / Testes">Aprovação / Testes</div>
+                    `;
+                } else if (currentTab === 'delivered') {
+                    html += `
+                        <div class="dropdown-option" data-value="Entregue & Pago">Entregue & Pago</div>
+                        <div class="dropdown-option" data-value="Cancelado">Cancelado</div>
+                    `;
+                }
+                statusMenu.innerHTML = html;
+                
+                bindCustomDropdownEvents(document.getElementById('dropdown-filter-status'), (val) => {
+                    activeStatusFilter = val;
+                    animateListRefresh();
+                });
+            }
+
+            // Listeners de Filtros
+            searchInput.addEventListener('input', () => {
+                animateListRefresh();
+            });
+
+            // Adiciona animação de recarregamento suave aos filtros
+            function animateListRefresh() {
+                cardsList.style.opacity = '0.3';
+                setTimeout(() => {
+                    renderList();
+                    cardsList.style.opacity = '1';
+                }, 100);
+            }
+
+            // Carregamento principal e cálculo de Métricas
+            async function loadDashboardData() {
+                try {
+                    const { data: leads, error: errLeads } = await supabase.from('leads').select('*').order('created_at', { ascending: false });
+                    const { data: projects, error: errProjects } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
+
+                    if (errLeads) throw errLeads;
+                    if (errProjects) throw errProjects;
+
+                    currentLeads = leads || [];
+                    currentProjects = projects || [];
+
+                    // Faturamento Concluído
+                    let faturamentoPago = 0;
+                    currentProjects.forEach(p => {
+                        if (p.production_status === 'Entregue & Pago') {
+                            faturamentoPago += extractNumericPrice(p.estimativa);
+                        }
+                    });
+
+                    // Pipeline Produção
+                    let pipelineProducao = 0;
+                    let projetosAtivosContagem = 0;
+                    currentProjects.forEach(p => {
+                        const status = p.production_status || 'Não Iniciado';
+                        if (status === 'Em Andamento' || status === 'Aprovação / Testes' || status === 'Não Iniciado') {
+                            pipelineProducao += extractNumericPrice(p.estimativa);
+                            projetosAtivosContagem++;
+                        }
+                    });
+
+                    // Leads na Inbox
+                    let leadsInboxContagem = 0;
+                    currentLeads.forEach(l => {
+                        const status = l.status || "Pendente";
+                        if (status === "Pendente" || status === "Em Atendimento") {
+                            leadsInboxContagem++;
+                        }
+                    });
+
+                    statFaturamentoPago.textContent = `R$ ${faturamentoPago.toLocaleString('pt-BR')}`;
+                    statPipelineProducao.textContent = `R$ ${pipelineProducao.toLocaleString('pt-BR')}`;
+                    statProjetosAtivos.textContent = projetosAtivosContagem;
+                    statLeadsInbox.textContent = leadsInboxContagem;
+
+                    renderList();
+                } catch (error) {
+                    console.error("Erro ao carregar dados do Supabase:", error);
+                }
+            }
+
+            // Extrai valor numérico de strings formatadas
+            function extractNumericPrice(priceText) {
+                if (!priceText) return 0;
+                const clean = priceText.replace(/[^\d]/g, '');
+                return parseInt(clean) || 0;
+            }
+
+            // Renderização da Lista filtrada
+            function renderList() {
+                cardsList.innerHTML = '';
+                
+                const searchVal = searchInput.value.toLowerCase().trim();
+                const serviceFilter = activeServiceFilter;
+                const statusFilter = activeStatusFilter;
+
+                let data = [];
+                let rawProjects = [];
+
+                if (currentTab === 'inbox') {
+                    data = currentLeads.map((item, index) => ({
+                        ...item,
+                        estimativaCalculadora: item.estimativa,
+                        timestamp: item.created_at,
+                        originalIndex: index
+                    }));
+                } else {
+                    rawProjects = currentProjects.map((item, index) => ({
+                        ...item,
+                        estimativaCalculadora: item.estimativa,
+                        timestamp: item.created_at,
+                        productionStatus: item.production_status,
+                        projectStartDate: item.start_date,
+                        originalIndex: index
+                    }));
+
+                    if (currentTab === 'production') {
+                        data = rawProjects.filter(p => p.productionStatus !== 'Entregue & Pago' && p.productionStatus !== 'Cancelado');
+                    } else if (currentTab === 'delivered') {
+                        data = rawProjects.filter(p => p.productionStatus === 'Entregue & Pago' || p.productionStatus === 'Cancelado');
+                    }
+                }
+
+                // Filtragem
+                const filteredData = data.filter(item => {
+                    const nameMatch = item.nome.toLowerCase().includes(searchVal);
+                    const emailMatch = item.email.toLowerCase().includes(searchVal);
+                    const phoneVal = (item.telefone || item.whatsapp || "").toLowerCase();
+                    const phoneMatch = phoneVal.includes(searchVal);
+                    const msgMatch = (item.mensagem || "").toLowerCase().includes(searchVal);
+                    const searchMatch = nameMatch || emailMatch || phoneMatch || msgMatch;
+
+                    let serviceMatch = true;
+                    const serviceStr = (item.servico || "").toLowerCase();
+                    if (serviceFilter === 'web') {
+                        serviceMatch = serviceStr.includes('web') || serviceStr.includes('landing page') || serviceStr.includes('site');
+                    } else if (serviceFilter === 'discord') {
+                        serviceMatch = serviceStr.includes('discord') || serviceStr.includes('adicionais') || serviceStr.includes('bot');
+                    } else if (serviceFilter === 'combo') {
+                        serviceMatch = serviceStr.includes('combo') || serviceStr.includes('ecossistema') || serviceStr.includes('integrado');
+                    } else if (serviceFilter === 'custom') {
+                        serviceMatch = serviceStr.includes('outro') || serviceStr.includes('personalizado') || serviceStr.includes('customizado');
+                    }
+
+                    let statusMatch = true;
+                    if (statusFilter !== 'all') {
+                        if (currentTab === 'inbox') {
+                            const status = item.status || "Pendente";
+                            statusMatch = (status === statusFilter);
+                        } else {
+                            const prodStatus = item.productionStatus || "Não Iniciado";
+                            statusMatch = (prodStatus === statusFilter);
+                        }
+                    }
+
+                    return searchMatch && serviceMatch && statusMatch;
+                });
+
+                // Ordena os mais recentes primeiro
+                filteredData.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                // Verifica se está vazio
+                if (filteredData.length === 0) {
+                    emptyStateView.style.display = 'flex';
+                    if (currentTab === 'inbox') {
+                        emptyStateText.textContent = 'Nenhuma proposta ou lead pendente na Caixa de Entrada.';
+                    } else if (currentTab === 'production') {
+                        emptyStateText.textContent = 'Nenhum projeto em desenvolvimento cadastrado nesta fase.';
+                    } else {
+                        emptyStateText.textContent = 'Nenhum projeto marcado como finalizado ou entregue ainda.';
+                    }
+                    return;
+                }
+
+                emptyStateView.style.display = 'none';
+
+                // Desenha os Cards
+                filteredData.forEach((item, cardIndex) => {
+                    const card = document.createElement('article');
+                    card.className = 'data-card';
+                    card.style.animationDelay = `${cardIndex * 0.05}s`;
+
+                    const dateFormatted = new Date(item.timestamp).toLocaleString('pt-BR');
+                    const initial = item.nome.charAt(0).toUpperCase();
+
+                    const cleanPhone = (item.telefone || item.whatsapp || "").replace(/[^\d]/g, '');
+                    const waLink = cleanPhone ? `https://wa.me/55${cleanPhone}` : '#';
+                    const displayServico = (item.servico || "").split(" — ")[0];
+
+                    if (currentTab === 'inbox') {
+                        const statusVal = item.status || "Pendente";
+                        const stClass = statusVal.toLowerCase().replace(' ', '-');
+
+                        card.innerHTML = `
+                            <div class="card-top">
+                                <div class="client-info">
+                                    <div class="client-avatar">${initial}</div>
+                                    <div class="client-name-box">
+                                        <h3 class="client-name">${item.nome}</h3>
+                                        <span class="client-date">Enviado em: ${dateFormatted}</span>
+                                    </div>
+                                </div>
+                                <div class="card-meta-badges">
+                                    <span class="service-badge">${displayServico}</span>
+                                    <span class="price-badge">${item.estimativaCalculadora}</span>
+                                    
+                                    <div class="custom-dropdown card-status-dropdown" id="status-dropdown-lead-${item.originalIndex}">
+                                        <div class="dropdown-trigger status-trigger st-${stClass}">
+                                            <span class="selected-text">${statusVal === 'Em Atendimento' ? 'Em Produção' : (statusVal === 'Recusado' ? 'Recusada' : statusVal)}</span>
+                                            <svg class="arrow-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                        </div>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-option ${statusVal === 'Pendente' ? 'active' : ''}" data-value="Pendente">Pendente</div>
+                                            <div class="dropdown-option ${statusVal === 'Em Atendimento' ? 'active' : ''}" data-value="Em Atendimento">Em Produção</div>
+                                            <div class="dropdown-option ${statusVal === 'Recusado' ? 'active' : ''}" data-value="Recusado">Recusada</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-details">
+                                <div class="contact-info-list">
+                                    <div class="contact-item">
+                                        <strong>E-mail:</strong> ${item.email}
+                                        <button class="copy-btn" data-copy="${item.email}">copiar</button>
+                                    </div>
+                                    <div class="contact-item">
+                                        <strong>Telefone:</strong> ${item.telefone || item.whatsapp || 'Não informado'}
+                                        <button class="copy-btn" data-copy="${item.telefone || item.whatsapp || ''}">copiar</button>
+                                    </div>
+                                </div>
+                                <div class="card-message-box">
+                                    <strong>Mensagem do cliente:</strong><br>
+                                    ${item.mensagem || 'Sem mensagem adicional.'}
+                                </div>
+                            </div>
+                            
+                            <div class="card-actions-footer">
+                                <div class="footer-left-actions">
+                                    <button class="btn-card-action btn-promote" data-promote-idx="${item.originalIndex}">Aceitar & Iniciar Preparação</button>
+                                    <a href="mailto:${item.email}" class="btn-card-action">Responder E-mail</a>
+                                    ${cleanPhone ? `<a href="${waLink}" target="_blank" class="btn-card-action">WhatsApp</a>` : ''}
+                                </div>
+                                <button class="btn-card-action btn-delete-card" data-delete-lead-idx="${item.originalIndex}">Excluir Proposta</button>
+                            </div>
+                        `;
+                    } else {
+                        const prodStatus = item.productionStatus || "Não Iniciado";
+                        const spClass = prodStatus.toLowerCase().replace(' / ', '-').replace(' & ', '-').replace(' ', '-');
+                        
+                        const avatarBg = currentTab === 'delivered' ? 'var(--success)' : 'var(--secondary)';
+                        const btnText = 'E-mail Comercial';
+
+                        let footerBtnHtml = '';
+                        if (currentTab === 'production') {
+                            footerBtnHtml = `<button class="btn-card-action btn-promote" style="background:var(--success); border-color:var(--success);" data-deliver-idx="${item.originalIndex}">Marcar como Entregue</button>`;
+                        } else {
+                            footerBtnHtml = `<button class="btn-card-action" style="border-color:var(--warning); color:var(--warning);" data-reopen-idx="${item.originalIndex}">Reabrir Projeto</button>`;
+                        }
+
+                        card.innerHTML = `
+                            <div class="card-top">
+                                <div class="client-info">
+                                    <div class="client-avatar" style="background:${avatarBg}; color:#000;">${initial}</div>
+                                    <div class="client-name-box">
+                                        <h3 class="client-name">${item.nome}</h3>
+                                        <span class="client-date">Projeto Aceito em: ${item.projectStartDate || dateFormatted}</span>
+                                    </div>
+                                </div>
+                                <div class="card-meta-badges">
+                                    <span class="service-badge">${displayServico}</span>
+                                    <span class="price-badge">${item.estimativaCalculadora}</span>
+                                    
+                                    <div class="custom-dropdown card-status-dropdown" id="status-dropdown-proj-${item.originalIndex}">
+                                        <div class="dropdown-trigger status-trigger sp-${spClass}">
+                                            <span class="selected-text">${prodStatus === 'Aprovação / Testes' ? 'Aprovação' : prodStatus}</span>
+                                            <svg class="arrow-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                        </div>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-option ${prodStatus === 'Não Iniciado' ? 'active' : ''}" data-value="Não Iniciado">Não Iniciado</div>
+                                            <div class="dropdown-option ${prodStatus === 'Em Andamento' ? 'active' : ''}" data-value="Em Andamento">Em Andamento</div>
+                                            <div class="dropdown-option ${prodStatus === 'Aprovação / Testes' ? 'active' : ''}" data-value="Aprovação / Testes">Aprovação</div>
+                                            <div class="dropdown-option ${prodStatus === 'Entregue & Pago' ? 'active' : ''}" data-value="Entregue & Pago">Entregue & Pago</div>
+                                            <div class="dropdown-option ${prodStatus === 'Cancelado' ? 'active' : ''}" data-value="Cancelado">Cancelado</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-details">
+                                <div class="contact-info-list">
+                                    <div class="contact-item">
+                                        <strong>E-mail:</strong> ${item.email}
+                                        <button class="copy-btn" data-copy="${item.email}">copiar</button>
+                                    </div>
+                                    <div class="contact-item">
+                                        <strong>Telefone:</strong> ${item.telefone || 'Não informado'}
+                                        <button class="copy-btn" data-copy="${item.telefone || ''}">copiar</button>
+                                    </div>
+                                </div>
+                                <div class="card-message-box">
+                                    <strong>Notas Originais:</strong> ${item.mensagem || 'Sem mensagem original.'}
+                                </div>
+                            </div>
+                            
+                            <div class="card-actions-footer">
+                                <div class="footer-left-actions">
+                                    ${footerBtnHtml}
+                                    <a href="mailto:${item.email}" class="btn-card-action">${btnText}</a>
+                                    ${cleanPhone ? `<a href="${waLink}" target="_blank" class="btn-card-action">WhatsApp</a>` : ''}
+                                </div>
+                                <button class="btn-card-action btn-delete-card" data-delete-proj-idx="${item.originalIndex}">
+                                    ${currentTab === 'delivered' ? 'Excluir Histórico' : 'Arquivar Projeto'}
+                                </button>
+                            </div>
+                        `;
+                    }
+
+                    cardsList.appendChild(card);
+                });
+
+                bindCardEvents();
+            }
+
+            // Eventos nos cards
+            function bindCardEvents() {
+                // Liga os dropdowns customizados de status nos cards de leads
+                document.querySelectorAll('.card-status-dropdown[id^="status-dropdown-lead-"]').forEach(dropdown => {
+                    const idx = dropdown.id.replace('status-dropdown-lead-', '');
+                    bindCustomDropdownEvents(dropdown, (val) => {
+                        if (val === 'Em Atendimento') {
+                            // Promove para Projetos em Produção (Em preparo / Em Andamento)
+                            (async () => {
+                                try {
+                                    const targetLead = currentLeads[idx];
+                                    const { error: insErr } = await supabase.from('projects').insert([{
+                                        nome: targetLead.nome,
+                                        email: targetLead.email,
+                                        telefone: targetLead.telefone,
+                                        servico: targetLead.servico,
+                                        estimativa: targetLead.estimativa,
+                                        mensagem: targetLead.mensagem,
+                                        production_status: "Em Andamento",
+                                        start_date: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})
+                                    }]);
+                                    if (insErr) throw insErr;
+
+                                    const { error: delErr } = await supabase.from('leads').delete().eq('id', targetLead.id);
+                                    if (delErr) throw delErr;
+
+                                    loadDashboardData();
+                                } catch (err) {
+                                    console.error("Erro ao mover lead para produção:", err);
+                                }
+                            })();
+                        } else {
+                            (async () => {
+                                try {
+                                    const targetLead = currentLeads[idx];
+                                    const { error } = await supabase.from('leads').update({ status: val }).eq('id', targetLead.id);
+                                    if (error) throw error;
+                                    loadDashboardData();
+                                } catch (err) {
+                                    console.error("Erro ao atualizar status do lead:", err);
+                                }
+                            })();
+                        }
+                    });
+                });
+
+                // Liga os dropdowns customizados de status nos cards de projetos
+                document.querySelectorAll('.card-status-dropdown[id^="status-dropdown-proj-"]').forEach(dropdown => {
+                    const idx = dropdown.id.replace('status-dropdown-proj-', '');
+                    bindCustomDropdownEvents(dropdown, (val) => {
+                        (async () => {
+                            try {
+                                const targetProj = currentProjects[idx];
+                                const { error } = await supabase.from('projects').update({ production_status: val }).eq('id', targetProj.id);
+                                if (error) throw error;
+                                loadDashboardData();
+                            } catch (err) {
+                                console.error("Erro ao atualizar status do projeto:", err);
+                            }
+                        })();
+                    });
+                });
+
+                const promoteBtns = document.querySelectorAll('[data-promote-idx]');
+                promoteBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const idx = btn.dataset.promoteIdx;
+                        (async () => {
+                            try {
+                                const targetLead = currentLeads[idx];
+                                const { error: insErr } = await supabase.from('projects').insert([{
+                                    nome: targetLead.nome,
+                                    email: targetLead.email,
+                                    telefone: targetLead.telefone,
+                                    servico: targetLead.servico,
+                                    estimativa: targetLead.estimativa,
+                                    mensagem: targetLead.mensagem,
+                                    production_status: "Em Andamento",
+                                    start_date: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})
+                                }]);
+                                if (insErr) throw insErr;
+
+                                const { error: delErr } = await supabase.from('leads').delete().eq('id', targetLead.id);
+                                if (delErr) throw delErr;
+
+                                loadDashboardData();
+                            } catch (err) {
+                                console.error("Erro ao promover lead:", err);
+                            }
+                        })();
+                    });
+                });
+
+                // Botão "Marcar como Entregue" na aba de Produção
+                const deliverBtns = document.querySelectorAll('[data-deliver-idx]');
+                deliverBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const idx = btn.dataset.deliverIdx;
+                        (async () => {
+                            try {
+                                const targetProj = currentProjects[idx];
+                                const { error } = await supabase.from('projects').update({ production_status: "Entregue & Pago" }).eq('id', targetProj.id);
+                                if (error) throw error;
+                                loadDashboardData();
+                            } catch (err) {
+                                console.error("Erro ao entregar projeto:", err);
+                            }
+                        })();
+                    });
+                });
+
+                // Botão "Reabrir Projeto" na aba de Entregues
+                const reopenBtns = document.querySelectorAll('[data-reopen-idx]');
+                reopenBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const idx = btn.dataset.reopenIdx;
+                        (async () => {
+                            try {
+                                const targetProj = currentProjects[idx];
+                                const { error } = await supabase.from('projects').update({ production_status: "Em Andamento" }).eq('id', targetProj.id);
+                                if (error) throw error;
+                                loadDashboardData();
+                            } catch (err) {
+                                console.error("Erro ao reabrir projeto:", err);
+                            }
+                        })();
+                    });
+                });
+
+                const copyBtns = document.querySelectorAll('[data-copy]');
+                copyBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const text = btn.dataset.copy;
+                        if (text) {
+                            navigator.clipboard.writeText(text).then(() => {
+                                btn.textContent = 'copiado!';
+                                btn.style.color = 'var(--success)';
+                                setTimeout(() => {
+                                    btn.textContent = 'copiar';
+                                    btn.style.color = 'var(--primary)';
+                                }, 1500);
+                            });
+                        }
+                    });
+                });
+
+                const deleteLeadBtns = document.querySelectorAll('[data-delete-lead-idx]');
+                deleteLeadBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const idx = btn.dataset.deleteLeadIdx;
+                        if (confirm("Tem certeza que deseja excluir esta proposta permanentemente?")) {
+                            (async () => {
+                                try {
+                                    const targetLead = currentLeads[idx];
+                                    const { error } = await supabase.from('leads').delete().eq('id', targetLead.id);
+                                    if (error) throw error;
+                                    loadDashboardData();
+                                } catch (err) {
+                                    console.error("Erro ao excluir lead:", err);
+                                }
+                            })();
+                        }
+                    });
+                });
+
+                const deleteProjBtns = document.querySelectorAll('[data-delete-proj-idx]');
+                deleteProjBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const idx = btn.dataset.deleteProjIdx;
+                        const msg = currentTab === 'delivered' 
+                            ? "Deseja excluir permanentemente este projeto concluído do histórico?" 
+                            : "Tem certeza que deseja arquivar e excluir este projeto da lista de produção?";
+                        if (confirm(msg)) {
+                            (async () => {
+                                try {
+                                    const targetProj = currentProjects[idx];
+                                    const { error } = await supabase.from('projects').delete().eq('id', targetProj.id);
+                                    if (error) throw error;
+                                    loadDashboardData();
+                                } catch (err) {
+                                    console.error("Erro ao deletar projeto:", err);
+                                }
+                            })();
+                        }
+                    });
+                });
+            }
+
+            // Exportar Dados como JSON
+            btnExportJson.addEventListener('click', () => {
+                const backupData = {
+                    leads: currentLeads,
+                    projects: currentProjects,
+                    exportedAt: new Date().toISOString()
+                };
+
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
+                const downloadAnchor = document.createElement('a');
+                downloadAnchor.setAttribute("href", dataStr);
+                downloadAnchor.setAttribute("download", `devbyte_leads_backup_${new Date().toLocaleDateString('pt-BR')}.json`);
+                document.body.appendChild(downloadAnchor);
+                downloadAnchor.click();
+                downloadAnchor.remove();
+            });
+
+            // Limpar apenas entregues/cancelados
+            const btnClearCompletedBtn = document.getElementById('btn-clear-completed');
+            if (btnClearCompletedBtn) {
+                btnClearCompletedBtn.addEventListener('click', () => {
+                    if (confirm("Deseja realmente excluir permanentemente todos os projetos entregues ou cancelados do histórico?")) {
+                        (async () => {
+                            try {
+                                const { error } = await supabase
+                                    .from('projects')
+                                    .delete()
+                                    .in('production_status', ['Entregue & Pago', 'Cancelado']);
+                                if (error) throw error;
+                                loadDashboardData();
+                            } catch (err) {
+                                console.error("Erro ao limpar projetos finalizados:", err);
+                            }
+                        })();
+                    }
+                });
+            }
+
+            // Limpar todos
+            btnClearAll.addEventListener('click', () => {
+                if (confirm("ATENÇÃO: Isso excluirá permanentemente todas as propostas e projetos de todas as abas! Deseja continuar?")) {
+                    if (confirm("Confirmação final: Você realmente quer deletar toda a base de dados de leads?")) {
+                        (async () => {
+                            try {
+                                const { error: err1 } = await supabase.from('leads').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+                                const { error: err2 } = await supabase.from('projects').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+                                if (err1) throw err1;
+                                if (err2) throw err2;
+                                loadDashboardData();
+                            } catch (err) {
+                                console.error("Erro ao limpar tabelas:", err);
+                            }
+                        })();
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
