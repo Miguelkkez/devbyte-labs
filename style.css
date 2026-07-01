@@ -1763,6 +1763,8 @@ body[data-global-mode="discord"] .pill-active-bg {
 .form-group input,
 .form-group select,
 .form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: var(--border-radius-md);
@@ -2012,7 +2014,7 @@ body[data-global-mode="discord"] .pill-active-bg {
     }
     
     .discord-app-mockup {
-        height: auto;
+        height: 480px;
         grid-template-columns: 60px 1fr;
     }
     .discord-channels-bar {
@@ -2183,6 +2185,11 @@ body[data-global-mode="discord"] .pill-active-bg {
         gap: 1rem;
         text-align: center;
     }
+    
+    .divider-header,
+    .channel-desc-header {
+        display: none !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2199,9 +2206,19 @@ body[data-global-mode="discord"] .pill-active-bg {
     
     .discord-app-mockup {
         grid-template-columns: 1fr;
+        height: 400px;
     }
     .discord-servers-bar {
         display: none;
+    }
+    .chat-header .discord-btn {
+        display: none !important;
+    }
+    .gif-emoji-panel {
+        display: none !important;
+    }
+    .contact-form-block {
+        padding: 1.25rem;
     }
     
     .calculator-section {
