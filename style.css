@@ -3211,9 +3211,9 @@ body[data-global-mode="discord"] .pill-active-bg {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.025; /* Super discreto para não atrapalhar leitura */
+    opacity: 0.035; /* Levemente aumentado para melhor visibilidade sobre o fundo escuro */
     pointer-events: none;
-    z-index: -2;
+    z-index: -1; /* Posicionado acima do background da body e abaixo do conteudo */
     filter: invert(1);
     mix-blend-mode: screen;
 }
