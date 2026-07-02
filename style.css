@@ -377,6 +377,58 @@ p {
     transform: translateY(-2px);
 }
 
+/* Estilo Premium para os Botões de Troca de Modo */
+.btn-switch-to-mode {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    font-family: var(--font-body);
+    padding: 0.85rem 1.85rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    border: none;
+    outline: none;
+    text-decoration: none;
+}
+
+.btn-switch-to-mode.btn-web {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #07080c;
+}
+
+.btn-switch-to-mode.btn-web:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+    filter: brightness(1.05);
+}
+
+.btn-switch-to-mode.btn-discord {
+    background: rgba(88, 101, 242, 0.05);
+    border: 1px solid rgba(88, 101, 242, 0.3);
+    color: #fff;
+}
+
+.btn-switch-to-mode.btn-discord:hover {
+    background: rgba(88, 101, 242, 0.15);
+    border-color: rgba(88, 101, 242, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(88, 101, 242, 0.25);
+}
+
+.btn-icon {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.btn-switch-to-mode:hover .btn-icon {
+    transform: scale(1.15);
+}
+
 .hover-lift {
     transition: var(--transition-smooth);
 }
