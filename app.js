@@ -4,6 +4,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Força o scroll para o topo ao recarregar a página e desativa a restauração automática do navegador
+    if (window.history.scrollRestoration) {
+        window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     // Efeito de Spotlight Glow interativo nos cards de serviço
     const serviceCards = document.querySelectorAll('.service-card');
     serviceCards.forEach(card => {
