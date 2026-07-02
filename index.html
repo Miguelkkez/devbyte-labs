@@ -576,11 +576,116 @@
                             <div style="background: rgba(255,255,255,0.05); border-radius: 4px; padding: 2px 16px; font-size: 0.5rem; color: #b5bac1; font-family: monospace; width: 60%; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; box-sizing: border-box;">sushicraft.com.br</div>
                             <div style="width: 25px;"></div>
                         </div>
-                        <!-- Scrollable Screen Area -->
-                        <div class="scroll-screen-container" style="flex: 1; overflow: hidden; position: relative; cursor: pointer;">
-                            <img src="restaurant-menu.jpg" alt="Cardápio Digital Sushi Craft" class="scroll-screen-img" style="width: 100%; display: block; transition: transform 4s cubic-bezier(0.1, 0, 0.25, 1);">
+                        <!-- Scrollable Screen Area (Real Interactive HTML Cardapio!) -->
+                        <div class="scroll-screen-container" style="flex: 1; overflow: hidden; position: relative; background: #0b0c10; cursor: pointer;">
+                            <div class="scroll-screen-content" style="width: 100%; transition: transform 4.5s cubic-bezier(0.1, 0, 0.25, 1); display: flex; flex-direction: column;">
+                                <!-- Restaurant Header Banner -->
+                                <div style="background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%); height: 55px; position: relative; display: flex; align-items: flex-end; padding: 6px 10px; box-sizing: border-box; flex-shrink: 0;">
+                                    <div style="position: absolute; top: 6px; right: 10px; background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; border-radius: 50px; padding: 1px 6px; font-size: 0.38rem; color: #10b981; font-weight: bold; display: flex; align-items: center; gap: 2px;">
+                                        <span style="width: 4px; height: 4px; border-radius: 50%; background: #10b981; display: inline-block;"></span> Aberto
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 6px; z-index: 1;">
+                                        <div style="width: 26px; height: 26px; border-radius: 50%; background: #000; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: #fff; font-weight: bold;">🍣</div>
+                                        <div style="text-align: left; line-height: 1.15;">
+                                            <h4 style="font-size: 0.58rem; font-weight: bold; color: #fff; margin: 0; font-family: var(--font-heading);">SushiCraft Premium</h4>
+                                            <span style="font-size: 0.38rem; color: #a5a5a8;">Tempo estimado: 25-35 min</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Categories Tabs -->
+                                <div style="display: flex; gap: 4px; padding: 6px; background: #0e0f14; border-bottom: 1px solid rgba(255,255,255,0.03); flex-shrink: 0; box-sizing: border-box;">
+                                    <div style="background: var(--discord-blurple); color: #fff; border-radius: 4px; padding: 2px 8px; font-size: 0.44rem; font-weight: bold; cursor: pointer; white-space: nowrap;">🍣 Combinados</div>
+                                    <div style="background: rgba(255,255,255,0.03); color: #b5bac1; border-radius: 4px; padding: 2px 8px; font-size: 0.44rem; cursor: pointer; white-space: nowrap;">🍙 Temakis</div>
+                                    <div style="background: rgba(255,255,255,0.03); color: #b5bac1; border-radius: 4px; padding: 2px 8px; font-size: 0.44rem; cursor: pointer; white-space: nowrap;">🍹 Bebidas</div>
+                                </div>
+                                
+                                <!-- Items List -->
+                                <div style="padding: 8px; display: flex; flex-direction: column; gap: 6px; box-sizing: border-box;">
+                                    <!-- Item 1 -->
+                                    <div style="display: flex; justify-content: space-between; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box;">
+                                        <div style="text-align: left; flex: 1;">
+                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #fff; margin: 0 0 2px 0;">Combo Executive (16 peças)</h5>
+                                            <p style="font-size: 0.38rem; color: #949ba4; line-height: 1.2; margin: 0 0 4px 0;">4 Uramaki, 4 Hossomaki, 4 Nigiri, 4 Hot Roll. Acompanha shoyu e hashi.</p>
+                                            <span style="font-size: 0.52rem; font-weight: 800; color: #10b981;">R$ 49,90</span>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
+                                            <div style="display: flex; align-items: center; background: rgba(255,255,255,0.05); border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden;">
+                                                <button style="background: none; border: none; color: #b5bac1; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1;">-</button>
+                                                <span style="color: #fff; font-size: 0.45rem; padding: 2px 4px; font-weight: bold;">1</span>
+                                                <button style="background: none; border: none; color: #b5bac1; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1;">+</button>
+                                            </div>
+                                            <button style="background: #10b981; color: #000; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Item 2 -->
+                                    <div style="display: flex; justify-content: space-between; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box;">
+                                        <div style="text-align: left; flex: 1;">
+                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #fff; margin: 0 0 2px 0;">Temaki Salmão Grelhado</h5>
+                                            <p style="font-size: 0.38rem; color: #949ba4; line-height: 1.2; margin: 0 0 4px 0;">Cone de alga crocante recheado com salmão grelhado, cream cheese e cebolinha.</p>
+                                            <span style="font-size: 0.52rem; font-weight: 800; color: #10b981;">R$ 29,90</span>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
+                                            <div style="display: flex; align-items: center; background: rgba(255,255,255,0.05); border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden;">
+                                                <button style="background: none; border: none; color: #b5bac1; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1;">-</button>
+                                                <span style="color: #fff; font-size: 0.45rem; padding: 2px 4px; font-weight: bold;">0</span>
+                                                <button style="background: none; border: none; color: #b5bac1; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1;">+</button>
+                                            </div>
+                                            <button style="background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div style="display: flex; justify-content: space-between; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box;">
+                                        <div style="text-align: left; flex: 1;">
+                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #fff; margin: 0 0 2px 0;">Uramaki Filadélfia (8 peças)</h5>
+                                            <p style="font-size: 0.38rem; color: #949ba4; line-height: 1.2; margin: 0 0 4px 0;">Enrolado de arroz recheado com salmão, cream cheese e gergelim.</p>
+                                            <span style="font-size: 0.52rem; font-weight: 800; color: #10b981;">R$ 24,90</span>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
+                                            <div style="display: flex; align-items: center; background: rgba(255,255,255,0.05); border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden;">
+                                                <button style="background: none; border: none; color: #b5bac1; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1;">-</button>
+                                                <span style="color: #fff; font-size: 0.45rem; padding: 2px 4px; font-weight: bold;">1</span>
+                                                <button style="background: none; border: none; color: #b5bac1; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1;">+</button>
+                                            </div>
+                                            <button style="background: #10b981; color: #000; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Item 4 (Bebida) -->
+                                    <div style="display: flex; justify-content: space-between; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box; margin-bottom: 35px;">
+                                        <div style="text-align: left; flex: 1;">
+                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #fff; margin: 0 0 2px 0;">Refrigerante Lata 350ml</h5>
+                                            <p style="font-size: 0.38rem; color: #949ba4; line-height: 1.2; margin: 0 0 4px 0;">Coca-Cola, Guaraná Antarctica ou Fanta Laranja gelados.</p>
+                                            <span style="font-size: 0.52rem; font-weight: 800; color: #10b981;">R$ 6,00</span>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
+                                            <div style="display: flex; align-items: center; background: rgba(255,255,255,0.05); border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden;">
+                                                <button style="background: none; border: none; color: #b5bac1; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1;">-</button>
+                                                <span style="color: #fff; font-size: 0.45rem; padding: 2px 4px; font-weight: bold;">0</span>
+                                                <button style="background: none; border: none; color: #b5bac1; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1;">+</button>
+                                            </div>
+                                            <button style="background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating Sacola / Cart Bar -->
+                            <div style="position: absolute; bottom: 6px; left: 8px; right: 8px; background: #10b981; border-radius: 6px; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(16,185,129,0.35); box-sizing: border-box; cursor: pointer; z-index: 10;">
+                                <div style="display: flex; align-items: center; gap: 4px; color: #000;">
+                                    <span style="font-size: 0.55rem;">🛒</span>
+                                    <div style="text-align: left; line-height: 1.1;">
+                                        <div style="font-size: 0.45rem; font-weight: 800;">Ver Sacola</div>
+                                        <span style="font-size: 0.38rem; font-weight: 600; opacity: 0.8;">2 itens adicionados</span>
+                                    </div>
+                                </div>
+                                <span style="font-size: 0.52rem; font-weight: 900; color: #000;">R$ 74,80</span>
+                            </div>
+                            
                             <!-- Overlays -->
-                            <div class="scroll-hover-hint" style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; opacity: 1; transition: opacity 0.3s ease; pointer-events: none;">
+                            <div class="scroll-hover-hint" style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; opacity: 1; transition: opacity 0.3s ease; pointer-events: none; z-index: 20;">
                                 <div style="background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(255,255,255,0.15); padding: 8px 12px; border-radius: 50px; font-size: 0.62rem; color: #fff; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(4px);">
                                     <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none" class="bounce-arrow"><polyline points="7 13 12 18 17 13"></polyline><line x1="12" y1="6" x2="12" y2="18"></line></svg>
                                     Passe o mouse para rolar
