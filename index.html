@@ -562,10 +562,31 @@
                         </div>
                     </div>
                     
-                    <!-- 3D Tech Illustration Image Card -->
-                    <div class="glass" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.08); position: relative; height: 320px;">
-                        <img src="tech-illustration.jpg" alt="DevByte Tech Illustration" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,8,0.7) 0%, transparent 60%); pointer-events: none;"></div>
+                    <!-- Browser Mockup (Portfolio item with Auto-scroll on hover) -->
+                    <div class="glass browser-mockup-portfolio" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.08); position: relative; height: 320px; display: flex; flex-direction: column;">
+                        <!-- Browser Bar -->
+                        <div style="height: 30px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding: 0 12px; justify-content: space-between; flex-shrink: 0; box-sizing: border-box;">
+                            <!-- Dots -->
+                            <div style="display: flex; gap: 5px;">
+                                <span style="width: 6px; height: 6px; border-radius: 50%; background: #ef4444;"></span>
+                                <span style="width: 6px; height: 6px; border-radius: 50%; background: #f59e0b;"></span>
+                                <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981;"></span>
+                            </div>
+                            <!-- Address Bar -->
+                            <div style="background: rgba(255,255,255,0.05); border-radius: 4px; padding: 2px 16px; font-size: 0.5rem; color: #b5bac1; font-family: monospace; width: 60%; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; box-sizing: border-box;">sushicraft.com.br</div>
+                            <div style="width: 25px;"></div>
+                        </div>
+                        <!-- Scrollable Screen Area -->
+                        <div class="scroll-screen-container" style="flex: 1; overflow: hidden; position: relative; cursor: pointer;">
+                            <img src="restaurant-menu.jpg" alt="Cardápio Digital Sushi Craft" class="scroll-screen-img" style="width: 100%; display: block; transition: transform 4s cubic-bezier(0.1, 0, 0.25, 1);">
+                            <!-- Overlays -->
+                            <div class="scroll-hover-hint" style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; opacity: 1; transition: opacity 0.3s ease; pointer-events: none;">
+                                <div style="background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(255,255,255,0.15); padding: 8px 12px; border-radius: 50px; font-size: 0.62rem; color: #fff; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(4px);">
+                                    <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none" class="bounce-arrow"><polyline points="7 13 12 18 17 13"></polyline><line x1="12" y1="6" x2="12" y2="18"></line></svg>
+                                    Passe o mouse para rolar
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
