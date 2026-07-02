@@ -3207,14 +3207,12 @@ body[data-global-mode="discord"] .pill-active-bg {
     transform: translate(-50%, -50%);
     width: 100vw;
     height: 100vh;
-    background-image: url('logo-bg.png');
+    background-image: url('logo-transparent.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.035; /* Levemente aumentado para melhor visibilidade sobre o fundo escuro */
+    opacity: 0.06; /* Nivel otimizado para o fundo escuro do site */
     pointer-events: none;
-    z-index: -1; /* Posicionado acima do background da body e abaixo do conteudo */
-    filter: invert(1);
-    mix-blend-mode: screen;
+    z-index: -1; /* Posicionado acima da body e abaixo do conteudo */
 }
 
