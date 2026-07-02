@@ -1134,8 +1134,8 @@
                         <a href="#orcamento" class="service-link btn-select-service" data-service="Sites/Landing Page Sob Medida">Simular Orçamento <span>&rarr;</span></a>
                     </div>
                     
-                    <!-- Web Mockup 1: Interactive Live Dashboard -->
-                    <div class="glass mode-web-only" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); position: relative; min-height: 380px; display: flex; flex-direction: column; background: #07080a;">
+                    <!-- Web Mockup 1: Interactive Live Dashboard (Mini-Site) -->
+                    <div class="glass mode-web-only" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); position: relative; height: 480px; display: flex; flex-direction: column; background: #07080a;">
                         <!-- Browser Header -->
                         <div style="background: #111218; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.04); flex-shrink: 0; user-select: none;">
                             <div style="display: flex; gap: 6px; align-items: center;">
@@ -1143,7 +1143,7 @@
                                 <span style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
                                 <span style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
                             </div>
-                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 3px 12px; font-size: 0.62rem; color: #a0aec0; font-family: monospace; display: flex; align-items: center; gap: 4px; max-width: 60%; width: 140px; justify-content: center; box-sizing: border-box;">
+                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 3px 12px; font-size: 0.62rem; color: #a0aec0; font-family: monospace; display: flex; align-items: center; gap: 4px; max-width: 65%; width: 150px; justify-content: center; box-sizing: border-box;">
                                 🔒 neon-analytics.com
                             </div>
                             <div style="display: flex; align-items: center; gap: 4px;">
@@ -1152,52 +1152,121 @@
                             </div>
                         </div>
 
-                        <!-- Dashboard Content Body -->
-                        <div style="flex: 1; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; background: #050608; box-sizing: border-box;">
-                            <!-- Top stats -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%;">
-                                <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 6px 8px; text-align: left; box-sizing: border-box;">
-                                    <span style="font-size: 0.48rem; color: #718096; font-weight: bold; letter-spacing: 0.03em; display: block; margin-bottom: 2px;">RECEITA DIÁRIA</span>
-                                    <div style="display: flex; align-items: baseline; justify-content: space-between;">
-                                        <span id="mock-dash-sales" style="font-size: 0.75rem; font-weight: 800; color: #fff; font-family: monospace;">R$ 4.912</span>
-                                        <span style="font-size: 0.46rem; color: #48bb78; font-weight: 900;">+8.7%</span>
-                                    </div>
-                                </div>
-                                <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 6px 8px; text-align: left; box-sizing: border-box;">
-                                    <span style="font-size: 0.48rem; color: #718096; font-weight: bold; letter-spacing: 0.03em; display: block; margin-bottom: 2px;">SESSÕES ATIVAS</span>
-                                    <div style="display: flex; align-items: baseline; justify-content: space-between;">
-                                        <span id="mock-dash-sessions" style="font-size: 0.75rem; font-weight: 800; color: #63b3ed; font-family: monospace;">4.912</span>
-                                        <span style="font-size: 0.46rem; color: #48bb78; font-weight: 900;">+6.7%</span>
-                                    </div>
-                                </div>
+                        <!-- Mini-Site Layout (Sidebar + Content Viewport) -->
+                        <div style="flex: 1; display: grid; grid-template-columns: 55px 1fr; min-height: 0; overflow: hidden;">
+                            <!-- Sidebar -->
+                            <div style="background: #090a0f; border-right: 1px solid rgba(255,255,255,0.03); padding: 10px 4px; display: flex; flex-direction: column; gap: 6px; align-items: center; user-select: none;">
+                                <div style="font-size: 0.9rem; color: #63b3ed; font-weight: 900; margin-bottom: 8px;">⚡</div>
+                                <div class="dash-btn active" data-mock-tab="main" style="padding: 4px; border-radius: 4px; color: #fff; background: rgba(99,179,237,0.1); cursor: pointer; font-size: 0.7rem;">📊</div>
+                                <div class="dash-btn" data-mock-tab="clients" style="padding: 4px; border-radius: 4px; color: #718096; cursor: pointer; font-size: 0.7rem;">👥</div>
+                                <div class="dash-btn" data-mock-tab="settings" style="padding: 4px; border-radius: 4px; color: #718096; cursor: pointer; font-size: 0.7rem;">⚙️</div>
                             </div>
 
-                            <!-- Animated Line Chart -->
-                            <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 8px 10px; width: 100%; box-sizing: border-box;">
-                                <div style="height: 60px; width: 100%;">
-                                    <svg viewBox="0 0 300 90" preserveAspectRatio="none" style="width: 100%; height: 100%; overflow: visible;">
-                                        <defs>
-                                            <linearGradient id="chartGradBlue" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="0%" stop-color="#3182ce" stop-opacity="0.3"></stop>
-                                                <stop offset="100%" stop-color="#3182ce" stop-opacity="0"></stop>
-                                            </linearGradient>
-                                        </defs>
-                                        <path id="mock-dash-chart-area" d="M 0 90 Q 50 65 100 45 T 200 25 T 300 15 L 300 90 Z" fill="url(#chartGradBlue)" style="transition: d 1.2s ease-in-out;"></path>
-                                        <path id="mock-dash-chart-line" d="M 0 90 Q 50 65 100 45 T 200 25 T 300 15" fill="none" stroke="#3182ce" stroke-width="2.5" stroke-linecap="round" style="transition: d 1.2s ease-in-out;"></path>
-                                    </svg>
+                            <!-- Scrollable Content Viewport -->
+                            <div class="scroll-mockup-container" style="flex: 1; overflow-y: auto; background: #050608; padding: 10px; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box;">
+                                
+                                <!-- Tab: Main Vision -->
+                                <div id="mock-tab-main" class="mock-dash-page" style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="text-align: left;">
+                                        <h5 style="margin: 0 0 2px 0; font-size: 0.75rem; color: #fff; font-weight: bold;">Visão Geral</h5>
+                                        <span style="font-size: 0.52rem; color: #718096;">Painel administrativo em tempo real</span>
+                                    </div>
+
+                                    <!-- Grid of Stats -->
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                                        <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; padding: 6px 8px; text-align: left;">
+                                            <span style="font-size: 0.48rem; color: #718096; display: block; margin-bottom: 2px;">FATURAMENTO HOJE</span>
+                                            <span id="mock-dash-sales" style="font-size: 0.72rem; font-weight: 800; color: #fff; font-family: monospace;">R$ 4.912</span>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; padding: 6px 8px; text-align: left;">
+                                            <span style="font-size: 0.48rem; color: #718096; display: block; margin-bottom: 2px;">SESSÕES ATIVAS</span>
+                                            <span id="mock-dash-sessions" style="font-size: 0.72rem; font-weight: 800; color: #63b3ed; font-family: monospace;">1.842</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Growth Curve SVG -->
+                                    <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: left;">
+                                        <span style="font-size: 0.48rem; color: #718096; display: block; margin-bottom: 4px;">DESEMPENHO DO SISTEMA</span>
+                                        <div style="height: 55px; width: 100%;">
+                                            <svg viewBox="0 0 300 90" preserveAspectRatio="none" style="width: 100%; height: 100%; overflow: visible;">
+                                                <defs>
+                                                    <linearGradient id="mockChartBlueGrad" x1="0" y1="0" x2="0" y2="1">
+                                                        <stop offset="0%" stop-color="#3182ce" stop-opacity="0.25"></stop>
+                                                        <stop offset="100%" stop-color="#3182ce" stop-opacity="0"></stop>
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="mock-dash-chart-area" d="M 0 90 Q 50 65 100 45 T 200 25 T 300 15 L 300 90 Z" fill="url(#mockChartBlueGrad)" style="transition: d 1.2s ease-in-out;"></path>
+                                                <path id="mock-dash-chart-line" d="M 0 90 Q 50 65 100 45 T 200 25 T 300 15" fill="none" stroke="#3182ce" stroke-width="2" stroke-linecap="round" style="transition: d 1.2s ease-in-out;"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Live Logs Terminal -->
+                                    <div style="background: #000; border-radius: 6px; padding: 6px 8px; border: 1px solid rgba(255,255,255,0.05); text-align: left;">
+                                        <span style="font-size: 0.46rem; color: #48bb78; font-weight: bold; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">TERMINAL DE LOGS</span>
+                                        <div id="mock-dash-logs" style="display: flex; flex-direction: column; gap: 3px; font-family: monospace; min-height: 40px;">
+                                            <!-- Logs populated via JS -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tab: Clients List -->
+                                <div id="mock-tab-clients" class="mock-dash-page" style="display: none; flex-direction: column; gap: 8px; text-align: left;">
+                                    <h5 style="margin: 0; font-size: 0.75rem; color: #fff; font-weight: bold;">Base de Clientes</h5>
+                                    <table style="width: 100%; border-collapse: collapse; font-size: 0.54rem; color: #a0aec0;">
+                                        <thead>
+                                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06); height: 20px;">
+                                                <th>Nome</th>
+                                                <th>Email</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.03); height: 22px;">
+                                                <td style="color: #fff; font-weight: bold;">Ana Souza</td>
+                                                <td>ana@email.com</td>
+                                                <td><span style="color: #48bb78;">Ativo</span></td>
+                                            </tr>
+                                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.03); height: 22px;">
+                                                <td style="color: #fff; font-weight: bold;">Bruno Silva</td>
+                                                <td>bruno@email.com</td>
+                                                <td><span style="color: #48bb78;">Ativo</span></td>
+                                            </tr>
+                                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.03); height: 22px;">
+                                                <td style="color: #fff; font-weight: bold;">Carlos Lima</td>
+                                                <td>carlos@email.com</td>
+                                                <td><span style="color: #e53e3e;">Inativo</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Tab: Settings -->
+                                <div id="mock-tab-settings" class="mock-dash-page" style="display: none; flex-direction: column; gap: 8px; text-align: left;">
+                                    <h5 style="margin: 0; font-size: 0.75rem; color: #fff; font-weight: bold;">Configurações</h5>
+                                    <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.54rem; color: #a0aec0;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 6px 8px; border-radius: 4px;">
+                                            <span>Simulador Automático</span>
+                                            <button id="mock-dash-sim-btn" style="background: #319795; color: #fff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.48rem; font-weight: bold; cursor: pointer;">LIGADO</button>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 6px 8px; border-radius: 4px;">
+                                            <span>Limpeza de Cache</span>
+                                            <button style="background: #4a5568; color: #fff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.48rem; font-weight: bold; cursor: pointer;">Limpar</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card Footer -->
-                        <div style="padding: 1rem 1.25rem; background: linear-gradient(to top, rgba(5,5,8,1) 80%, rgba(5,5,8,0) 100%); flex-shrink: 0; text-align: left;">
+                        <div style="padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); background: linear-gradient(to top, rgba(5,5,8,1) 80%, rgba(5,5,8,0) 100%); flex-shrink: 0; text-align: left;">
                             <div style="font-size: 0.85rem; font-weight: bold; color: #fff; margin-bottom: 2px;">Sistemas Customizados</div>
                             <p style="font-size: 0.72rem; color: var(--text-muted); margin: 0; line-height: 1.35;">Interfaces administrativas de alta velocidade integradas com bancos de dados e APIs em tempo real.</p>
                         </div>
                     </div>
 
-                    <!-- Web Mockup 2: Interactive E-commerce -->
-                    <div class="glass mode-web-only" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); position: relative; min-height: 380px; display: flex; flex-direction: column; background: #07080a;">
+                    <!-- Web Mockup 2: Interactive E-commerce (Mini-Site) -->
+                    <div class="glass mode-web-only" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); position: relative; height: 480px; display: flex; flex-direction: column; background: #07080a;">
                         <!-- Browser Header -->
                         <div style="background: #111218; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.04); flex-shrink: 0; user-select: none;">
                             <div style="display: flex; gap: 6px; align-items: center;">
@@ -1205,43 +1274,101 @@
                                 <span style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
                                 <span style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
                             </div>
-                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 3px 12px; font-size: 0.62rem; color: #a0aec0; font-family: monospace; display: flex; align-items: center; gap: 4px; max-width: 60%; width: 140px; justify-content: center; box-sizing: border-box;">
+                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 3px 12px; font-size: 0.62rem; color: #a0aec0; font-family: monospace; display: flex; align-items: center; gap: 4px; max-width: 65%; width: 140px; justify-content: center; box-sizing: border-box;">
                                 🔒 neon-store.com
                             </div>
-                            <!-- Cart widget -->
-                            <div style="color: #63b3ed; font-size: 0.68rem; font-weight: bold; display: flex; align-items: center; gap: 3px; cursor: pointer; position: relative;">
-                                🛒 <span id="mock-shop-cart-qty" style="color: #fff;">0</span>
+                            <div id="mock-shop-cart-btn" style="color: #63b3ed; font-size: 0.65rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 3px; position: relative;">
+                                🛒 <span id="mock-shop-cart-qty">0</span>
                                 <span id="mock-shop-cart-toast" style="position: absolute; top: -14px; right: -8px; background: #22c55e; color: #fff; font-size: 0.48rem; padding: 1px 4px; border-radius: 50px; opacity: 0; transition: all 0.2s; transform: scale(0.5);">+1</span>
                             </div>
                         </div>
 
-                        <!-- Store Showcase Body -->
-                        <div style="flex: 1; padding: 12px; display: flex; flex-direction: column; justify-content: center; gap: 10px; background: #050608; box-sizing: border-box;">
-                            <!-- Product Showcase Box -->
-                            <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.04); border-radius: 12px; padding: 10px; display: flex; gap: 12px; align-items: center; text-align: left; position: relative; overflow: hidden; box-sizing: border-box;">
-                                <!-- Product Icon Gradient Box -->
-                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(59,130,246,0.25); flex-shrink: 0; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">🎧</div>
-                                <!-- Details -->
-                                <div style="flex: 1; min-width: 0;">
-                                    <div style="font-size: 0.85rem; font-weight: 800; color: #fff; margin-bottom: 2px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">Fone Pro Hybrid-ANC</div>
-                                    <div style="font-size: 0.65rem; color: #48bb78; font-weight: 900; margin-bottom: 6px;">R$ 499,00</div>
-                                    <div style="font-size: 0.6rem; color: #718096; display: flex; gap: 4px; align-items: center;">⭐⭐⭐⭐⭐ <span style="color: #a0aec0;">(4.9)</span></div>
+                        <!-- Scrollable Store Viewport -->
+                        <div class="scroll-mockup-container" style="flex: 1; overflow-y: auto; background: #060709; position: relative;">
+                            
+                            <!-- Hero Promo Banner -->
+                            <div style="background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%); padding: 12px 10px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.04);">
+                                <span style="font-size: 0.46rem; background: #e11d48; color: #fff; padding: 1px 4px; border-radius: 4px; font-weight: bold;">OFERTAS</span>
+                                <h6 style="margin: 3px 0 2px 0; font-size: 0.72rem; color: #fff; font-weight: bold;">Tecnologia Gamer Pro</h6>
+                                <p style="margin: 0; font-size: 0.52rem; color: #a0aec0;">Até 30% OFF com entrega expressa.</p>
+                            </div>
+
+                            <!-- Products Grid -->
+                            <div style="padding: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; box-sizing: border-box;">
+                                <!-- Prod 1 -->
+                                <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 6px; display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
+                                    <div style="height: 45px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">🎧</div>
+                                    <span style="font-size: 0.54rem; font-weight: bold; color: #fff; text-align: left; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fone Wireless Pro</span>
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 0.54rem; color: #48bb78; font-weight: bold;">R$ 499</span>
+                                        <button class="mock-shop-add" data-id="e1" data-name="Fone Wireless" data-price="499" style="background: #3182ce; color: #fff; border: none; border-radius: 4px; padding: 2px 6px; font-size: 0.48rem; cursor: pointer; font-weight: bold;">Comprar</button>
+                                    </div>
+                                </div>
+                                <!-- Prod 2 -->
+                                <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 6px; display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
+                                    <div style="height: 45px; background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">⌨️</div>
+                                    <span style="font-size: 0.54rem; font-weight: bold; color: #fff; text-align: left; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Teclado Mecânico</span>
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 0.54rem; color: #48bb78; font-weight: bold;">R$ 389</span>
+                                        <button class="mock-shop-add" data-id="e2" data-name="Teclado Mec." data-price="389" style="background: #3182ce; color: #fff; border: none; border-radius: 4px; padding: 2px 6px; font-size: 0.48rem; cursor: pointer; font-weight: bold;">Comprar</button>
+                                    </div>
+                                </div>
+                                <!-- Prod 3 -->
+                                <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 6px; display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
+                                    <div style="height: 45px; background: linear-gradient(135deg, #064e3b 0%, #047857 100%); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">🖱️</div>
+                                    <span style="font-size: 0.54rem; font-weight: bold; color: #fff; text-align: left; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Mouse Gamer RGB</span>
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 0.54rem; color: #48bb78; font-weight: bold;">R$ 199</span>
+                                        <button class="mock-shop-add" data-id="e3" data-name="Mouse Gamer" data-price="199" style="background: #3182ce; color: #fff; border: none; border-radius: 4px; padding: 2px 6px; font-size: 0.48rem; cursor: pointer; font-weight: bold;">Comprar</button>
+                                    </div>
+                                </div>
+                                <!-- Prod 4 -->
+                                <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 6px; display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
+                                    <div style="height: 45px; background: linear-gradient(135deg, #701a75 0%, #a21caf 100%); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">💡</div>
+                                    <span style="font-size: 0.54rem; font-weight: bold; color: #fff; text-align: left; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fita LED Inteligente</span>
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 0.54rem; color: #48bb78; font-weight: bold;">R$ 89</span>
+                                        <button class="mock-shop-add" data-id="e4" data-name="Fita LED" data-price="89" style="background: #3182ce; color: #fff; border: none; border-radius: 4px; padding: 2px 6px; font-size: 0.48rem; cursor: pointer; font-weight: bold;">Comprar</button>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <!-- Add button -->
-                            <button id="mock-shop-add-btn" style="width: 100%; background: #3182ce; color: #fff; border: none; border-radius: 6px; padding: 8px; font-size: 0.75rem; font-weight: bold; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(49,130,206,0.15);" onmouseover="this.style.background='#2b6cb0'" onmouseout="this.style.background='#3182ce'">Adicionar ao Carrinho 🛒</button>
+
+                            <!-- Cart overlay modal (absolute inside scroll container) -->
+                            <div id="mock-shop-cart-modal" style="position: absolute; inset: 0; background: rgba(7,8,12,0.96); z-index: 25; display: none; flex-direction: column; padding: 12px; box-sizing: border-box; transition: all 0.3s ease;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px; margin-bottom: 8px;">
+                                    <span style="font-size: 0.65rem; font-weight: bold; color: #fff;">Sacola de Compras</span>
+                                    <span id="mock-shop-close" style="font-size: 0.65rem; color: #a0aec0; cursor: pointer;">✕</span>
+                                </div>
+                                <div id="mock-shop-list" style="flex: 1; display: flex; flex-direction: column; gap: 5px; overflow-y: auto;">
+                                    <!-- Items list -->
+                                </div>
+                                <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 8px; text-align: left;">
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.65rem; font-weight: bold; color: #fff; margin-bottom: 8px;">
+                                        <span>Total:</span>
+                                        <span id="mock-shop-total" style="color: #22c55e;">R$ 0,00</span>
+                                    </div>
+                                    <button id="mock-shop-checkout" style="width: 100%; background: #22c55e; color: #fff; border: none; border-radius: 4px; padding: 6px; font-size: 0.58rem; font-weight: bold; cursor: pointer;">Finalizar Compra</button>
+                                </div>
+                            </div>
+
+                            <!-- Cart success overlay -->
+                            <div id="mock-shop-success" style="position: absolute; inset: 0; background: #07080c; z-index: 30; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; text-align: center;">
+                                <div style="width: 32px; height: 32px; background: rgba(34,197,94,0.15); color: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 6px; font-weight: bold;">✓</div>
+                                <div style="font-size: 0.7rem; font-weight: bold; color: #22c55e; margin-bottom: 4px;">Compra Simulada!</div>
+                                <p style="font-size: 0.54rem; color: #a0aec0; margin: 0 0 12px 0;">Obrigado por testar nossa demonstração de e-commerce.</p>
+                                <button id="mock-shop-success-ok" style="background: #3182ce; color: #fff; border: none; border-radius: 4px; padding: 4px 12px; font-size: 0.52rem; font-weight: bold; cursor: pointer;">Voltar à Loja</button>
+                            </div>
                         </div>
 
                         <!-- Card Footer -->
-                        <div style="padding: 1rem 1.25rem; background: linear-gradient(to top, rgba(5,5,8,1) 80%, rgba(5,5,8,0) 100%); flex-shrink: 0; text-align: left;">
+                        <div style="padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); background: linear-gradient(to top, rgba(5,5,8,1) 80%, rgba(5,5,8,0) 100%); flex-shrink: 0; text-align: left;">
                             <div style="font-size: 0.85rem; font-weight: bold; color: #fff; margin-bottom: 2px;">E-commerce & Lojas</div>
                             <p style="font-size: 0.72rem; color: var(--text-muted); margin: 0; line-height: 1.35;">Sistemas de vendas online robustos com carrinho dinâmico e carregamento instantâneo.</p>
                         </div>
                     </div>
 
-                    <!-- Web Mockup 3: Interactive Landing Page -->
-                    <div class="glass mode-web-only" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); position: relative; min-height: 380px; display: flex; flex-direction: column; background: #07080a;">
+                    <!-- Web Mockup 3: Interactive Landing Page (Mini-Site) -->
+                    <div class="glass mode-web-only" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); position: relative; height: 480px; display: flex; flex-direction: column; background: #07080a;">
                         <!-- Browser Header -->
                         <div style="background: #111218; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.04); flex-shrink: 0; user-select: none;">
                             <div style="display: flex; gap: 6px; align-items: center;">
@@ -1249,42 +1376,62 @@
                                 <span style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
                                 <span style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
                             </div>
-                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 3px 12px; font-size: 0.62rem; color: #a0aec0; font-family: monospace; display: flex; align-items: center; gap: 4px; max-width: 60%; width: 140px; justify-content: center; box-sizing: border-box;">
+                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 3px 12px; font-size: 0.62rem; color: #a0aec0; font-family: monospace; display: flex; align-items: center; gap: 4px; max-width: 65%; width: 140px; justify-content: center; box-sizing: border-box;">
                                 🔒 neon-saas.com
                             </div>
                             <div style="width: 25px;"></div>
                         </div>
 
-                        <!-- LP Showcase Body -->
-                        <div style="flex: 1; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; background: #050608; box-sizing: border-box; text-align: center;">
-                            <!-- Hero Title and badge -->
-                            <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
-                                <span style="font-size: 0.52rem; background: rgba(99,179,237,0.12); color: #63b3ed; padding: 2px 8px; border-radius: 50px; font-weight: bold; width: fit-content; margin: 0 auto; letter-spacing: 0.05em;">NOVA VERSÃO 2.0</span>
-                                <h4 style="font-size: 0.9rem; font-weight: 900; line-height: 1.25; margin: 0; background: linear-gradient(135deg, #fff 0%, #a0aec0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Acelere seus Resultados</h4>
+                        <!-- Scrollable Landing Page Viewport -->
+                        <div class="scroll-mockup-container" style="flex: 1; overflow-y: auto; background: #050608; padding: 12px 10px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; align-items: center;">
+                            
+                            <!-- Hero Header Area -->
+                            <div style="text-align: center; display: flex; flex-direction: column; gap: 5px;">
+                                <span style="font-size: 0.48rem; background: rgba(99,179,237,0.12); color: #63b3ed; padding: 1px 6px; border-radius: 50px; font-weight: bold; width: fit-content; margin: 0 auto; letter-spacing: 0.05em;">Lançamento Versão 2.0</span>
+                                <h4 style="margin: 0; font-size: 0.85rem; font-weight: 900; line-height: 1.25; background: linear-gradient(135deg, #fff 0%, #a0aec0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Seu Site na Velocidade da Luz</h4>
+                                <p style="margin: 0 auto; font-size: 0.54rem; color: #a0aec0; max-width: 90%; line-height: 1.3;">Desenvolvemos interfaces de alta performance que retêm clientes e geram conversões.</p>
+                                <button id="mock-lp-cta-top" style="background: linear-gradient(135deg, #3182ce 0%, #319795 100%); color: #fff; border: none; border-radius: 50px; padding: 4px 14px; font-size: 0.56rem; font-weight: bold; cursor: pointer; margin: 6px auto 0 auto; width: fit-content;">Iniciar Teste Grátis</button>
                             </div>
 
-                            <!-- Interactive Pricing card -->
-                            <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;">
-                                <div style="text-align: left;">
-                                    <div style="font-size: 0.65rem; font-weight: bold; color: #fff;">Plano Standard</div>
-                                    <!-- Toggle Trigger -->
-                                    <div id="mock-lp-toggle" style="display: flex; align-items: center; gap: 4px; font-size: 0.48rem; color: #718096; cursor: pointer; margin-top: 2px;">
-                                        <span id="mock-lp-toggle-lbl">Faturamento Mensal</span>
-                                        <span style="color: #63b3ed; text-decoration: underline;">(Alternar)</span>
+                            <!-- Features List (Beneficios) -->
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 6px; width: 100%; text-align: left;">
+                                <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; padding: 6px 8px;">
+                                    <strong style="font-size: 0.58rem; color: #fff; display: block; margin-bottom: 2px;">⚡ Otimização PageSpeed</strong>
+                                    <span style="font-size: 0.52rem; color: #a0aec0; display: block;">Código ultra leve para carregar em menos de 1 segundo.</span>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; padding: 6px 8px;">
+                                    <strong style="font-size: 0.58rem; color: #fff; display: block; margin-bottom: 2px;">📱 Design 100% Responsivo</strong>
+                                    <span style="font-size: 0.52rem; color: #a0aec0; display: block;">Adaptado e otimizado para celulares e computadores.</span>
+                                </div>
+                            </div>
+
+                            <!-- Pricing dynamic card -->
+                            <div style="background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 8px; width: 100%; box-sizing: border-box; text-align: left;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                    <span style="font-size: 0.58rem; font-weight: bold; color: #fff;">Plano Standard</span>
+                                    <span id="mock-lp-price" style="font-size: 0.78rem; font-weight: bold; color: #63b3ed; font-family: monospace;">R$ 49/mês</span>
+                                </div>
+                                <div id="mock-lp-toggle" style="font-size: 0.48rem; color: #63b3ed; cursor: pointer; text-decoration: underline;">Alternar p/ Faturamento Anual (-20%)</div>
+                            </div>
+
+                            <!-- Interactive Reviews Slide -->
+                            <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 8px; width: 100%; text-align: left; box-sizing: border-box;">
+                                <div id="mock-lp-review-text" style="font-size: 0.54rem; color: #a0aec0; font-style: italic; line-height: 1.35; min-height: 32px; transition: opacity 0.2s ease;">"O site carrega instantaneamente e nossas vendas cresceram 40% nas primeiras semanas!"</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+                                    <span id="mock-lp-review-author" style="font-size: 0.5rem; color: #fff; font-weight: bold;">— Mariana S., CEO Tech</span>
+                                    <div style="display: flex; gap: 4px;">
+                                        <span class="review-dot active" data-index="0" style="width: 5px; height: 5px; border-radius: 50%; background: #fff; cursor: pointer;"></span>
+                                        <span class="review-dot" data-index="1" style="width: 5px; height: 5px; border-radius: 50%; background: #4a5568; cursor: pointer;"></span>
                                     </div>
                                 </div>
-                                <div style="text-align: right;">
-                                    <span id="mock-lp-price-val" style="font-size: 0.9rem; font-weight: bold; color: #63b3ed; font-family: monospace; transition: transform 0.2s ease;">R$ 49</span>
-                                    <span style="font-size: 0.48rem; color: #718096;">/mês</span>
-                                </div>
                             </div>
 
-                            <!-- Action button -->
-                            <button id="mock-lp-cta-btn" style="background: linear-gradient(135deg, #3182ce 0%, #319795 100%); color: #fff; border: none; border-radius: 50px; padding: 6px 16px; font-size: 0.7rem; font-weight: bold; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(49,130,206,0.15);">Testar Grátis ⚡</button>
+                            <!-- Footer mockup -->
+                            <span style="font-size: 0.48rem; color: #718096; margin-top: 4px;">© 2026 NeonSaaS. Todos os direitos reservados.</span>
                         </div>
 
                         <!-- Card Footer -->
-                        <div style="padding: 1rem 1.25rem; background: linear-gradient(to top, rgba(5,5,8,1) 80%, rgba(5,5,8,0) 100%); flex-shrink: 0; text-align: left;">
+                        <div style="padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); background: linear-gradient(to top, rgba(5,5,8,1) 80%, rgba(5,5,8,0) 100%); flex-shrink: 0; text-align: left;">
                             <div style="font-size: 0.85rem; font-weight: bold; color: #fff; margin-bottom: 2px;">Landing Pages & Sites</div>
                             <p style="font-size: 0.72rem; color: var(--text-muted); margin: 0; line-height: 1.35;">Páginas de altíssima conversão focadas em capturar leads e impulsionar anúncios.</p>
                         </div>

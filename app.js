@@ -1517,16 +1517,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================
-       20. Lógica de Controle dos Mockups Web Otimizados
+       20. Lógica de Controle dos Mockups Web (Mini-Sites Interativos)
        ========================================== */
-    // 20.1 Dashboard Mockup
-    let mockSalesVal = 4912;
-    let mockSessionsVal = 1842;
+    
+    // --- 20.1 DASHBOARD INTERATIVO ---
+    const dashBtns = document.querySelectorAll('.dash-btn');
+    const dashPages = document.querySelectorAll('.mock-dash-page');
     const elMockSales = document.getElementById('mock-dash-sales');
     const elMockSessions = document.getElementById('mock-dash-sessions');
     const pathMockLine = document.getElementById('mock-dash-chart-line');
     const pathMockArea = document.getElementById('mock-dash-chart-area');
+    const elMockLogs = document.getElementById('mock-dash-logs');
+    const btnMockSim = document.getElementById('mock-dash-sim-btn');
 
+    let mockSalesVal = 4912;
+    let mockSessionsVal = 1842;
+    let dashboardSimulatorActive = true;
+
+    // Tabs switching
+    dashBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            dashBtns.forEach(b => {
+                b.classList.remove('active');
+                b.style.background = 'transparent';
+                b.style.color = '#718096';
+            });
+            btn.classList.add('active');
+            btn.style.background = 'rgba(99, 179, 237, 0.1)';
+            btn.style.color = '#fff';
+
+            const targetTab = btn.getAttribute('data-mock-tab');
+            dashPages.forEach(p => p.style.display = 'none');
+            const targetPage = document.getElementById(`mock-tab-${targetTab}`);
+            if (targetPage) {
+                targetPage.style.display = targetTab === 'settings' || targetTab === 'clients' ? 'flex' : 'block';
+            }
+        });
+    });
+
+    // Toggle simulator
+    if (btnMockSim) {
+        btnMockSim.addEventListener('click', () => {
+            dashboardSimulatorActive = !dashboardSimulatorActive;
+            if (dashboardSimulatorActive) {
+                btnMockSim.textContent = 'LIGADO';
+                btnMockSim.style.background = '#319795';
+            } else {
+                btnMockSim.textContent = 'DESLIGADO';
+                btnMockSim.style.background = '#4a5568';
+            }
+        });
+    }
+
+    // Generator SVG Path
     function generateMockCurve() {
         const y1 = Math.floor(Math.random() * 45) + 15;
         const y2 = Math.floor(Math.random() * 50) + 25;
@@ -1538,42 +1581,96 @@ document.addEventListener('DOMContentLoaded', () => {
         return { line: lineD, area: areaD };
     }
 
+    // Logs Feed helper
+    const logMessages = [
+        "API Request: GET /users 200 OK",
+        "Webhook dispatched to Vercel",
+        "Cache hit ratio: 98.4%",
+        "Syncing postgres database pool...",
+        "Session verified for Ana Souza",
+        "PageSpeed metrics: Mobile 100% OK",
+        "CDN response resolved in 14ms"
+    ];
+    function addTerminalLog() {
+        if (!elMockLogs) return;
+        const randMsg = logMessages[Math.floor(Math.random() * logMessages.length)];
+        const logLine = document.createElement('div');
+        logLine.style.fontSize = '0.45rem';
+        logLine.style.color = '#a0aec0';
+        logLine.style.fontFamily = 'monospace';
+        logLine.style.overflow = 'hidden';
+        logLine.style.textOverflow = 'ellipsis';
+        logLine.style.whiteSpace = 'nowrap';
+        logLine.textContent = `> ${randMsg}`;
+        elMockLogs.appendChild(logLine);
+
+        // Keep last 4 logs
+        while (elMockLogs.children.length > 3) {
+            elMockLogs.removeChild(elMockLogs.firstChild);
+        }
+    }
+    
+    // Seed initial logs
+    for (let i = 0; i < 3; i++) addTerminalLog();
+
+    // Fluctuations loop
     setInterval(() => {
-        // Oscila valores
-        mockSalesVal += Math.floor(Math.random() * 40) - 15;
-        mockSessionsVal += Math.floor(Math.random() * 10) - 4;
+        if (!dashboardSimulatorActive) return;
+
+        mockSalesVal += Math.floor(Math.random() * 60) - 20;
+        mockSessionsVal += Math.floor(Math.random() * 12) - 5;
 
         if (elMockSales) elMockSales.textContent = `R$ ${mockSalesVal.toLocaleString('pt-BR')}`;
         if (elMockSessions) elMockSessions.textContent = mockSessionsVal.toLocaleString('pt-BR');
 
-        // Modifica curvas SVG com transição suave
+        // Path SVG
         const curves = generateMockCurve();
         if (pathMockLine && pathMockArea) {
             pathMockLine.setAttribute('d', curves.line);
             pathMockArea.setAttribute('d', curves.area);
         }
+
+        // Add Log
+        addTerminalLog();
     }, 3000);
 
-    // 20.2 E-commerce Mockup
-    let mockCartQtyVal = 0;
-    const mockAddBtn = document.getElementById('mock-shop-add-btn');
+
+    // --- 20.2 LOJA VIRTUAL / E-COMMERCE ---
+    const mockCart = {};
     const mockCartQty = document.getElementById('mock-shop-cart-qty');
     const mockCartToast = document.getElementById('mock-shop-cart-toast');
+    const mockCartModal = document.getElementById('mock-shop-cart-modal');
+    const mockCartBtn = document.getElementById('mock-shop-cart-btn');
+    const mockCartClose = document.getElementById('mock-shop-close');
+    const mockCartList = document.getElementById('mock-shop-list');
+    const mockCartTotal = document.getElementById('mock-shop-total');
+    const mockCheckoutBtn = document.getElementById('mock-shop-checkout');
+    const mockSuccessModal = document.getElementById('mock-shop-success');
+    const mockSuccessOkBtn = document.getElementById('mock-shop-success-ok');
 
-    if (mockAddBtn) {
-        mockAddBtn.addEventListener('click', () => {
-            // Incrementa quantidade
-            mockCartQtyVal++;
-            if (mockCartQty) mockCartQty.textContent = mockCartQtyVal;
+    // Add to Cart
+    document.querySelectorAll('.mock-shop-add').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = btn.getAttribute('data-id');
+            const name = btn.getAttribute('data-name');
+            const price = parseInt(btn.getAttribute('data-price'));
 
-            // Transição visual do botão
-            const oldBg = mockAddBtn.style.background;
-            const oldText = mockAddBtn.textContent;
-            mockAddBtn.textContent = 'Adicionado! ✓';
-            mockAddBtn.style.background = '#22c55e';
-            mockAddBtn.style.transform = 'scale(0.98)';
+            if (!mockCart[id]) {
+                mockCart[id] = { name, price, qty: 0 };
+            }
+            mockCart[id].qty++;
 
-            // Toast feedback "+1"
+            // Visual feedback on buy button
+            const oldBg = btn.style.background;
+            btn.textContent = 'Adicionado';
+            btn.style.background = '#22c55e';
+            setTimeout(() => {
+                btn.textContent = 'Comprar';
+                btn.style.background = oldBg;
+            }, 800);
+
+            // Pop toast "+1"
             if (mockCartToast) {
                 mockCartToast.style.opacity = '1';
                 mockCartToast.style.transform = 'scale(1.2) translateY(-4px)';
@@ -1583,52 +1680,175 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 800);
             }
 
-            setTimeout(() => {
-                mockAddBtn.textContent = oldText;
-                mockAddBtn.style.background = oldBg;
-                mockAddBtn.style.transform = 'scale(1)';
-            }, 1000);
+            updateMockCartState();
+        });
+    });
+
+    function updateMockCartState() {
+        let totalQty = 0;
+        let totalCash = 0;
+
+        if (mockCartList) mockCartList.innerHTML = '';
+
+        for (const id in mockCart) {
+            const item = mockCart[id];
+            totalQty += item.qty;
+            totalCash += item.price * item.qty;
+
+            if (mockCartList) {
+                const itemRow = document.createElement('div');
+                itemRow.style.display = 'flex';
+                itemRow.style.justify = 'space-between';
+                itemRow.style.alignItems = 'center';
+                itemRow.style.fontSize = '0.52rem';
+                itemRow.style.background = 'rgba(255,255,255,0.02)';
+                itemRow.style.padding = '4px 6px';
+                itemRow.style.borderRadius = '4px';
+
+                itemRow.innerHTML = `
+                    <span style="color: #fff; font-weight: bold;">${item.name}</span>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <button class="mock-qty-change" data-id="${id}" data-action="sub" style="border: none; background: #4a5568; color: #fff; border-radius: 2px; width: 10px; height: 10px; font-size: 0.4rem; padding:0; display:flex; align-items:center; justify-content:center; cursor:pointer;">-</button>
+                        <span style="color: #fff; font-family: monospace;">${item.qty}</span>
+                        <button class="mock-qty-change" data-id="${id}" data-action="add" style="border: none; background: #4a5568; color: #fff; border-radius: 2px; width: 10px; height: 10px; font-size: 0.4rem; padding:0; display:flex; align-items:center; justify-content:center; cursor:pointer;">+</button>
+                        <span style="color: #48bb78; font-family: monospace; margin-left: 5px;">R$ ${item.price * item.qty}</span>
+                    </div>
+                `;
+                mockCartList.appendChild(itemRow);
+            }
+        }
+
+        if (mockCartQty) mockCartQty.textContent = totalQty;
+        if (mockCartTotal) mockCartTotal.textContent = `R$ ${totalCash.toLocaleString('pt-BR')},00`;
+
+        // Re-bind adjustments inside list
+        document.querySelectorAll('.mock-qty-change').forEach(changeBtn => {
+            changeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const id = changeBtn.getAttribute('data-id');
+                const action = changeBtn.getAttribute('data-action');
+
+                if (action === 'add') {
+                    mockCart[id].qty++;
+                } else {
+                    mockCart[id].qty--;
+                    if (mockCart[id].qty <= 0) {
+                        delete mockCart[id];
+                    }
+                }
+                updateMockCartState();
+            });
         });
     }
 
-    // 20.3 Landing Page Mockup
-    const mockLpToggle = document.getElementById('mock-lp-toggle');
-    const mockLpToggleLbl = document.getElementById('mock-lp-toggle-lbl');
-    const mockLpPriceVal = document.getElementById('mock-lp-price-val');
-    const mockLpCta = document.getElementById('mock-lp-cta-btn');
-    let lpAnnualActive = false;
+    // Modal Drawer Toggle
+    if (mockCartBtn) {
+        mockCartBtn.addEventListener('click', () => {
+            if (mockCartModal) mockCartModal.style.display = 'flex';
+        });
+    }
+    if (mockCartClose) {
+        mockCartClose.addEventListener('click', () => {
+            if (mockCartModal) mockCartModal.style.display = 'none';
+        });
+    }
 
+    // Checkout simulate
+    if (mockCheckoutBtn) {
+        mockCheckoutBtn.addEventListener('click', () => {
+            if (mockCartModal) mockCartModal.style.display = 'none';
+            if (mockSuccessModal) mockSuccessModal.style.display = 'flex';
+        });
+    }
+
+    // Success close
+    if (mockSuccessOkBtn) {
+        mockSuccessOkBtn.addEventListener('click', () => {
+            // Reset cart
+            for (const id in mockCart) {
+                delete mockCart[id];
+            }
+            updateMockCartState();
+            if (mockSuccessModal) mockSuccessModal.style.display = 'none';
+        });
+    }
+
+
+    // --- 20.3 LANDING PAGE INTERATIVA ---
+    const mockLpToggle = document.getElementById('mock-lp-toggle');
+    const mockLpPrice = document.getElementById('mock-lp-price');
+    const mockLpCtaTop = document.getElementById('mock-lp-cta-top');
+    const mockLpReviewText = document.getElementById('mock-lp-review-text');
+    const mockLpReviewAuthor = document.getElementById('mock-lp-review-author');
+    const reviewDots = document.querySelectorAll('.review-dot');
+    let lpAnnual = false;
+
+    // Pricing toggle
     if (mockLpToggle) {
         mockLpToggle.addEventListener('click', () => {
-            lpAnnualActive = !lpAnnualActive;
-            if (lpAnnualActive) {
-                if (mockLpToggleLbl) mockLpToggleLbl.textContent = 'Faturamento Anual (-20%)';
-                if (mockLpPriceVal) {
-                    mockLpPriceVal.textContent = 'R$ 39';
-                    mockLpPriceVal.style.transform = 'scale(1.15)';
-                    setTimeout(() => mockLpPriceVal.style.transform = 'scale(1)', 150);
+            lpAnnual = !lpAnnual;
+            if (lpAnnual) {
+                mockLpToggle.textContent = 'Voltar p/ Faturamento Mensal';
+                if (mockLpPrice) {
+                    mockLpPrice.textContent = 'R$ 39/mês';
+                    mockLpPrice.style.transform = 'scale(1.1)';
+                    setTimeout(() => mockLpPrice.style.transform = 'scale(1)', 150);
                 }
             } else {
-                if (mockLpToggleLbl) mockLpToggleLbl.textContent = 'Faturamento Mensal';
-                if (mockLpPriceVal) {
-                    mockLpPriceVal.textContent = 'R$ 49';
-                    mockLpPriceVal.style.transform = 'scale(1.15)';
-                    setTimeout(() => mockLpPriceVal.style.transform = 'scale(1)', 150);
+                mockLpToggle.textContent = 'Alternar p/ Faturamento Anual (-20%)';
+                if (mockLpPrice) {
+                    mockLpPrice.textContent = 'R$ 49/mês';
+                    mockLpPrice.style.transform = 'scale(1.1)';
+                    setTimeout(() => mockLpPrice.style.transform = 'scale(1)', 150);
                 }
             }
         });
     }
 
-    if (mockLpCta) {
-        mockLpCta.addEventListener('click', () => {
-            const oldText = mockLpCta.textContent;
-            mockLpCta.textContent = 'Parabéns! 🚀';
-            mockLpCta.style.transform = 'scale(1.1)';
+    // CTA Click pulse
+    if (mockLpCtaTop) {
+        mockLpCtaTop.addEventListener('click', () => {
+            const oldText = mockLpCtaTop.textContent;
+            mockLpCtaTop.textContent = 'Iniciado! ⚡';
+            mockLpCtaTop.style.transform = 'scale(1.06)';
             setTimeout(() => {
-                mockLpCta.textContent = oldText;
-                mockLpCta.style.transform = 'scale(1)';
+                mockLpCtaTop.textContent = oldText;
+                mockLpCtaTop.style.transform = 'scale(1)';
             }, 1200);
         });
     }
+
+    // Reviews slides
+    const lpReviews = [
+        {
+            text: '"O site carrega instantaneamente e nossas vendas cresceram 40% nas primeiras semanas!"',
+            author: '— Mariana S., CEO Tech'
+        },
+        {
+            text: '"Excelente estrutura de conversão. O PageSpeed bateu 100 pontos no Google. Recomendados!"',
+            author: '— Rodrigo L., E-commerce Lead'
+        }
+    ];
+
+    reviewDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            reviewDots.forEach(d => {
+                d.classList.remove('active');
+                d.style.background = '#4a5568';
+            });
+            dot.classList.add('active');
+            dot.style.background = '#fff';
+
+            const idx = parseInt(dot.getAttribute('data-index'));
+            if (mockLpReviewText && mockLpReviewAuthor && lpReviews[idx]) {
+                mockLpReviewText.style.opacity = '0';
+                setTimeout(() => {
+                    mockLpReviewText.textContent = lpReviews[idx].text;
+                    mockLpReviewAuthor.textContent = lpReviews[idx].author;
+                    mockLpReviewText.style.opacity = '1';
+                }, 200);
+            }
+        });
+    });
 
 });

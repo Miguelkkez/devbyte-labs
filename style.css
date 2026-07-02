@@ -3289,4 +3289,15 @@ body[data-global-mode="discord"] .pill-active-bg {
     }
 }
 
+/* Ocultação de barras de rolagem para os mockups interativos de mini-sites */
+.scroll-mockup-container {
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+    -webkit-overflow-scrolling: touch;
+}
+.scroll-mockup-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
 
