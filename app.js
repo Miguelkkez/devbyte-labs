@@ -1280,4 +1280,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* ==========================================
+       18. Rolagem Automática Suave no Celular (Portfólio)
+       ========================================== */
+    const phoneContainer = document.querySelector('.phone-mockup-portfolio .scroll-screen-container');
+    
+    if (phoneContainer) {
+        let scrollInterval;
+        
+        phoneContainer.addEventListener('mouseenter', () => {
+            // Limpa qualquer rolagem de retorno ativa
+            clearInterval(scrollInterval);
+            
+            const maxScroll = phoneContainer.scrollHeight - phoneContainer.clientHeight;
+            
+            scrollInterval = setInterval(() => {
+                if (phoneContainer.scrollTop < maxScroll) {
+                    phoneContainer.scrollTop += 1.5; // Velocidade suave de descida
+                } else {
+                    clearInterval(scrollInterval);
+                }
+            }, 12);
+        });
+        
+        phoneContainer.addEventListener('mouseleave', () => {
+            clearInterval(scrollInterval);
+            
+            scrollInterval = setInterval(() => {
+                if (phoneContainer.scrollTop > 0) {
+                    phoneContainer.scrollTop -= 3.5; // Velocidade de retorno ao topo
+                } else {
+                    phoneContainer.scrollTop = 0;
+                    clearInterval(scrollInterval);
+                }
+            }, 12);
+        });
+    }
+
 });
