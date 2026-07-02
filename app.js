@@ -87,6 +87,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================
+       2.1 Botões de Troca de Modo Internos da Página
+       ========================================== */
+    const switchModeBtns = document.querySelectorAll('.btn-switch-to-mode');
+    switchModeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetMode = btn.dataset.target;
+            const navBtn = document.querySelector(`.mode-pill-btn[data-mode="${targetMode}"]`);
+            if (navBtn) {
+                navBtn.click();
+            }
+        });
+    });
+
+    /* ==========================================
        3. Menu Mobile (Hambúrguer)
        ========================================== */
     const menuToggle = document.getElementById('menu-toggle');

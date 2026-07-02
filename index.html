@@ -22,34 +22,7 @@
     <!-- CSS Principal -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="no-scroll" data-global-mode="web">
-
-    <!-- ==========================================
-       TELA SPLIT INICIAL (Boas-vindas)
-       ========================================== -->
-    <div class="welcome-split-overlay" id="welcome-overlay">
-        <!-- Lado Esquerdo - WEB -->
-        <div class="split-side left" id="split-left-web">
-            <div class="glow-split glow-left"></div>
-            <div class="split-content-wrapper">
-                <span class="split-badge">Websites</span>
-                <h2>Preciso de um Site Profissional</h2>
-                <p>Landing pages de alta conversão, portfólios, e-commerces e sistemas modernos rápidos.</p>
-                <button class="btn btn-primary">Entrar no Modo Web</button>
-            </div>
-        </div>
-        
-        <!-- Lado Direito - DISCORD -->
-        <div class="split-side right" id="split-right-discord">
-            <div class="glow-split glow-right"></div>
-            <div class="split-content-wrapper">
-                <span class="split-badge">Bots e Discord</span>
-                <h2>Preciso de Servidor ou Bot</h2>
-                <p>Estruturação de servidores, cargos, segurança e bots de inteligência artificial exclusivos.</p>
-                <button class="btn btn-primary" style="background: var(--discord-blurple); box-shadow: 0 4px 15px rgba(88, 101, 242, 0.35);">Entrar no Modo Discord</button>
-            </div>
-        </div>
-    </div>
+<body data-global-mode="inicio">
 
 
     <!-- Header / Navbar -->
@@ -75,9 +48,10 @@
             </nav>
             
             <div class="nav-actions">
-                <!-- Toggle Deslizante Moderno (2 Páginas em 1) -->
+                <!-- Toggle Deslizante Moderno (3 Páginas em 1) -->
                 <div class="mode-pill-toggle" id="mode-selector-pill">
-                    <button class="mode-pill-btn active" data-mode="web">Web</button>
+                    <button class="mode-pill-btn active" data-mode="inicio">Home</button>
+                    <button class="mode-pill-btn" data-mode="web">Web</button>
                     <button class="mode-pill-btn" data-mode="discord">Discord</button>
                     <span class="pill-active-bg"></span>
                 </div>
@@ -101,6 +75,24 @@
             
             <div class="container hero-grid">
                 <div class="hero-content">
+                    
+                    <!-- CONTEÚDO EXCLUSIVO MODO INÍCIO -->
+                    <div class="mode-inicio-only">
+                        <div class="badge-new" style="background: rgba(88, 101, 242, 0.08); border-color: rgba(88, 101, 242, 0.25);">
+                            <span class="badge-dot" style="background: var(--secondary);"></span>
+                            <span class="badge-text" style="color: #fff;">Estúdio de Desenvolvimento Web &amp; Discord</span>
+                        </div>
+                        <h1 class="hero-title">
+                            Criamos Experiências <span class="gradient-text">Digitais</span> de Alta Performance
+                        </h1>
+                        <p class="hero-lead">
+                            Desenvolvemos websites modernos sob medida de altíssima conversão e estruturamos ecossistemas completos no Discord com bots inteligentes integrados com Inteligência Artificial.
+                        </p>
+                        <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+                            <button type="button" class="btn btn-primary btn-switch-to-mode" data-target="web">🌐 Explorar Soluções Web</button>
+                            <button type="button" class="btn btn-switch-to-mode" data-target="discord" style="border: 1px solid rgba(255,255,255,0.15); color: #fff; background: transparent; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 700; font-family: var(--font-body);">🤖 Ver Soluções Discord</button>
+                        </div>
+                    </div>
                     
                     <!-- CONTEÚDO EXCLUSIVO MODO WEB -->
                     <div class="mode-web-only">
@@ -132,6 +124,46 @@
                 </div>
                 
                 <div class="hero-visual">
+                    <!-- VISUAL MODO INÍCIO -->
+                    <div class="mode-inicio-only" style="position: relative; width: 100%; height: 320px; margin-top: 20px;">
+                        <!-- Mini browser mockup -->
+                        <div class="browser-mockup glass" style="width: 72%; height: 190px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.5); position: absolute; top: 10px; left: 0; animation: float-desktop 5s ease-in-out infinite;">
+                            <div class="window-header" style="background: rgba(0,0,0,0.3); padding: 0.4rem 0.6rem; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); height: 20px; box-sizing: border-box;">
+                                <div class="dots" style="display: flex; gap: 3px; margin-right: 0.8rem;">
+                                    <span style="width: 5px; height: 5px; border-radius: 50%; background: #ff5f56; display: inline-block;"></span>
+                                    <span style="width: 5px; height: 5px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
+                                    <span style="width: 5px; height: 5px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
+                                </div>
+                                <div style="font-size: 0.5rem; color: var(--text-muted); font-family: monospace;">devbytelabs.com.br</div>
+                            </div>
+                            <div style="padding: 0.8rem; background: linear-gradient(135deg, #0d0e15 0%, #06070a 100%); height: calc(100% - 20px); box-sizing: border-box; color: #fff; display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
+                                <div style="font-weight: bold; font-size: 0.65rem; color: var(--secondary);">Websites Premium</div>
+                                <div style="font-size: 0.48rem; color: var(--text-muted); line-height: 1.3;">Sua presença digital com PageSpeed 100%, design exclusivo e conversão de leads.</div>
+                                <div style="background: var(--primary); color: #000; font-size: 0.45rem; font-weight: bold; padding: 4px 8px; border-radius: 3px; align-self: flex-start;">Ver Projetos</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mini Discord bot card overlapping -->
+                        <div class="discord-profile-card glass" style="width: 55%; position: absolute; bottom: 10px; right: 0; z-index: 6; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6); animation: float-phone 4.5s ease-in-out infinite; background: rgba(15,18,36,0.9); text-align: left;">
+                            <!-- Profile Banner -->
+                            <div class="profile-banner" style="height: 40px; background: linear-gradient(135deg, var(--discord-blurple) 0%, #404eed 100%);"></div>
+                            <!-- Avatar -->
+                            <div class="profile-avatar-container" style="position: relative; margin-top: -20px; margin-left: 12px; margin-bottom: 8px; display: flex;">
+                                <img src="logo.jpg" alt="Logo DevByte" style="width: 36px; height: 36px; border-radius: 50%; border: 3px solid rgba(15,18,36,1); object-fit: cover;">
+                                <div class="profile-status-dot" style="width: 10px; height: 10px; border-radius: 50%; background: #23a55a; border: 2px solid rgba(15,18,36,1); position: absolute; bottom: 0; right: 0;"></div>
+                            </div>
+                            <!-- Info -->
+                            <div style="padding: 0 12px 12px 12px;">
+                                <div style="display: flex; align-items: center; gap: 4px;">
+                                    <h4 style="font-size: 0.75rem; color: #fff; margin: 0; font-weight: bold;">DevByte Bot</h4>
+                                    <span style="background: var(--discord-blurple); color: #fff; font-size: 0.45rem; font-weight: bold; padding: 1px 3px; border-radius: 3px; text-transform: uppercase;">BOT</span>
+                                </div>
+                                <div style="font-size: 0.55rem; color: var(--text-muted); margin-bottom: 6px;">devbyte_bot</div>
+                                <p style="font-size: 0.52rem; color: var(--text-muted); line-height: 1.3; margin: 0;">Ecossistemas para servidores e inteligência artificial.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="mode-web-only" style="position: relative; width: 100%; height: 320px; margin-top: 20px;">
                         <!-- Main Desktop Browser Window Mockup -->
                         <div class="browser-mockup glass" style="width: 85%; height: 210px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); position: absolute; top: 10px; left: 0; animation: float-desktop 5s ease-in-out infinite;">
@@ -266,6 +298,178 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+           SEÇÃO INÍCIO (Home)
+           ========================================== -->
+        <!-- Sobre e Diferenciais (Exclusivo Início) -->
+        <section class="about-section section-padding mode-inicio-only" id="sobre">
+            <div class="glow-bg glow-pricing" style="opacity: 0.05; top: 10%;"></div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Quem Somos</span>
+                    <h2 class="section-title">Alta Performance para sua Marca</h2>
+                    <p class="section-lead">A DevByte Labs é um estúdio especializado em criar produtos digitais modernos que combinam design sofisticado, velocidade incomparável e automação inteligente.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div class="service-card glass" style="padding: 2rem; text-align: left;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">⚡</div>
+                        <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.75rem; font-family: var(--font-title);">Velocidade Extrema</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; margin: 0;">Sites desenvolvidos do zero com foco absoluto em otimização, garantindo carregamento em menos de 1 segundo e nota máxima no Google PageSpeed.</p>
+                    </div>
+                    <div class="service-card glass" style="padding: 2rem; text-align: left;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🤖</div>
+                        <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.75rem; font-family: var(--font-title);">Automação Inteligente</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; margin: 0;">Robôs personalizados integrados às mais modernas IAs (Gemini e ChatGPT) para automatizar vendas, suporte e atendimento de leads de forma autônoma.</p>
+                    </div>
+                    <div class="service-card glass" style="padding: 2rem; text-align: left;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🛡️</div>
+                        <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.75rem; font-family: var(--font-title);">Comunidades Blindadas</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; margin: 0;">Estruturação de servidores do Discord com sistemas anti-raid de última geração, backup em tempo real, controle fino de cargos e permissões seguras.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumo de Serviços (Exclusivo Início) -->
+        <section class="services-summary-section section-padding mode-inicio-only" style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Nossas Soluções</span>
+                    <h2 class="section-title">Como Podemos Ajudar o seu Projeto?</h2>
+                    <p class="section-lead">Explore os nossos serviços especializados de desenvolvimento e escolha a melhor opção para impulsionar suas vendas.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 3.5rem;">
+                    <!-- Card 1: Web -->
+                    <div class="service-card glass hover-lift" style="display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
+                        <div>
+                            <span style="font-size: 0.7rem; font-weight: bold; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.5rem;">PRESENÇA ONLINE</span>
+                            <h3 style="font-size: 1.35rem; color: #fff; margin-bottom: 1rem; font-family: var(--font-title);">Websites &amp; E-commerce</h3>
+                            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem;">Criamos páginas exclusivas focadas em conversão, portfólios institucionais e lojas virtuais completas integradas a meios de pagamento rápidos.</p>
+                            <ul class="service-bullet-list" style="margin-bottom: 2rem;">
+                                <li>Landing Pages de alta conversão</li>
+                                <li>Lojas virtuais modernas com Pix/Cartão</li>
+                                <li>Código leve e SEO avançado</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-switch-to-mode" data-target="web" style="width: 100%;">🌐 Explorar Soluções Web</button>
+                    </div>
+                    
+                    <!-- Card 2: Discord & Bots -->
+                    <div class="service-card glass hover-lift" style="display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
+                        <div>
+                            <span style="font-size: 0.7rem; font-weight: bold; color: var(--discord-blurple); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.5rem;">COMUNIDADES &amp; BOTS</span>
+                            <h3 style="font-size: 1.35rem; color: #fff; margin-bottom: 1rem; font-family: var(--font-title);">Soluções para o Discord</h3>
+                            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem;">Configuramos servidores temáticos profissionais do zero e programamos robôs inteligentes sob medida para moderar e engajar membros.</p>
+                            <ul class="service-bullet-list" style="margin-bottom: 2rem;">
+                                <li>Servidores tematizados e seguros</li>
+                                <li>Bots integrados com Inteligência Artificial</li>
+                                <li>Painéis de vendas VIP e automações</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-switch-to-mode" data-target="discord" style="width: 100%; background: #5865F2; color: #fff; border: none; font-family: var(--font-body); font-weight: 700; cursor: pointer; padding: 0.75rem 1.5rem; border-radius: 6px;">🤖 Ver Soluções Discord</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comunidade Discord (Exclusivo Início) -->
+        <section class="discord-invite-section section-padding mode-inicio-only" id="comunidade" style="position: relative; overflow: hidden; background: linear-gradient(180deg, rgba(7,8,20,0) 0%, rgba(88,101,242,0.03) 50%, rgba(7,8,20,0) 100%);">
+            <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <div class="section-header" style="margin-bottom: 2.5rem;">
+                    <span class="section-subtitle">Nossa Comunidade</span>
+                    <h2 class="section-title">Conecte-se ao Nosso Servidor Oficial</h2>
+                    <p class="section-lead">Tire dúvidas, acompanhe atualizações de nossos bots e faça testes práticos das nossas ferramentas integradas.</p>
+                </div>
+                
+                <div class="discord-invite-card glass" style="margin: 0 auto; text-align: left; max-width: 460px; width: 100%; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.45); background: rgba(15,18,36,0.65); backdrop-filter: blur(16px);">
+                    <!-- Banner superior -->
+                    <div class="invite-banner" style="height: 100px; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); position: relative;">
+                        <div class="server-icon-wrapper" style="position: absolute; bottom: -30px; left: 24px; width: 68px; height: 68px; border-radius: 16px; background: #07080c; padding: 4px; box-sizing: border-box; box-shadow: 0 8px 16px rgba(0,0,0,0.5);">
+                            <img src="logo.jpg" alt="DevByte Labs Server Icon" class="server-logo" style="width: 100%; height: 100%; border-radius: 12px; object-fit: cover;">
+                        </div>
+                    </div>
+                    
+                    <!-- Cabeçalho de informações -->
+                    <div class="invite-header" style="padding: 42px 24px 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <span class="invite-tag" style="display: block; font-size: 0.65rem; text-transform: uppercase; font-weight: 800; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 4px;">Você foi convidado para entrar</span>
+                        <h1 class="server-name-title" style="font-size: 1.35rem; color: #fff; font-weight: bold; display: flex; align-items: center; gap: 6px; margin: 0 0 8px 0; font-family: var(--font-title);">
+                            DevByte Labs
+                            <span class="verified-tick" title="Servidor Verificado" style="font-size: 0.85rem;">✔️</span>
+                        </h1>
+                        <div class="server-status-bar" style="display: flex; align-items: center; font-size: 0.72rem; color: var(--text-muted); font-weight: 500;">
+                            <span class="status-indicator online" style="width: 8px; height: 8px; border-radius: 50%; background: #23a55a; display: inline-block; margin-right: 6px;"></span>
+                            <span class="status-text" style="color: #23a55a; font-weight: bold;">24 Online</span>
+                            <span class="status-indicator offline" style="width: 8px; height: 8px; border-radius: 50%; background: #80848e; display: inline-block; margin-left: 12px; margin-right: 6px;"></span>
+                            <span class="status-text">150 Membros</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Corpo / Apresentação -->
+                    <div class="invite-body" style="padding: 20px 24px;">
+                        <h3 class="invite-section-title" style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary); margin: 0 0 8px 0;">Apresentação</h3>
+                        <p class="invite-desc" style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.45; margin: 0 0 20px 0;">
+                            Bem-vindo ao servidor oficial da **DevByte Labs**! Aqui nós desenvolvemos ecossistemas digitais sob medida, compartilhamos atualizações de bots de inteligência artificial e prestamos suporte em tempo real para nossos clientes.
+                        </p>
+                        
+                        <h3 class="invite-section-title" style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary); margin: 0 0 8px 0;">Recursos da Comunidade</h3>
+                        <div class="invite-features-grid" style="display: flex; flex-direction: column; gap: 10px;">
+                            <div class="invite-feature-item" style="display: flex; align-items: center; gap: 10px;">
+                                <span class="feature-icon" style="font-size: 1rem; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px;">🌐</span>
+                                <div class="feature-info" style="display: flex; flex-direction: column;">
+                                    <strong style="font-size: 0.78rem; color: #fff;">Suporte Técnico</strong>
+                                    <span style="font-size: 0.68rem; color: var(--text-muted);">Atendimento direto e sem burocracia</span>
+                                </div>
+                            </div>
+                            <div class="invite-feature-item" style="display: flex; align-items: center; gap: 10px;">
+                                <span class="feature-icon" style="font-size: 1rem; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px;">🤖</span>
+                                <div class="feature-info" style="display: flex; flex-direction: column;">
+                                    <strong style="font-size: 0.78rem; color: #fff;">Testes de Bots</strong>
+                                    <span style="font-size: 0.68rem; color: var(--text-muted);">Área exclusiva para testar nossas ferramentas</span>
+                                </div>
+                            </div>
+                            <div class="invite-feature-item" style="display: flex; align-items: center; gap: 10px;">
+                                <span class="feature-icon" style="font-size: 1rem; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px;">💬</span>
+                                <div class="feature-info" style="display: flex; flex-direction: column;">
+                                    <strong style="font-size: 0.78rem; color: #fff;">Networking</strong>
+                                    <span style="font-size: 0.68rem; color: var(--text-muted);">Conecte-se com outros criadores e marcas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ações -->
+                    <div class="invite-actions" style="padding: 0 24px 20px 24px; display: flex; flex-direction: column; gap: 12px;">
+                        <a href="https://discord.gg/BtmFUf5tXK" target="_blank" class="btn btn-discord-invite" style="width: 100%; background: #5865F2; color: #fff; font-size: 0.85rem; font-weight: bold; border: none; padding: 0.75rem 1rem; border-radius: 6px; cursor: pointer; transition: background 0.2s; text-align: center; text-decoration: none; display: inline-block;">
+                            💬 Aceitar Convite / Entrar no Servidor
+                        </a>
+                    </div>
+
+                    <!-- Rodapé Redes Sociais -->
+                    <div class="invite-socials" style="padding: 16px 24px; background: rgba(0,0,0,0.15); border-top: 1px solid rgba(255,255,255,0.04); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <span class="socials-title" style="font-size: 0.6rem; font-weight: 800; letter-spacing: 0.05em; color: var(--text-muted); text-transform: uppercase;">SIGA NOSSAS REDES SOCIAIS</span>
+                        <div class="socials-icons" style="display: flex; gap: 10px;">
+                            <a href="https://github.com/Miguelkkez/devbyte-labs" target="_blank" class="social-icon-btn" style="color: var(--text-muted); font-size: 0.7rem; font-weight: bold; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: color 0.2s;" aria-label="GitHub">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                                GitHub
+                            </a>
+                            <a href="https://instagram.com/devbyte.labs" target="_blank" class="social-icon-btn" style="color: var(--text-muted); font-size: 0.7rem; font-weight: bold; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: color 0.2s;" aria-label="Instagram">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                                Instagram
+                            </a>
                         </div>
                     </div>
                 </div>
