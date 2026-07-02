@@ -762,15 +762,32 @@
                                 <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 4px 0;">
                                 
                                 <!-- Delivery/Mesa info -->
-                                <div style="text-align: left;">
-                                    <label style="font-size: 0.75rem; font-weight: 800; color: #475569; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">LOCAL DE ENTREGA</label>
-                                    <input id="checkout-location-input" type="text" value="Mesa 4 (Salão Principal)" placeholder="Ex: Mesa 5, Para Viagem" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 0.85rem; box-sizing: border-box; font-family: sans-serif;">
+                                <!-- Delivery Form Fields -->
+                                <div style="text-align: left; display: flex; flex-direction: column; gap: 8px;">
+                                    <div>
+                                        <label style="font-size: 0.62rem; font-weight: 800; color: #475569; display: block; margin-bottom: 2px; letter-spacing: 0.05em;">SEU NOME</label>
+                                        <input id="checkout-name-input" type="text" value="Miguel Trembo" placeholder="Seu nome completo" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 7px 10px; font-size: 0.72rem; box-sizing: border-box; font-family: sans-serif;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.62rem; font-weight: 800; color: #475569; display: block; margin-bottom: 2px; letter-spacing: 0.05em;">ENDEREÇO DE ENTREGA</label>
+                                        <input id="checkout-address-input" type="text" value="Av. Paulista, 1200" placeholder="Rua, número e bairro" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 7px 10px; font-size: 0.72rem; box-sizing: border-box; font-family: sans-serif;">
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 8px;">
+                                        <div>
+                                            <label style="font-size: 0.62rem; font-weight: 800; color: #475569; display: block; margin-bottom: 2px; letter-spacing: 0.05em;">COMPLEMENTO</label>
+                                            <input id="checkout-complement-input" type="text" value="Apto 152 Bloco B" placeholder="Apto, Bloco, etc." style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 7px 10px; font-size: 0.72rem; box-sizing: border-box; font-family: sans-serif;">
+                                        </div>
+                                        <div>
+                                            <label style="font-size: 0.62rem; font-weight: 800; color: #475569; display: block; margin-bottom: 2px; letter-spacing: 0.05em;">CONTATO (WHATSAPP)</label>
+                                            <input id="checkout-phone-input" type="text" value="(11) 99876-5432" placeholder="(99) 99999-9999" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 7px 10px; font-size: 0.72rem; box-sizing: border-box; font-family: sans-serif;">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Payment method -->
                                 <div style="text-align: left;">
-                                    <label style="font-size: 0.75rem; font-weight: 800; color: #475569; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">MÉTODO DE PAGAMENTO</label>
-                                    <select id="checkout-payment-select" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 0.85rem; box-sizing: border-box; font-family: sans-serif; background: #fff; color: #0f172a;">
+                                    <label style="font-size: 0.62rem; font-weight: 800; color: #475569; display: block; margin-bottom: 3px; letter-spacing: 0.05em;">MÉTODO DE PAGAMENTO</label>
+                                    <select id="checkout-payment-select" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px; font-size: 0.75rem; box-sizing: border-box; font-family: sans-serif; background: #fff; color: #0f172a;">
                                         <option value="pix">⚡ PIX (com desconto)</option>
                                         <option value="cartao">💳 Cartão de Crédito/Débito</option>
                                         <option value="dinheiro">💵 Dinheiro (Troco)</option>
@@ -785,7 +802,7 @@
                                     </div>
                                     <div style="display: flex; justify-content: space-between; color: #64748b;">
                                         <span>Taxa de Entrega</span>
-                                        <span style="color: #16a34a; font-weight: bold;">Grátis</span>
+                                        <span id="summary-delivery-fee" style="color: #64748b;">R$ 5,00</span>
                                     </div>
                                     <hr style="border: 0; border-top: 1px dashed #e2e8f0; margin: 4px 0;">
                                     <div style="display: flex; justify-content: space-between; font-weight: 800; color: #0f172a; font-size: 0.9rem;">

@@ -1429,8 +1429,29 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        const totalStr = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
-        summarySubtotal.textContent = totalStr;
+        const subtotalStr = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+        summarySubtotal.textContent = subtotalStr;
+
+        // Taxa de entrega dinâmica: grátis acima de R$ 50,00
+        const deliveryFeeElement = document.getElementById('summary-delivery-fee');
+        let deliveryFee = 5.0;
+        if (totalPrice >= 50.0 || totalPrice === 0) {
+            deliveryFee = 0.0;
+            if (deliveryFeeElement) {
+                deliveryFeeElement.textContent = 'Grátis';
+                deliveryFeeElement.style.color = '#16a34a';
+                deliveryFeeElement.style.fontWeight = 'bold';
+            }
+        } else {
+            if (deliveryFeeElement) {
+                deliveryFeeElement.textContent = 'R$ 5,00';
+                deliveryFeeElement.style.color = '#64748b';
+                deliveryFeeElement.style.fontWeight = 'normal';
+            }
+        }
+
+        const finalTotal = totalPrice + deliveryFee;
+        const totalStr = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
         summaryTotal.textContent = totalStr;
 
         if (totalItems === 0) {
