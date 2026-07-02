@@ -150,7 +150,7 @@
                                 <div style="font-size: 0.55rem; color: var(--text-muted); font-family: monospace; background: rgba(255,255,255,0.03); padding: 2px 10px; border-radius: 4px; width: 50%; text-align: center; margin: 0 auto;">dashboard.devbytelabs.com.br</div>
                             </div>
                             <!-- Conteúdo da Janela (Sidebar + Grid) -->
-                            <div style="display: flex; height: calc(100% - 24px); background: #08090e;">
+                            <div style="display: flex; height: calc(100% - 24px); background: #08090e; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 0); background-size: 10px 10px;">
                                 <!-- Mini Sidebar -->
                                 <div style="width: 25px; background: rgba(255,255,255,0.02); border-right: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; align-items: center; padding-top: 8px; gap: 8px; flex-shrink: 0;">
                                     <div style="width: 10px; height: 10px; border-radius: 3px; background: var(--secondary);"></div>
@@ -162,10 +162,15 @@
                                     <!-- Cabeçalho Interno -->
                                     <div style="display: flex; justify-content: space-between; align-items: center;">
                                         <span style="font-weight: 800; font-size: 0.65rem; color: #fff; font-family: var(--font-title);">Websites Premium</span>
-                                        <span style="font-size: 0.48rem; font-weight: bold; background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 2px 6px; border-radius: 30px; display: inline-flex; align-items: center; gap: 2px;">⚡ Conversão +42%</span>
+                                        <span style="font-size: 0.48rem; font-weight: bold; background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 2px 6px; border-radius: 30px; display: inline-flex; align-items: center; gap: 3px;">
+                                            <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle;">
+                                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                            </svg>
+                                            Conversão +42%
+                                        </span>
                                     </div>
                                     <!-- Gráfico de Vendas Simulados -->
-                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; padding: 6px; height: 65px; display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div style="background: rgba(8,9,14,0.7); border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 6px; height: 65px; display: flex; flex-direction: column; justify-content: space-between; backdrop-filter: blur(4px);">
                                         <div style="font-size: 0.45rem; color: var(--text-muted);">Tráfego e Leads Mensais</div>
                                         <div style="display: flex; align-items: flex-end; justify-content: space-between; height: 35px; padding: 0 4px; gap: 3px;">
                                             <div style="width: 14%; height: 35%; background: rgba(0,242,254,0.2); border-radius: 2px;"></div>
@@ -190,10 +195,22 @@
                             <!-- Profile Banner com Badges -->
                             <div class="profile-banner" style="height: 45px; background: linear-gradient(135deg, var(--discord-blurple) 0%, #404eed 100%); position: relative; display: flex; justify-content: flex-end; align-items: flex-start; padding: 6px 8px; box-sizing: border-box;">
                                 <!-- Badges do Bot -->
-                                <div style="display: flex; gap: 3px; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">
-                                    <span title="Developer Verificado" style="font-size: 0.45rem; color: #fff;">🛡️</span>
-                                    <span title="Bot Ativo" style="font-size: 0.45rem; color: #fff;">⚡</span>
-                                    <span title="Nitro Booster" style="font-size: 0.45rem; color: #fff;">💎</span>
+                                <div style="display: flex; gap: 4px; background: rgba(0,0,0,0.45); padding: 3px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); align-items: center;">
+                                    <!-- Active Developer Badge -->
+                                    <svg viewBox="0 0 16 16" width="12" height="12" fill="none" title="Developer Verificado">
+                                        <path d="M8 0L1 3v5c0 4.4 3 8.5 7 10 4-1.5 7-5.6 7-10V3L8 0z" fill="#5865F2"/>
+                                        <path d="M8 4L4 7h2.5v5h3V7H12L8 4z" fill="#fff"/>
+                                    </svg>
+                                    <!-- HypeSquad Balance -->
+                                    <svg viewBox="0 0 16 16" width="11" height="11" fill="none" title="HypeSquad">
+                                        <path d="M8 1.5L2 5v6l6 3.5L14 11V5L8 1.5z" fill="#FEE75C"/>
+                                        <path d="M8 4L5 6v4l3 2 3-2V6L8 4z" fill="#FF9A00"/>
+                                    </svg>
+                                    <!-- Server Booster (Nitro) -->
+                                    <svg viewBox="0 0 16 16" width="10" height="10" fill="none" title="Server Booster">
+                                        <path d="M8 1L2 7l6 8 6-8-6-6z" fill="#FF73FA"/>
+                                        <path d="M8 3.5L4 7l4 4.5L12 7l-4-3.5z" fill="#fff" opacity="0.6"/>
+                                    </svg>
                                 </div>
                             </div>
                             
@@ -223,7 +240,10 @@
                                     
                                     <!-- Atividade -->
                                     <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; padding: 5px; display: flex; align-items: center; gap: 6px;">
-                                        <span style="font-size: 0.8rem; flex-shrink: 0;">🤖</span>
+                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="#949ba4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+                                            <rect x="2" y="6" width="20" height="12" rx="3"></rect>
+                                            <path d="M6 12h4m-2-2v4m7-2v.01m3-.01v.01"></path>
+                                        </svg>
                                         <div style="display: flex; flex-direction: column; text-align: left;">
                                             <span style="font-size: 0.42rem; font-weight: 800; color: #fff;">Jogando IA Chatbot</span>
                                             <span style="font-size: 0.45rem; color: #b5bac1; line-height: 1.1;">Atendendo comandos e tickets</span>
