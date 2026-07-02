@@ -563,6 +563,14 @@ p {
     color: #fff;
 }
 
+.logo-dev-gradient {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
 .logo-text-sub {
     font-family: var(--font-heading);
     font-size: 0.65rem;
