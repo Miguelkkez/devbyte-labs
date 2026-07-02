@@ -562,42 +562,45 @@
                         </div>
                     </div>
                     
-                    <!-- Browser Mockup (Portfolio item with Auto-scroll on hover) -->
-                    <div class="glass browser-mockup-portfolio" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.08); position: relative; height: 320px; display: flex; flex-direction: column;">
-                        <!-- Browser Bar -->
-                        <div style="height: 30px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding: 0 12px; justify-content: space-between; flex-shrink: 0; box-sizing: border-box;">
-                            <!-- Dots -->
-                            <div style="display: flex; gap: 5px;">
-                                <span style="width: 6px; height: 6px; border-radius: 50%; background: #ef4444;"></span>
-                                <span style="width: 6px; height: 6px; border-radius: 50%; background: #f59e0b;"></span>
-                                <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981;"></span>
-                            </div>
-                            <!-- Address Bar -->
-                            <div style="background: rgba(255,255,255,0.05); border-radius: 4px; padding: 2px 16px; font-size: 0.5rem; color: #b5bac1; font-family: monospace; width: 60%; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; box-sizing: border-box;">bellaitaliapizza.com.br</div>
-                            <div style="width: 25px;"></div>
+                    <!-- Smartphone Mockup (Portfolio item with Auto-scroll on hover) -->
+                    <div class="glass phone-mockup-portfolio" style="width: 250px; height: 480px; border-radius: 36px; border: 10px solid #1e1e24; box-shadow: 0 25px 55px rgba(0,0,0,0.6); position: relative; display: flex; flex-direction: column; overflow: hidden; margin: 0 auto; box-sizing: border-box; background: #000;">
+                        <!-- Speaker & Camera Notch (iPhone style Dynamic Island) -->
+                        <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 70px; height: 16px; background: #000; border-radius: 10px; z-index: 50; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <span style="width: 4px; height: 4px; border-radius: 50%; background: #1a1a24;"></span>
+                            <span style="width: 25px; height: 2px; border-radius: 10px; background: #0a0a0f;"></span>
                         </div>
+                        
+                        <!-- Status Bar -->
+                        <div style="height: 28px; background: #dc2626; display: flex; align-items: center; justify-content: space-between; padding: 10px 14px 0 14px; box-sizing: border-box; font-size: 0.44rem; color: #fff; font-weight: bold; font-family: sans-serif; z-index: 40; flex-shrink: 0;">
+                            <span>14:12</span>
+                            <div style="display: flex; gap: 3px; align-items: center;">
+                                <span>📶</span>
+                                <span>🔋</span>
+                            </div>
+                        </div>
+
                         <!-- Scrollable Screen Area (Real Interactive HTML Pizzeria Cardapio!) -->
-                        <div class="scroll-screen-container" style="flex: 1; overflow: hidden; position: relative; background: #ffffff; cursor: pointer;">
+                        <div class="scroll-screen-container" style="flex: 1; overflow: hidden; position: relative; background: #ffffff; cursor: pointer; border-bottom-left-radius: 26px; border-bottom-right-radius: 26px;">
                             <div class="scroll-screen-content" style="width: 100%; transition: transform 4.5s cubic-bezier(0.1, 0, 0.25, 1); display: flex; flex-direction: column;">
                                 <!-- Restaurant Header Banner (Red & Yellow Italian Pizzeria vibe) -->
-                                <div style="background: linear-gradient(135deg, #dc2626 0%, #e11d48 40%, #eab308 100%); height: 58px; position: relative; display: flex; align-items: flex-end; padding: 6px 10px; box-sizing: border-box; flex-shrink: 0;">
-                                    <div style="position: absolute; top: 6px; right: 10px; background: rgba(255, 255, 255, 0.2); border: 1px solid #ffffff; border-radius: 50px; padding: 1px 6px; font-size: 0.38rem; color: #ffffff; font-weight: bold; display: flex; align-items: center; gap: 2px; backdrop-filter: blur(2px);">
-                                        <span style="width: 4px; height: 4px; border-radius: 50%; background: #22c55e; display: inline-block;"></span> Forno Ativo
+                                <div style="background: linear-gradient(135deg, #dc2626 0%, #e11d48 40%, #eab308 100%); height: 50px; position: relative; display: flex; align-items: flex-end; padding: 6px 10px; box-sizing: border-box; flex-shrink: 0;">
+                                    <div style="position: absolute; top: 4px; right: 10px; background: rgba(255, 255, 255, 0.25); border: 1px solid #ffffff; border-radius: 50px; padding: 1px 6px; font-size: 0.35rem; color: #ffffff; font-weight: bold; display: flex; align-items: center; gap: 2px; backdrop-filter: blur(2px);">
+                                        <span style="width: 3.5px; height: 3.5px; border-radius: 50%; background: #22c55e; display: inline-block;"></span> Forno Ativo
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 6px; z-index: 1;">
-                                        <div style="width: 26px; height: 26px; border-radius: 50%; background: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold;">🍕</div>
+                                        <div style="width: 24px; height: 24px; border-radius: 50%; background: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: bold;">🍕</div>
                                         <div style="text-align: left; line-height: 1.15;">
-                                            <h4 style="font-size: 0.6rem; font-weight: 800; color: #ffffff; margin: 0; font-family: var(--font-heading); text-shadow: 0 1px 2px rgba(0,0,0,0.2);">Bella Italia Pizzaria</h4>
-                                            <span style="font-size: 0.38rem; color: #ffedd5; font-weight: 500;">Entrega em: 30-40 min</span>
+                                            <h4 style="font-size: 0.55rem; font-weight: 800; color: #ffffff; margin: 0; font-family: var(--font-heading); text-shadow: 0 1px 2px rgba(0,0,0,0.2);">Bella Italia Pizzaria</h4>
+                                            <span style="font-size: 0.35rem; color: #ffedd5; font-weight: 500;">Tempo: 30-40 min</span>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <!-- Categories Tabs (Light background, yellow accent) -->
-                                <div style="display: flex; gap: 4px; padding: 6px; background: #f8f9fa; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; box-sizing: border-box;">
-                                    <div style="background: #dc2626; color: #ffffff; border-radius: 4px; padding: 2px 8px; font-size: 0.44rem; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 2px 4px rgba(220,38,38,0.2);">🍕 Pizzas Artesanais</div>
+                                <div style="display: flex; gap: 4px; padding: 6px; background: #f8f9fa; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; box-sizing: border-box; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;">
+                                    <div style="background: #dc2626; color: #ffffff; border-radius: 4px; padding: 2px 8px; font-size: 0.44rem; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 2px 4px rgba(220,38,38,0.2);">🍕 Pizzas</div>
                                     <div style="background: #ffffff; color: #475569; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 8px; font-size: 0.44rem; cursor: pointer; white-space: nowrap;">🍹 Bebidas</div>
-                                    <div style="background: #ffffff; color: #475569; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 8px; font-size: 0.44rem; cursor: pointer; white-space: nowrap;">🧁 Sobremesas</div>
+                                    <div style="background: #ffffff; color: #475569; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 8px; font-size: 0.44rem; cursor: pointer; white-space: nowrap;">🧁 Doces</div>
                                 </div>
                                 
                                 <!-- Items List -->
@@ -605,88 +608,90 @@
                                     <!-- Item 1 -->
                                     <div style="display: flex; justify-content: space-between; background: #ffffff; border: 1px solid #f1f5f9; border-left: 3px solid #dc2626; border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                                         <div style="text-align: left; flex: 1;">
-                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Pizza Margherita Gourmet</h5>
-                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Molho de tomate fresco, mozzarella di bufala premium, rodelas de tomate, manjericão fresco, queijo parmesão e azeite trufado.</p>
+                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Margherita Gourmet</h5>
+                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Molho fresco, mozzarella di bufala, manjericão e azeite trufado.</p>
                                             <span style="font-size: 0.52rem; font-weight: 800; color: #dc2626;">R$ 42,90</span>
                                         </div>
                                         <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
-                                            <!-- Quantity selector with red buttons -->
                                             <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; overflow: hidden;">
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
-                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 4px; font-weight: 900;">1</span>
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
+                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
+                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 3px; font-weight: 900;">1</span>
+                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
                                             </div>
-                                            <button style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%; box-shadow: 0 2px 4px rgba(220,38,38,0.15);">Adicionar</button>
+                                            <button style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
                                         </div>
                                     </div>
                                     
                                     <!-- Item 2 -->
                                     <div style="display: flex; justify-content: space-between; background: #ffffff; border: 1px solid #f1f5f9; border-left: 3px solid #eab308; border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                                         <div style="text-align: left; flex: 1;">
-                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Pizza Pepperoni Speciale</h5>
-                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Molho especial artesanal, mozzarella, fatias generosas de pepperoni curado crocante, cebola roxa e um toque leve de orégano.</p>
+                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Pepperoni Speciale</h5>
+                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Pepperoni curado crocante, cebola roxa e orégano fresco.</p>
                                             <span style="font-size: 0.52rem; font-weight: 800; color: #dc2626;">R$ 48,90</span>
                                         </div>
                                         <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
                                             <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; overflow: hidden;">
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
-                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 4px; font-weight: 900;">0</span>
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
+                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
+                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 3px; font-weight: 900;">0</span>
+                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
                                             </div>
-                                            <button style="background: #eab308; color: #000000; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%; box-shadow: 0 2px 4px rgba(234,179,8,0.15);">Adicionar</button>
+                                            <button style="background: #eab308; color: #000000; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
                                         </div>
                                     </div>
 
                                     <!-- Item 3 -->
                                     <div style="display: flex; justify-content: space-between; background: #ffffff; border: 1px solid #f1f5f9; border-left: 3px solid #16a34a; border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                                         <div style="text-align: left; flex: 1;">
-                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Pizza Portuguesa Tradicional</h5>
-                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Presunto cozido magro, mozzarella cremosa, rodelas de ovos cozidos, cebola fresca, ervilhas doces e azeitonas pretas grandes.</p>
+                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Portuguesa Tradicional</h5>
+                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Presunto, mozzarella, ovos cozidos, cebola e azeitonas.</p>
                                             <span style="font-size: 0.52rem; font-weight: 800; color: #dc2626;">R$ 46,90</span>
                                         </div>
                                         <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
                                             <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; overflow: hidden;">
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
-                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 4px; font-weight: 900;">1</span>
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
+                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
+                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 3px; font-weight: 900;">1</span>
+                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
                                             </div>
-                                            <button style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%; box-shadow: 0 2px 4px rgba(220,38,38,0.15);">Adicionar</button>
+                                            <button style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
                                         </div>
                                     </div>
                                     
                                     <!-- Item 4 (Bebida) -->
-                                    <div style="display: flex; justify-content: space-between; background: #ffffff; border: 1px solid #f1f5f9; border-left: 3px solid #dc2626; border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box; margin-bottom: 35px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                                    <div style="display: flex; justify-content: space-between; background: #ffffff; border: 1px solid #f1f5f9; border-left: 3px solid #dc2626; border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box; margin-bottom: 50px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                                         <div style="text-align: left; flex: 1;">
-                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Coca-Cola Zero Garrafa 2L</h5>
-                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Garrafa pet de 2 litros gelada de refrigerante de cola sem açúcar.</p>
+                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Coca-Cola Zero 2L</h5>
+                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Garrafa pet de 2 litros gelada sem açúcar.</p>
                                             <span style="font-size: 0.52rem; font-weight: 800; color: #dc2626;">R$ 12,00</span>
                                         </div>
                                         <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
                                             <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; overflow: hidden;">
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
-                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 4px; font-weight: 900;">0</span>
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 6px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
+                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
+                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 3px; font-weight: 900;">0</span>
+                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
                                             </div>
-                                            <button style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%; box-shadow: 0 2px 4px rgba(220,38,38,0.15);">Adicionar</button>
+                                            <button style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- Floating Sacola / Cart Bar (Tomato Red with Yellow details) -->
-                            <div style="position: absolute; bottom: 6px; left: 8px; right: 8px; background: #dc2626; border-radius: 6px; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(220,38,38,0.35); box-sizing: border-box; cursor: pointer; z-index: 10;">
+                            <div style="position: absolute; bottom: 18px; left: 8px; right: 8px; background: #dc2626; border-radius: 6px; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(220,38,38,0.35); box-sizing: border-box; cursor: pointer; z-index: 10;">
                                 <div style="display: flex; align-items: center; gap: 4px; color: #ffffff;">
-                                    <span style="font-size: 0.55rem; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));">🛒</span>
+                                    <span style="font-size: 0.55rem;">🛒</span>
                                     <div style="text-align: left; line-height: 1.1;">
                                         <div style="font-size: 0.45rem; font-weight: 800; color: #ffffff;">Ver Sacola</div>
-                                        <span style="font-size: 0.38rem; font-weight: 600; color: #facc15;">2 pizzas adicionadas</span>
+                                        <span style="font-size: 0.38rem; font-weight: 600; color: #facc15;">2 pizzas</span>
                                     </div>
                                 </div>
-                                <span style="font-size: 0.52rem; font-weight: 900; color: #facc15; text-shadow: 0 1px 1px rgba(0,0,0,0.2);">R$ 89,80</span>
+                                <span style="font-size: 0.52rem; font-weight: 900; color: #facc15;">R$ 89,80</span>
                             </div>
+
+                            <!-- iOS Home Indicator Overlay -->
+                            <div style="position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 75px; height: 3.5px; background: rgba(0,0,0,0.8); border-radius: 10px; z-index: 30; pointer-events: none;"></div>
                             
                             <!-- Overlays -->
-                            <div class="scroll-hover-hint" style="position: absolute; inset: 0; background: rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; opacity: 1; transition: opacity 0.3s ease; pointer-events: none; z-index: 20;">
+                            <div class="scroll-hover-hint" style="position: absolute; inset: 0; background: rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; opacity: 1; transition: opacity 0.3s ease; pointer-events: none; z-index: 20; border-bottom-left-radius: 26px; border-bottom-right-radius: 26px;">
                                 <div style="background: rgba(220, 38, 38, 0.95); border: 1px solid rgba(255,255,255,0.2); padding: 8px 12px; border-radius: 50px; font-size: 0.62rem; color: #fff; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
                                     <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none" class="bounce-arrow"><polyline points="7 13 12 18 17 13"></polyline><line x1="12" y1="6" x2="12" y2="18"></line></svg>
                                     Passe o mouse para rolar

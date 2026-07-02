@@ -3200,14 +3200,14 @@ body[data-global-mode="discord"] .pill-active-bg {
 }
 
 /* --- 17. Efeito de Rolagem Portfólio (Mini Site) --- */
-.browser-mockup-portfolio .scroll-screen-container:hover .scroll-screen-content {
-    transform: translateY(calc(-100% + 290px)); /* Rola perfeitamente até o fim do cardapio HTML */
+.phone-mockup-portfolio .scroll-screen-container:hover .scroll-screen-content {
+    transform: translateY(calc(-100% + 452px)); /* Rola perfeitamente até o fim do cardapio no celular */
 }
-.browser-mockup-portfolio .scroll-screen-container:hover .scroll-hover-hint {
+.phone-mockup-portfolio .scroll-screen-container:hover .scroll-hover-hint {
     opacity: 0;
     visibility: hidden;
 }
-.browser-mockup-portfolio .bounce-arrow {
+.phone-mockup-portfolio .bounce-arrow {
     animation: bounce-down 1.4s infinite ease-in-out;
 }
 
