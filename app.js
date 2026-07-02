@@ -1317,5 +1317,219 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 12);
         });
     }
+    /* ==========================================
+       19. Pizzeria Interactive Cart Logic (Smartphone Mini-Site)
+       ========================================== */
+    const cart = {}; // key: productID, value: { name, price, qty }
+    const cartBar = document.getElementById('phone-cart-bar');
+    const cartCount = document.getElementById('phone-cart-count');
+    const cartTotal = document.getElementById('phone-cart-total');
+    
+    const checkoutModal = document.getElementById('phone-checkout-modal');
+    const closeCheckoutBtn = document.getElementById('close-checkout-btn');
+    const checkoutItemsList = document.getElementById('checkout-items-list');
+    
+    const summarySubtotal = document.getElementById('summary-subtotal');
+    const summaryTotal = document.getElementById('summary-total');
+    
+    const submitOrderBtn = document.getElementById('submit-order-btn');
+    const successScreen = document.getElementById('phone-success-screen');
+    const restartPhoneDemoBtn = document.getElementById('restart-phone-demo-btn');
+
+    // Inicializa todos os wrappers de botoes
+    const wrappers = document.querySelectorAll('.cart-control-wrapper');
+    wrappers.forEach(wrapper => {
+        updateWrapperUI(wrapper);
+    });
+
+    function updateWrapperUI(wrapper) {
+        const id = wrapper.dataset.id;
+        const name = wrapper.dataset.name;
+        const price = parseFloat(wrapper.dataset.price);
+        const qty = cart[id] ? cart[id].qty : 0;
+
+        if (qty === 0) {
+            wrapper.innerHTML = `
+                <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 8px; font-size: 0.5rem; font-weight: bold; cursor: pointer; transition: background 0.2s;">Adicionar</button>
+            `;
+            const btn = wrapper.querySelector('.add-to-cart-btn');
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                addToCart(id, name, price);
+            });
+        } else {
+            wrapper.innerHTML = `
+                <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; width: 100%; justify-content: space-between; box-sizing: border-box; padding: 2px;">
+                    <button class="qty-minus" style="background: none; border: none; color: #dc2626; font-size: 0.55rem; font-weight: 900; cursor: pointer; padding: 0 4px; line-height: 1;">-</button>
+                    <span class="qty-val" style="color: #0f172a; font-size: 0.52rem; font-weight: 900;">${qty}</span>
+                    <button class="qty-plus" style="background: none; border: none; color: #16a34a; font-size: 0.55rem; font-weight: 900; cursor: pointer; padding: 0 4px; line-height: 1;">+</button>
+                </div>
+            `;
+            wrapper.querySelector('.qty-plus').addEventListener('click', (e) => {
+                e.stopPropagation();
+                addToCart(id, name, price);
+            });
+            wrapper.querySelector('.qty-minus').addEventListener('click', (e) => {
+                e.stopPropagation();
+                removeFromCart(id);
+            });
+        }
+    }
+
+    function addToCart(id, name, price) {
+        if (!cart[id]) {
+            cart[id] = { name: name, price: price, qty: 1 };
+        } else {
+            cart[id].qty++;
+        }
+        updateCartState();
+    }
+
+    function removeFromCart(id) {
+        if (cart[id]) {
+            cart[id].qty--;
+            if (cart[id].qty <= 0) {
+                delete cart[id];
+            }
+        }
+        updateCartState();
+    }
+
+    function updateCartState() {
+        let totalItems = 0;
+        let totalPrice = 0;
+
+        for (const id in cart) {
+            totalItems += cart[id].qty;
+            totalPrice += cart[id].qty * cart[id].price;
+        }
+
+        wrappers.forEach(wrapper => {
+            updateWrapperUI(wrapper);
+        });
+
+        if (totalItems > 0) {
+            cartCount.textContent = totalItems === 1 ? '1 item' : `${totalItems} itens`;
+            cartTotal.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+            
+            cartBar.style.opacity = '1';
+            cartBar.style.transform = 'translateY(0)';
+            cartBar.style.pointerEvents = 'auto';
+        } else {
+            cartBar.style.opacity = '0';
+            cartBar.style.transform = 'translateY(15px)';
+            cartBar.style.pointerEvents = 'none';
+        }
+
+        updateCheckoutModal();
+    }
+
+    function updateCheckoutModal() {
+        let totalItems = 0;
+        let totalPrice = 0;
+        checkoutItemsList.innerHTML = '';
+
+        for (const id in cart) {
+            const item = cart[id];
+            totalItems += item.qty;
+            totalPrice += item.qty * item.price;
+
+            const itemRow = document.createElement('div');
+            itemRow.style.cssText = 'display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; border-radius: 6px; padding: 6px 10px; font-size: 0.55rem; box-sizing: border-box; margin-bottom: 4px;';
+            itemRow.innerHTML = `
+                <div style="text-align: left; flex: 1; min-width: 0; padding-right: 8px;">
+                    <div style="font-weight: bold; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</div>
+                    <div style="color: #64748b; font-size: 0.48rem;">R$ ${item.price.toFixed(2).replace('.', ',')} cada</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                    <div style="display: flex; align-items: center; background: #ffffff; border-radius: 4px; border: 1px solid #e2e8f0; padding: 2px;">
+                        <button class="modal-qty-minus" data-id="${id}" style="background: none; border: none; color: #dc2626; font-size: 0.52rem; font-weight: bold; cursor: pointer; padding: 0 4px; line-height: 1;">-</button>
+                        <span style="font-weight: bold; color: #0f172a; padding: 0 2px; font-size: 0.52rem;">${item.qty}</span>
+                        <button class="modal-qty-plus" data-id="${id}" style="background: none; border: none; color: #16a34a; font-size: 0.52rem; font-weight: bold; cursor: pointer; padding: 0 4px; line-height: 1;">+</button>
+                    </div>
+                    <span style="font-weight: bold; color: #0f172a; min-width: 45px; text-align: right;">R$ ${(item.qty * item.price).toFixed(2).replace('.', ',')}</span>
+                </div>
+            `;
+            checkoutItemsList.appendChild(itemRow);
+        }
+
+        checkoutItemsList.querySelectorAll('.modal-qty-plus').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                addToCart(id, cart[id].name, cart[id].price);
+            });
+        });
+        checkoutItemsList.querySelectorAll('.modal-qty-minus').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                removeFromCart(id);
+            });
+        });
+
+        const totalStr = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+        summarySubtotal.textContent = totalStr;
+        summaryTotal.textContent = totalStr;
+
+        if (totalItems === 0) {
+            closeCheckout();
+        }
+    }
+
+    if (cartBar) {
+        cartBar.addEventListener('click', () => {
+            openCheckout();
+        });
+    }
+    
+    if (closeCheckoutBtn) {
+        closeCheckoutBtn.addEventListener('click', () => {
+            closeCheckout();
+        });
+    }
+
+    function openCheckout() {
+        if (checkoutModal) {
+            checkoutModal.style.transform = 'translateY(0)';
+        }
+    }
+
+    function closeCheckout() {
+        if (checkoutModal) {
+            checkoutModal.style.transform = 'translateY(100%)';
+        }
+    }
+
+    if (submitOrderBtn) {
+        submitOrderBtn.addEventListener('click', () => {
+            submitOrderBtn.disabled = true;
+            submitOrderBtn.textContent = 'Enviando... ⏳';
+
+            setTimeout(() => {
+                if (successScreen) {
+                    successScreen.style.opacity = '1';
+                    successScreen.style.pointerEvents = 'auto';
+                    successScreen.style.transform = 'scale(1)';
+                }
+                submitOrderBtn.disabled = false;
+                submitOrderBtn.textContent = 'Enviar Pedido p/ Cozinha 🍕';
+                closeCheckout();
+            }, 800);
+        });
+    }
+
+    if (restartPhoneDemoBtn) {
+        restartPhoneDemoBtn.addEventListener('click', () => {
+            for (const id in cart) {
+                delete cart[id];
+            }
+            updateCartState();
+
+            if (successScreen) {
+                successScreen.style.opacity = '0';
+                successScreen.style.pointerEvents = 'none';
+                successScreen.style.transform = 'scale(0.95)';
+            }
+        });
+    }
 
 });
