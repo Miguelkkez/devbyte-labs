@@ -3200,6 +3200,41 @@ body[data-global-mode="discord"] .pill-active-bg {
 }
 
 /* --- 17. Efeito de Rolagem Portfólio (Mini Site) --- */
+.phone-mockup-portfolio {
+    width: 360px;
+    height: 680px;
+    border-radius: 44px;
+    border: 12px solid #1e1e24;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.65);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background: #000;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 992px) {
+    .phone-mockup-portfolio {
+        width: 320px !important;
+        height: 600px !important;
+        border-radius: 40px !important;
+        border-width: 10px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .phone-mockup-portfolio {
+        width: 290px !important;
+        height: 550px !important;
+        border-radius: 34px !important;
+        border-width: 8px !important;
+    }
+}
+
 .phone-mockup-portfolio .scroll-screen-container {
     overflow-y: auto;
     scrollbar-width: none; /* Firefox */

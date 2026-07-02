@@ -1281,44 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================
-       18. Rolagem Automática Suave no Celular (Portfólio)
-       ========================================== */
-    const phoneContainer = document.querySelector('.phone-mockup-portfolio .scroll-screen-container');
-    const isDesktop = window.matchMedia('(hover: hover)').matches;
-    
-    if (phoneContainer && isDesktop) {
-        let scrollInterval;
-        
-        phoneContainer.addEventListener('mouseenter', () => {
-            // Limpa qualquer rolagem de retorno ativa
-            clearInterval(scrollInterval);
-            
-            const maxScroll = phoneContainer.scrollHeight - phoneContainer.clientHeight;
-            
-            scrollInterval = setInterval(() => {
-                if (phoneContainer.scrollTop < maxScroll) {
-                    phoneContainer.scrollTop += 1.5; // Velocidade suave de descida
-                } else {
-                    clearInterval(scrollInterval);
-                }
-            }, 12);
-        });
-        
-        phoneContainer.addEventListener('mouseleave', () => {
-            clearInterval(scrollInterval);
-            
-            scrollInterval = setInterval(() => {
-                if (phoneContainer.scrollTop > 0) {
-                    phoneContainer.scrollTop -= 3.5; // Velocidade de retorno ao topo
-                } else {
-                    phoneContainer.scrollTop = 0;
-                    clearInterval(scrollInterval);
-                }
-            }, 12);
-        });
-    }
-    /* ==========================================
-       19. Pizzeria Interactive Cart Logic (Smartphone Mini-Site)
+       18. Pizzeria Interactive Cart Logic (Smartphone Mini-Site)
        ========================================== */
     const cart = {}; // key: productID, value: { name, price, qty }
     const cartBar = document.getElementById('phone-cart-bar');
@@ -1350,7 +1313,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (qty === 0) {
             wrapper.innerHTML = `
-                <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 8px; font-size: 0.5rem; font-weight: bold; cursor: pointer; transition: background 0.2s;">Adicionar</button>
+                <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.72rem; font-weight: bold; cursor: pointer; transition: background 0.2s;">Adicionar</button>
             `;
             const btn = wrapper.querySelector('.add-to-cart-btn');
             btn.addEventListener('click', (e) => {
@@ -1360,9 +1323,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             wrapper.innerHTML = `
                 <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; width: 100%; justify-content: space-between; box-sizing: border-box; padding: 2px;">
-                    <button class="qty-minus" style="background: none; border: none; color: #dc2626; font-size: 0.55rem; font-weight: 900; cursor: pointer; padding: 0 4px; line-height: 1;">-</button>
-                    <span class="qty-val" style="color: #0f172a; font-size: 0.52rem; font-weight: 900;">${qty}</span>
-                    <button class="qty-plus" style="background: none; border: none; color: #16a34a; font-size: 0.55rem; font-weight: 900; cursor: pointer; padding: 0 4px; line-height: 1;">+</button>
+                    <button class="qty-minus" style="background: none; border: none; color: #dc2626; font-size: 0.8rem; font-weight: 900; cursor: pointer; padding: 0 6px; line-height: 1;">-</button>
+                    <span class="qty-val" style="color: #0f172a; font-size: 0.75rem; font-weight: 900;">${qty}</span>
+                    <button class="qty-plus" style="background: none; border: none; color: #16a34a; font-size: 0.8rem; font-weight: 900; cursor: pointer; padding: 0 6px; line-height: 1;">+</button>
                 </div>
             `;
             wrapper.querySelector('.qty-plus').addEventListener('click', (e) => {
@@ -1435,19 +1398,19 @@ document.addEventListener('DOMContentLoaded', () => {
             totalPrice += item.qty * item.price;
 
             const itemRow = document.createElement('div');
-            itemRow.style.cssText = 'display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; border-radius: 6px; padding: 6px 10px; font-size: 0.55rem; box-sizing: border-box; margin-bottom: 4px;';
+            itemRow.style.cssText = 'display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; border-radius: 6px; padding: 6px 10px; font-size: 0.78rem; box-sizing: border-box; margin-bottom: 4px;';
             itemRow.innerHTML = `
                 <div style="text-align: left; flex: 1; min-width: 0; padding-right: 8px;">
-                    <div style="font-weight: bold; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</div>
-                    <div style="color: #64748b; font-size: 0.48rem;">R$ ${item.price.toFixed(2).replace('.', ',')} cada</div>
+                    <div style="font-weight: bold; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.78rem;">${item.name}</div>
+                    <div style="color: #64748b; font-size: 0.68rem;">R$ ${item.price.toFixed(2).replace('.', ',')} cada</div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
                     <div style="display: flex; align-items: center; background: #ffffff; border-radius: 4px; border: 1px solid #e2e8f0; padding: 2px;">
-                        <button class="modal-qty-minus" data-id="${id}" style="background: none; border: none; color: #dc2626; font-size: 0.52rem; font-weight: bold; cursor: pointer; padding: 0 4px; line-height: 1;">-</button>
-                        <span style="font-weight: bold; color: #0f172a; padding: 0 2px; font-size: 0.52rem;">${item.qty}</span>
-                        <button class="modal-qty-plus" data-id="${id}" style="background: none; border: none; color: #16a34a; font-size: 0.52rem; font-weight: bold; cursor: pointer; padding: 0 4px; line-height: 1;">+</button>
+                        <button class="modal-qty-minus" data-id="${id}" style="background: none; border: none; color: #dc2626; font-size: 0.75rem; font-weight: bold; cursor: pointer; padding: 0 6px; line-height: 1;">-</button>
+                        <span style="font-weight: bold; color: #0f172a; padding: 0 4px; font-size: 0.72rem;">${item.qty}</span>
+                        <button class="modal-qty-plus" data-id="${id}" style="background: none; border: none; color: #16a34a; font-size: 0.75rem; font-weight: bold; cursor: pointer; padding: 0 6px; line-height: 1;">+</button>
                     </div>
-                    <span style="font-weight: bold; color: #0f172a; min-width: 45px; text-align: right;">R$ ${(item.qty * item.price).toFixed(2).replace('.', ',')}</span>
+                    <span style="font-weight: bold; color: #0f172a; min-width: 55px; text-align: right; font-size: 0.78rem;">R$ ${(item.qty * item.price).toFixed(2).replace('.', ',')}</span>
                 </div>
             `;
             checkoutItemsList.appendChild(itemRow);
