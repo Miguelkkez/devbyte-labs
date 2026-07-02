@@ -3235,6 +3235,12 @@ body[data-global-mode="discord"] .pill-active-bg {
         flex-direction: column;
         align-items: center;
     }
+    .phone-mockup-portfolio .scroll-hover-hint {
+        display: none !important; /* Esconde a dica de mouse no celular */
+    }
+    .phone-mockup-portfolio .scroll-screen-container {
+        -webkit-overflow-scrolling: touch; /* Habilita momentum scroll suave no mobile */
+    }
 }
 
 

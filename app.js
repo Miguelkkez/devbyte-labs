@@ -1284,8 +1284,9 @@ document.addEventListener('DOMContentLoaded', () => {
        18. Rolagem Automática Suave no Celular (Portfólio)
        ========================================== */
     const phoneContainer = document.querySelector('.phone-mockup-portfolio .scroll-screen-container');
+    const isDesktop = window.matchMedia('(hover: hover)').matches;
     
-    if (phoneContainer) {
+    if (phoneContainer && isDesktop) {
         let scrollInterval;
         
         phoneContainer.addEventListener('mouseenter', () => {
