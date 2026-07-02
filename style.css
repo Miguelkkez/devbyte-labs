@@ -3155,3 +3155,47 @@ body[data-global-mode="discord"] .pill-active-bg {
     }
 }
 
+/* --- 15. Mockup Discord Premium --- */
+.discord-client-mockup .dc-channel-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 0.52rem;
+    color: #949ba4;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    user-select: none;
+}
+.discord-client-mockup .dc-channel-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: #dbdee1;
+}
+.discord-client-mockup .dc-channel-item.active {
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+    font-weight: 600;
+}
+.discord-client-mockup .dc-server-icon {
+    transition: border-radius 0.2s ease, background-color 0.2s ease, transform 0.1s ease;
+}
+.discord-client-mockup .dc-server-icon:hover {
+    border-radius: 30% !important;
+    background-color: var(--discord-blurple) !important;
+}
+.discord-client-mockup .dc-server-icon.active {
+    border-radius: 30% !important;
+}
+.discord-client-mockup .dc-server-icon .unread-indicator {
+    transition: height 0.2s ease, left 0.2s ease, background-color 0.2s ease;
+}
+.discord-client-mockup .dc-server-icon:hover .unread-indicator {
+    height: 20px !important;
+    left: 0px !important;
+}
+.discord-client-mockup .dc-server-icon.active .unread-indicator {
+    height: 40px !important;
+    left: 0px !important;
+}
+

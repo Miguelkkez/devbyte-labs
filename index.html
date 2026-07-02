@@ -360,52 +360,102 @@
                     
                     <!-- VISUAL MODO DISCORD (Discord Client Chat Mockup) -->
                     <div class="mode-discord-only">
-                        <div class="discord-client-mockup glass" style="margin-top: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.65); animation: float-desktop 5s ease-in-out infinite; background: #313338; display: flex; height: 320px; font-family: sans-serif; text-align: left;">
-                            <!-- Sidebar dos Canais (Discord Server Sidebar) -->
-                            <div style="width: 110px; background: #2b2d31; display: flex; flex-direction: column; flex-shrink: 0; border-right: 1px solid rgba(0,0,0,0.2);">
+                        <div class="discord-client-mockup glass" style="margin-top: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.65); animation: float-desktop 5s ease-in-out infinite; background: #313338; display: flex; height: 320px; font-family: sans-serif; text-align: left; position: relative;">
+                            
+                            <!-- 1. Server List Column (Far Left) -->
+                            <div class="dc-servers-sidebar" style="width: 48px; background: #1e1f22; display: flex; flex-direction: column; align-items: center; padding-top: 8px; gap: 8px; flex-shrink: 0; border-right: 1px solid rgba(0,0,0,0.15);">
+                                <!-- DM Icon -->
+                                <div class="dc-server-icon active" style="width: 32px; height: 32px; border-radius: 35%; background: var(--discord-blurple); display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative;">
+                                    <div class="unread-indicator" style="position: absolute; left: 0; width: 4px; height: 16px; background: #fff; border-radius: 0 4px 4px 0; margin-left: -2px;"></div>
+                                    <svg width="16" height="16" fill="#fff" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.95,54.65,1,77.53A105.84,105.84,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.9-.65,1.76-1.34,2.58-2a75.58,75.58,0,0,0,72.9,0c.82.71,1.68,1.4,2.58,2a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.84,105.84,0,0,0,31-18.83C129.87,48.12,123.63,25.41,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/></svg>
+                                </div>
+                                <div style="width: 20px; height: 2px; background: rgba(255,255,255,0.06); border-radius: 1px;"></div>
+                                <!-- DevByte Server Icon -->
+                                <div class="dc-server-icon" style="width: 32px; height: 32px; border-radius: 50%; background: #2b2d31; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; position: relative;">
+                                    <div class="unread-indicator" style="position: absolute; left: 0; width: 4px; height: 8px; background: #fff; border-radius: 0 4px 4px 0; margin-left: -2px;"></div>
+                                    <img src="logo.jpg" alt="DevByte Logo" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <!-- Green Plus Icon -->
+                                <div class="dc-server-icon" style="width: 32px; height: 32px; border-radius: 50%; background: #2b2d31; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s;" onmouseover="this.style.borderRadius='35%'; this.style.backgroundColor='#23a55a'; this.querySelector('path').style.fill='#fff'" onmouseout="this.style.borderRadius='50%'; this.style.backgroundColor='#2b2d31'; this.querySelector('path').style.fill='#23a55a'">
+                                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#23a55a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                                </div>
+                            </div>
+
+                            <!-- 2. Sidebar dos Canais (Discord Server Sidebar) -->
+                            <div style="width: 120px; background: #2b2d31; display: flex; flex-direction: column; flex-shrink: 0; border-right: 1px solid rgba(0,0,0,0.15);">
                                 <!-- Server Header -->
-                                <div style="height: 36px; padding: 0 10px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.15); box-sizing: border-box;">
+                                <div style="height: 36px; padding: 0 10px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.15); box-sizing: border-box; flex-shrink: 0;">
                                     <span style="font-size: 0.62rem; font-weight: bold; color: #fff;">DevByte Labs</span>
                                     <svg viewBox="0 0 24 24" width="10" height="10" stroke="#949ba4" stroke-width="2.5" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                 </div>
                                 <!-- Channels List -->
-                                <div style="padding: 10px 4px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto;">
+                                <div style="flex: 1; padding: 10px 4px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto;">
                                     <div>
-                                        <div style="font-size: 0.42rem; font-weight: 800; color: #949ba4; text-transform: uppercase; padding: 0 6px; margin-bottom: 4px; letter-spacing: 0.02em;">INFORMAÇÕES</div>
-                                        <div style="display: flex; flex-direction: column; gap: 2px;">
-                                            <div style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #949ba4;">
-                                                <span style="font-size: 0.55rem; color: #80848e;">#</span> regras
+                                        <div style="font-size: 0.42rem; font-weight: 800; color: #949ba4; text-transform: uppercase; padding: 0 6px; margin-bottom: 4px; letter-spacing: 0.02em; display: flex; align-items: center; gap: 2px;">
+                                            <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(90deg); margin-right: 1px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                            INFORMAÇÕES
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 1px;">
+                                            <div class="dc-channel-item" data-channel="regras" style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #949ba4; cursor: pointer;">
+                                                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity: 0.6; flex-shrink: 0;"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                                                regras
                                             </div>
-                                            <div style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #949ba4;">
-                                                <span style="font-size: 0.55rem; color: #80848e;">#</span> anúncios
+                                            <div class="dc-channel-item" data-channel="novidades" style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #949ba4; cursor: pointer;">
+                                                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity: 0.6; flex-shrink: 0;"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                                                anúncios
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div style="font-size: 0.42rem; font-weight: 800; color: #949ba4; text-transform: uppercase; padding: 0 6px; margin-bottom: 4px; letter-spacing: 0.02em;">BOTS &amp; SUPORTE</div>
-                                        <div style="display: flex; flex-direction: column; gap: 2px;">
-                                            <div style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #949ba4;">
-                                                <span style="font-size: 0.55rem; color: #80848e;">#</span> chat-ia
+                                        <div style="font-size: 0.42rem; font-weight: 800; color: #949ba4; text-transform: uppercase; padding: 0 6px; margin-bottom: 4px; letter-spacing: 0.02em; display: flex; align-items: center; gap: 2px;">
+                                            <svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(90deg); margin-right: 1px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                            BOTS &amp; SUPORTE
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 1px;">
+                                            <div class="dc-channel-item" data-channel="produtos" style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #949ba4; cursor: pointer;">
+                                                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity: 0.6; flex-shrink: 0;"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                                                chat-ia
                                             </div>
-                                            <div style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #fff; background: rgba(255,255,255,0.06); font-weight: 600;">
-                                                <span style="font-size: 0.55rem; color: #dbdee1;">#</span> suporte-leads
+                                            <div class="dc-channel-item active" data-channel="comprar" style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #fff; background: rgba(255,255,255,0.06); font-weight: 600; cursor: pointer;">
+                                                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity: 0.8; flex-shrink: 0;"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                                                suporte-leads
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- User Profile Panel -->
+                                <div style="height: 38px; background: #232428; display: flex; align-items: center; padding: 0 8px; justify-content: space-between; box-sizing: border-box; flex-shrink: 0; border-top: 1px solid rgba(0,0,0,0.05);">
+                                    <div style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                                        <div style="position: relative; width: 22px; height: 22px;">
+                                            <div style="width: 22px; height: 22px; border-radius: 50%; background: #5865F2; display: flex; align-items: center; justify-content: center; font-size: 0.45rem; color: #fff; font-weight: bold;">M</div>
+                                            <div style="width: 7px; height: 7px; border-radius: 50%; background: #23a55a; border: 1.5px solid #232428; position: absolute; bottom: -1px; right: -1px;"></div>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; text-align: left; line-height: 1.1;">
+                                            <span style="font-size: 0.52rem; font-weight: bold; color: #fff; max-width: 48px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Miguel</span>
+                                            <span style="font-size: 0.42rem; color: #949ba4;">Online</span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 4px; align-items: center; color: #b5bac1;">
+                                        <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" style="cursor: pointer;"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+                                        <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" style="cursor: pointer;"><path d="M12 3a9 9 0 0 0-9 9v7c0 1.1.9 2 2 2h2v-8H5v-1c0-3.87 3.13-7 7-7s7 3.13 7 7v1h-2v8h2c1.1 0 2-.9 2-2v-7a9 9 0 0 0-9-9z"/></svg>
+                                        <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" style="cursor: pointer;"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                                    </div>
+                                </div>
                             </div>
                             
-                            <!-- Area Principal do Chat -->
+                            <!-- 3. Area Principal do Chat -->
                             <div style="flex: 1; display: flex; flex-direction: column; background: #313338; box-sizing: border-box;">
                                 <!-- Chat Header -->
                                 <div style="height: 36px; padding: 0 12px; display: flex; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.15); box-sizing: border-box; justify-content: space-between; flex-shrink: 0;">
                                     <div style="display: flex; align-items: center; gap: 6px;">
                                         <span style="font-size: 0.8rem; color: #80848e; font-weight: 300;">#</span>
                                         <span style="font-size: 0.65rem; font-weight: bold; color: #fff;">suporte-leads</span>
+                                        <span style="width: 1px; height: 12px; background: rgba(255,255,255,0.1); margin: 0 4px;"></span>
+                                        <span style="font-size: 0.52rem; color: #949ba4; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Configurações e cotação de faturas</span>
                                     </div>
-                                    <div style="display: flex; gap: 10px; align-items: center;">
-                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="#b5bac1" stroke-width="2" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="#b5bac1" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                    <div style="display: flex; gap: 10px; align-items: center; color: #b5bac1;">
+                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" style="cursor: pointer;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" style="cursor: pointer;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                                     </div>
                                 </div>
                                 
@@ -458,10 +508,14 @@
                                 <!-- Fake Input Bar -->
                                 <div style="padding: 10px; flex-shrink: 0; background: #313338;">
                                     <div style="background: #383a40; border-radius: 6px; padding: 6px 10px; display: flex; align-items: center; justify-content: space-between; font-size: 0.58rem; color: #6d6f78;">
-                                        <span>Conversar em #suporte-leads</span>
+                                        <div style="display: flex; align-items: center; gap: 6px; flex: 1;">
+                                            <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#b5bac1" stroke-width="3" style="cursor: pointer; opacity: 0.8;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                            <span style="color: #6d6f78; margin-left: 2px;">Conversar em #suporte-leads</span>
+                                        </div>
                                         <div style="display: flex; gap: 6px; align-items: center;">
-                                            <svg viewBox="0 0 24 24" width="10" height="10" stroke="#b5bac1" stroke-width="2" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                                            <svg viewBox="0 0 24 24" width="10" height="10" stroke="#b5bac1" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"></path></svg>
+                                            <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" style="cursor: pointer; opacity: 0.8;"><path d="M19 13.5a1.5 1.5 0 0 1-3 0v-4a1.5 1.5 0 0 1 3 0v4zm-8-4a1.5 1.5 0 0 1 3 0v4a1.5 1.5 0 0 1-3 0v-4zM5 9.5A1.5 1.5 0 0 1 8 8v4a1.5 1.5 0 0 1-3 0V9.5z"/></svg>
+                                            <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" style="cursor: pointer; opacity: 0.8;"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"></rect><text x="6" y="14" font-size="8" font-weight="900" font-family="sans-serif">GIF</text></svg>
+                                            <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="cursor: pointer; opacity: 0.8;"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"></path></svg>
                                         </div>
                                     </div>
                                 </div>
