@@ -532,12 +532,44 @@
         <section class="about-section section-padding mode-inicio-only" id="sobre">
             <div class="glow-bg glow-pricing" style="opacity: 0.05; top: 10%;"></div>
             <div class="container">
-                <div class="section-header">
-                    <span class="section-subtitle">Quem Somos</span>
-                    <h2 class="section-title">Alta Performance para sua Marca</h2>
-                    <p class="section-lead">A DevByte Labs é um estúdio especializado em criar produtos digitais modernos que combinam design sofisticado, velocidade incomparável e automação inteligente.</p>
+                <!-- Split Grid: Text/Gauge on Left, Illustration on Right -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3.5rem; align-items: center; margin-bottom: 4.5rem; text-align: left;">
+                    <div>
+                        <span class="section-subtitle" style="display: inline-block; margin-bottom: 0.75rem;">Quem Somos</span>
+                        <h2 class="section-title" style="font-size: 2.3rem; line-height: 1.2; margin-bottom: 1.25rem;">Alta Performance para sua Marca</h2>
+                        <p class="section-lead" style="font-size: 1.02rem; margin-bottom: 2rem;">A DevByte Labs é um estúdio especializado em criar produtos digitais modernos que combinam design sofisticado, velocidade incomparável e automações inteligentes com IA.</p>
+                        
+                        <!-- PageSpeed Speedometer Gauge (Visual Interactive Element) -->
+                        <div style="display: flex; gap: 1.5rem; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.25rem 1.5rem; border-radius: 12px; max-width: 480px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                            <!-- Circular SVG Gauge -->
+                            <div style="position: relative; width: 75px; height: 75px; flex-shrink: 0;">
+                                <svg viewBox="0 0 36 36" style="width: 100%; height: 100%; transform: rotate(-90deg);">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3" />
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="url(#gradient-cyan-green)" stroke-width="3" stroke-dasharray="100, 100" stroke-linecap="round" style="filter: drop-shadow(0 0 5px rgba(16,185,129,0.5));" />
+                                    <defs>
+                                        <linearGradient id="gradient-cyan-green" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#00f2fe"/>
+                                            <stop offset="100%" stop-color="#10b981"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.2rem; font-weight: 900; color: #fff; font-family: var(--font-heading);">100</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: bold; color: #fff; margin-bottom: 4px;">PageSpeed Nota Máxima</div>
+                                <p style="font-size: 0.74rem; color: var(--text-muted); line-height: 1.35; margin: 0;">Nossa estrutura leve garante velocidade extrema 100/100, carregando seu site de forma instantânea.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3D Tech Illustration Image Card -->
+                    <div class="glass" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.08); position: relative; height: 320px;">
+                        <img src="tech-illustration.jpg" alt="DevByte Tech Illustration" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,8,0.7) 0%, transparent 60%); pointer-events: none;"></div>
+                    </div>
                 </div>
-                
+
+                <!-- Grid de Diferenciais -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem;">
                     <div class="service-card glass" style="padding: 2rem; text-align: left;">
                         <svg viewBox="0 0 24 24" width="36" height="36" stroke="var(--secondary)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;">
@@ -839,7 +871,39 @@
                         <a href="#orcamento" class="service-link btn-select-service" data-service="Sites/Landing Page Sob Medida">Simular Orçamento <span>&rarr;</span></a>
                     </div>
                     
+                    <!-- Web Mockup Showcase (Visual Graphic Card) -->
+                    <div class="glass mode-web-only" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); position: relative; min-height: 380px; display: flex; flex-direction: column;">
+                        <div style="padding: 1rem 1.25rem; font-size: 0.68rem; font-weight: 800; color: #fff; background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 6px; letter-spacing: 0.05em;">
+                            <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
+                            DASHBOARD DE ALTA PERFORMANCE
+                        </div>
+                        <div style="flex: 1; overflow: hidden; position: relative; min-height: 200px;">
+                            <img src="dashboard-mockup.jpg" alt="Web Dashboard Preview" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,8,0.9) 0%, transparent 60%); pointer-events: none;"></div>
+                        </div>
+                        <div style="padding: 1.25rem; position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(5,5,8,1) 70%, rgba(5,5,8,0) 100%);">
+                            <div style="font-size: 0.85rem; font-weight: bold; color: #fff; margin-bottom: 4px;">Sistemas Customizados</div>
+                            <p style="font-size: 0.72rem; color: var(--text-muted); margin: 0; line-height: 1.35;">Interfaces administrativas de alta velocidade integradas com bancos de dados e APIs em tempo real.</p>
+                        </div>
+                    </div>
+                    
                     <!-- DISCORD SERVICES -->
+                    <!-- Discord Mockup Showcase (Visual Graphic Card) -->
+                    <div class="glass mode-discord-only" style="border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); position: relative; min-height: 380px; display: flex; flex-direction: column;">
+                        <div style="padding: 1rem 1.25rem; font-size: 0.68rem; font-weight: 800; color: #fff; background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 6px; letter-spacing: 0.05em;">
+                            <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--discord-blurple); box-shadow: 0 0 8px var(--discord-blurple);"></span>
+                            COMUNIDADES ALTAMENTE ENGAJADAS
+                        </div>
+                        <div style="flex: 1; overflow: hidden; position: relative; min-height: 200px;">
+                            <img src="discord-mockup.jpg" alt="Discord Server UI Preview" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,8,0.9) 0%, transparent 60%); pointer-events: none;"></div>
+                        </div>
+                        <div style="padding: 1.25rem; position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(5,5,8,1) 70%, rgba(5,5,8,0) 100%);">
+                            <div style="font-size: 0.85rem; font-weight: bold; color: #fff; margin-bottom: 4px;">Design de Servidores Premium</div>
+                            <p style="font-size: 0.72rem; color: var(--text-muted); margin: 0; line-height: 1.35;">Criação de ecossistemas organizados, divertidos e com design visual sofisticado para reter seus membros.</p>
+                        </div>
+                    </div>
+                    
                     <div class="service-card glass hover-lift mode-discord-only">
                         <div class="service-icon-box">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--discord-blurple);">
