@@ -1516,4 +1516,119 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* ==========================================
+       20. Lógica de Controle dos Mockups Web Otimizados
+       ========================================== */
+    // 20.1 Dashboard Mockup
+    let mockSalesVal = 4912;
+    let mockSessionsVal = 1842;
+    const elMockSales = document.getElementById('mock-dash-sales');
+    const elMockSessions = document.getElementById('mock-dash-sessions');
+    const pathMockLine = document.getElementById('mock-dash-chart-line');
+    const pathMockArea = document.getElementById('mock-dash-chart-area');
+
+    function generateMockCurve() {
+        const y1 = Math.floor(Math.random() * 45) + 15;
+        const y2 = Math.floor(Math.random() * 50) + 25;
+        const y3 = Math.floor(Math.random() * 40) + 10;
+        const y4 = Math.floor(Math.random() * 55) + 20;
+
+        const lineD = `M 0 90 Q 50 ${y1} 100 ${y2} T 200 ${y3} T 300 ${y4}`;
+        const areaD = `${lineD} L 300 90 L 0 90 Z`;
+        return { line: lineD, area: areaD };
+    }
+
+    setInterval(() => {
+        // Oscila valores
+        mockSalesVal += Math.floor(Math.random() * 40) - 15;
+        mockSessionsVal += Math.floor(Math.random() * 10) - 4;
+
+        if (elMockSales) elMockSales.textContent = `R$ ${mockSalesVal.toLocaleString('pt-BR')}`;
+        if (elMockSessions) elMockSessions.textContent = mockSessionsVal.toLocaleString('pt-BR');
+
+        // Modifica curvas SVG com transição suave
+        const curves = generateMockCurve();
+        if (pathMockLine && pathMockArea) {
+            pathMockLine.setAttribute('d', curves.line);
+            pathMockArea.setAttribute('d', curves.area);
+        }
+    }, 3000);
+
+    // 20.2 E-commerce Mockup
+    let mockCartQtyVal = 0;
+    const mockAddBtn = document.getElementById('mock-shop-add-btn');
+    const mockCartQty = document.getElementById('mock-shop-cart-qty');
+    const mockCartToast = document.getElementById('mock-shop-cart-toast');
+
+    if (mockAddBtn) {
+        mockAddBtn.addEventListener('click', () => {
+            // Incrementa quantidade
+            mockCartQtyVal++;
+            if (mockCartQty) mockCartQty.textContent = mockCartQtyVal;
+
+            // Transição visual do botão
+            const oldBg = mockAddBtn.style.background;
+            const oldText = mockAddBtn.textContent;
+            mockAddBtn.textContent = 'Adicionado! ✓';
+            mockAddBtn.style.background = '#22c55e';
+            mockAddBtn.style.transform = 'scale(0.98)';
+
+            // Toast feedback "+1"
+            if (mockCartToast) {
+                mockCartToast.style.opacity = '1';
+                mockCartToast.style.transform = 'scale(1.2) translateY(-4px)';
+                setTimeout(() => {
+                    mockCartToast.style.opacity = '0';
+                    mockCartToast.style.transform = 'scale(0.5) translateY(0)';
+                }, 800);
+            }
+
+            setTimeout(() => {
+                mockAddBtn.textContent = oldText;
+                mockAddBtn.style.background = oldBg;
+                mockAddBtn.style.transform = 'scale(1)';
+            }, 1000);
+        });
+    }
+
+    // 20.3 Landing Page Mockup
+    const mockLpToggle = document.getElementById('mock-lp-toggle');
+    const mockLpToggleLbl = document.getElementById('mock-lp-toggle-lbl');
+    const mockLpPriceVal = document.getElementById('mock-lp-price-val');
+    const mockLpCta = document.getElementById('mock-lp-cta-btn');
+    let lpAnnualActive = false;
+
+    if (mockLpToggle) {
+        mockLpToggle.addEventListener('click', () => {
+            lpAnnualActive = !lpAnnualActive;
+            if (lpAnnualActive) {
+                if (mockLpToggleLbl) mockLpToggleLbl.textContent = 'Faturamento Anual (-20%)';
+                if (mockLpPriceVal) {
+                    mockLpPriceVal.textContent = 'R$ 39';
+                    mockLpPriceVal.style.transform = 'scale(1.15)';
+                    setTimeout(() => mockLpPriceVal.style.transform = 'scale(1)', 150);
+                }
+            } else {
+                if (mockLpToggleLbl) mockLpToggleLbl.textContent = 'Faturamento Mensal';
+                if (mockLpPriceVal) {
+                    mockLpPriceVal.textContent = 'R$ 49';
+                    mockLpPriceVal.style.transform = 'scale(1.15)';
+                    setTimeout(() => mockLpPriceVal.style.transform = 'scale(1)', 150);
+                }
+            }
+        });
+    }
+
+    if (mockLpCta) {
+        mockLpCta.addEventListener('click', () => {
+            const oldText = mockLpCta.textContent;
+            mockLpCta.textContent = 'Parabéns! 🚀';
+            mockLpCta.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                mockLpCta.textContent = oldText;
+                mockLpCta.style.transform = 'scale(1)';
+            }, 1200);
+        });
+    }
+
 });
