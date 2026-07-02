@@ -3199,3 +3199,22 @@ body[data-global-mode="discord"] .pill-active-bg {
     left: 0px !important;
 }
 
+/* --- 16. Marca d'Água do Logo de Fundo --- */
+.bg-watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-image: url('logo-bg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.025; /* Super discreto para não atrapalhar leitura */
+    pointer-events: none;
+    z-index: -2;
+    filter: invert(1);
+    mix-blend-mode: screen;
+}
+
