@@ -2605,7 +2605,7 @@ body[data-global-mode="discord"] .pill-active-bg {
 
 .blueprint-title {
     font-family: monospace;
-    font-size: 0.72rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
     letter-spacing: 0.05em;
 }
@@ -2706,7 +2706,7 @@ body[data-global-mode="discord"] .pill-active-bg {
 
 .bp-text-wrapper strong {
     font-family: var(--font-heading);
-    font-size: 0.82rem;
+    font-size: 0.98rem;
     color: var(--text-muted);
     font-weight: 700;
     transition: color 0.3s;
@@ -2714,7 +2714,7 @@ body[data-global-mode="discord"] .pill-active-bg {
 
 .bp-text-wrapper span {
     font-family: var(--font-body);
-    font-size: 0.65rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
     line-height: 1.35;
 }
