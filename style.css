@@ -3220,4 +3220,17 @@ body[data-global-mode="discord"] .pill-active-bg {
     }
 }
 
+@media (max-width: 768px) {
+    #sobre .container > div {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        text-align: center !important;
+    }
+    #sobre .container > div > div:first-child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 

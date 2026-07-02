@@ -532,8 +532,8 @@
         <section class="about-section section-padding mode-inicio-only" id="sobre">
             <div class="glow-bg glow-pricing" style="opacity: 0.05; top: 10%;"></div>
             <div class="container">
-                <!-- Split Grid: Text/Gauge on Left, Illustration on Right -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3.5rem; align-items: center; margin-bottom: 4.5rem; text-align: left;">
+                <!-- Split Grid: Text/Gauge on Left, Phone Illustration on Right (Proportions Adjusted to prevent whitespace) -->
+                <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3.5rem; align-items: center; margin-bottom: 4.5rem; text-align: left; max-width: 1000px; margin-left: auto; margin-right: auto;">
                     <div>
                         <span class="section-subtitle" style="display: inline-block; margin-bottom: 0.75rem;">Quem Somos</span>
                         <h2 class="section-title" style="font-size: 2.3rem; line-height: 1.2; margin-bottom: 1.25rem;">Alta Performance para sua Marca</h2>
@@ -604,72 +604,76 @@
                                 </div>
                                 
                                 <!-- Items List -->
-                                <div style="padding: 8px; display: flex; flex-direction: column; gap: 6px; box-sizing: border-box; background: #ffffff;">
-                                    <!-- Item 1 -->
-                                    <div style="display: flex; justify-content: space-between; background: #ffffff; border: 1px solid #f1f5f9; border-left: 3px solid #dc2626; border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                                        <div style="text-align: left; flex: 1;">
-                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Margherita Gourmet</h5>
-                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Molho fresco, mozzarella di bufala, manjericão e azeite trufado.</p>
-                                            <span style="font-size: 0.52rem; font-weight: 800; color: #dc2626;">R$ 42,90</span>
-                                        </div>
-                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
-                                            <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; overflow: hidden;">
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
-                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 3px; font-weight: 900;">1</span>
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
+                                <div style="padding: 8px; display: flex; flex-direction: column; gap: 8px; box-sizing: border-box; background: #ffffff;">
+                                    <!-- Item 1 (Pizza Margherita) -->
+                                    <div style="display: flex; gap: 8px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 8px; padding: 6px; align-items: center; box-sizing: border-box; box-shadow: 0 2px 5px rgba(0,0,0,0.03); position: relative; overflow: hidden;">
+                                        <!-- Product Image -->
+                                        <img src="pizza-margherita.jpg" alt="Pizza Margherita" style="width: 48px; height: 48px; border-radius: 6px; object-fit: cover; flex-shrink: 0;">
+                                        
+                                        <div style="text-align: left; flex: 1; min-width: 0;">
+                                            <h5 style="font-size: 0.52rem; font-weight: 800; color: #0f172a; margin: 0 0 1px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Margherita Gourmet</h5>
+                                            <p style="font-size: 0.35rem; color: #64748b; line-height: 1.2; margin: 0 0 3px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Molho fresco, mozzarella di bufala, manjericão e azeite trufado.</p>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2px;">
+                                                <span style="font-size: 0.52rem; font-weight: 900; color: #dc2626;">R$ 42,90</span>
+                                                <!-- Compact Quantity Add -->
+                                                <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; scale: 0.85; transform-origin: right center;">
+                                                    <button style="background: none; border: none; color: #475569; font-size: 0.42rem; padding: 1px 4px; cursor: pointer; font-weight: bold;">-</button>
+                                                    <span style="color: #0f172a; font-size: 0.42rem; padding: 1px 3px; font-weight: 900;">1</span>
+                                                    <button style="background: none; border: none; color: #475569; font-size: 0.42rem; padding: 1px 4px; cursor: pointer; font-weight: bold;">+</button>
+                                                </div>
                                             </div>
-                                            <button style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
                                         </div>
                                     </div>
                                     
-                                    <!-- Item 2 -->
-                                    <div style="display: flex; justify-content: space-between; background: #ffffff; border: 1px solid #f1f5f9; border-left: 3px solid #eab308; border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                                        <div style="text-align: left; flex: 1;">
-                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Pepperoni Speciale</h5>
-                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Pepperoni curado crocante, cebola roxa e orégano fresco.</p>
-                                            <span style="font-size: 0.52rem; font-weight: 800; color: #dc2626;">R$ 48,90</span>
-                                        </div>
-                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
-                                            <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; overflow: hidden;">
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
-                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 3px; font-weight: 900;">0</span>
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
+                                    <!-- Item 2 (Pizza Pepperoni) -->
+                                    <div style="display: flex; gap: 8px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 8px; padding: 6px; align-items: center; box-sizing: border-box; box-shadow: 0 2px 5px rgba(0,0,0,0.03); position: relative; overflow: hidden;">
+                                        <!-- Product Image -->
+                                        <img src="pizza-pepperoni.jpg" alt="Pizza Pepperoni" style="width: 48px; height: 48px; border-radius: 6px; object-fit: cover; flex-shrink: 0;">
+                                        
+                                        <div style="text-align: left; flex: 1; min-width: 0;">
+                                            <h5 style="font-size: 0.52rem; font-weight: 800; color: #0f172a; margin: 0 0 1px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Pepperoni Speciale</h5>
+                                            <p style="font-size: 0.35rem; color: #64748b; line-height: 1.2; margin: 0 0 3px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Pepperoni curado crocante, cebola roxa e orégano fresco.</p>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2px;">
+                                                <span style="font-size: 0.52rem; font-weight: 900; color: #dc2626;">R$ 48,90</span>
+                                                <!-- Compact Add Button -->
+                                                <button style="background: #eab308; color: #000; border: none; border-radius: 4px; padding: 2px 6px; font-size: 0.4rem; font-weight: bold; cursor: pointer; scale: 0.9; transform-origin: right center;">Adicionar</button>
                                             </div>
-                                            <button style="background: #eab308; color: #000000; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
                                         </div>
                                     </div>
 
-                                    <!-- Item 3 -->
-                                    <div style="display: flex; justify-content: space-between; background: #ffffff; border: 1px solid #f1f5f9; border-left: 3px solid #16a34a; border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                                        <div style="text-align: left; flex: 1;">
-                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Portuguesa Tradicional</h5>
-                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Presunto, mozzarella, ovos cozidos, cebola e azeitonas.</p>
-                                            <span style="font-size: 0.52rem; font-weight: 800; color: #dc2626;">R$ 46,90</span>
-                                        </div>
-                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
-                                            <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; overflow: hidden;">
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
-                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 3px; font-weight: 900;">1</span>
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
+                                    <!-- Item 3 (Pizza Portuguesa) -->
+                                    <div style="display: flex; gap: 8px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 8px; padding: 6px; align-items: center; box-sizing: border-box; box-shadow: 0 2px 5px rgba(0,0,0,0.03); position: relative; overflow: hidden;">
+                                        <!-- Product Image -->
+                                        <img src="pizza-portuguesa.jpg" alt="Pizza Portuguesa" style="width: 48px; height: 48px; border-radius: 6px; object-fit: cover; flex-shrink: 0;">
+                                        
+                                        <div style="text-align: left; flex: 1; min-width: 0;">
+                                            <h5 style="font-size: 0.52rem; font-weight: 800; color: #0f172a; margin: 0 0 1px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Portuguesa Tradicional</h5>
+                                            <p style="font-size: 0.35rem; color: #64748b; line-height: 1.2; margin: 0 0 3px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Presunto, mozzarella, ovos cozidos, cebola e azeitonas.</p>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2px;">
+                                                <span style="font-size: 0.52rem; font-weight: 900; color: #dc2626;">R$ 46,90</span>
+                                                <!-- Compact Quantity Add -->
+                                                <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; scale: 0.85; transform-origin: right center;">
+                                                    <button style="background: none; border: none; color: #475569; font-size: 0.42rem; padding: 1px 4px; cursor: pointer; font-weight: bold;">-</button>
+                                                    <span style="color: #0f172a; font-size: 0.42rem; padding: 1px 3px; font-weight: 900;">1</span>
+                                                    <button style="background: none; border: none; color: #475569; font-size: 0.42rem; padding: 1px 4px; cursor: pointer; font-weight: bold;">+</button>
+                                                </div>
                                             </div>
-                                            <button style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
                                         </div>
                                     </div>
                                     
                                     <!-- Item 4 (Bebida) -->
-                                    <div style="display: flex; justify-content: space-between; background: #ffffff; border: 1px solid #f1f5f9; border-left: 3px solid #dc2626; border-radius: 6px; padding: 6px; align-items: center; gap: 6px; box-sizing: border-box; margin-bottom: 50px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                                        <div style="text-align: left; flex: 1;">
-                                            <h5 style="font-size: 0.52rem; font-weight: bold; color: #0f172a; margin: 0 0 2px 0;">Coca-Cola Zero 2L</h5>
-                                            <p style="font-size: 0.38rem; color: #64748b; line-height: 1.25; margin: 0 0 4px 0;">Garrafa pet de 2 litros gelada sem açúcar.</p>
-                                            <span style="font-size: 0.52rem; font-weight: 800; color: #dc2626;">R$ 12,00</span>
-                                        </div>
-                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0;">
-                                            <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; overflow: hidden;">
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">-</button>
-                                                <span style="color: #0f172a; font-size: 0.45rem; padding: 2px 3px; font-weight: 900;">0</span>
-                                                <button style="background: none; border: none; color: #475569; font-size: 0.45rem; padding: 2px 5px; cursor: pointer; line-height: 1; font-weight: bold;">+</button>
+                                    <div style="display: flex; gap: 8px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 8px; padding: 6px; align-items: center; box-sizing: border-box; margin-bottom: 50px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); position: relative; overflow: hidden;">
+                                        <!-- Product Image -->
+                                        <img src="coca-cola.jpg" alt="Coca Cola" style="width: 48px; height: 48px; border-radius: 6px; object-fit: cover; flex-shrink: 0;">
+                                        
+                                        <div style="text-align: left; flex: 1; min-width: 0;">
+                                            <h5 style="font-size: 0.52rem; font-weight: 800; color: #0f172a; margin: 0 0 1px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Coca-Cola Zero 2L</h5>
+                                            <p style="font-size: 0.35rem; color: #64748b; line-height: 1.2; margin: 0 0 3px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Garrafa pet de 2 litros gelada sem açúcar.</p>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2px;">
+                                                <span style="font-size: 0.52rem; font-weight: 900; color: #dc2626;">R$ 12,00</span>
+                                                <!-- Compact Add Button -->
+                                                <button style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 2px 6px; font-size: 0.4rem; font-weight: bold; cursor: pointer; scale: 0.9; transform-origin: right center;">Adicionar</button>
                                             </div>
-                                            <button style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 2px 8px; font-size: 0.42rem; font-weight: bold; cursor: pointer; width: 100%;">Adicionar</button>
                                         </div>
                                     </div>
                                 </div>
