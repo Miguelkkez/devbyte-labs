@@ -358,44 +358,111 @@
                         </div>
                     </div>
                     
-                    <!-- VISUAL MODO DISCORD (Bot Profile Card) -->
+                    <!-- VISUAL MODO DISCORD (Discord Client Chat Mockup) -->
                     <div class="mode-discord-only">
-                        <div class="discord-profile-card glass" style="margin-top: 20px; animation: float-desktop 5s ease-in-out infinite;">
-                            <!-- Profile Banner -->
-                            <div class="profile-banner"></div>
-                            
-                            <!-- Avatar Container -->
-                            <div class="profile-avatar-container">
-                                <img src="logo.jpg" alt="DevByte Labs Logo" class="profile-avatar" style="object-fit: cover;">
-                                <div class="profile-status-dot"></div>
+                        <div class="discord-client-mockup glass" style="margin-top: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.65); animation: float-desktop 5s ease-in-out infinite; background: #313338; display: flex; height: 320px; font-family: sans-serif; text-align: left;">
+                            <!-- Sidebar dos Canais (Discord Server Sidebar) -->
+                            <div style="width: 110px; background: #2b2d31; display: flex; flex-direction: column; flex-shrink: 0; border-right: 1px solid rgba(0,0,0,0.2);">
+                                <!-- Server Header -->
+                                <div style="height: 36px; padding: 0 10px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.15); box-sizing: border-box;">
+                                    <span style="font-size: 0.62rem; font-weight: bold; color: #fff;">DevByte Labs</span>
+                                    <svg viewBox="0 0 24 24" width="10" height="10" stroke="#949ba4" stroke-width="2.5" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </div>
+                                <!-- Channels List -->
+                                <div style="padding: 10px 4px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto;">
+                                    <div>
+                                        <div style="font-size: 0.42rem; font-weight: 800; color: #949ba4; text-transform: uppercase; padding: 0 6px; margin-bottom: 4px; letter-spacing: 0.02em;">INFORMAÇÕES</div>
+                                        <div style="display: flex; flex-direction: column; gap: 2px;">
+                                            <div style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #949ba4;">
+                                                <span style="font-size: 0.55rem; color: #80848e;">#</span> regras
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #949ba4;">
+                                                <span style="font-size: 0.55rem; color: #80848e;">#</span> anúncios
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.42rem; font-weight: 800; color: #949ba4; text-transform: uppercase; padding: 0 6px; margin-bottom: 4px; letter-spacing: 0.02em;">BOTS &amp; SUPORTE</div>
+                                        <div style="display: flex; flex-direction: column; gap: 2px;">
+                                            <div style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #949ba4;">
+                                                <span style="font-size: 0.55rem; color: #80848e;">#</span> chat-ia
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; font-size: 0.52rem; color: #fff; background: rgba(255,255,255,0.06); font-weight: 600;">
+                                                <span style="font-size: 0.55rem; color: #dbdee1;">#</span> suporte-leads
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             
-                            <!-- Profile Details -->
-                            <div class="profile-details-body">
-                                <div class="profile-name-row">
-                                    <h3>DevByte Bot</h3>
-                                    <span class="profile-bot-tag">BOT</span>
-                                </div>
-                                <span class="profile-username">devbyte_bot</span>
-                                
-                                <div class="profile-divider"></div>
-                                
-                                <div class="profile-section">
-                                    <h4>Sobre Mim</h4>
-                                    <p style="line-height: 1.4; margin: 0;">🛡️ Seu parceiro para cuidar do servidor! Moderação, tickets, segurança, comunidade e muito mais em um só bot.<br><br>💬 Entre na DevByte: <a href="https://discord.gg/bAkkPwNGbq" target="_blank" style="color: #00a8fc; text-decoration: none; font-weight: 500;">discord.gg/bAkkPwNGbq</a></p>
-                                </div>
-                                
-                                <div class="profile-section">
-                                    <h4>Membro desde</h4>
-                                    <p>30 de jun. de 2026</p>
+                            <!-- Area Principal do Chat -->
+                            <div style="flex: 1; display: flex; flex-direction: column; background: #313338; box-sizing: border-box;">
+                                <!-- Chat Header -->
+                                <div style="height: 36px; padding: 0 12px; display: flex; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.15); box-sizing: border-box; justify-content: space-between; flex-shrink: 0;">
+                                    <div style="display: flex; align-items: center; gap: 6px;">
+                                        <span style="font-size: 0.8rem; color: #80848e; font-weight: 300;">#</span>
+                                        <span style="font-size: 0.65rem; font-weight: bold; color: #fff;">suporte-leads</span>
+                                    </div>
+                                    <div style="display: flex; gap: 10px; align-items: center;">
+                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="#b5bac1" stroke-width="2" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="#b5bac1" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                    </div>
                                 </div>
                                 
-                                <div class="profile-section">
-                                    <h4>Cargos</h4>
-                                    <div class="profile-roles-grid">
-                                        <span class="role-badge" style="--badge-color: #5865F2;">🤖 Bot Integrado</span>
-                                        <span class="role-badge" style="--badge-color: #10b981;">🛡️ Auto-Moderação</span>
-                                        <span class="role-badge" style="--badge-color: #f59e0b;">💳 Gateway VIP</span>
+                                <!-- Mensagens (Scrollable Chat area) -->
+                                <div style="flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; box-sizing: border-box;">
+                                    <!-- Mensagem 1 (User) -->
+                                    <div style="display: flex; gap: 8px;">
+                                        <!-- User Avatar -->
+                                        <div style="width: 24px; height: 24px; border-radius: 50%; background: #5865F2; display: flex; align-items: center; justify-content: center; font-size: 0.45rem; color: #fff; font-weight: bold; flex-shrink: 0;">M</div>
+                                        <div style="display: flex; flex-direction: column; text-align: left;">
+                                            <div style="display: flex; align-items: baseline; gap: 6px;">
+                                                <span style="font-size: 0.62rem; color: #f2f3f5; font-weight: 600;">Miguel</span>
+                                                <span style="font-size: 0.45rem; color: #949ba4;">hoje às 00:41</span>
+                                            </div>
+                                            <span style="font-size: 0.62rem; color: #dbdee1; margin-top: 2px;">!orcamento site corporativo</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Mensagem 2 (Bot Reply) -->
+                                    <div style="display: flex; gap: 8px;">
+                                        <!-- Bot Avatar -->
+                                        <img src="logo.jpg" alt="DevByte Logo" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+                                        <div style="display: flex; flex-direction: column; text-align: left; flex: 1;">
+                                            <div style="display: flex; align-items: center; gap: 6px;">
+                                                <span style="font-size: 0.62rem; color: #23a55a; font-weight: 600;">DevByte Bot</span>
+                                                <span style="background: var(--discord-blurple); color: #fff; font-size: 0.38rem; font-weight: 800; padding: 1px 3px; border-radius: 2px; text-transform: uppercase; font-family: var(--font-body); display: inline-flex; align-items: center; gap: 1px; height: 10px; box-sizing: border-box; line-height: 1;">
+                                                    <svg viewBox="0 0 24 24" width="5" height="5" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>BOT
+                                                </span>
+                                                <span style="font-size: 0.45rem; color: #949ba4;">hoje às 00:41</span>
+                                            </div>
+                                            <span style="font-size: 0.62rem; color: #dbdee1; margin-top: 2px;">Processando solicitação... Aqui está a estimativa para o seu projeto:</span>
+                                            
+                                            <!-- Discord Embed Card -->
+                                            <div style="background: #2b2d31; border-left: 3px solid var(--secondary); border-radius: 4px; padding: 10px; margin-top: 6px; display: flex; flex-direction: column; gap: 6px; max-width: 180px; box-sizing: border-box;">
+                                                <div style="font-size: 0.62rem; font-weight: bold; color: #fff;">Simulação de Site Corporativo</div>
+                                                <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.52rem; color: #b5bac1;">
+                                                    <div><strong style="color: #dbdee1;">Preço Base:</strong> R$ 1.499</div>
+                                                    <div><strong style="color: #dbdee1;">Prazo Estimado:</strong> 10-15 dias</div>
+                                                    <div><strong style="color: #dbdee1;">Adicionais:</strong> SEO e Painel Administrativo inclusos</div>
+                                                </div>
+                                                <div style="font-size: 0.45rem; color: #949ba4; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 4px; display: flex; align-items: center; gap: 3px;">
+                                                    <img src="logo.jpg" style="width: 8px; height: 8px; border-radius: 50%;" alt="">
+                                                    DevByte Labs • Soluções Inteligentes
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Fake Input Bar -->
+                                <div style="padding: 10px; flex-shrink: 0; background: #313338;">
+                                    <div style="background: #383a40; border-radius: 6px; padding: 6px 10px; display: flex; align-items: center; justify-content: space-between; font-size: 0.58rem; color: #6d6f78;">
+                                        <span>Conversar em #suporte-leads</span>
+                                        <div style="display: flex; gap: 6px; align-items: center;">
+                                            <svg viewBox="0 0 24 24" width="10" height="10" stroke="#b5bac1" stroke-width="2" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                            <svg viewBox="0 0 24 24" width="10" height="10" stroke="#b5bac1" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"></path></svg>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
