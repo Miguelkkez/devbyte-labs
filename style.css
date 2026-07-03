@@ -3300,4 +3300,41 @@ body[data-global-mode="discord"] .pill-active-bg {
     display: none; /* Chrome/Safari */
 }
 
+/* Escalonamento responsivo para os elementos 3D da prancheta do Discord */
+@media (max-width: 992px) {
+    .discord-design-board-inner {
+        transform: scale(0.85);
+    }
+}
+@media (max-width: 768px) {
+    .discord-design-board-inner {
+        transform: scale(0.65);
+    }
+    .discord-design-board {
+        height: 320px !important;
+        margin-top: 0px !important;
+        margin-bottom: -30px !important;
+    }
+}
+@media (max-width: 480px) {
+    .discord-design-board-inner {
+        transform: scale(0.48);
+    }
+    .discord-design-board {
+        height: 240px !important;
+        margin-top: -30px !important;
+        margin-bottom: -80px !important;
+    }
+}
+@media (max-width: 380px) {
+    .discord-design-board-inner {
+        transform: scale(0.4);
+    }
+    .discord-design-board {
+        height: 200px !important;
+        margin-top: -40px !important;
+        margin-bottom: -110px !important;
+    }
+}
+
 
