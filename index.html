@@ -1307,11 +1307,11 @@
                         <p class="section-lead">Responda a este teste rápido e veja visualmente a estrutura que melhor atende às suas necessidades.</p>
                     </div>
                     <div class="mode-discord-only">
-                        <h2 class="section-title">Fale agora mesmo com o nosso bot do Discord</h2>
-                        <p class="section-lead">Clique nos comandos sugeridos para simular respostas automáticas do nosso assistente virtual.</p>
+                        <h2 class="section-title">Painel de Controle do Bot</h2>
+                        <p class="section-lead">Veja como funciona o painel exclusivo que você recebe. Ative módulos, monitore métricas e configure seu servidor em tempo real.</p>
                     </div>
                 </div>
-                
+
                 <!-- WEB DEMO: Comparador de Planos Dinâmico (Passo a Passo + Blueprint Visual) -->
                 <div class="mode-web-only">
                     <div class="comparator-container glass">
@@ -1484,130 +1484,220 @@
                     </div>
                 </div>
                 
-                <!-- DISCORD DEMO: Simulador do Servidor Real DevByte Labs -->
-                <div class="mode-discord-only">
-                    <div class="discord-app-mockup glass">
-                        <!-- Server bar -->
-                        <div class="discord-servers-bar">
-                            <div class="discord-server-icon active">
-                                <span class="server-text-logo">DB</span>
-                                <div class="active-indicator"></div>
+                <!-- BOT CONTROL PANEL DASHBOARD (Discord Mode) -->
+                <div class="mode-discord-only" id="bot-dashboard">
+                    <div class="bot-dashboard-grid">
+
+                        <!-- LEFT: Sidebar nav + module toggles -->
+                        <div class="bd-sidebar glass">
+                            <div class="bd-sidebar-header">
+                                <img src="logo.jpg" alt="DevByte" style="width:32px;height:32px;border-radius:8px;object-fit:cover;">
+                                <div>
+                                    <div style="font-size:0.82rem;font-weight:800;color:#fff;">DevByte Business</div>
+                                    <div style="font-size:0.6rem;color:var(--secondary);font-weight:700;letter-spacing:0.05em;">PAINEL DE CONTROLE</div>
+                                </div>
+                                <span class="bd-online-dot"></span>
                             </div>
-                            <div class="discord-server-icon"><span>🎮</span></div>
-                            <div class="discord-server-icon"><span>🚀</span></div>
-                            <div class="discord-server-add"><span>+</span></div>
-                        </div>
-                        
-                        <!-- Channels bar -->
-                        <div class="discord-channels-bar">
-                            <a href="https://discord.gg/BtmFUf5tXK" target="_blank" class="server-name-header" style="text-decoration: none; color: inherit; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;">
-                                <h4>DevByte Labs</h4>
-                                <span style="background: var(--discord-blurple); color: #fff; font-size: 0.62rem; padding: 3px 6px; border-radius: 3px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block;">Entrar 🚀</span>
-                            </a>
-                            <div class="channels-list">
-                                <!-- INICIO -->
-                                <div class="category-header">👋 | INICIO</div>
-                                <div class="channel-item active" data-channel="inicio">
-                                    <span class="channel-icon-emoji">👋</span> · inicio
-                                </div>
-                                <div class="channel-item" data-channel="regras">
-                                    <span class="channel-icon-emoji">📜</span> · regras
-                                </div>
-                                <div class="channel-item" data-channel="novidades">
-                                    <span class="channel-icon-emoji">📢</span> · novidades
-                                </div>
-                                <div class="channel-item" data-channel="status">
-                                    <span class="channel-icon-emoji">📊</span> · status
-                                </div>
-                                
-                                <!-- LOJA -->
-                                <div class="category-header">📦 | LOJA</div>
-                                <div class="channel-item" data-channel="servicos">
-                                    <span class="channel-icon-emoji">🛠</span> · servicos
-                                </div>
-                                <div class="channel-item" data-channel="comprar">
-                                    <span class="channel-icon-emoji">🛒</span> · comprar
-                                </div>
-                                
-                                <!-- ATENDIMENTO -->
-                                <div class="category-header">🎫 | ATENDIMENTO</div>
-                                <div class="channel-item" data-channel="atendimento">
-                                    <span class="channel-icon-emoji">🎫</span> · atendimento
-                                </div>
-                                <div class="channel-item" data-channel="duvidas">
-                                    <span class="channel-icon-emoji">❓</span> · duvidas
-                                </div>
-                            </div>
-                            <div class="user-status-footer">
-                                <div class="user-avatar-small bg-blue">TU</div>
-                                <div class="user-details">
-                                    <span class="user-name-small">Visitante</span>
-                                    <span class="user-status-text">#0001</span>
-                                </div>
-                                <div class="user-controls">🎤 🎧 ⚙️</div>
+
+                            <nav class="bd-nav">
+                                <button class="bd-nav-btn active" data-panel="overview">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                                    Visão Geral
+                                </button>
+                                <button class="bd-nav-btn" data-panel="modules">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                    Módulos
+                                </button>
+                                <button class="bd-nav-btn" data-panel="logs">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                    Logs ao Vivo
+                                </button>
+                                <button class="bd-nav-btn" data-panel="embeds">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                                    Embed Builder
+                                </button>
+                            </nav>
+
+                            <div class="bd-status-card">
+                                <div style="font-size:0.6rem;font-weight:800;color:#949ba4;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Status do Sistema</div>
+                                <div class="bd-status-row"><span class="bd-dot green"></span><span>API Discord</span><span class="bd-val green">Online</span></div>
+                                <div class="bd-status-row"><span class="bd-dot green"></span><span>Gemini IA</span><span class="bd-val green">Ativo</span></div>
+                                <div class="bd-status-row"><span class="bd-dot cyan"></span><span>Latência</span><span class="bd-val cyan" id="bd-latency">32ms</span></div>
+                                <div class="bd-status-row"><span class="bd-dot purple"></span><span>Uptime</span><span class="bd-val purple">99.97%</span></div>
                             </div>
                         </div>
-                        
-                        <!-- Chat Area -->
-                        <div class="discord-chat-container">
-                            <div class="chat-header" style="justify-content: space-between; display: flex; width: 100%; align-items: center; padding-right: 1rem; box-sizing: border-box;">
-                                <div style="display: flex; align-items: center;">
-                                    <span class="hash-header">#</span>
-                                    <span class="channel-name-header" id="current-channel-name">👋 · inicio</span>
-                                    <span class="divider-header">|</span>
-                                    <span class="channel-desc-header" id="current-channel-desc">Início da nossa comunidade</span>
-                                </div>
-                                <a href="https://discord.gg/BtmFUf5tXK" target="_blank" class="discord-btn discord-btn-primary" style="text-decoration: none; font-size: 0.72rem; padding: 0.35rem 0.8rem; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; background: var(--discord-blurple); box-shadow: 0 4px 12px rgba(88, 101, 242, 0.25); color: #fff;">
-                                    💬 Entrar no Servidor Real
-                                </a>
-                            </div>
-                            
-                            <div class="chat-messages-area" id="discord-messages">
-                                <!-- Default Message loaded: #inicio Welcome Embed -->
-                                <div class="discord-message-group">
-                                    <img src="logo.jpg" alt="DevByte Labs Logo" class="user-avatar-small" style="object-fit: cover;">
-                                    <div class="message-content-wrapper">
-                                        <div class="message-meta">
-                                            <span class="bot-author-name">DevByte Business</span>
-                                            <span class="bot-tag app-tag">APP</span>
-                                            <span class="message-timestamp">Hoje às 15:13</span>
+
+                        <!-- RIGHT: Main panel area -->
+                        <div class="bd-main">
+
+                            <!-- PANEL: Overview -->
+                            <div class="bd-panel active" id="bd-panel-overview">
+                                <div class="bd-panel-title">Visão Geral do Servidor</div>
+
+                                <div class="bd-metrics-row">
+                                    <div class="bd-metric-card">
+                                        <div class="bd-metric-icon" style="background:rgba(0,242,254,0.08);border-color:rgba(0,242,254,0.15);">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                                         </div>
-                                        <div class="discord-embed border-purple">
-                                            <div class="embed-subheader">DevByte Labs > Início > Boas-vindas</div>
-                                            <div class="embed-title" style="font-size: 1.4rem; font-weight: 800; margin: 0.25rem 0; color: #fff;">Boas-vindas ao DevByte Labs!</div>
-                                            <div class="embed-desc" style="color: #b9bbbe; font-size: 0.82rem; margin-bottom: 0.85rem; line-height: 1.45;">Aqui você encontra os melhores robôs para moderação, economia e IA do Discord, além de soluções completas de desenvolvimento para o seu negócio.</div>
-                                            
-                                            <div class="embed-fields" style="display: flex; flex-direction: column; gap: 0.75rem;">
-                                                <div class="embed-field">
-                                                    <div class="field-name" style="color: #fff; font-size: 0.85rem; display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.25rem;">Como começar?</div>
-                                                    <div class="field-value" style="color: #b9bbbe; font-size: 0.8rem; line-height: 1.45; padding-left: 1.25rem;">Navegue pelos canais do servidor na barra lateral esquerda! Visite o canal #servicos ou compre um plano em #comprar.</div>
-                                                </div>
-                                                <div class="embed-field">
-                                                    <div class="field-name" style="color: #fff; font-size: 0.85rem; display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.25rem;">Servidor Real</div>
-                                                    <div class="field-value" style="color: #b9bbbe; font-size: 0.8rem; line-height: 1.45; padding-left: 1.25rem;">Quer fazer parte da nossa comunidade oficial e acompanhar nossos projetos? Clique no botão abaixo!</div>
-                                                </div>
+                                        <div class="bd-metric-val" id="bd-members">1,248</div>
+                                        <div class="bd-metric-label">Membros</div>
+                                    </div>
+                                    <div class="bd-metric-card">
+                                        <div class="bd-metric-icon" style="background:rgba(168,85,247,0.08);border-color:rgba(168,85,247,0.15);">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                        </div>
+                                        <div class="bd-metric-val" id="bd-msgs">4,891</div>
+                                        <div class="bd-metric-label">Mensagens/dia</div>
+                                    </div>
+                                    <div class="bd-metric-card">
+                                        <div class="bd-metric-icon" style="background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.15);">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                        </div>
+                                        <div class="bd-metric-val">99.97%</div>
+                                        <div class="bd-metric-label">Uptime</div>
+                                    </div>
+                                    <div class="bd-metric-card">
+                                        <div class="bd-metric-icon" style="background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.15);">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                                        </div>
+                                        <div class="bd-metric-val">24/7</div>
+                                        <div class="bd-metric-label">Operação</div>
+                                    </div>
+                                </div>
+
+                                <!-- Activity Chart -->
+                                <div class="bd-chart-card">
+                                    <div class="bd-chart-header">
+                                        <span>Atividade da Semana</span>
+                                        <span style="font-size:0.62rem;color:var(--secondary);font-weight:700;">AO VIVO</span>
+                                    </div>
+                                    <div class="bd-chart-bars" id="bd-chart">
+                                        <div class="bd-bar-col"><div class="bd-bar" style="height:55%"></div><span>Seg</span></div>
+                                        <div class="bd-bar-col"><div class="bd-bar" style="height:80%"></div><span>Ter</span></div>
+                                        <div class="bd-bar-col"><div class="bd-bar" style="height:62%"></div><span>Qua</span></div>
+                                        <div class="bd-bar-col"><div class="bd-bar" style="height:90%"></div><span>Qui</span></div>
+                                        <div class="bd-bar-col"><div class="bd-bar" style="height:74%"></div><span>Sex</span></div>
+                                        <div class="bd-bar-col"><div class="bd-bar active-bar" style="height:45%"></div><span>Sáb</span></div>
+                                        <div class="bd-bar-col"><div class="bd-bar" style="height:30%"></div><span>Dom</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PANEL: Modules -->
+                            <div class="bd-panel" id="bd-panel-modules">
+                                <div class="bd-panel-title">Módulos do Bot</div>
+                                <div class="bd-modules-grid">
+                                    <div class="bd-module-card" data-module="ia">
+                                        <div class="bd-module-top">
+                                            <div class="bd-module-icon" style="background:rgba(0,242,254,0.08);border-color:rgba(0,242,254,0.15);">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
                                             </div>
-                                            
-                                            <div class="discord-btn-row" style="margin-top: 0.85rem;">
-                                                <a href="https://discord.gg/BtmFUf5tXK" target="_blank" class="discord-btn discord-btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; padding: 0.35rem 0.8rem; border-radius: 4px; color: #fff; background: var(--discord-blurple); box-shadow: 0 4px 12px rgba(88, 101, 242, 0.25);">
-                                                    💬 Entrar no Servidor Real
-                                                </a>
+                                            <div class="bd-toggle active" data-toggle="ia">
+                                                <span class="bd-toggle-knob"></span>
                                             </div>
+                                        </div>
+                                        <div class="bd-module-name">Assistente IA Gemini</div>
+                                        <div class="bd-module-desc">Respostas automáticas inteligentes com contexto do servidor</div>
+                                        <div class="bd-module-badge green">Ativo</div>
+                                    </div>
+                                    <div class="bd-module-card" data-module="raid">
+                                        <div class="bd-module-top">
+                                            <div class="bd-module-icon" style="background:rgba(239,68,68,0.08);border-color:rgba(239,68,68,0.15);">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                            </div>
+                                            <div class="bd-toggle active" data-toggle="raid">
+                                                <span class="bd-toggle-knob"></span>
+                                            </div>
+                                        </div>
+                                        <div class="bd-module-name">Anti-Raid</div>
+                                        <div class="bd-module-desc">Blindagem contra invasões, bots e spam automáticos</div>
+                                        <div class="bd-module-badge green">Ativo</div>
+                                    </div>
+                                    <div class="bd-module-card" data-module="tickets">
+                                        <div class="bd-module-top">
+                                            <div class="bd-module-icon" style="background:rgba(168,85,247,0.08);border-color:rgba(168,85,247,0.15);">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                                            </div>
+                                            <div class="bd-toggle" data-toggle="tickets">
+                                                <span class="bd-toggle-knob"></span>
+                                            </div>
+                                        </div>
+                                        <div class="bd-module-name">Sistema de Tickets</div>
+                                        <div class="bd-module-desc">Atendimento organizado com canais privados automáticos</div>
+                                        <div class="bd-module-badge gray">Inativo</div>
+                                    </div>
+                                    <div class="bd-module-card" data-module="logs">
+                                        <div class="bd-module-top">
+                                            <div class="bd-module-icon" style="background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.15);">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                                            </div>
+                                            <div class="bd-toggle active" data-toggle="logs">
+                                                <span class="bd-toggle-knob"></span>
+                                            </div>
+                                        </div>
+                                        <div class="bd-module-name">Logs de Auditoria</div>
+                                        <div class="bd-module-desc">Registro completo de ações, entradas e saídas de membros</div>
+                                        <div class="bd-module-badge green">Ativo</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PANEL: Logs -->
+                            <div class="bd-panel" id="bd-panel-logs">
+                                <div class="bd-panel-title">Feed de Atividade <span style="font-size:0.6rem;color:var(--secondary);font-weight:700;margin-left:8px;letter-spacing:0.06em;">AO VIVO</span></div>
+                                <div class="bd-log-terminal" id="bd-log-terminal">
+                                    <!-- populated by JS -->
+                                </div>
+                            </div>
+
+                            <!-- PANEL: Embed Builder -->
+                            <div class="bd-panel" id="bd-panel-embeds">
+                                <div class="bd-panel-title">Construtor de Embed</div>
+                                <div class="bd-embed-builder">
+                                    <div class="bd-embed-inputs">
+                                        <div class="bd-form-group">
+                                            <label class="bd-label">Título</label>
+                                            <input class="bd-input" id="bd-embed-title" type="text" value="Bem-vindo ao Servidor!" placeholder="Título do embed">
+                                        </div>
+                                        <div class="bd-form-group">
+                                            <label class="bd-label">Descrição</label>
+                                            <textarea class="bd-input" id="bd-embed-desc" rows="3" placeholder="Descrição...">Este é um servidor gerenciado pelo DevByte Business — IA integrada, anti-raid ativo e suporte 24/7.</textarea>
+                                        </div>
+                                        <div class="bd-form-group">
+                                            <label class="bd-label">Cor da borda</label>
+                                            <div class="bd-color-row">
+                                                <button class="bd-color-btn active" data-color="cyan" style="background:var(--secondary);"></button>
+                                                <button class="bd-color-btn" data-color="purple" style="background:#a855f7;"></button>
+                                                <button class="bd-color-btn" data-color="green" style="background:#10b981;"></button>
+                                                <button class="bd-color-btn" data-color="red" style="background:#ef4444;"></button>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary" id="bd-send-embed" style="width:100%;justify-content:center;font-size:0.82rem;padding:10px 0;">Enviar para o Canal</button>
+                                    </div>
+                                    <div class="bd-embed-preview-area">
+                                        <div class="bd-label" style="margin-bottom:8px;">Preview</div>
+                                        <div class="bd-embed-preview" id="bd-embed-preview">
+                                            <div class="bd-embed-bar" id="bd-embed-bar" style="background:var(--secondary);"></div>
+                                            <div class="bd-embed-content">
+                                                <div class="bd-embed-preview-title" id="bd-embed-preview-title">Bem-vindo ao Servidor!</div>
+                                                <div class="bd-embed-preview-desc" id="bd-embed-preview-desc">Este é um servidor gerenciado pelo DevByte Business — IA integrada, anti-raid ativo e suporte 24/7.</div>
+                                                <div style="margin-top:10px;font-size:0.6rem;color:rgba(255,255,255,0.25);font-weight:600;">DevByte Business · Hoje</div>
+                                            </div>
+                                        </div>
+                                        <div class="bd-sent-confirmation" id="bd-sent-confirmation" style="display:none;">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                            Embed enviado com sucesso!
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="discord-input-bar">
-                                <div class="plus-icon-chat">+</div>
-                                <input type="text" id="discord-input" placeholder="Conversar em # 👋 · inicio" disabled>
-                                <div class="gif-emoji-panel">GIF 🎁 🙂</div>
-                            </div>
-                        </div>
-                    </div>
+
+                        </div><!-- end bd-main -->
+                    </div><!-- end bd-grid -->
                 </div>
             </div>
         </section>
+
 
         <!-- Project Budget Calculator Section (Fully Separated Web vs Discord) -->
         <section class="calculator-section section-padding" id="orcamento">
