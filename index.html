@@ -43,10 +43,24 @@
                     <li><a href="#orcamento" class="nav-link">Orçamento</a></li>
                     <li><a href="#precos" class="nav-link">Planos</a></li>
                     <li><a href="#contato" class="nav-link">Contato</a></li>
+                    <!-- Redes Sociais no Menu Mobile -->
+                    <li class="mobile-only-socials" style="display: none; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; margin-top: 1.5rem; width: 100%;">
+                        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.75rem; letter-spacing: 0.1em; font-weight: bold;">Nossas Redes</span>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="https://www.instagram.com/devbytelabs/?hl=pt-br" target="_blank" style="padding: 8px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; color: #fff; text-decoration: none; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 6px;">IG</a>
+                            <span style="padding: 8px 16px; background: transparent; border: 1px dashed rgba(255,255,255,0.05); border-radius: 6px; color: rgba(255,255,255,0.25); font-size: 0.8rem; font-weight: bold; cursor: not-allowed; display: flex; align-items: center; gap: 6px;" title="Facebook (Em breve)">FB (Em breve)</span>
+                        </div>
+                    </li>
                 </ul>
             </nav>
             
             <div class="nav-actions">
+                <!-- Redes Sociais no Topo (Oculto em celular, visível em desktop) -->
+                <div class="header-socials" style="display: flex; gap: 8px; align-items: center; margin-right: 5px;">
+                    <a href="https://www.instagram.com/devbytelabs/?hl=pt-br" target="_blank" class="header-social-link" title="Instagram" style="width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; font-size: 0.68rem; font-weight: bold; transition: all 0.2s;" onmouseover="this.style.color='#fff'; this.style.borderColor='rgba(255,255,255,0.2)';" onmouseout="this.style.color='var(--text-muted)'; this.style.borderColor='rgba(255,255,255,0.08)';">IG</a>
+                    <span class="header-social-link" style="width: 28px; height: 28px; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.05); background: transparent; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.2); font-size: 0.68rem; font-weight: bold; cursor: not-allowed;" title="Facebook (Em breve)">FB</span>
+                </div>
+
                 <!-- Toggle Deslizante Moderno (3 Páginas em 1) -->
                 <div class="mode-pill-toggle" id="mode-selector-pill">
                     <button class="mode-pill-btn active" data-mode="inicio">Home</button>
@@ -1928,9 +1942,9 @@
             <div class="footer-links">
                 <h4>Redes</h4>
                 <div class="social-icons">
-                    <a href="#" class="social-link" aria-label="Instagram">IG</a>
-                    <a href="#" class="social-link" aria-label="Discord">DC</a>
-                    <a href="#" class="social-link" aria-label="GitHub">GH</a>
+                    <a href="https://www.instagram.com/devbytelabs/?hl=pt-br" target="_blank" class="social-link" aria-label="Instagram">IG</a>
+                    <a href="https://discord.gg/BtmFUf5tXK" target="_blank" class="social-link" aria-label="Discord">DC</a>
+                    <span class="social-link" style="opacity: 0.35; cursor: not-allowed; display: inline-flex; align-items: center; justify-content: center;" title="Facebook (Em breve)">FB</span>
                 </div>
             </div>
         </div>

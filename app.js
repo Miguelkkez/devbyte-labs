@@ -120,9 +120,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         navLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
                 menuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
+
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const targetId = href.substring(1);
+                    const hiddenSections = ['servicos', 'demonstracao', 'orcamento', 'precos'];
+                    
+                    if (document.body.dataset.globalMode === 'inicio' && hiddenSections.includes(targetId)) {
+                        e.preventDefault();
+                        
+                        const webBtn = document.querySelector('.mode-pill-btn[data-mode="web"]');
+                        if (webBtn) {
+                            webBtn.click();
+                            
+                            setTimeout(() => {
+                                const targetEl = document.getElementById(targetId);
+                                if (targetEl) {
+                                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }, 50);
+                        }
+                    }
+                }
             });
         });
     }

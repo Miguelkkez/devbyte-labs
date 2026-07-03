@@ -3337,4 +3337,14 @@ body[data-global-mode="discord"] .pill-active-bg {
     }
 }
 
+/* Controle de visibilidade das redes sociais do cabeçalho e menu mobile */
+@media (max-width: 768px) {
+    .header-socials {
+        display: none !important;
+    }
+    .mobile-only-socials {
+        display: block !important;
+    }
+}
+
 
