@@ -1538,4 +1538,136 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* ==========================================
+       10. Controle do Modal de Prévia dos Mockups Web
+       ========================================== */
+    const previewModal = document.getElementById('preview-modal');
+    const modalTitle = document.getElementById('modal-project-title');
+    const modalTags = document.getElementById('modal-project-tags');
+    const modalBrowserUrl = document.getElementById('modal-browser-url');
+    const modalImg = document.getElementById('modal-project-img');
+    const modalDesc = document.getElementById('modal-project-desc');
+    const btnPrev = document.getElementById('modal-btn-prev');
+    const btnNext = document.getElementById('modal-btn-next');
+
+    let currentProjectIndex = 0;
+
+    const projectsData = [
+        {
+            title: "Dashboard de Alta Performance",
+            url: "https://analise.devbytelabs.com.br/dashboard",
+            img: "dashboard-mockup.jpg",
+            desc: "Painel de controle corporativo de alta performance integrado a APIs em tempo real, bancos de dados relotados e métricas interativas.",
+            tags: ["React", "Node.js", "Chart.js", "PostgreSQL"],
+            tagColors: ["rgba(0, 242, 254, 0.15)", "rgba(59, 130, 246, 0.15)", "rgba(168, 85, 247, 0.15)", "rgba(16, 185, 129, 0.15)"],
+            tagTextColors: ["var(--secondary)", "#93c5fd", "#d8b4fe", "#34d399"]
+        },
+        {
+            title: "Lojas Virtuais & E-commerce",
+            url: "https://aeterna.devbytelabs.com.br/headphone-orbital",
+            img: "ecommerce-mockup.jpg",
+            desc: "Plataforma de e-commerce otimizada para conversão, carrinho reativo, catálogo de alta velocidade e checkout integrado com Pix/Cartão.",
+            tags: ["Next.js", "TailwindCSS", "Stripe API", "Vercel"],
+            tagColors: ["rgba(255, 255, 255, 0.08)", "rgba(59, 130, 246, 0.15)", "rgba(239, 68, 68, 0.15)", "rgba(16, 185, 129, 0.15)"],
+            tagTextColors: ["#fff", "#93c5fd", "#fca5a5", "#34d399"]
+        },
+        {
+            title: "Landing Pages & Sites de Conversão",
+            url: "https://nexus.devbytelabs.com.br/scale-your-stack",
+            img: "landing-mockup.jpg",
+            desc: "Página de conversão moderna de alta velocidade focada em tráfego pago, SEO local e design visual premium para capturar leads de vendas.",
+            tags: ["HTML5", "Vanilla CSS", "JavaScript", "SEO Local"],
+            tagColors: ["rgba(249, 115, 22, 0.15)", "rgba(59, 130, 246, 0.15)", "rgba(234, 179, 8, 0.15)", "rgba(168, 85, 247, 0.15)"],
+            tagTextColors: ["#fdba74", "#93c5fd", "#fde047", "#d8b4fe"]
+        }
+    ];
+
+    window.openPreviewModal = function(index) {
+        currentProjectIndex = index - 1;
+        updateModalContent();
+        
+        if (previewModal) {
+            previewModal.style.display = 'flex';
+            previewModal.offsetHeight; // Force reflow
+            previewModal.style.opacity = '1';
+            previewModal.querySelector('.preview-modal-content').style.transform = 'scale(1)';
+        }
+        document.body.style.overflow = 'hidden';
+    };
+
+    window.closePreviewModal = function() {
+        if (previewModal) {
+            previewModal.style.opacity = '0';
+            previewModal.querySelector('.preview-modal-content').style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                previewModal.style.display = 'none';
+            }, 300);
+        }
+        document.body.style.overflow = '';
+    };
+
+    function updateModalContent() {
+        const project = projectsData[currentProjectIndex];
+        if (!project) return;
+
+        modalTitle.textContent = project.title;
+        modalBrowserUrl.textContent = project.url;
+        modalImg.src = project.img;
+        modalDesc.textContent = project.desc;
+
+        modalTags.innerHTML = '';
+        project.tags.forEach((tag, idx) => {
+            const span = document.createElement('span');
+            span.textContent = tag;
+            span.style.padding = '4px 10px';
+            span.style.borderRadius = '5px';
+            span.style.fontSize = '0.65rem';
+            span.style.fontWeight = 'bold';
+            span.style.fontFamily = 'monospace';
+            span.style.background = project.tagColors[idx] || 'rgba(255,255,255,0.08)';
+            span.style.color = project.tagTextColors[idx] || '#fff';
+            modalTags.appendChild(span);
+        });
+
+        const browserScrollContainer = modalImg.parentElement;
+        if (browserScrollContainer) {
+            browserScrollContainer.scrollTop = 0;
+        }
+    }
+
+    if (btnPrev && btnNext) {
+        btnPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentProjectIndex = (currentProjectIndex - 1 + projectsData.length) % projectsData.length;
+            updateModalContent();
+        });
+
+        btnNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentProjectIndex = (currentProjectIndex + 1) % projectsData.length;
+            updateModalContent();
+        });
+    }
+
+    if (previewModal) {
+        previewModal.addEventListener('click', (e) => {
+            if (e.target === previewModal) {
+                closePreviewModal();
+            }
+        });
+    }
+
+    // Suporte a teclas ESC, seta esquerda e seta direita
+    document.addEventListener('keydown', (e) => {
+        if (previewModal && previewModal.style.display === 'flex') {
+            if (e.key === 'Escape') {
+                closePreviewModal();
+            } else if (e.key === 'ArrowLeft') {
+                btnPrev.click();
+            } else if (e.key === 'ArrowRight') {
+                btnNext.click();
+            }
+        }
+    });
+
 });
