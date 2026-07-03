@@ -1670,4 +1670,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    /* ==========================================
+       11. Mouse-tracking 3D tilt for Bot Showcase
+       ========================================== */
+    const tiltArea = document.querySelector('.bot-tilt-area');
+    const tiltInner = document.querySelector('.bot-tilt-inner');
+
+    if (tiltArea && tiltInner) {
+        const maxTilt = 12; // max degrees of rotation
+
+        tiltArea.addEventListener('mousemove', (e) => {
+            const rect = tiltArea.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;  // 0 to 1
+            const y = (e.clientY - rect.top) / rect.height;   // 0 to 1
+
+            const rotateY = (x - 0.5) * maxTilt * 2;  // -maxTilt to +maxTilt
+            const rotateX = (0.5 - y) * maxTilt * 2;   // inverted for natural feel
+
+            tiltInner.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        tiltArea.addEventListener('mouseleave', () => {
+            tiltInner.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
+        });
+    }
+
 });
