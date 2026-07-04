@@ -1685,8 +1685,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'ia': {
             tag: 'INTELIGÊNCIA ARTIFICIAL',
             title: 'IA Integrada',
-            desc: 'Bot com IA Gemini treinada com o contexto do seu servidor. Responde dúvidas de membros, apresenta serviços, filtra conteúdo inadequado e aprende com o uso.',
-            bullets: ['Respostas em linguagem natural sobre seu negócio', 'Integração direta com a API Gemini do Google', 'Configurável com o vocabulário do seu servidor', 'Ativo 24/7 sem intervenção humana'],
+            desc: 'O bot responde perguntas dos membros exclusivamente sobre os serviços do seu servidor Discord — preços, planos, como contratar e informações da sua empresa. Nada além disso.',
+            bullets: ['Responde somente sobre os serviços do seu servidor', 'Configurado com as informações do seu negócio', 'Integração com a API Gemini do Google', 'Ativo 24/7 no seu servidor'],
             service: 'Bot com IA Gemini Integrada'
         },
         'tickets': {
@@ -1766,7 +1766,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const latEl = document.getElementById('ia-latency');
         if (!el) return;
         el.textContent = '';
-        const response = 'Olá! Nosso bot mensal custa R$ 39,90/mês e inclui IA, anti-raid, tickets e moderação completa. Posso te redirecionar para o formulário de contato?';
+        const response = 'Olá! Posso te ajudar com informações sobre os serviços do servidor — planos, preços e como contratar. Para outras dúvidas, entre em contato com a equipe!';
         const latency = Math.floor(Math.random() * 200) + 180;
         if (latEl) latEl.textContent = latency;
         let i = 0;
