@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    DevCord - Lógica Interativa (2 Páginas em 1 - Split Screen & Switcher)
    ========================================================================== */
 
@@ -1671,163 +1671,142 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================
-       10. Bot Control Panel Dashboard
+       10. Feature Showcase — Bot Capabilities
        ========================================== */
-    const bdNavBtns = document.querySelectorAll('.bd-nav-btn');
-    const bdPanels  = document.querySelectorAll('.bd-panel');
 
-    bdNavBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const target = btn.dataset.panel;
-            bdNavBtns.forEach(b => b.classList.remove('active'));
-            bdPanels.forEach(p => p.classList.remove('active'));
-            btn.classList.add('active');
-            const panel = document.getElementById(`bd-panel-${target}`);
-            if (panel) panel.classList.add('active');
-
-            // Start log feed when logs tab opened
-            if (target === 'logs') startLogFeed();
-        });
-    });
-
-    // Module toggles
-    document.querySelectorAll('.bd-toggle').forEach(toggle => {
-        toggle.addEventListener('click', () => {
-            toggle.classList.toggle('active');
-            const card = toggle.closest('.bd-module-card');
-            if (card) {
-                const badge = card.querySelector('.bd-module-badge');
-                if (badge) {
-                    const isActive = toggle.classList.contains('active');
-                    badge.textContent = isActive ? 'Ativo' : 'Inativo';
-                    badge.className = `bd-module-badge ${isActive ? 'green' : 'gray'}`;
-                }
-            }
-        });
-    });
-
-    // Live log feed
-    const logMessages = [
-        { tag: 'ok',    tagClass: 'ok',    text: 'Membro @Vitinho_gg entrou no servidor' },
-        { tag: 'BLOCK', tagClass: 'block', text: 'Anti-raid bloqueou IP suspeito 45.XX.XX.1' },
-        { tag: 'INFO',  tagClass: 'info',  text: 'Comando /ajuda executado por @CaioRios' },
-        { tag: 'OK',    tagClass: 'ok',    text: 'Ticket #1042 fechado com sucesso' },
-        { tag: 'INFO',  tagClass: 'info',  text: 'IA Gemini respondeu em 312ms' },
-        { tag: 'WARN',  tagClass: 'warn',  text: 'Latência acima de 80ms detectada (normalizado)' },
-        { tag: 'OK',    tagClass: 'ok',    text: 'Backup de configurações realizado' },
-        { tag: 'BLOCK', tagClass: 'block', text: 'Spam detectado: 12 msgs em 4s — membro silenciado' },
-        { tag: 'INFO',  tagClass: 'info',  text: 'Módulo anti-raid atualizado para v2.3.1' },
-        { tag: 'OK',    tagClass: 'ok',    text: 'Uptime: 99.97% — tudo operacional' },
-    ];
-    let logInterval = null;
-    let logIndex = 0;
-
-    function getTime() {
-        const now = new Date();
-        return `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
-    }
-
-    function appendLog(entry) {
-        const terminal = document.getElementById('bd-log-terminal');
-        if (!terminal) return;
-        const line = document.createElement('div');
-        line.className = 'bd-log-line';
-        line.innerHTML = `
-            <span class="bd-log-time">${getTime()}</span>
-            <span class="bd-log-tag ${entry.tagClass}">${entry.tag}</span>
-            <span class="bd-log-text">${entry.text}</span>
-        `;
-        terminal.appendChild(line);
-        terminal.scrollTop = terminal.scrollHeight;
-        // Keep max 20 lines
-        while (terminal.children.length > 20) terminal.removeChild(terminal.firstChild);
-    }
-
-    function startLogFeed() {
-        const terminal = document.getElementById('bd-log-terminal');
-        if (!terminal || terminal.children.length > 0) return;
-        // Seed with 5 initial entries
-        for (let i = 0; i < 5; i++) appendLog(logMessages[i % logMessages.length]);
-        if (logInterval) return;
-        logInterval = setInterval(() => {
-            logIndex = (logIndex + 1) % logMessages.length;
-            appendLog(logMessages[logIndex]);
-        }, 2200);
-    }
-
-    // Latency ticker
-    const latencyEl = document.getElementById('bd-latency');
-    if (latencyEl) {
-        setInterval(() => {
-            const ms = Math.floor(Math.random() * 30) + 20;
-            latencyEl.textContent = `${ms}ms`;
-        }, 3000);
-    }
-
-    // Counter animation for metrics
-    function animateCounter(el, target, suffix = '') {
-        let current = 0;
-        const step = Math.ceil(target / 60);
-        const timer = setInterval(() => {
-            current = Math.min(current + step, target);
-            el.textContent = current.toLocaleString() + suffix;
-            if (current >= target) clearInterval(timer);
-        }, 16);
-    }
-    const membersEl = document.getElementById('bd-members');
-    const msgsEl = document.getElementById('bd-msgs');
-    if (membersEl) animateCounter(membersEl, 1248);
-    if (msgsEl) animateCounter(msgsEl, 4891);
-
-    // Embed builder live preview
-    const embedTitle = document.getElementById('bd-embed-title');
-    const embedDesc  = document.getElementById('bd-embed-desc');
-    const embedPreviewTitle = document.getElementById('bd-embed-preview-title');
-    const embedPreviewDesc  = document.getElementById('bd-embed-preview-desc');
-    const embedBar   = document.getElementById('bd-embed-bar');
-    const sendEmbedBtn = document.getElementById('bd-send-embed');
-    const sentConfirmation = document.getElementById('bd-sent-confirmation');
-
-    const colorMap = {
-        cyan: 'var(--secondary)',
-        purple: '#a855f7',
-        green: '#10b981',
-        red: '#ef4444'
+    const featureData = {
+        'antiraid': {
+            tag: 'PROTEÇÃO',
+            title: 'Anti-Raid',
+            desc: 'Detecta e bloqueia automaticamente ataques coordenados de invasão. Quando vários usuários entram ao mesmo tempo ou spam é detectado, o bot entra em modo de segurança e bloqueia entradas temporariamente.',
+            bullets: ['Detecção de entrada em massa em poucos segundos', 'Bloqueio automático de novos membros em modo raid', 'Notificação imediata para administradores', 'Reativação automática após período de segurança'],
+            service: 'Bot Profissional com Anti-Raid'
+        },
+        'ia': {
+            tag: 'INTELIGÊNCIA ARTIFICIAL',
+            title: 'IA Integrada',
+            desc: 'Bot com IA Gemini treinada com o contexto do seu servidor. Responde dúvidas de membros, apresenta serviços, filtra conteúdo inadequado e aprende com o uso.',
+            bullets: ['Respostas em linguagem natural sobre seu negócio', 'Integração direta com a API Gemini do Google', 'Configurável com o vocabulário do seu servidor', 'Ativo 24/7 sem intervenção humana'],
+            service: 'Bot com IA Gemini Integrada'
+        },
+        'tickets': {
+            tag: 'ATENDIMENTO',
+            title: 'Sistema de Tickets',
+            desc: 'Organiza o suporte e atendimento do servidor. Membros abrem chamados com um clique e recebem um canal privado exclusivo com a equipe.',
+            bullets: ['Botão de abertura em painel fixo no canal', 'Canal privado criado automaticamente', 'Notificação para a equipe de suporte', 'Fechamento e arquivamento com transcript'],
+            service: 'Configuração de Servidor + Tickets'
+        },
+        'boas-vindas': {
+            tag: 'EXPERIÊNCIA DO MEMBRO',
+            title: 'Boas-vindas Automático',
+            desc: 'Toda vez que um novo membro entra, o bot envia automaticamente uma mensagem de boas-vindas personalizada no canal e/ou em DM, com as informações essenciais do servidor.',
+            bullets: ['Mensagem com nome e número do membro', 'Enviado no canal público e por DM', 'Embed personalizável com cores e logo', 'Direcionamento automático para regras e canais'],
+            service: 'Configuração Completa de Servidor'
+        },
+        'antispam': {
+            tag: 'MODERAÇÃO',
+            title: 'Anti-Spam',
+            desc: 'Monitora mensagens em todos os canais e age automaticamente contra spam, links suspeitos e flood de mensagens, sem precisar de moderadores humanos.',
+            bullets: ['Detecção de mensagens idênticas em sequência', 'Silenciamento e ban automático configurável', 'Deletação imediata de links suspeitos', 'Log de todas as punições aplicadas'],
+            service: 'Bot com Moderação Automática'
+        },
+        'logs': {
+            tag: 'AUDITORIA',
+            title: 'Logs de Auditoria',
+            desc: 'Canal dedicado a registrar todas as ações importantes do servidor em tempo real — entradas, saídas, bans, edições de mensagens e alterações de cargos.',
+            bullets: ['Registro de entradas e saídas de membros', 'Log de mensagens editadas e deletadas', 'Histórico de bans, kicks e punições', 'Alterações de cargos e permissões'],
+            service: 'Servidor Completo com Logs'
+        }
     };
 
-    if (embedTitle) {
-        embedTitle.addEventListener('input', () => {
-            if (embedPreviewTitle) embedPreviewTitle.textContent = embedTitle.value || 'Título';
-        });
-    }
-    if (embedDesc) {
-        embedDesc.addEventListener('input', () => {
-            if (embedPreviewDesc) embedPreviewDesc.textContent = embedDesc.value || 'Descrição...';
-        });
+    const fsPills = document.querySelectorAll('.fs-pill');
+    const fsTag = document.getElementById('fs-tag');
+    const fsTitle = document.getElementById('fs-title');
+    const fsDesc = document.getElementById('fs-desc');
+    const fsBullets = document.getElementById('fs-bullets');
+    const fsCtaBtn = document.querySelector('#feature-showcase .btn-select-service');
+
+    function switchFeature(feature) {
+        // Hide all scenes
+        document.querySelectorAll('.fs-scene').forEach(s => s.classList.remove('active'));
+        // Show target scene
+        const scene = document.getElementById(`fs-scene-${feature}`);
+        if (scene) scene.classList.add('active');
+
+        // Update info panel
+        const d = featureData[feature];
+        if (!d) return;
+        if (fsTag) fsTag.textContent = d.tag;
+        if (fsTitle) fsTitle.textContent = d.title;
+        if (fsDesc) fsDesc.textContent = d.desc;
+        if (fsBullets) {
+            fsBullets.innerHTML = d.bullets.map(b => `<li>${b}</li>`).join('');
+        }
+        if (fsCtaBtn) {
+            fsCtaBtn.dataset.service = d.service;
+        }
+
+        // Run feature-specific animations
+        if (feature === 'ia') runIAAnimation();
+        if (feature === 'boas-vindas') runBVAnimation();
+        if (feature === 'logs') runLogsAnimation();
     }
 
-    document.querySelectorAll('.bd-color-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.bd-color-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if (embedBar) embedBar.style.background = colorMap[btn.dataset.color] || 'var(--secondary)';
+    fsPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            fsPills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            switchFeature(pill.dataset.feature);
         });
     });
 
-    if (sendEmbedBtn && sentConfirmation) {
-        sendEmbedBtn.addEventListener('click', () => {
-            sentConfirmation.style.display = 'flex';
-            sendEmbedBtn.disabled = true;
-            sendEmbedBtn.style.opacity = '0.5';
-            setTimeout(() => {
-                sentConfirmation.style.display = 'none';
-                sendEmbedBtn.disabled = false;
-                sendEmbedBtn.style.opacity = '1';
-            }, 3000);
-        });
+    // IA typewriter animation
+    function runIAAnimation() {
+        const el = document.getElementById('ia-response-text');
+        const latEl = document.getElementById('ia-latency');
+        if (!el) return;
+        el.textContent = '';
+        const response = 'Olá! Nosso bot mensal custa R$ 39,90/mês e inclui IA, anti-raid, tickets e moderação completa. Posso te redirecionar para o formulário de contato?';
+        const latency = Math.floor(Math.random() * 200) + 180;
+        if (latEl) latEl.textContent = latency;
+        let i = 0;
+        const type = () => {
+            if (i < response.length) {
+                el.textContent += response[i++];
+                setTimeout(type, 22);
+            }
+        };
+        setTimeout(type, 600);
     }
 
+    // Boas-vindas counter animation
+    function runBVAnimation() {
+        const countEl = document.getElementById('bv-count');
+        if (!countEl) return;
+        let n = 0;
+        const target = Math.floor(Math.random() * 400) + 800;
+        const step = Math.ceil(target / 40);
+        const t = setInterval(() => {
+            n = Math.min(n + step, target);
+            countEl.textContent = n.toLocaleString('pt-BR');
+            if (n >= target) clearInterval(t);
+        }, 20);
+    }
+
+    // Logs live timestamp
+    function runLogsAnimation() {
+        const el = document.getElementById('logs-live-time');
+        if (!el) return;
+        const now = new Date();
+        el.textContent = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    }
+
+    // Init anti-raid on load
+    switchFeature('antiraid');
+
     /* ==========================================
+       11. Mouse-tracking 3D tilt for Bot Showcase
+       ========================================== */
        11. Mouse-tracking 3D tilt for Bot Showcase
        ========================================== */
     const tiltArea = document.querySelector('.bot-tilt-area');
