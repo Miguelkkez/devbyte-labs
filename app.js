@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    DevCord - Lógica Interativa (2 Páginas em 1 - Split Screen & Switcher)
    ========================================================================== */
 
@@ -1805,8 +1805,6 @@ document.addEventListener('DOMContentLoaded', () => {
     switchFeature('antiraid');
 
     /* ==========================================
-       11. Mouse-tracking 3D tilt for Bot Showcase
-       ========================================== */
        11. Mouse-tracking 3D tilt for Bot Showcase
        ========================================== */
     const tiltArea = document.querySelector('.bot-tilt-area');
