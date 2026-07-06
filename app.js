@@ -1857,4 +1857,88 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* ==========================================
+       12. Custom Premium Select Dropdown
+       ========================================== */
+    document.querySelectorAll('.form-select-native').forEach(selectElement => {
+        // Hide the native select
+        selectElement.style.display = 'none';
+
+        // Create the wrapper
+        const wrapper = document.createElement('div');
+        wrapper.className = 'custom-select-wrapper';
+        selectElement.parentNode.insertBefore(wrapper, selectElement);
+        wrapper.appendChild(selectElement);
+
+        // Create the trigger button
+        const trigger = document.createElement('div');
+        trigger.className = 'custom-select-trigger';
+        
+        const arrowSvg = `<svg class="arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+        
+        const updateTriggerText = () => {
+            trigger.innerHTML = `<span>${selectElement.options[selectElement.selectedIndex].text}</span>${arrowSvg}`;
+        };
+        updateTriggerText();
+        wrapper.appendChild(trigger);
+
+        // Create the options container
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'custom-select-options';
+        
+        // Populate options based on native options that are visible
+        const buildOptions = () => {
+            optionsContainer.innerHTML = '';
+            Array.from(selectElement.options).forEach((option, index) => {
+                // Ignore options hidden by mode filtering
+                if (option.style.display === 'none') return;
+
+                const customOption = document.createElement('div');
+                customOption.className = 'custom-option';
+                if (index === selectElement.selectedIndex) customOption.classList.add('selected');
+                customOption.textContent = option.text;
+                
+                customOption.addEventListener('click', () => {
+                    selectElement.selectedIndex = index;
+                    updateTriggerText();
+                    
+                    // Dispatch change event on the native select so other scripts can react
+                    selectElement.dispatchEvent(new Event('change'));
+                    
+                    wrapper.classList.remove('open');
+                    
+                    // Update selected class
+                    Array.from(optionsContainer.children).forEach(c => c.classList.remove('selected'));
+                    customOption.classList.add('selected');
+                });
+                optionsContainer.appendChild(customOption);
+            });
+        };
+        buildOptions();
+        wrapper.appendChild(optionsContainer);
+
+        // Toggle dropdown open/close
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = wrapper.classList.contains('open');
+            // Close all other open custom selects
+            document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('open'));
+            if (!isOpen) {
+                // Rebuild options before opening in case mode has changed
+                buildOptions();
+                wrapper.classList.add('open');
+            }
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', () => {
+            wrapper.classList.remove('open');
+        });
+        
+        // Listen to external changes to the native select (like from the web/discord calculator)
+        selectElement.addEventListener('change', () => {
+            updateTriggerText();
+        });
+    });
+
 });

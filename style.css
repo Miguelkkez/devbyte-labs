@@ -4140,3 +4140,91 @@ body[data-global-mode="discord"] .pill-active-bg {
   .fs-display { grid-template-columns: 1fr; gap: 1.5rem; }
   .fs-title { font-size: 1.5rem; }
 }
+
+/* --- Custom Premium Select --- */
+.custom-select-wrapper {
+    position: relative;
+    user-select: none;
+    width: 100%;
+}
+.custom-select-trigger {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 0.85rem 1.15rem;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.custom-select-wrapper.open .custom-select-trigger {
+    border-color: var(--secondary);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.15), inset 0 0 0 1px var(--secondary);
+    background: rgba(0,0,0,0.5);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.custom-select-trigger .arrow {
+    transition: transform 0.3s;
+    fill: none;
+    stroke: var(--text-muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    width: 18px;
+    height: 18px;
+}
+.custom-select-wrapper.open .custom-select-trigger .arrow {
+    transform: rotate(180deg);
+    stroke: var(--secondary);
+}
+.custom-select-options {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #0f1016;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+    z-index: 100;
+    max-height: 250px;
+    overflow-y: auto;
+}
+.custom-select-wrapper.open .custom-select-options {
+    display: block;
+    animation: fadeInDropdown 0.2s ease-out;
+}
+.custom-option {
+    padding: 0.85rem 1.15rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+.custom-option:last-child {
+    border-bottom: none;
+}
+.custom-option:hover {
+    background: rgba(0, 242, 254, 0.05);
+    color: #fff;
+    padding-left: 1.5rem;
+}
+.custom-option.selected {
+    color: var(--secondary);
+    background: rgba(0, 242, 254, 0.08);
+    font-weight: 600;
+}
+@keyframes fadeInDropdown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
