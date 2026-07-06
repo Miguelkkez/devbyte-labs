@@ -746,22 +746,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Definição de prazo baseado na complexidade Discord
+            minDays = 2;
+            maxDays = 3;
+            
             if (total >= 1999) {
-                minDays = 12;
-                maxDays = 18;
-            } else if (total >= 600) {
-                minDays = 7;
-                maxDays = 12;
-            } else if (selectedAddonsCount > 1) {
-                minDays = 6;
-                maxDays = 10;
+                minDays = 10;
+                maxDays = 15;
+            } else if (total >= 700) {
+                minDays = 5;
+                maxDays = 8;
+            } else if (selectedAddonsCount >= 2) {
+                minDays = 3;
+                maxDays = 5;
             }
         }
 
         // Atualiza a tela com efeito de contagem rápida
         animateNumber(calcProjectPrice, total, "R$ ");
         if (calcProjectTime) {
-            calcProjectTime.textContent = `${minDays} a ${maxDays} dias`;
+            calcProjectTime.textContent = `${minDays} a ${maxDays} dias úteis`;
         }
 
         // Se o usuário selecionou uma opção manual/customizada no formulário, não sobrescreve os dados dele
