@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aeterna - E-commerce Premium Ultra</title>
+    <title>Aeterna - Masterpiece Audio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@200;300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #000000;
-            --bg-card: rgba(15, 15, 15, 0.6);
+            --bg-card: rgba(20, 20, 22, 0.6);
             --primary: #ffffff;
-            --accent: #00f0ff;
-            --accent-alt: #ff003c;
-            --text-main: #f8fafc;
-            --text-muted: #888888;
-            --glass-border: rgba(255, 255, 255, 0.05);
+            --accent: #d1d1d6;
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glow: rgba(255, 255, 255, 0.15);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        ::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
 
         body { 
             background-color: var(--bg-dark); 
@@ -34,82 +33,60 @@
             overflow-x: hidden; 
             min-width: 1280px; 
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.05), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(255, 0, 60, 0.05), transparent 25%);
-            /* Smooth reveal of the page */
+                radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.1), transparent 40%);
             animation: fadeIn 1.5s ease-out;
             perspective: 1000px;
-            zoom: 0.65;
-            pointer-events: auto; /* Re-enabled interactions */
+            zoom: 0.7;
+            pointer-events: auto; 
         }
         
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Advanced Navbar */
+        /* Premium Minimalist Navbar */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 20px 80px; 
-            background: rgba(0, 0, 0, 0.4); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.5); 
+            backdrop-filter: blur(25px); 
+            -webkit-backdrop-filter: blur(25px);
             border-bottom: 1px solid var(--glass-border); 
             position: sticky; top: 0; z-index: 100; 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
         }
-        .navbar:hover { background: rgba(0, 0, 0, 0.8); border-bottom-color: rgba(255,255,255,0.15); }
         
         .logo { 
             font-family: 'Syncopate', sans-serif;
-            font-size: 1.5rem; font-weight: 700; letter-spacing: 6px; 
-            text-transform: uppercase; 
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
+            font-size: 1.2rem; font-weight: 700; letter-spacing: 8px; 
+            text-transform: uppercase; color: #fff;
+            cursor: pointer; transition: 0.3s;
         }
-        .logo::before {
-            content: 'AETERNA'; position: absolute; left: 0; top: 0;
-            color: var(--accent); width: 0%; overflow: hidden;
-            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            white-space: nowrap;
-        }
-        .logo:hover::before { width: 100%; }
+        .logo:hover { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
 
-        .nav-links { display: flex; gap: 40px; }
+        .nav-links { display: flex; gap: 45px; }
         .nav-links a { 
-            color: var(--text-muted); text-decoration: none; font-size: 0.85rem; 
-            text-transform: uppercase; font-weight: 700; letter-spacing: 3px; 
-            position: relative; transition: color 0.3s;
-            padding: 10px 0;
+            color: var(--text-muted); text-decoration: none; font-size: 0.8rem; 
+            text-transform: uppercase; font-weight: 600; letter-spacing: 2px; 
+            position: relative; transition: color 0.4s;
         }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
         .nav-links a::after {
-            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 0; height: 2px; background: var(--primary);
-            transition: width 0.3s ease;
+            content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 1px;
+            background: #fff; transform: scaleX(0); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: right;
         }
-        .nav-links a:hover { color: var(--text-main); }
-        .nav-links a:hover::after { width: 100%; box-shadow: 0 0 10px var(--primary); }
-        .nav-links a.active { color: var(--text-main); }
-        .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
 
         .cart-icon { 
-            width: 50px; height: 50px; border-radius: 50%; 
-            background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); 
+            width: 40px; height: 40px; border-radius: 50%; 
             display: flex; align-items: center; justify-content: center; position: relative; 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
+            transition: 0.3s; cursor: pointer; color: #fff;
         }
-        .cart-icon:hover { 
-            transform: scale(1.1) rotate(5deg); 
-            background: rgba(255,255,255,0.1); 
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); 
-            border-color: var(--accent);
-        }
+        .cart-icon:hover { background: rgba(255,255,255,0.1); }
         .cart-badge { 
-            position: absolute; top: -5px; right: -5px; 
-            background: var(--accent); color: var(--bg-dark); 
-            font-size: 0.75rem; font-weight: 900; width: 22px; height: 22px; 
+            position: absolute; top: 0; right: 0; 
+            background: #fff; color: #000; 
+            font-size: 0.7rem; font-weight: 900; width: 18px; height: 18px; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            animation: pulse 2s infinite;
         }
 
         /* Hero Section */
@@ -120,299 +97,262 @@
         
         /* 3D Product Image Container */
         .product-showcase { 
-            flex: 1.2; height: 750px; 
+            flex: 1.2; height: 800px; 
             position: relative; 
             display: flex; align-items: center; justify-content: center; 
             perspective: 2000px;
         }
         
         .ambient-light {
-            position: absolute; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(0, 240, 255, 0.2) 0%, transparent 70%);
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
             top: 50%; left: 50%; transform: translate(-50%, -50%);
-            z-index: 0;
-            animation: breathe 4s ease-in-out infinite alternate;
+            z-index: 0; pointer-events: none;
         }
-        @keyframes breathe { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; } 100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
 
-        /* The spinning headphone image */
-        .headphone-img {
-            width: 80%;
-            max-width: 600px;
-            z-index: 10;
-            filter: drop-shadow(0 30px 40px rgba(0,0,0,0.8));
-            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s;
-            cursor: pointer;
-            /* Floating animation */
+        /* The Headphone Image */
+        .headphone-wrapper {
+            position: relative; z-index: 10;
+            width: 500px; height: 600px;
+            display: flex; align-items: center; justify-content: center;
+            transform-style: preserve-3d;
             animation: float 6s ease-in-out infinite;
+            cursor: grab;
         }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        
+        .headphone-img {
+            width: 100%; height: 100%; object-fit: contain;
+            filter: drop-shadow(0 40px 50px rgba(0,0,0,0.8));
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+            transform: translateZ(50px);
+        }
 
-        /* 360 Spin on Hover */
-        .product-showcase:hover .headphone-img {
-            transform: translateY(-10px) rotateY(360deg) scale(1.05);
-            filter: drop-shadow(0 50px 50px rgba(0,240,255,0.4));
+        /* Interactive 3D Spin effect on Hover */
+        .product-showcase:hover .headphone-wrapper {
             animation: none; /* pause float when spinning */
+            transform: rotateY(360deg) scale(1.05);
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .product-showcase:hover .headphone-img {
+            filter: drop-shadow(0 60px 70px rgba(255,255,255,0.1));
         }
         
-        /* Decorative Rings */
+        /* Elegant Rings */
         .ring {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            border-radius: 50%; border: 1px solid rgba(255,255,255,0.05);
-            z-index: 1; pointer-events: none;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.03);
+            z-index: 1; pointer-events: none; box-shadow: inset 0 0 40px rgba(255,255,255,0.01);
         }
-        .ring-1 { width: 400px; height: 400px; animation: spinRing 20s linear infinite; border-top: 1px solid var(--accent); }
-        .ring-2 { width: 600px; height: 600px; animation: spinRing 30s linear infinite reverse; border-bottom: 1px solid var(--accent-alt); }
-        @keyframes spinRing { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        .ring-1 { width: 500px; height: 500px; animation: pulseRing 4s infinite alternate; }
+        .ring-2 { width: 700px; height: 700px; animation: pulseRing 5s infinite alternate-reverse; }
+        @keyframes pulseRing { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; border-color: rgba(255,255,255,0.02); } 100% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; border-color: rgba(255,255,255,0.06); } }
+
+        /* Floating Spec Card */
+        .spec-card {
+            position: absolute; bottom: 120px; right: 20px; 
+            background: rgba(20, 20, 22, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 20px 30px; border-radius: 20px; border: 1px solid var(--glass-border); 
+            display: flex; align-items: center; gap: 15px; 
+            transform: translateZ(80px); box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            animation: slideInRight 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0;
+        }
+        @keyframes slideInRight { from { transform: translateZ(80px) translateX(50px); opacity: 0; } to { transform: translateZ(80px) translateX(0); opacity: 1; } }
 
         /* Product Info */
-        .product-info { flex: 1; display: flex; flex-direction: column; gap: 30px; z-index: 10; }
+        .product-info { flex: 1; display: flex; flex-direction: column; gap: 35px; z-index: 10; }
         
-        .tag-wrapper { overflow: hidden; }
         .tag { 
-            display: inline-block; padding: 8px 24px; 
-            background: rgba(0, 240, 255, 0.1); color: var(--accent); 
-            font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; 
-            border-radius: 50px; border: 1px solid rgba(0, 240, 255, 0.3);
-            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+            display: inline-block; padding: 6px 0; 
+            color: var(--text-muted); 
+            font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; 
+            animation: fadeUp 1s forwards; opacity: 0;
         }
-        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        .title-wrapper { overflow: hidden; }
         .title { 
-            font-size: 6rem; font-weight: 900; line-height: 0.9; letter-spacing: -2px; 
-            background: linear-gradient(to bottom right, #fff, #777);
-            -webkit-background-clip: text; color: transparent;
-            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.1s; opacity: 0;
+            font-size: 6.5rem; font-weight: 900; line-height: 0.95; letter-spacing: -3px; 
+            color: #fff;
+            animation: fadeUp 1s 0.1s forwards; opacity: 0;
         }
+        .title span { color: var(--text-muted); font-weight: 300; }
         
         .price { 
-            font-size: 2.5rem; font-weight: 400; color: var(--text-muted); 
+            font-size: 2.2rem; font-weight: 300; color: #fff; 
             display: flex; align-items: flex-start; gap: 8px;
-            animation: slideUp 1s forwards; animation-delay: 0.2s; opacity: 0;
+            animation: fadeUp 1s 0.2s forwards; opacity: 0;
         }
-        .price span { font-size: 1.2rem; margin-top: 6px; }
+        .price span { font-size: 1.2rem; margin-top: 6px; color: var(--text-muted); }
         
         .desc { 
-            font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; max-width: 90%; 
-            animation: slideUp 1s forwards; animation-delay: 0.3s; opacity: 0;
+            font-size: 1.2rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; max-width: 90%; 
+            animation: fadeUp 1s 0.3s forwards; opacity: 0;
         }
         
-        /* Interactive Color Picker */
+        /* Premium Color Picker */
         .color-picker { 
-            display: flex; gap: 24px; margin-bottom: 10px; align-items: center; 
-            animation: slideUp 1s forwards; animation-delay: 0.4s; opacity: 0;
+            display: flex; gap: 30px; margin-top: 10px; align-items: center; 
+            animation: fadeUp 1s 0.4s forwards; opacity: 0;
         }
-        .color-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); }
-        .color-options { display: flex; gap: 16px; }
+        .color-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); }
+        .color-options { display: flex; gap: 20px; }
+        
         .color-dot { 
-            width: 40px; height: 40px; border-radius: 50%; border: 2px solid transparent; 
-            cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 32px; height: 32px; border-radius: 50%; cursor: pointer; 
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative; display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.2);
         }
-        .color-dot::after {
-            content: ''; width: 100%; height: 100%; border-radius: 50%;
-            position: absolute; box-shadow: 0 0 15px currentColor; opacity: 0; transition: 0.3s;
+        .color-dot::before {
+            content: ''; position: absolute; width: 44px; height: 44px; border-radius: 50%;
+            border: 1px solid #fff; transform: scale(0.8); opacity: 0; transition: 0.4s;
         }
         .color-dot:hover { transform: scale(1.1); }
-        .color-dot:hover::after { opacity: 0.5; }
-        .color-dot.active { border-color: #fff; padding: 4px; background-clip: content-box; transform: scale(1.1); }
-        .color-dot.active::after { opacity: 0.8; }
+        .color-dot.active::before { transform: scale(1); opacity: 1; }
         
-        /* Interactive Button with Ripple */
+        /* Ultra sleek button */
         .btn-add { 
             background: #fff; color: #000; border: none; 
-            padding: 24px 60px; font-size: 1rem; font-weight: 800; text-transform: uppercase; 
-            letter-spacing: 4px; border-radius: 50px; display: flex; align-items: center; gap: 20px; 
+            padding: 24px 50px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; 
+            letter-spacing: 3px; border-radius: 100px; display: inline-flex; align-items: center; gap: 15px; 
             align-self: flex-start; cursor: pointer; position: relative; overflow: hidden;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            animation: slideUp 1s forwards; animation-delay: 0.5s; opacity: 0;
-            box-shadow: 0 15px 30px rgba(255,255,255,0.1);
+            animation: fadeUp 1s 0.5s forwards; opacity: 0;
+            margin-top: 10px;
         }
-        .btn-add::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-            transition: left 0.6s ease;
+        .btn-add:hover { 
+            transform: translateY(-4px) scale(1.02); 
+            box-shadow: 0 20px 40px rgba(255,255,255,0.2); 
+            padding-right: 60px; /* expands to show arrow movement */
         }
-        .btn-add:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(255,255,255,0.2); background: var(--accent); }
-        .btn-add:hover::before { left: 100%; }
-        .btn-add:active { transform: translateY(2px); }
-        
-        .btn-add svg { transition: transform 0.3s; }
-        .btn-add:hover svg { transform: translateX(5px); }
+        .btn-add svg { transition: 0.4s; }
+        .btn-add:hover svg { transform: translateX(10px); }
 
-        /* Feature Cards with 3D Tilt Effect */
+        /* Feature Cards with Glassmorphism */
         .features { 
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; 
-            padding: 140px 80px; position: relative;
-        }
-        .features::before {
-            content: ''; position: absolute; top: 0; left: 80px; right: 80px; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            padding: 160px 80px; position: relative;
         }
         
         .feature-card { 
-            background: var(--bg-card); border: 1px solid var(--glass-border); 
-            padding: 50px 40px; border-radius: 30px; backdrop-filter: blur(20px);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative; overflow: hidden; cursor: crosshair;
+            background: rgba(20, 20, 22, 0.4); border: 1px solid var(--glass-border); 
+            padding: 60px 50px; border-radius: 32px; backdrop-filter: blur(30px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; overflow: hidden;
         }
-        /* Shine effect on hover */
-        .feature-card::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transform: skewX(-20deg); transition: 0.7s;
-        }
-        .feature-card:hover::after { left: 150%; }
+        
         .feature-card:hover { 
-            transform: translateY(-15px) scale(1.02); 
+            transform: translateY(-10px); 
+            background: rgba(30, 30, 35, 0.6);
             border-color: rgba(255,255,255,0.2); 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 20px rgba(0, 240, 255, 0.05);
-            background: rgba(25, 25, 25, 0.8);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
         }
         
         .f-icon-wrap { 
-            width: 80px; height: 80px; background: rgba(255,255,255,0.03); 
-            border-radius: 20px; display: flex; align-items: center; justify-content: center; 
-            margin-bottom: 30px; border: 1px solid var(--glass-border);
-            transition: all 0.4s; position: relative;
+            margin-bottom: 40px; color: #fff; opacity: 0.8;
+            transition: 0.4s;
         }
-        .feature-card:hover .f-icon-wrap { 
-            background: rgba(0, 240, 255, 0.1); border-color: var(--accent); 
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); transform: rotate(5deg) scale(1.1);
-        }
-        .f-icon-wrap svg { color: #fff; transition: 0.4s; }
-        .feature-card:hover .f-icon-wrap svg { color: var(--accent); }
+        .feature-card:hover .f-icon-wrap { opacity: 1; transform: scale(1.1) translateX(10px); }
         
-        .f-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
-        .f-desc { font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; }
+        .f-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
+        .f-desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
 
         /* Immersive Showcase Gallery */
-        .showcase { padding: 140px 80px; text-align: center; background: #030303; }
-        .section-header { margin-bottom: 80px; }
+        .showcase { padding: 140px 80px; text-align: center; }
+        .section-header { margin-bottom: 100px; }
         .section-title { 
-            font-size: 4.5rem; font-weight: 900; margin-bottom: 24px; letter-spacing: -2px; 
-            background: linear-gradient(to right, #fff, #555); -webkit-background-clip: text; color: transparent;
+            font-size: 5rem; font-weight: 900; margin-bottom: 24px; letter-spacing: -2px; 
+            background: linear-gradient(to bottom right, #fff, #666); -webkit-background-clip: text; color: transparent;
         }
-        .section-sub { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.8; }
         
         .grid-showcase { 
-            display: grid; grid-template-columns: repeat(12, 1fr); 
-            grid-template-rows: 400px 300px; gap: 30px; 
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; 
         }
         .grid-item { 
-            background: var(--bg-card); border-radius: 30px; 
+            height: 500px; background: var(--bg-card); border-radius: 40px; 
             border: 1px solid var(--glass-border); overflow: hidden; position: relative; 
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; text-align: left;
-            transition: all 0.5s; cursor: pointer;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 60px;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
         }
-        .grid-item::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); z-index: 1; opacity: 0.8; transition: 0.5s;
+        .grid-item:hover { 
+            border-color: rgba(255,255,255,0.3); transform: scale(0.98);
         }
-        .grid-item:hover::before { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.2)); }
         
-        .grid-item.wide { grid-column: span 8; background: url('https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?q=80&w=2000&auto=format&fit=crop') center/cover; }
-        .grid-item.tall { grid-column: span 4; grid-row: span 2; background: url('https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=800&auto=format&fit=crop') center/cover; }
-        .grid-item.small-1 { grid-column: span 4; background: #111; display: flex; align-items: center; justify-content: center; }
-        .grid-item.small-2 { grid-column: span 4; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+        .grid-item h3 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -1px; }
+        .grid-item p { color: var(--text-muted); font-size: 1.2rem; line-height: 1.6; font-weight: 300; max-width: 80%; }
         
-        .grid-item:hover { transform: scale(0.98); border-color: rgba(255,255,255,0.3); }
-        .grid-content { position: relative; z-index: 2; transform: translateY(20px); transition: 0.5s; }
-        .grid-item:hover .grid-content { transform: translateY(0); }
-        
-        .grid-item h3 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
-        .grid-item p { color: #ccc; font-size: 1.1rem; line-height: 1.6; opacity: 0; transition: 0.5s; }
-        .grid-item:hover p { opacity: 1; }
-        
-        /* Infinite Scrolling Text */
+        /* Subtle Marquee */
         .marquee-container {
-            width: 100%; padding: 40px 0; background: var(--accent); color: #000;
-            overflow: hidden; white-space: nowrap; display: flex; align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2);
-            transform: rotate(-2deg) scale(1.05); margin: 100px 0;
-            box-shadow: 0 20px 50px rgba(0, 240, 255, 0.2);
+            width: 100%; padding: 30px 0; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);
+            overflow: hidden; white-space: nowrap; display: flex; align-items: center; margin: 80px 0;
         }
         .marquee {
-            font-family: 'Syncopate', sans-serif; font-size: 3rem; font-weight: 900;
-            text-transform: uppercase; letter-spacing: 5px;
-            animation: marquee 20s linear infinite; display: flex; gap: 50px;
+            font-family: 'Syncopate', sans-serif; font-size: 1.5rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted);
+            animation: marquee 30s linear infinite; display: flex; gap: 80px;
         }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Interactive Footer */
-        .footer { padding: 100px 80px 40px; background: #000; border-top: 1px solid var(--glass-border); position: relative; overflow: hidden; }
-        .footer::before { content: ''; position: absolute; bottom: -50%; right: -20%; width: 600px; height: 600px; background: var(--accent); filter: blur(300px); opacity: 0.1; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 80px; margin-bottom: 80px; position: relative; z-index: 2; }
-        .f-col h4 { font-size: 1.1rem; margin-bottom: 30px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
-        .f-col p { color: var(--text-muted); line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem; }
+        /* Elegant Footer */
+        .footer { padding: 120px 80px 40px; border-top: 1px solid var(--glass-border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 80px; margin-bottom: 100px; }
+        .f-col h4 { font-size: 0.85rem; margin-bottom: 30px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #fff; }
+        .f-col p { color: var(--text-muted); line-height: 1.8; margin-bottom: 20px; font-size: 1rem; font-weight: 300; }
         .f-col a { 
-            color: var(--text-muted); text-decoration: none; display: inline-block; margin-bottom: 16px; font-size: 1.1rem; 
-            transition: 0.3s; position: relative;
+            color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 16px; font-size: 1rem; font-weight: 300;
+            transition: 0.3s; 
         }
-        .f-col a::after {
-            content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--accent); transition: 0.3s;
-        }
-        .f-col a:hover { color: #fff; transform: translateX(10px); }
-        .f-col a:hover::after { width: 100%; }
+        .f-col a:hover { color: #fff; }
         
         .footer-bottom { 
             border-top: 1px solid var(--glass-border); padding-top: 40px; 
             display: flex; justify-content: space-between; align-items: center;
-            color: var(--text-muted); font-size: 1rem; position: relative; z-index: 2; 
+            color: var(--text-muted); font-size: 0.9rem; font-weight: 300;
         }
 
     </style>
 </head>
 <body>
 
-    <!-- Mouse follower glow effect element -->
-    <div id="cursorGlow" style="position:fixed; width:400px; height:400px; background:radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%, -50%); transition: opacity 0.3s; opacity:0; mix-blend-mode: screen;"></div>
-
     <div class="navbar">
         <div class="logo">AETERNA</div>
         <div class="nav-links">
-            <a href="#" class="active">Orbital NC1</a>
-            <a href="#">Echo Pods</a>
-            <a href="#">Acessórios</a>
-            <a href="#">Studio</a>
+            <a href="#" class="active">Visão Geral</a>
+            <a href="#">Design</a>
+            <a href="#">Áudio</a>
+            <a href="#">Especificações</a>
         </div>
         <div class="cart-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
             <div class="cart-badge">2</div>
         </div>
     </div>
     
     <div class="hero">
         <div class="product-info">
-            <div class="tag-wrapper">
-                <div class="tag">Design Acústico Espacial</div>
-            </div>
+            <div class="tag">Engenharia Acústica</div>
             
-            <div class="title-wrapper">
-                <h1 class="title">Orbital<br>NC-1 Pro</h1>
-            </div>
+            <h1 class="title">Orbital<br><span>NC-1 Pro</span></h1>
             
             <div class="price">
                 <span>R$</span> 2.499,00
             </div>
             
-            <p class="desc">A evolução do silêncio. Um ecossistema sonoro esculpido em alumínio aeroespacial e vidro fosco. Sinta cada frequência com clareza cristalina através de nossos drivers de grafeno otimizados por IA.</p>
+            <p class="desc">A evolução absoluta do silêncio. Um ecossistema sonoro esculpido em alumínio aeroespacial. Sinta cada frequência com clareza cristalina através de nossos drivers de grafeno otimizados por inteligência artificial.</p>
             
             <div class="color-picker">
                 <span class="color-label">Acabamento:</span>
                 <div class="color-options">
-                    <div class="color-dot active" style="background-color: #111; color: #111;" title="Carbono Absoluto"></div>
-                    <div class="color-dot" style="background-color: #f5f5f7; color: #f5f5f7;" title="Prata Estelar"></div>
-                    <div class="color-dot" style="background-color: #001a4d; color: #001a4d;" title="Azul Oceano"></div>
+                    <div class="color-dot active" data-color="spacegray" style="background-color: #555555;" title="Cinza Espacial"></div>
+                    <div class="color-dot" data-color="silver" style="background-color: #e3e4e5;" title="Prata Estelar"></div>
+                    <div class="color-dot" data-color="blue" style="background-color: #7b8e9b;" title="Azul Oceano"></div>
                 </div>
             </div>
             
             <button class="btn-add">
-                Adicionar à Sacola
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                Comprar Agora
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
         </div>
         
@@ -420,13 +360,18 @@
             <div class="ambient-light"></div>
             <div class="ring ring-1"></div>
             <div class="ring ring-2"></div>
-            <!-- High quality transparent headphone image -->
-            <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&w=800&q=80" alt="Headphone" class="headphone-img" style="border-radius: 50%; object-fit: cover; width: 400px; height: 400px; border: 1px solid rgba(255,255,255,0.1);">
-            <div style="position: absolute; bottom: 100px; right: 50px; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); padding: 15px 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 15px; animation: float 5s infinite reverse;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            
+            <!-- 3D Wrapper for the image -->
+            <div class="headphone-wrapper" id="headphoneWrapper">
+                <!-- Using highly reliable transparent Apple AirPods Max images as a premium placeholder -->
+                <img id="productImage" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000" alt="Headphone" class="headphone-img">
+            </div>
+            
+            <div class="spec-card">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 <div>
-                    <div style="font-size: 0.7rem; color: #888; text-transform: uppercase; font-weight: bold; letter-spacing: 2px;">Áudio sem perdas</div>
-                    <div style="font-size: 1.2rem; font-weight: 800;">24-bit / 192kHz</div>
+                    <div style="font-size: 0.65rem; color: #888; text-transform: uppercase; font-weight: 700; letter-spacing: 2px;">Áudio sem perdas</div>
+                    <div style="font-size: 1.1rem; font-weight: 800; color: #fff;">24-bit / 192kHz</div>
                 </div>
             </div>
         </div>
@@ -448,59 +393,42 @@
     <div class="features">
         <div class="feature-card">
             <div class="f-icon-wrap">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
             </div>
-            <h3 class="f-title">ANC Dinâmico via IA</h3>
-            <p class="f-desc">Ouvindo o ambiente 48.000 vezes por segundo, nosso chip neural adapta o cancelamento de ruído instantaneamente, criando um vácuo sonoro perfeito onde quer que você esteja.</p>
+            <h3 class="f-title">ANC Computacional</h3>
+            <p class="f-desc">Oito microfones medem continuamente o ruído ambiente, criando um contra-sinal perfeitamente invertido antes que o som alcance seus ouvidos.</p>
         </div>
         
         <div class="feature-card">
             <div class="f-icon-wrap">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="M12 5v14"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"></path><path d="M12 5v14"></path><circle cx="12" cy="12" r="10"></circle></svg>
             </div>
-            <h3 class="f-title">Palco Sonoro Holográfico</h3>
-            <p class="f-desc">Graças ao acelerômetro integrado de 6 eixos, o som acompanha o movimento da sua cabeça. O resultado é uma experiência de teatro imersiva que o coloca no centro da música.</p>
+            <h3 class="f-title">Áudio Espacial</h3>
+            <p class="f-desc">Giroscópios embutidos rastreiam o movimento da sua cabeça, ancorando os sons ao dispositivo e criando uma experiência de cinema 3D imersiva.</p>
         </div>
         
         <div class="feature-card">
             <div class="f-icon-wrap">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
             </div>
-            <h3 class="f-title">Bateria Quântica de 50h</h3>
-            <p class="f-desc">Células de energia de alta densidade fornecem energia para semanas de uso. Fio descarregou? O HyperCharge entrega 5 horas de audição pura em apenas 3 minutos na tomada.</p>
+            <h3 class="f-title">Energia Infinita</h3>
+            <p class="f-desc">Até 40 horas de reprodução contínua. O modo de ultra-economia é ativado automaticamente quando guardado, preservando a carga por meses.</p>
         </div>
     </div>
 
     <div class="showcase">
         <div class="section-header">
-            <h2 class="section-title">Engenharia Obsessiva</h2>
-            <p class="section-sub">Sem plástico. Sem atalhos. Utilizamos ligas de titânio, almofadas de espuma com memória com infusão de gel de resfriamento e tecido de malha acústica customizado.</p>
+            <h2 class="section-title">Design Sem Compromissos</h2>
         </div>
         
         <div class="grid-showcase">
-            <div class="grid-item wide">
-                <div class="grid-content">
-                    <h3>Materiais Premium</h3>
-                    <p>Estrutura usinada em CNC para máxima leveza e resistência estrutural. O acabamento anodizado protege contra arranhões enquanto proporciona um toque frio inconfundível.</p>
-                </div>
+            <div class="grid-item">
+                <h3>Corpo em Alumínio</h3>
+                <p>Usinado a partir de um único bloco sólido para eliminar vibrações acústicas indesejadas e garantir durabilidade eterna.</p>
             </div>
-            <div class="grid-item tall">
-                <div class="grid-content">
-                    <h3>Conforto Magnético</h3>
-                    <p>Almofadas acopladas magneticamente podem ser trocadas em um segundo. O selo acústico perfeito bloqueia o ruído passivamente antes mesmo do ANC agir.</p>
-                </div>
-            </div>
-            <div class="grid-item small-1">
-                <div class="grid-content">
-                    <h3 style="font-size: 2rem;">Controle por Toque</h3>
-                    <p>Superfícies capacitivas capacitadas reconhecem gestos precisos. Deslize para volume, toque para pausar.</p>
-                </div>
-            </div>
-            <div class="grid-item small-2">
-                <div class="grid-content">
-                    <h3 style="font-size: 2rem;">App Integrado</h3>
-                    <p>Ajuste o EQ, mapeie botões personalizados e localize seus fones usando a rede global Aeterna Find.</p>
-                </div>
+            <div class="grid-item">
+                <h3>Malha Acústica</h3>
+                <p>O arco superior distribui o peso perfeitamente, reduzindo a pressão na cabeça para conforto durante o dia inteiro.</p>
             </div>
         </div>
     </div>
@@ -508,66 +436,72 @@
     <div class="footer">
         <div class="footer-grid">
             <div class="f-col">
-                <div class="logo" style="margin-bottom: 20px; font-size: 2rem;">AETERNA</div>
-                <p>O som absoluto. Redefinindo os limites da acústica pessoal através do design extremo e tecnologia de ponta. Criado com paixão no Brasil.</p>
+                <div class="logo" style="margin-bottom: 20px;">AETERNA</div>
+                <p>O som absoluto. Redefinindo os limites da acústica pessoal através do design extremo e tecnologia de ponta.</p>
             </div>
             <div class="f-col">
                 <h4>Explorar</h4>
                 <a href="#">Orbital NC1 Pro</a>
                 <a href="#">Echo Pods X</a>
                 <a href="#">Soundbar Nexus</a>
-                <a href="#">Comparar Modelos</a>
             </div>
             <div class="f-col">
                 <h4>Suporte</h4>
                 <a href="#">Central de Ajuda</a>
                 <a href="#">Garantia Premium</a>
-                <a href="#">Rastrear Pedido</a>
                 <a href="#">Assistência Técnica</a>
             </div>
             <div class="f-col">
                 <h4>Empresa</h4>
-                <a href="#">Sobre a Aeterna</a>
+                <a href="#">Sobre Nós</a>
                 <a href="#">Sustentabilidade</a>
                 <a href="#">Carreiras</a>
-                <a href="#">Investidores</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <span>&copy; 2026 Aeterna Áudio. Todos os direitos reservados.</span>
-            <div style="display: flex; gap: 20px;">
-                <a href="#" style="color: var(--text-muted); text-decoration: none;">Instagram</a>
-                <a href="#" style="color: var(--text-muted); text-decoration: none;">Twitter</a>
-                <a href="#" style="color: var(--text-muted); text-decoration: none;">YouTube</a>
-            </div>
+            <span>&copy; 2026 Aeterna Áudio. Masterpiece Collection.</span>
         </div>
     </div>
 
     <!-- Mouse Interaction Script -->
     <script>
+        // Interactive 3D Parallax on hover over the entire hero area
         document.addEventListener('mousemove', function(e) {
-            const glow = document.getElementById('cursorGlow');
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
+            const wrapper = document.getElementById('headphoneWrapper');
+            // Only apply gentle parallax if we are NOT currently hovering directly on the product showcase (which triggers the 360 spin)
+            const showcase = document.querySelector('.product-showcase');
+            if(!showcase.matches(':hover')) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
+                wrapper.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
         });
-        document.body.addEventListener('mouseenter', () => document.getElementById('cursorGlow').style.opacity = '1');
-        document.body.addEventListener('mouseleave', () => document.getElementById('cursorGlow').style.opacity = '0');
         
         // Color picker interaction
         const dots = document.querySelectorAll('.color-dot');
-        const headphone = document.querySelector('.headphone-img');
+        const productImage = document.getElementById('productImage');
+        
+        const images = {
+            'spacegray': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000',
+            'silver': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-silver-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604021221000',
+            'blue': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-skyblue-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604022222000'
+        };
         
         dots.forEach(dot => {
             dot.addEventListener('click', () => {
                 dots.forEach(d => d.classList.remove('active'));
                 dot.classList.add('active');
                 
-                // Add a cool animation effect when changing colors
-                headphone.style.transform = 'scale(0.8) rotate(15deg)';
-                headphone.style.opacity = '0.5';
+                const color = dot.getAttribute('data-color');
+                
+                // Add a cool fade and scale animation when changing colors
+                productImage.style.opacity = '0';
+                productImage.style.transform = 'scale(0.9) translateZ(0)';
+                
                 setTimeout(() => {
-                    headphone.style.transform = 'scale(1) rotate(0deg)';
-                    headphone.style.opacity = '1';
+                    productImage.src = images[color];
+                    productImage.style.opacity = '1';
+                    productImage.style.transform = 'scale(1) translateZ(50px)';
                 }, 300);
             });
         });
