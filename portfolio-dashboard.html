@@ -154,13 +154,13 @@
         .card:hover { border-color: rgba(255,255,255,0.15); z-index: 10; }
         
         /* KPIs */
-        .kpi-card { grid-column: span 3; display: flex; flex-direction: column; justify-content: space-between; position: relative; z-index: 2; }
-        .kpi-title { color: var(--text-muted); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: nowrap;}
-        .kpi-title svg { color: var(--primary); width: 16px; height: 16px; flex-shrink: 0; margin-left: 5px; }
-        .kpi-value { font-size: 1.8rem; font-weight: 900; margin-top: 8px; font-family: 'JetBrains Mono', monospace; letter-spacing: -1px; white-space: nowrap;}
+        .kpi-card { grid-column: span 3; display: flex; flex-direction: column; justify-content: space-between; position: relative; z-index: 2; min-width: 0;}
+        .kpi-title { color: var(--text-muted); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 4px;}
+        .kpi-title svg { color: var(--primary); width: 14px; height: 14px; flex-shrink: 0; }
+        .kpi-value { font-size: clamp(1rem, 1.5vw, 1.5rem); font-weight: 900; margin-top: 8px; font-family: 'JetBrains Mono', monospace; letter-spacing: -1px; white-space: normal; word-break: keep-all; overflow-wrap: break-word;}
         .kpi-change { 
             display: inline-flex; align-items: center; gap: 4px; 
-            font-size: 0.75rem; font-weight: 700; margin-top: 8px; padding: 4px 8px; border-radius: 50px;
+            font-size: 0.7rem; font-weight: 700; margin-top: 8px; padding: 4px 6px; border-radius: 50px; white-space: nowrap;
         }
         .kpi-change.up { color: var(--success); background: rgba(16, 185, 129, 0.1); }
         .kpi-change.down { color: var(--danger); background: rgba(239, 68, 68, 0.1); }
