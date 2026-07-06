@@ -515,135 +515,127 @@
                                 </div>
                                 
                                 <!-- Categories Tabs -->
-                                <div style="display: flex; gap: 8px; padding: 10px; background: #f8f9fa; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; box-sizing: border-box; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;">
-                                    <div style="background: #dc2626; color: #ffffff; border-radius: 6px; padding: 5px 14px; font-size: 0.72rem; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 2px 4px rgba(220,38,38,0.2);">Pizzas</div>
-                                    <div style="background: #ffffff; color: #475569; border: 1px solid #e2e8f0; border-radius: 6px; padding: 5px 14px; font-size: 0.72rem; cursor: pointer; white-space: nowrap;">Bebidas</div>
-                                    <div style="background: #ffffff; color: #475569; border: 1px solid #e2e8f0; border-radius: 6px; padding: 5px 14px; font-size: 0.72rem; cursor: pointer; white-space: nowrap;">Sobremesas</div>
+                                <div style="display: flex; gap: 8px; padding: 14px 12px; background: #ffffff; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; box-sizing: border-box; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;">
+                                    <div style="background: #dc2626; color: #ffffff; border-radius: 50px; padding: 6px 18px; font-size: 0.75rem; font-weight: 800; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 10px rgba(220,38,38,0.25);">Pizzas</div>
+                                    <div style="background: #f1f5f9; color: #475569; border-radius: 50px; padding: 6px 18px; font-size: 0.75rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.3s;">Bebidas</div>
+                                    <div style="background: #f1f5f9; color: #475569; border-radius: 50px; padding: 6px 18px; font-size: 0.75rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.3s;">Sobremesas</div>
                                 </div>
                                 
                                 <!-- Items List -->
-                                <div style="padding: 12px; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box; background: #ffffff;">
+                                <div style="padding: 12px; display: flex; flex-direction: column; gap: 0; box-sizing: border-box; background: #f8fafc;">
+                                <style>
+                                    .pizza-card { display: flex; gap: 14px; background: #ffffff; border: none; border-radius: 18px; padding: 12px; align-items: center; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.04); position: relative; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); margin-bottom: 12px; cursor: pointer; }
+                                    .pizza-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 25px rgba(220, 38, 38, 0.12); }
+                                    .pizza-img { width: 85px; height: 85px; border-radius: 14px; object-fit: cover; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+                                    .pizza-title { font-size: 0.95rem; font-weight: 800; color: #0f172a; margin: 0 0 4px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: 'Outfit', sans-serif;}
+                                    .pizza-desc { font-size: 0.7rem; color: #64748b; line-height: 1.4; margin: 0 0 8px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+                                    .pizza-price-row { display: flex; justify-content: space-between; align-items: center; }
+                                    .pizza-price { font-size: 1rem; font-weight: 900; color: #dc2626; letter-spacing: -0.5px;}
+                                    .add-btn { background: linear-gradient(135deg, #ef4444, #dc2626); color: #ffffff; border: none; border-radius: 50px; padding: 6px 16px; font-size: 0.75rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); transition: 0.3s; display: flex; align-items: center; gap: 4px; }
+                                    .add-btn:active { transform: scale(0.9); }
+                                    .badge-popular { position: absolute; top: -8px; left: -8px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; font-size: 0.6rem; font-weight: 900; padding: 3px 8px; border-radius: 20px; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4); text-transform: uppercase; letter-spacing: 1px; z-index: 10; border: 2px solid #fff;}
+                                </style>
                                     <!-- Item 1 (Pizza Margherita) -->
-                                    <div style="display: flex; gap: 12px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 12px; padding: 10px; align-items: center; box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,0.03); position: relative;">
-                                        <!-- Product Image -->
-                                        <img src="pizza-margherita.jpg" alt="Pizza Margherita" style="width: 72px; height: 72px; border-radius: 8px; object-fit: cover; flex-shrink: 0;">
-                                        
+                                    <div class="pizza-card">
+                                        <div class="badge-popular">★ Top 1</div>
+                                        <img src="pizza-margherita.jpg" alt="Pizza Margherita" class="pizza-img">
                                         <div style="text-align: left; flex: 1; min-width: 0;">
-                                            <h5 style="font-size: 0.88rem; font-weight: 800; color: #0f172a; margin: 0 0 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Margherita Gourmet</h5>
-                                            <p style="font-size: 0.68rem; color: #64748b; line-height: 1.35; margin: 0 0 4px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Molho fresco, mozzarella di bufala, manjericão e azeite trufado.</p>
-                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px;">
-                                                <span style="font-size: 0.88rem; font-weight: 900; color: #dc2626;">R$ 42,90</span>
-                                                <!-- Cart Control Wrapper -->
-                                                <div class="cart-control-wrapper" data-id="margherita" data-name="Margherita Gourmet" data-price="42.90" style="display: flex; align-items: center; justify-content: flex-end; width: 90px; height: 28px;">
-                                                    <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.72rem; font-weight: bold; cursor: pointer;">Adicionar</button>
+                                            <h5 class="pizza-title">Margherita Gourmet</h5>
+                                            <p class="pizza-desc">Molho fresco, mozzarella di bufala, manjericão e azeite trufado.</p>
+                                            <div class="pizza-price-row">
+                                                <span class="pizza-price">R$ 42,90</span>
+                                                <div class="cart-control-wrapper" data-id="margherita" data-name="Margherita Gourmet" data-price="42.90">
+                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     
                                     <!-- Item 2 (Pizza Pepperoni) -->
-                                    <div style="display: flex; gap: 12px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 12px; padding: 10px; align-items: center; box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,0.03); position: relative;">
-                                        <!-- Product Image -->
-                                        <img src="pizza-pepperoni.jpg" alt="Pizza Pepperoni" style="width: 72px; height: 72px; border-radius: 8px; object-fit: cover; flex-shrink: 0;">
-                                        
+                                    <div class="pizza-card">
+                                        <img src="pizza-pepperoni.jpg" alt="Pizza Pepperoni" class="pizza-img">
                                         <div style="text-align: left; flex: 1; min-width: 0;">
-                                            <h5 style="font-size: 0.88rem; font-weight: 800; color: #0f172a; margin: 0 0 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Pepperoni Speciale</h5>
-                                            <p style="font-size: 0.68rem; color: #64748b; line-height: 1.35; margin: 0 0 4px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Pepperoni curado crocante, cebola roxa e orégano fresco.</p>
-                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px;">
-                                                <span style="font-size: 0.88rem; font-weight: 900; color: #dc2626;">R$ 48,90</span>
-                                                <!-- Cart Control Wrapper -->
-                                                <div class="cart-control-wrapper" data-id="pepperoni" data-name="Pepperoni Speciale" data-price="48.90" style="display: flex; align-items: center; justify-content: flex-end; width: 90px; height: 28px;">
-                                                    <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.72rem; font-weight: bold; cursor: pointer;">Adicionar</button>
+                                            <h5 class="pizza-title">Pepperoni Speciale</h5>
+                                            <p class="pizza-desc">Pepperoni curado crocante, cebola roxa e orégano fresco.</p>
+                                            <div class="pizza-price-row">
+                                                <span class="pizza-price">R$ 48,90</span>
+                                                <div class="cart-control-wrapper" data-id="pepperoni" data-name="Pepperoni Speciale" data-price="48.90">
+                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Item 3 (Pizza Portuguesa) -->
-                                    <div style="display: flex; gap: 12px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 12px; padding: 10px; align-items: center; box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,0.03); position: relative;">
-                                        <!-- Product Image -->
-                                        <img src="pizza-portuguesa.jpg" alt="Pizza Portuguesa" style="width: 72px; height: 72px; border-radius: 8px; object-fit: cover; flex-shrink: 0;">
-                                        
+                                    <div class="pizza-card">
+                                        <img src="pizza-portuguesa.jpg" alt="Pizza Portuguesa" class="pizza-img">
                                         <div style="text-align: left; flex: 1; min-width: 0;">
-                                            <h5 style="font-size: 0.88rem; font-weight: 800; color: #0f172a; margin: 0 0 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Portuguesa Tradicional</h5>
-                                            <p style="font-size: 0.68rem; color: #64748b; line-height: 1.35; margin: 0 0 4px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Presunto, mozzarella, ovos cozidos, cebola e azeitonas pretas.</p>
-                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px;">
-                                                <span style="font-size: 0.88rem; font-weight: 900; color: #dc2626;">R$ 46,90</span>
-                                                <!-- Cart Control Wrapper -->
-                                                <div class="cart-control-wrapper" data-id="portuguesa" data-name="Portuguesa Tradicional" data-price="46.90" style="display: flex; align-items: center; justify-content: flex-end; width: 90px; height: 28px;">
-                                                    <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.72rem; font-weight: bold; cursor: pointer;">Adicionar</button>
+                                            <h5 class="pizza-title">Portuguesa Tradicional</h5>
+                                            <p class="pizza-desc">Presunto, mozzarella, ovos cozidos, cebola e azeitonas pretas.</p>
+                                            <div class="pizza-price-row">
+                                                <span class="pizza-price">R$ 46,90</span>
+                                                <div class="cart-control-wrapper" data-id="portuguesa" data-name="Portuguesa Tradicional" data-price="46.90">
+                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     
                                     <!-- Item 4 (Pizza Quatro Queijos) -->
-                                    <div style="display: flex; gap: 12px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 12px; padding: 10px; align-items: center; box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,0.03); position: relative;">
-                                        <!-- Product Image -->
-                                        <img src="pizza-quatro-queijos.jpg" alt="Pizza Quatro Queijos" style="width: 72px; height: 72px; border-radius: 8px; object-fit: cover; flex-shrink: 0;">
-                                        
+                                    <div class="pizza-card">
+                                        <img src="pizza-quatro-queijos.jpg" alt="Pizza Quatro Queijos" class="pizza-img">
                                         <div style="text-align: left; flex: 1; min-width: 0;">
-                                            <h5 style="font-size: 0.88rem; font-weight: 800; color: #0f172a; margin: 0 0 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Quatro Queijos Premium</h5>
-                                            <p style="font-size: 0.68rem; color: #64748b; line-height: 1.35; margin: 0 0 4px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Mozzarella, provolone defumado, gorgonzola doce e parmesão.</p>
-                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px;">
-                                                <span style="font-size: 0.88rem; font-weight: 900; color: #dc2626;">R$ 49,95</span>
-                                                <!-- Cart Control Wrapper -->
-                                                <div class="cart-control-wrapper" data-id="quatro-queijos" data-name="Quatro Queijos Premium" data-price="49.95" style="display: flex; align-items: center; justify-content: flex-end; width: 90px; height: 28px;">
-                                                    <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.72rem; font-weight: bold; cursor: pointer;">Adicionar</button>
+                                            <h5 class="pizza-title">Quatro Queijos Premium</h5>
+                                            <p class="pizza-desc">Mozzarella, provolone defumado, gorgonzola doce e parmesão.</p>
+                                            <div class="pizza-price-row">
+                                                <span class="pizza-price">R$ 49,95</span>
+                                                <div class="cart-control-wrapper" data-id="quatro-queijos" data-name="Quatro Queijos Premium" data-price="49.95">
+                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Item 5 (Pizza Frango Catupiry) -->
-                                    <div style="display: flex; gap: 12px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 12px; padding: 10px; align-items: center; box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,0.03); position: relative;">
-                                        <!-- Product Image -->
-                                        <img src="pizza-frango.jpg" alt="Pizza Frango com Catupiry" style="width: 72px; height: 72px; border-radius: 8px; object-fit: cover; flex-shrink: 0;">
-                                        
+                                    <div class="pizza-card">
+                                        <img src="pizza-frango.jpg" alt="Pizza Frango com Catupiry" class="pizza-img">
                                         <div style="text-align: left; flex: 1; min-width: 0;">
-                                            <h5 style="font-size: 0.88rem; font-weight: 800; color: #0f172a; margin: 0 0 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Frango com Catupiry</h5>
-                                            <p style="font-size: 0.68rem; color: #64748b; line-height: 1.35; margin: 0 0 4px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Frango desfiado temperado, orégano e o legítimo Catupiry.</p>
-                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px;">
-                                                <span style="font-size: 0.88rem; font-weight: 900; color: #dc2626;">R$ 45,90</span>
-                                                <!-- Cart Control Wrapper -->
-                                                <div class="cart-control-wrapper" data-id="frango" data-name="Frango com Catupiry" data-price="45.90" style="display: flex; align-items: center; justify-content: flex-end; width: 90px; height: 28px;">
-                                                    <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.72rem; font-weight: bold; cursor: pointer;">Adicionar</button>
+                                            <h5 class="pizza-title">Frango com Catupiry</h5>
+                                            <p class="pizza-desc">Frango desfiado temperado, orégano e o legítimo Catupiry.</p>
+                                            <div class="pizza-price-row">
+                                                <span class="pizza-price">R$ 45,90</span>
+                                                <div class="cart-control-wrapper" data-id="frango" data-name="Frango com Catupiry" data-price="45.90">
+                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     
                                     <!-- Item 6 (Coca-Cola Zero 2L) -->
-                                    <div style="display: flex; gap: 12px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 12px; padding: 10px; align-items: center; box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,0.03); position: relative;">
-                                        <!-- Product Image -->
-                                        <img src="coca-cola.jpg" alt="Coca Cola Zero 2L" style="width: 72px; height: 72px; border-radius: 8px; object-fit: cover; flex-shrink: 0;">
-                                        
+                                    <div class="pizza-card">
+                                        <img src="coca-cola.jpg" alt="Coca Cola Zero 2L" class="pizza-img">
                                         <div style="text-align: left; flex: 1; min-width: 0;">
-                                            <h5 style="font-size: 0.88rem; font-weight: 800; color: #0f172a; margin: 0 0 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Coca-Cola Zero 2L</h5>
-                                            <p style="font-size: 0.68rem; color: #64748b; line-height: 1.35; margin: 0 0 4px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Garrafa pet de 2 litros gelada sem açúcar.</p>
-                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px;">
-                                                <span style="font-size: 0.88rem; font-weight: 900; color: #dc2626;">R$ 12,00</span>
-                                                <!-- Cart Control Wrapper -->
-                                                <div class="cart-control-wrapper" data-id="coca-cola" data-name="Coca-Cola Zero 2L" data-price="12.00" style="display: flex; align-items: center; justify-content: flex-end; width: 90px; height: 28px;">
-                                                    <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.72rem; font-weight: bold; cursor: pointer;">Adicionar</button>
+                                            <h5 class="pizza-title">Coca-Cola Zero 2L</h5>
+                                            <p class="pizza-desc">Garrafa pet de 2 litros gelada sem açúcar.</p>
+                                            <div class="pizza-price-row">
+                                                <span class="pizza-price">R$ 12,00</span>
+                                                <div class="cart-control-wrapper" data-id="coca-cola" data-name="Coca-Cola Zero 2L" data-price="12.00">
+                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Item 7 (Suco de Laranja) -->
-                                    <div style="display: flex; gap: 12px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 12px; padding: 10px; align-items: center; box-sizing: border-box; margin-bottom: 60px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); position: relative;">
-                                        <!-- Product Image -->
-                                        <img src="suco-laranja.jpg" alt="Suco de Laranja Natural" style="width: 72px; height: 72px; border-radius: 8px; object-fit: cover; flex-shrink: 0;">
-                                        
+                                    <div class="pizza-card" style="margin-bottom: 60px;">
+                                        <img src="suco-laranja.jpg" alt="Suco de Laranja Natural" class="pizza-img">
                                         <div style="text-align: left; flex: 1; min-width: 0;">
-                                            <h5 style="font-size: 0.88rem; font-weight: 800; color: #0f172a; margin: 0 0 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Suco Laranja Natural</h5>
-                                            <p style="font-size: 0.68rem; color: #64748b; line-height: 1.35; margin: 0 0 4px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Suco de laranja natural de 500ml espremido na hora com gelo.</p>
-                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px;">
-                                                <span style="font-size: 0.88rem; font-weight: 900; color: #dc2626;">R$ 9,90</span>
-                                                <!-- Cart Control Wrapper -->
-                                                <div class="cart-control-wrapper" data-id="suco-laranja" data-name="Suco Laranja Natural" data-price="9.90" style="display: flex; align-items: center; justify-content: flex-end; width: 90px; height: 28px;">
-                                                    <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.72rem; font-weight: bold; cursor: pointer;">Adicionar</button>
+                                            <h5 class="pizza-title">Suco Laranja Natural</h5>
+                                            <p class="pizza-desc">Suco de laranja natural de 500ml espremido na hora com gelo.</p>
+                                            <div class="pizza-price-row">
+                                                <span class="pizza-price">R$ 9,90</span>
+                                                <div class="cart-control-wrapper" data-id="suco-laranja" data-name="Suco Laranja Natural" data-price="9.90">
+                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
                                                 </div>
                                             </div>
                                         </div>
