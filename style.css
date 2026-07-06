@@ -1517,26 +1517,40 @@ body[data-global-mode="discord"] .pill-active-bg {
 /* Checkboxes */
 .checkbox-options-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .checkbox-options-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .checkbox-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.015);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: var(--border-radius-md);
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
     cursor: pointer;
     user-select: none;
-    transition: var(--transition-fast);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
 .checkbox-container:hover {
     background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+}
+
+.checkbox-container:has(input:checked) {
+    background: rgba(0, 242, 254, 0.05);
+    border-color: var(--secondary);
+    box-shadow: 0 10px 25px rgba(0, 242, 254, 0.15), inset 0 0 0 1px var(--secondary);
 }
 
 .checkbox-container input {
@@ -1548,32 +1562,36 @@ body[data-global-mode="discord"] .pill-active-bg {
 }
 
 .checkmark {
-    height: 20px;
-    width: 20px;
-    background-color: rgba(255, 255, 255, 0.06);
+    height: 22px;
+    width: 22px;
+    background-color: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
-    margin-right: 1rem;
+    border-radius: 6px;
+    margin-right: 1.2rem;
+    margin-top: 0.1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: var(--transition-fast);
+    transition: all 0.2s;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .checkbox-container input:checked ~ .checkmark {
-    background-color: var(--primary);
-    border-color: var(--primary);
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
 }
 
 .checkmark::after {
     content: "";
     display: none;
     width: 5px;
-    height: 10px;
-    border: solid white;
+    height: 11px;
+    border: solid #000;
     border-width: 0 2.5px 2.5px 0;
     transform: rotate(45deg);
+    margin-bottom: 2px;
 }
 
 .checkbox-container input:checked ~ .checkmark::after {
@@ -1583,17 +1601,24 @@ body[data-global-mode="discord"] .pill-active-bg {
 .checkbox-label-wrapper {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .checkbox-label-wrapper strong {
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     color: #fff;
-    margin-bottom: 0.15rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.checkbox-container:has(input:checked) .checkbox-label-wrapper strong {
+    color: var(--secondary);
 }
 
 .checkbox-label-wrapper span {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
+    line-height: 1.4;
 }
 
 .calc-results {
@@ -1604,48 +1629,92 @@ body[data-global-mode="discord"] .pill-active-bg {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    background: linear-gradient(145deg, rgba(15, 16, 26, 0.9), rgba(5, 6, 10, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.calc-results::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: rgba(0, 242, 254, 0.15);
+    filter: blur(50px);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
 .results-title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-weight: 800;
     color: #fff;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 1rem;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 2;
 }
 
 .result-cards {
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 2;
 }
 
 .result-card {
-    padding: 1.25rem;
-    border-radius: var(--border-radius-md);
-    background: rgba(7, 8, 20, 0.5);
-    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     display: flex;
     flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s;
 }
 
-.result-card.primary-glow { border-left: 4px solid var(--primary); }
-.result-card.secondary-glow { border-left: 4px solid var(--secondary); }
+.result-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.15);
+}
+
+.result-card.primary-glow { 
+    border-left: 4px solid var(--primary); 
+    background: linear-gradient(90deg, rgba(168, 85, 247, 0.08) 0%, rgba(0,0,0,0.4) 100%);
+}
+.result-card.secondary-glow { 
+    border-left: 4px solid var(--secondary); 
+    background: linear-gradient(90deg, rgba(0, 242, 254, 0.08) 0%, rgba(0,0,0,0.4) 100%);
+}
 
 .result-label {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    font-weight: 700;
 }
 
 .result-big-num {
     font-family: var(--font-heading);
-    font-size: 2.1rem;
-    font-weight: 800;
+    font-size: 2.6rem;
+    font-weight: 900;
     color: #fff;
-    margin: 0.25rem 0;
+    margin: 0.5rem 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
 }
 
 .result-big-num.highlight-color {
