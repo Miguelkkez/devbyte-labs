@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aeterna - Masterpiece Audio</title>
+    <title>Aeterna - Premium Audio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@200;300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #000000;
-            --primary: #ffffff;
             --text-main: #f5f5f7;
             --text-muted: #86868b;
             --glass-border: rgba(255, 255, 255, 0.08);
-            --neon-blue: #00f0ff;
-            --neon-purple: #8a2be2;
-            --neon-pink: #ff003c;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,15 +27,14 @@
             font-family: 'Outfit', sans-serif;
             overflow-x: hidden; 
             min-width: 1280px; 
-            background-image: radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.1), transparent 40%);
             zoom: 0.7;
         }
 
         /* Premium Minimalist Navbar */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 80px; background: rgba(0, 0, 0, 0.5); 
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            padding: 20px 80px; background: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border); 
             position: sticky; top: 0; z-index: 100; 
         }
@@ -55,128 +50,104 @@
         .hero { display: flex; padding: 0 80px; gap: 60px; min-height: 90vh; align-items: center; position: relative; }
         
         /* -----------------------------------------------------------
-           INSANE HOVER EFFECT CONTAINER
+           ELEGANT 3D HOVER EFFECT
         -------------------------------------------------------------*/
         .product-showcase { 
             flex: 1.2; height: 800px; position: relative; 
             display: flex; align-items: center; justify-content: center; 
+            perspective: 2000px; /* Add depth for the rotation */
         }
 
         .headphone-container {
             position: relative;
             width: 500px; height: 600px;
-            perspective: 2000px;
-            z-index: 20;
-            display: flex; align-items: center; justify-content: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer;
         }
 
-        /* Floating animation for normal state */
+        /* Subtle float animation for idle state */
         .headphone-3d-wrapper {
             position: relative;
             width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
             transform-style: preserve-3d;
-            animation: floatSlow 8s ease-in-out infinite;
-            transition: transform 0.1s; /* smooth mouse tracking */
+            animation: floatSmooth 6s ease-in-out infinite;
+            /* Ultra smooth transition for the spin */
+            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        
-        @keyframes floatSlow { 0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); } 50% { transform: translateY(-20px) rotateX(2deg) rotateY(-2deg); } }
 
-        /* The actual image */
+        @keyframes floatSmooth { 
+            0%, 100% { transform: translateY(0px); } 
+            50% { transform: translateY(-15px); } 
+        }
+
         .headphone-img {
             width: 100%; height: 100%; object-fit: contain;
-            filter: drop-shadow(0 40px 50px rgba(0,0,0,0.8));
-            transition: filter 0.5s ease, opacity 0.4s;
-            transform: translateZ(100px); /* Pops out in 3D */
-            position: relative;
-            z-index: 5;
+            /* Soft, highly realistic drop shadow */
+            filter: drop-shadow(0 40px 40px rgba(0,0,0,0.9));
+            transition: filter 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* GLARE EFFECT ON IMAGE */
-        .glare {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 0%, transparent 60%);
-            mix-blend-mode: overlay;
-            opacity: 0; transition: opacity 0.5s;
-            transform: translateZ(101px);
-            pointer-events: none;
-            z-index: 6;
-            border-radius: 50%;
-        }
-
-        /* SOUND WAVES / PORTAL EFFECT (Hidden by default) */
-        .sound-wave {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            border-radius: 50%; border: 2px solid transparent;
-            opacity: 0; pointer-events: none; z-index: 1;
-        }
-        
-        /* HOVER STATES TRIGGERED BY PARENT */
-        .headphone-container:hover .headphone-3d-wrapper {
-            animation: none; /* stop floating, hand over to JS mouse tracking */
-        }
-        
-        .headphone-container:hover .glare { opacity: 1; }
-        
-        /* Chromatic Aberration Shadow on hover */
-        .headphone-container:hover .headphone-img {
-            filter: drop-shadow(-20px 20px 30px rgba(0, 240, 255, 0.5)) 
-                    drop-shadow(20px -20px 30px rgba(255, 0, 60, 0.5))
-                    drop-shadow(0 50px 80px rgba(255, 255, 255, 0.2));
-        }
-
-        /* Pulse waves active on hover */
-        .headphone-container:hover .sound-wave:nth-child(1) { animation: insanePulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite; border-color: var(--neon-blue); }
-        .headphone-container:hover .sound-wave:nth-child(2) { animation: insanePulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite 0.4s; border-color: var(--neon-purple); }
-        .headphone-container:hover .sound-wave:nth-child(3) { animation: insanePulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite 0.8s; border-color: var(--neon-pink); }
-
-        @keyframes insanePulse {
-            0% { width: 400px; height: 400px; opacity: 1; border-width: 10px; box-shadow: 0 0 50px currentColor, inset 0 0 50px currentColor; }
-            100% { width: 1200px; height: 1200px; opacity: 0; border-width: 1px; box-shadow: 0 0 0 currentColor; }
-        }
-
-        /* -----------------------------------------------------------
-           DYNAMIC SPEC CALLOUTS (Shooting out on hover)
-        -------------------------------------------------------------*/
-        .spec-callout {
+        /* Ground shadow below the headphone for grounding */
+        .ground-shadow {
             position: absolute;
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.2);
-            padding: 15px 20px; border-radius: 12px;
-            color: #fff; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
-            opacity: 0; pointer-events: none; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255,255,255,0.1);
-            display: flex; flex-direction: column; gap: 5px;
-            z-index: 30;
-        }
-        .spec-callout span { font-size: 1.2rem; color: var(--neon-blue); font-family: 'JetBrains Mono', monospace; font-weight: 900;}
-        
-        /* Line connecting spec to headphone */
-        .spec-callout::before {
-            content: ''; position: absolute; background: rgba(255,255,255,0.5);
-            transition: all 0.5s; opacity: 0;
+            bottom: 20px;
+            width: 300px; height: 30px;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: shadowScale 6s ease-in-out infinite;
         }
 
-        .spec-top { top: 0; left: 50%; transform: translate(-50%, -50px) scale(0.5); }
-        .spec-top::before { width: 2px; height: 0; top: 100%; left: 50%; }
-        
-        .spec-left { top: 60%; left: -50px; transform: translate(-50px, -50%) scale(0.5); }
-        .spec-left::before { height: 2px; width: 0; top: 50%; left: 100%; }
-        
-        .spec-right { top: 70%; right: -50px; transform: translate(50px, -50%) scale(0.5); text-align: right;}
-        .spec-right::before { height: 2px; width: 0; top: 50%; right: 100%; }
+        @keyframes shadowScale {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(0.8); opacity: 0.2; }
+        }
 
-        /* Activate callouts on hover */
-        .headphone-container:hover .spec-top { opacity: 1; transform: translate(-50%, -100px) scale(1) translateZ(120px); }
-        .headphone-container:hover .spec-top::before { height: 60px; opacity: 1; }
+        /* 
+           THE HOVER ACTION
+           Very smooth, elegant 360 spin that feels weighty.
+        */
+        .headphone-container:hover .headphone-3d-wrapper {
+            animation: none; /* Pause float */
+            transform: rotateY(360deg) scale(1.05); /* Spin and slightly enlarge */
+        }
 
-        .headphone-container:hover .spec-left { opacity: 1; transform: translate(-80px, -50%) scale(1) translateZ(150px); }
-        .headphone-container:hover .spec-left::before { width: 80px; opacity: 1; }
+        .headphone-container:hover .headphone-img {
+            /* Adjust shadow dynamically during the spin for realism */
+            filter: drop-shadow(0 60px 50px rgba(255,255,255,0.05));
+        }
 
-        .headphone-container:hover .spec-right { opacity: 1; transform: translate(80px, -50%) scale(1) translateZ(150px); }
-        .headphone-container:hover .spec-right::before { width: 80px; opacity: 1; }
+        .headphone-container:hover .ground-shadow {
+            animation: none;
+            transform: scale(1.1);
+            opacity: 0.8;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, transparent 70%);
+        }
+
+        /* Optional: Add a very subtle light sweep effect on the image during hover */
+        .headphone-img::after {
+            content: '';
+            position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-20deg);
+            transition: left 1s ease;
+        }
+        .headphone-container:hover .headphone-img::after {
+            left: 150%;
+        }
 
 
-        /* Product Info - Clean layout */
+        /* Minimal Background lighting */
+        .ambient-light {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 0; pointer-events: none;
+        }
+
+
+        /* Product Info - Ultra Clean layout */
         .product-info { flex: 1; display: flex; flex-direction: column; gap: 35px; z-index: 10; }
         .tag { display: inline-block; padding: 6px 0; color: var(--text-muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; }
         .title { font-size: 6.5rem; font-weight: 900; line-height: 0.95; letter-spacing: -3px; color: #fff; }
@@ -244,96 +215,25 @@
         </div>
         
         <div class="product-showcase">
+            <div class="ambient-light"></div>
             
-            <div class="headphone-container" id="headphoneContainer">
+            <div class="headphone-container">
                 
-                <!-- Sound waves that explode on hover -->
-                <div class="sound-wave"></div>
-                <div class="sound-wave"></div>
-                <div class="sound-wave"></div>
-                
-                <!-- The 3D tracking wrapper -->
-                <div class="headphone-3d-wrapper" id="headphone3D">
+                <!-- The 3D spinning wrapper -->
+                <div class="headphone-3d-wrapper">
                     <img id="productImage" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000" alt="Headphone" class="headphone-img">
-                    
-                    <!-- Dynamic Glare overlay -->
-                    <div class="glare" id="glare"></div>
-                    
-                    <!-- High-tech spec callouts that shoot out -->
-                    <div class="spec-callout spec-top">
-                        Arco Acústico
-                        <span>Titanium</span>
-                    </div>
-                    
-                    <div class="spec-callout spec-left">
-                        Chip Neural
-                        <span>H2 Pro</span>
-                    </div>
-                    
-                    <div class="spec-callout spec-right">
-                        ANC Dinâmico
-                        <span>-45dB</span>
-                    </div>
                 </div>
+                
+                <!-- Ground shadow to anchor the 3D effect -->
+                <div class="ground-shadow"></div>
 
             </div>
             
         </div>
     </div>
-    
-    <div style="text-align: center; padding: 100px; color: var(--text-muted); font-weight: 300;">
-        Role para baixo para mais...
-    </div>
 
-    <!-- INSANE 3D INTERACTION SCRIPT -->
+    <!-- CLEAN JS -->
     <script>
-        const container = document.getElementById('headphoneContainer');
-        const wrapper = document.getElementById('headphone3D');
-        const glare = document.getElementById('glare');
-        
-        let bounds;
-
-        container.addEventListener('mouseenter', () => {
-            bounds = container.getBoundingClientRect();
-            wrapper.style.transition = 'transform 0.1s cubic-bezier(0.1, 1, 0.3, 1)';
-        });
-
-        container.addEventListener('mousemove', (e) => {
-            if(!bounds) return;
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            
-            const leftX = mouseX - bounds.x;
-            const topY = mouseY - bounds.y;
-            
-            const center = {
-                x: leftX - bounds.width / 2,
-                y: topY - bounds.height / 2
-            }
-            
-            // Extreme 3D rotation logic (up to 30 degrees)
-            const xAxis = (center.y / (bounds.height / 2)) * -30;
-            const yAxis = (center.x / (bounds.width / 2)) * 30;
-            
-            // Apply 3D transform
-            wrapper.style.transform = `rotateX(${xAxis}deg) rotateY(${yAxis}deg) scale3d(1.1, 1.1, 1.1)`;
-            
-            // Move glare dynamically based on mouse
-            const glareX = (leftX / bounds.width) * 100;
-            const glareY = (topY / bounds.height) * 100;
-            glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.8) 0%, transparent 60%)`;
-        });
-
-        container.addEventListener('mouseleave', () => {
-            // Spring back to center smoothly
-            wrapper.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-            wrapper.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-            setTimeout(() => {
-                // Remove transition so mousemove is snappy again
-                wrapper.style.transition = '';
-            }, 1000);
-        });
-        
         // Color picker interaction
         const dots = document.querySelectorAll('.color-dot');
         const productImage = document.getElementById('productImage');
@@ -348,10 +248,14 @@
                 dots.forEach(d => d.classList.remove('active'));
                 dot.classList.add('active');
                 const color = dot.getAttribute('data-color');
+                
+                // Fade effect when changing color
                 productImage.style.opacity = '0';
+                productImage.style.transform = 'scale(0.95)';
                 setTimeout(() => {
                     productImage.src = images[color];
                     productImage.style.opacity = '1';
+                    productImage.style.transform = 'scale(1)';
                 }, 300);
             });
         });
