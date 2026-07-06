@@ -1343,8 +1343,8 @@
                 const u = usernameInput.value.trim();
                 const p = passwordInput.value.trim();
 
-                // Mapeamento automático: se digitar só o username amamosjaponesas007,
-                // converte para amamosjaponesas007@devbyte.com para bater com o formato de e-mail do Supabase Auth
+                // Mapeamento automático: se digitar só o username sem e-mail,
+                // converte para o formato de e-mail do Supabase Auth
                 let email = u;
                 if (!email.includes('@')) {
                     email = `${u}@devbyte.com`;
