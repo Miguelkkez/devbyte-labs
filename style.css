@@ -4299,5 +4299,18 @@ body[data-global-mode="discord"] .pill-active-bg {
 }
 
 
-.iframe-container { height: 55vh; }
-@media (max-width: 768px) { .iframe-container { height: 75vh; } }
+.iframe-container {
+    height: 55vh;
+}
+
+@media (max-width: 768px) {
+    .iframe-container {
+        height: 60vh;
+    }
+    .iframe-container iframe {
+        width: 400% !important;
+        height: 400% !important;
+        transform: scale(0.25);
+        transform-origin: top left;
+    }
+}
