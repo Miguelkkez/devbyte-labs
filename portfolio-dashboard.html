@@ -226,11 +226,16 @@
 
         /* Table */
         .table-card { grid-column: span 12; grid-row: span 2; position: relative; z-index: 2;}
-        .data-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; margin-top: 10px; }
-        .data-table th { text-align: left; padding: 12px 20px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; border-bottom: 1px solid var(--border); }
-        .data-table td { padding: 16px 20px; font-weight: 500; transition: 0.3s; background: rgba(0,0,0,0.2); }
-        .data-table td:first-child { border-radius: 12px 0 0 12px; }
-        .data-table td:last-child { border-radius: 0 12px 12px 0; }
+        .table-responsive { width: 100%; overflow-x: auto; padding-bottom: 5px; }
+        .table-responsive::-webkit-scrollbar { height: 6px; }
+        .table-responsive::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 10px; }
+        .table-responsive::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .table-responsive::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+        .data-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; margin-top: 10px; min-width: 650px;}
+        .data-table th { text-align: left; padding: 12px 10px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; border-bottom: 1px solid var(--border); }
+        .data-table td { padding: 14px 10px; font-weight: 500; transition: 0.3s; background: rgba(0,0,0,0.2); font-size: 0.9rem;}
+        .data-table td:first-child { border-radius: 12px 0 0 12px; padding-left: 15px;}
+        .data-table td:last-child { border-radius: 0 12px 12px 0; padding-right: 15px;}
         
         .data-table tr { transition: 0.3s; cursor: pointer; }
         .data-table tr:hover td { background: rgba(59, 130, 246, 0.05); transform: scale(1.01); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
@@ -475,9 +480,10 @@
                     <h2 class="card-title">Transações Recentes</h2>
                     <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 700; font-size: 0.9rem;">Ver Todas</a>
                 </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
                             <th>Cliente</th>
                             <th>Data</th>
                             <th>Plano</th>
@@ -533,6 +539,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
             
         </div>
