@@ -1545,7 +1545,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = document.getElementById('modal-project-title');
     const modalTags = document.getElementById('modal-project-tags');
     const modalBrowserUrl = document.getElementById('modal-browser-url');
-    const modalImg = document.getElementById('modal-project-img');
+    const modalIframe = document.getElementById('modal-project-iframe');
     const modalDesc = document.getElementById('modal-project-desc');
     const btnPrev = document.getElementById('modal-btn-prev');
     const btnNext = document.getElementById('modal-btn-next');
@@ -1556,7 +1556,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: "Dashboard de Alta Performance",
             url: "https://analise.devbytelabs.com.br/dashboard",
-            img: "dashboard-mockup.jpg",
+            iframeUrl: "portfolio-dashboard.html",
             desc: "Painel de controle corporativo de alta performance integrado a APIs em tempo real, bancos de dados relotados e métricas interativas.",
             tags: ["React", "Node.js", "Chart.js", "PostgreSQL"],
             tagColors: ["rgba(0, 242, 254, 0.15)", "rgba(59, 130, 246, 0.15)", "rgba(168, 85, 247, 0.15)", "rgba(16, 185, 129, 0.15)"],
@@ -1565,7 +1565,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: "Lojas Virtuais & E-commerce",
             url: "https://aeterna.devbytelabs.com.br/headphone-orbital",
-            img: "ecommerce-mockup.jpg",
+            iframeUrl: "portfolio-ecommerce.html",
             desc: "Plataforma de e-commerce otimizada para conversão, carrinho reativo, catálogo de alta velocidade e checkout integrado com Pix/Cartão.",
             tags: ["Next.js", "TailwindCSS", "Stripe API", "Vercel"],
             tagColors: ["rgba(255, 255, 255, 0.08)", "rgba(59, 130, 246, 0.15)", "rgba(239, 68, 68, 0.15)", "rgba(16, 185, 129, 0.15)"],
@@ -1574,7 +1574,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: "Landing Pages & Sites de Conversão",
             url: "https://nexus.devbytelabs.com.br/scale-your-stack",
-            img: "landing-mockup.jpg",
+            iframeUrl: "portfolio-landing.html",
             desc: "Página de conversão moderna de alta velocidade focada em tráfego pago, SEO local e design visual premium para capturar leads de vendas.",
             tags: ["HTML5", "Vanilla CSS", "JavaScript", "SEO Local"],
             tagColors: ["rgba(249, 115, 22, 0.15)", "rgba(59, 130, 246, 0.15)", "rgba(234, 179, 8, 0.15)", "rgba(168, 85, 247, 0.15)"],
@@ -1612,7 +1612,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modalTitle.textContent = project.title;
         modalBrowserUrl.textContent = project.url;
-        modalImg.src = project.img;
+        modalIframe.src = project.iframeUrl;
         modalDesc.textContent = project.desc;
 
         modalTags.innerHTML = '';
@@ -1629,7 +1629,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalTags.appendChild(span);
         });
 
-        const browserScrollContainer = modalImg.parentElement;
+        const browserScrollContainer = modalIframe.parentElement;
         if (browserScrollContainer) {
             browserScrollContainer.scrollTop = 0;
         }

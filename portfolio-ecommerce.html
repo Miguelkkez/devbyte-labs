@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aeterna - Premium E-commerce</title>
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --bg-card: #111;
+            --border: #222;
+            --primary: #f8fafc;
+            --accent: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #a1a1aa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); }
+        
+        /* Navbar */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(5,5,5,0.8); backdrop-filter: blur(10px); z-index: 10; }
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; transition: 0.2s; }
+        .nav-links a:hover { color: var(--text-main); }
+        .cart-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: var(--accent); color: #fff; font-size: 0.7rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        
+        /* Hero Product */
+        .hero { display: flex; padding: 60px 40px; gap: 60px; min-height: 80vh; align-items: center; }
+        .product-image { flex: 1; height: 500px; background: linear-gradient(145deg, #111, #050505); border-radius: 20px; border: 1px solid var(--border); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .product-image::after { content: ''; position: absolute; width: 300px; height: 300px; background: var(--accent); filter: blur(150px); opacity: 0.15; z-index: 0; }
+        .product-mock { width: 200px; height: 250px; background: #222; border-radius: 40px 40px 10px 10px; z-index: 1; border: 4px solid #333; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+        .product-mock::before { content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border-radius: 30px 30px 5px 5px; background: linear-gradient(to bottom, #333, #111); }
+        
+        .product-info { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+        .tag { display: inline-block; padding: 6px 12px; background: rgba(59,130,246,0.1); color: var(--accent); font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; align-self: flex-start; }
+        .title { font-size: 4rem; font-weight: 900; line-height: 1; letter-spacing: -1px; }
+        .price { font-size: 2rem; font-weight: 300; color: var(--text-muted); margin-top: 10px; }
+        .desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin-bottom: 20px; }
+        
+        .btn-add { background: var(--text-main); color: var(--bg-dark); border: none; padding: 20px 40px; font-size: 1.1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; border-radius: 8px; cursor: pointer; transition: 0.2s; align-self: flex-start; display: flex; align-items: center; gap: 10px; }
+        .btn-add:hover { background: var(--accent); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59,130,246,0.3); }
+        
+        /* Features */
+        .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 60px 40px; border-top: 1px solid var(--border); }
+        .feature-item { display: flex; flex-direction: column; gap: 15px; }
+        .f-icon { width: 50px; height: 50px; background: var(--bg-card); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent); border: 1px solid var(--border); }
+        .f-title { font-size: 1.1rem; font-weight: bold; }
+        .f-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">AETERNA</div>
+        <div class="nav-links">
+            <a href="#">Headphones</a>
+            <a href="#">Earbuds</a>
+            <a href="#">Accessories</a>
+            <a href="#">Support</a>
+        </div>
+        <div class="cart-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <div class="cart-badge">1</div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="product-info">
+            <div class="tag">New Arrival</div>
+            <h1 class="title">Orbital NC1</h1>
+            <div class="price">$499.00 USD</div>
+            <p class="desc">Experience pure silence with our next-generation active noise cancellation. The Orbital NC1 delivers studio-quality audio in a premium, ultra-lightweight design.</p>
+            <button class="btn-add">
+                Add to Cart
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+        </div>
+        <div class="product-image">
+            <!-- Simple CSS representation of headphones shape -->
+            <div style="width: 180px; height: 220px; border: 20px solid #222; border-bottom: none; border-radius: 100px 100px 0 0; position: relative; z-index: 1;">
+                <div style="position: absolute; bottom: -20px; left: -35px; width: 50px; height: 80px; background: #333; border-radius: 20px; box-shadow: inset -5px 0 10px rgba(0,0,0,0.5);"></div>
+                <div style="position: absolute; bottom: -20px; right: -35px; width: 50px; height: 80px; background: #333; border-radius: 20px; box-shadow: inset 5px 0 10px rgba(0,0,0,0.5);"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="feature-item">
+            <div class="f-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+            </div>
+            <div class="f-title">40-Hour Battery</div>
+            <div class="f-desc">Listen for days on a single charge. Fast charging gives you 5 hours of playback in just 10 minutes.</div>
+        </div>
+        <div class="feature-item">
+            <div class="f-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <div class="f-title">Spatial Audio</div>
+            <div class="f-desc">Immersive 3D sound tracking that puts you right in the center of your music and movies.</div>
+        </div>
+        <div class="feature-item">
+            <div class="f-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            </div>
+            <div class="f-title">Premium Materials</div>
+            <div class="f-desc">Crafted from aerospace-grade aluminum and memory foam for ultimate durability and comfort.</div>
+        </div>
+    </div>
+</body>
+</html>
