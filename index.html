@@ -211,72 +211,50 @@
                             </div>
                         </div>
                         
-                        <!-- Mini Discord Profile Card (Fidelity UI) -->
-                        <div class="discord-profile-card glass" style="width: 58%; position: absolute; bottom: 5px; right: 0; z-index: 6; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.65); animation: float-phone 4.5s ease-in-out infinite; background: #111214; text-align: left; font-family: sans-serif;">
-                            <!-- Profile Banner com Badges -->
-                            <div class="profile-banner" style="height: 45px; background: linear-gradient(135deg, var(--discord-blurple) 0%, #404eed 100%); position: relative; display: flex; justify-content: flex-end; align-items: flex-start; padding: 6px 8px; box-sizing: border-box;">
-                                <!-- Badges do Bot -->
-                                <div style="display: flex; gap: 4px; background: rgba(0,0,0,0.45); padding: 3px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); align-items: center;">
-                                    <!-- Active Developer Badge -->
-                                    <svg viewBox="0 0 16 16" width="12" height="12" fill="none" title="Developer Verificado">
-                                        <path d="M8 0L1 3v5c0 4.4 3 8.5 7 10 4-1.5 7-5.6 7-10V3L8 0z" fill="#5865F2"/>
-                                        <path d="M8 4L4 7h2.5v5h3V7H12L8 4z" fill="#fff"/>
-                                    </svg>
-                                    <!-- HypeSquad Balance -->
-                                    <svg viewBox="0 0 16 16" width="11" height="11" fill="none" title="HypeSquad">
-                                        <path d="M8 1.5L2 5v6l6 3.5L14 11V5L8 1.5z" fill="#FEE75C"/>
-                                        <path d="M8 4L5 6v4l3 2 3-2V6L8 4z" fill="#FF9A00"/>
-                                    </svg>
-                                    <!-- Server Booster (Nitro) -->
-                                    <svg viewBox="0 0 16 16" width="10" height="10" fill="none" title="Server Booster">
-                                        <path d="M8 1L2 7l6 8 6-8-6-6z" fill="#FF73FA"/>
-                                        <path d="M8 3.5L4 7l4 4.5L12 7l-4-3.5z" fill="#fff" opacity="0.6"/>
-                                    </svg>
-                                </div>
-                            </div>
+                        <!-- Minimalist Discord Embed Mockup -->
+                        <div class="discord-embed-window glass" style="width: 58%; position: absolute; bottom: 5px; right: 0; z-index: 6; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.65); animation: float-phone 4.5s ease-in-out infinite; background: #111214; text-align: left; font-family: 'Inter', sans-serif;">
                             
-                            <!-- Avatar Container -->
-                            <div class="profile-avatar-container" style="position: relative; margin-top: -24px; margin-left: 12px; margin-bottom: 6px; display: inline-flex;">
-                                <img src="logo.jpg" alt="Logo DevByte" style="width: 44px; height: 44px; border-radius: 50%; border: 3.5px solid #111214; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-                                <div class="profile-status-dot" style="width: 11px; height: 11px; border-radius: 50%; background: #23a55a; border: 2.5px solid #111214; position: absolute; bottom: 2px; right: 2px;"></div>
+                            <!-- Discord Bot Header (Author) -->
+                            <div style="padding: 12px 14px 4px 14px; display: flex; align-items: center; gap: 8px;">
+                                <img src="logo.jpg" alt="DevByte Bot" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">
+                                <span style="font-size: 0.65rem; color: #fff; font-weight: 700;">DevByte Bot</span>
+                                <span style="background: var(--discord-blurple); color: #fff; font-size: 0.4rem; font-weight: 800; padding: 1px 4px; border-radius: 3px; display: inline-flex; align-items: center; gap: 2px;">
+                                    <svg viewBox="0 0 24 24" width="6" height="6" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>BOT
+                                </span>
                             </div>
-                            
-                            <!-- Corpo de Informações (Discord Style) -->
-                            <div style="padding: 0 10px 10px 10px; background: #111214;">
-                                <!-- Username & Tag -->
-                                <div style="display: flex; align-items: center; gap: 4px;">
-                                    <h4 style="font-size: 0.72rem; color: #fff; margin: 0; font-weight: 700; letter-spacing: 0.01em;">DevByte Bot</h4>
-                                    <span style="background: var(--discord-blurple); color: #fff; font-size: 0.42rem; font-weight: 800; padding: 1px 4px; border-radius: 3px; text-transform: uppercase; font-family: var(--font-body); display: inline-flex; align-items: center; gap: 2px;">
-                                        <svg viewBox="0 0 24 24" width="6" height="6" fill="currentColor" style="display: inline-block;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>BOT
-                                    </span>
-                                </div>
-                                <div style="font-size: 0.52rem; color: #949ba4; margin-bottom: 8px;">devbyte_bot</div>
+
+                            <!-- The Embed Box -->
+                            <div style="margin: 6px 14px 14px 14px; background: #2b2d31; border-radius: 4px; border-left: 4px solid var(--discord-blurple); padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+                                <h3 style="margin: 0; color: #fff; font-size: 0.75rem; font-weight: 700;">Sistema de Integração Ativo</h3>
+                                <p style="margin: 0; color: #dbdee1; font-size: 0.55rem; line-height: 1.4;">
+                                    Seu ecossistema <strong>DevByte Labs</strong> está rodando com alta performance. Proteção anti-raid e bots inteligentes integrados com sucesso.
+                                </p>
                                 
-                                <div style="border-top: 1px solid rgba(255,255,255,0.04); padding-top: 6px; display: flex; flex-direction: column; gap: 6px;">
-                                    <!-- Sobre Mim -->
-                                    <div>
-                                        <div style="font-size: 0.42rem; font-weight: 800; color: #b5bac1; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 2px;">Sobre Mim</div>
-                                        <p style="font-size: 0.5rem; color: #dbdee1; line-height: 1.3; margin: 0;">Ecossistemas para servidores, segurança anti-raid e bots inteligentes integrados com IA.</p>
-                                    </div>
-                                    
-                                    <!-- Atividade -->
-                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; padding: 5px; display: flex; align-items: center; gap: 6px;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="#949ba4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
-                                            <rect x="2" y="6" width="20" height="12" rx="3"></rect>
-                                            <path d="M6 12h4m-2-2v4m7-2v.01m3-.01v.01"></path>
-                                        </svg>
-                                        <div style="display: flex; flex-direction: column; text-align: left;">
-                                            <span style="font-size: 0.42rem; font-weight: 800; color: #fff;">Jogando IA Chatbot</span>
-                                            <span style="font-size: 0.45rem; color: #b5bac1; line-height: 1.1;">Atendendo comandos e tickets</span>
+                                <div style="display: flex; gap: 12px; margin-top: 4px;">
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.5rem; color: #b5bac1; font-weight: 700; text-transform: uppercase; margin-bottom: 2px;">Status</div>
+                                        <div style="font-size: 0.55rem; color: #23a55a; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                            <span style="width: 6px; height: 6px; background: #23a55a; border-radius: 50%; display: inline-block;"></span>
+                                            Online & Otimizado
                                         </div>
                                     </div>
-                                    
-                                    <!-- Botão de Ação -->
-                                    <a href="https://discord.gg/BtmFUf5tXK" target="_blank" style="display: block; width: 100%; text-align: center; background: var(--discord-blurple); color: #fff; font-size: 0.52rem; font-weight: 700; padding: 5px 0; border-radius: 4px; text-decoration: none; transition: background 0.2s; box-shadow: 0 2px 6px rgba(88,101,242,0.3);">
-                                        Adicionar ao Servidor
-                                    </a>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.5rem; color: #b5bac1; font-weight: 700; text-transform: uppercase; margin-bottom: 2px;">Ping</div>
+                                        <div style="font-size: 0.55rem; color: #dbdee1; font-weight: 500;">12ms</div>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <!-- Discord Buttons Row -->
+                            <div style="padding: 0 14px 14px 14px; display: flex; gap: 6px;">
+                                <div style="flex: 1; background: #2b2d31; color: #dbdee1; font-size: 0.55rem; font-weight: 600; text-align: center; padding: 6px 0; border-radius: 3px; cursor: pointer; transition: 0.2s; border: 1px solid rgba(255,255,255,0.02);" onmouseover="this.style.background='#3f4147'" onmouseout="this.style.background='#2b2d31'">
+                                    📊 Dashboard
+                                </div>
+                                <div style="flex: 1; background: #248046; color: #fff; font-size: 0.55rem; font-weight: 600; text-align: center; padding: 6px 0; border-radius: 3px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#1a6334'" onmouseout="this.style.background='#248046'">
+                                    ✉️ Abrir Ticket
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     
