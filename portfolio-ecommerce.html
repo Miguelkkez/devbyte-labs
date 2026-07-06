@@ -10,15 +10,21 @@
     <style>
         :root {
             --bg-dark: #000000;
+            --bg-card: rgba(20, 20, 22, 0.6);
             --primary: #ffffff;
             --text-main: #f5f5f7;
             --text-muted: #86868b;
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.08);
             --accent: #2997ff;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
+
         body { 
             background-color: var(--bg-dark); 
             color: var(--text-main); 
@@ -26,6 +32,7 @@
             overflow-x: hidden; 
             min-width: 1280px; 
             zoom: 0.8;
+            /* Premium dark ambient background */
             background-image: 
                 radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.03), transparent 25%),
                 radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.03), transparent 25%);
@@ -34,18 +41,19 @@
         /* NAVBAR */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 30px 80px; position: sticky; top: 0; z-index: 100;
-            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 30px 80px; position: sticky; top: 0; z-index: 1000;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border-bottom: 1px solid var(--glass-border);
         }
         .logo { font-family: 'Syncopate', sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: 10px; color: #fff; cursor: pointer; }
         .nav-links { display: flex; gap: 60px; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-weight: 600; letter-spacing: 3px; transition: color 0.4s; }
         .nav-links a:hover, .nav-links a.active { color: #fff; }
-        .cart-icon { cursor: pointer; color: #fff; }
+        .cart-icon { cursor: pointer; color: #fff; position: relative; }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: #fff; color: #000; font-size: 0.65rem; font-weight: 900; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         
         /* HERO SECTION */
-        .hero { display: flex; padding: 0 80px; gap: 80px; height: 90vh; align-items: center; }
+        .hero { display: flex; padding: 0 80px; gap: 80px; min-height: 90vh; align-items: center; }
         
         /* Product Info */
         .product-info { flex: 1; display: flex; flex-direction: column; gap: 40px; z-index: 10; }
@@ -80,12 +88,12 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* Fixed aspect ratio container to ensure perfect math (940x1112 -> 500x591.5) */
+        /* Fixed aspect ratio container to ensure perfect math (940x1112 -> 600x710) */
         .magnifier-container {
             position: relative;
-            width: 500px; height: 591px; /* Exact aspect ratio */
+            width: 600px; height: 710px; /* Exact aspect ratio */
             cursor: none;
-            /* Give it some breathing room for the lens to go outside the bounds slightly */
+            /* Allow hover to be captured safely */
         }
 
         /* The base image layer */
@@ -102,12 +110,12 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.85);
             /* Soft blur over the dark area */
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
             opacity: 0; transition: opacity 0.5s ease;
             pointer-events: none;
             /* The mask will be updated via JS to reveal the image under the cursor */
-            mask-image: radial-gradient(circle 180px at 50% 50%, transparent 10%, black 100%);
-            -webkit-mask-image: radial-gradient(circle 180px at 50% 50%, transparent 10%, black 100%);
+            mask-image: radial-gradient(circle 200px at 50% 50%, transparent 10%, black 100%);
+            -webkit-mask-image: radial-gradient(circle 200px at 50% 50%, transparent 10%, black 100%);
         }
 
         /* THE LENS (Hardware Accelerated, Lerp Physics) */
@@ -143,11 +151,10 @@
         .zoomed-image {
             position: absolute;
             top: 0; left: 0;
-            /* Container is 500x591. Zoom level 2.5 => 1250x1477.5 */
-            width: 1250px; height: 1477.5px;
+            /* Container is 600x710. Zoom level 2.5 => 1500x1775 */
+            width: 1500px; height: 1775px;
             object-fit: cover;
             pointer-events: none;
-            /* We will translate this image perfectly in JS */
         }
 
         /* Glassmorphism Panel attached to the Lens */
@@ -191,6 +198,76 @@
         #marker-2 { top: 58%; left: 24%; transform: translate(-50%, -50%); }
         #marker-3 { top: 58%; left: 74%; transform: translate(-50%, -50%); }
 
+
+        /* -----------------------------------------------------------
+           REST OF THE SITE (Marquee, Features, Footer)
+        -------------------------------------------------------------*/
+        /* Subtle Marquee */
+        .marquee-container {
+            width: 100%; padding: 30px 0; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);
+            overflow: hidden; white-space: nowrap; display: flex; align-items: center; margin: 80px 0;
+        }
+        .marquee {
+            font-family: 'Syncopate', sans-serif; font-size: 1.5rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted);
+            animation: marquee 30s linear infinite; display: flex; gap: 80px;
+        }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Feature Cards with Glassmorphism */
+        .features { 
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; 
+            padding: 80px 80px 160px; position: relative;
+        }
+        .feature-card { 
+            background: rgba(20, 20, 22, 0.4); border: 1px solid var(--glass-border); 
+            padding: 60px 50px; border-radius: 32px; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; overflow: hidden;
+        }
+        .feature-card:hover { 
+            transform: translateY(-10px); 
+            background: rgba(30, 30, 35, 0.6);
+            border-color: rgba(255,255,255,0.2); 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+        }
+        .f-icon-wrap { margin-bottom: 40px; color: #fff; opacity: 0.8; transition: 0.4s; }
+        .feature-card:hover .f-icon-wrap { opacity: 1; transform: scale(1.1) translateX(10px); }
+        .f-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
+        .f-desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+
+        /* Immersive Showcase Gallery */
+        .showcase { padding: 40px 80px 140px; text-align: center; }
+        .section-header { margin-bottom: 100px; }
+        .section-title { 
+            font-size: 5rem; font-weight: 900; margin-bottom: 24px; letter-spacing: -2px; 
+            background: linear-gradient(to bottom right, #fff, #666); -webkit-background-clip: text; color: transparent;
+        }
+        .grid-showcase { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .grid-item { 
+            height: 500px; background: var(--bg-card); border-radius: 40px; 
+            border: 1px solid var(--glass-border); overflow: hidden; position: relative; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 60px;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
+        }
+        .grid-item:hover { border-color: rgba(255,255,255,0.3); transform: scale(0.98); }
+        .grid-item h3 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -1px; }
+        .grid-item p { color: var(--text-muted); font-size: 1.2rem; line-height: 1.6; font-weight: 300; max-width: 80%; }
+
+        /* Elegant Footer */
+        .footer { padding: 120px 80px 40px; border-top: 1px solid var(--glass-border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 80px; margin-bottom: 100px; }
+        .f-col h4 { font-size: 0.85rem; margin-bottom: 30px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #fff; }
+        .f-col p { color: var(--text-muted); line-height: 1.8; margin-bottom: 20px; font-size: 1rem; font-weight: 300; }
+        .f-col a { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 16px; font-size: 1rem; font-weight: 300; transition: 0.3s; }
+        .f-col a:hover { color: #fff; }
+        .footer-bottom { 
+            border-top: 1px solid var(--glass-border); padding-top: 40px; 
+            display: flex; justify-content: space-between; align-items: center;
+            color: var(--text-muted); font-size: 0.9rem; font-weight: 300;
+        }
+
     </style>
 </head>
 <body>
@@ -199,11 +276,13 @@
         <div class="logo">AETERNA</div>
         <div class="nav-links">
             <a href="#" class="active">Visão Geral</a>
+            <a href="#">Design</a>
             <a href="#">Engenharia</a>
             <a href="#">Acústica</a>
         </div>
         <div class="cart-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <div class="cart-badge">2</div>
         </div>
     </div>
     
@@ -259,8 +338,95 @@
         </div>
     </div>
 
+    <!-- REST OF THE SITE SECTION RESTORED -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <span>Áudio de Alta Resolução</span> <span>•</span>
+            <span>Cancelamento Ativo de Ruído</span> <span>•</span>
+            <span>Áudio Espacial 360°</span> <span>•</span>
+            <span>Drivers de Grafeno</span> <span>•</span>
+            <span>Áudio de Alta Resolução</span> <span>•</span>
+            <span>Cancelamento Ativo de Ruído</span> <span>•</span>
+            <span>Áudio Espacial 360°</span> <span>•</span>
+            <span>Drivers de Grafeno</span>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <div class="f-icon-wrap">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+            </div>
+            <h3 class="f-title">ANC Computacional</h3>
+            <p class="f-desc">Oito microfones medem continuamente o ruído ambiente, criando um contra-sinal perfeitamente invertido antes que o som alcance seus ouvidos.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="f-icon-wrap">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"></path><path d="M12 5v14"></path><circle cx="12" cy="12" r="10"></circle></svg>
+            </div>
+            <h3 class="f-title">Áudio Espacial</h3>
+            <p class="f-desc">Giroscópios embutidos rastreiam o movimento da sua cabeça, ancorando os sons ao dispositivo e criando uma experiência de cinema 3D imersiva.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="f-icon-wrap">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+            </div>
+            <h3 class="f-title">Energia Infinita</h3>
+            <p class="f-desc">Até 40 horas de reprodução contínua. O modo de ultra-economia é ativado automaticamente quando guardado, preservando a carga por meses.</p>
+        </div>
+    </div>
+
+    <div class="showcase">
+        <div class="section-header">
+            <h2 class="section-title">Design Sem Compromissos</h2>
+        </div>
+        
+        <div class="grid-showcase">
+            <div class="grid-item">
+                <h3>Corpo em Alumínio</h3>
+                <p>Usinado a partir de um único bloco sólido para eliminar vibrações acústicas indesejadas e garantir durabilidade eterna.</p>
+            </div>
+            <div class="grid-item">
+                <h3>Malha Acústica</h3>
+                <p>O arco superior distribui o peso perfeitamente, reduzindo a pressão na cabeça para conforto durante o dia inteiro.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-grid">
+            <div class="f-col">
+                <div class="logo" style="margin-bottom: 20px;">AETERNA</div>
+                <p>O som absoluto. Redefinindo os limites da acústica pessoal através do design extremo e tecnologia de ponta.</p>
+            </div>
+            <div class="f-col">
+                <h4>Explorar</h4>
+                <a href="#">Orbital NC1 Pro</a>
+                <a href="#">Echo Pods X</a>
+                <a href="#">Soundbar Nexus</a>
+            </div>
+            <div class="f-col">
+                <h4>Suporte</h4>
+                <a href="#">Central de Ajuda</a>
+                <a href="#">Garantia Premium</a>
+                <a href="#">Assistência Técnica</a>
+            </div>
+            <div class="f-col">
+                <h4>Empresa</h4>
+                <a href="#">Sobre Nós</a>
+                <a href="#">Sustentabilidade</a>
+                <a href="#">Carreiras</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Aeterna Áudio. Masterpiece Collection.</span>
+        </div>
+    </div>
+
+    <!-- MAGNIFIER ENGINE -->
     <script>
-        /* BUTTERY SMOOTH LENS ENGINE */
         const container = document.getElementById('magContainer');
         const lens = document.getElementById('magLens');
         const darkOverlay = document.getElementById('darkOverlay');
@@ -275,29 +441,35 @@
         const LENS_RADIUS = 140; // 280 / 2
         
         // Physics variables for smooth lerping
-        let targetX = 250;
-        let targetY = 295;
-        let currentX = 250;
-        let currentY = 295;
+        let targetX = 300;
+        let targetY = 355;
+        let currentX = 300;
+        let currentY = 355;
         let isHovering = false;
         
         // Define exact hotspot regions (percentage based coordinates x, y, radius)
         const hotspots = [
-            { x: 50, y: 18, radius: 10, title: "Arco Acústico", desc: "Malha knit projetada para distribuir o peso e reduzir a pressão." },
-            { x: 24, y: 58, radius: 12, title: "Driver de Grafeno", desc: "Distorção ultrabaixa em toda a faixa audível. Graves profundos." },
-            { x: 74, y: 58, radius: 12, title: "Chip Neural H2", desc: "Áudio computacional de 10 núcleos que bloqueia o som externo." }
+            { x: 50, y: 18, radius: 8, title: "Arco Acústico", desc: "Malha knit projetada para distribuir o peso uniformemente." },
+            { x: 24, y: 58, radius: 10, title: "Driver de Grafeno", desc: "Distorção ultrabaixa em toda a faixa audível. Graves precisos." },
+            { x: 74, y: 58, radius: 10, title: "Chip Neural H2", desc: "Áudio computacional de 10 núcleos que bloqueia o som externo." }
         ];
 
-        // Ensure container dimensions are locked on load
         let containerRect = container.getBoundingClientRect();
         window.addEventListener('resize', () => {
             containerRect = container.getBoundingClientRect();
         });
 
-        container.addEventListener('mouseenter', (e) => {
+        // Add 60px padding to the hover detection zone so it doesn't clip when trying to reach the edges
+        const hoverZone = document.createElement('div');
+        hoverZone.style.position = 'absolute';
+        hoverZone.style.top = '-60px'; hoverZone.style.left = '-60px';
+        hoverZone.style.right = '-60px'; hoverZone.style.bottom = '-60px';
+        hoverZone.style.zIndex = '99';
+        container.appendChild(hoverZone);
+
+        hoverZone.addEventListener('mouseenter', (e) => {
             isHovering = true;
             containerRect = container.getBoundingClientRect();
-            // Snap target immediately to avoid fly-in from corner if desired
             targetX = e.clientX - containerRect.left;
             targetY = e.clientY - containerRect.top;
             currentX = targetX;
@@ -306,49 +478,41 @@
             lens.style.opacity = '1';
             lens.style.transform = `translate3d(calc(${currentX}px - 50%), calc(${currentY}px - 50%), 0) scale(1)`;
             darkOverlay.style.opacity = '1';
-            
-            // Show markers
             markers.forEach(m => m.style.opacity = '1');
         });
 
-        container.addEventListener('mousemove', (e) => {
+        hoverZone.addEventListener('mousemove', (e) => {
             targetX = e.clientX - containerRect.left;
             targetY = e.clientY - containerRect.top;
         });
 
-        container.addEventListener('mouseleave', () => {
+        hoverZone.addEventListener('mouseleave', () => {
             isHovering = false;
             lens.style.opacity = '0';
             lens.style.transform = `translate3d(calc(${currentX}px - 50%), calc(${currentY}px - 50%), 0) scale(0.8)`;
             darkOverlay.style.opacity = '0';
             lensData.classList.remove('active');
-            
-            // Hide markers
             markers.forEach(m => m.style.opacity = '0');
         });
 
-        // The high-performance render loop using requestAnimationFrame
         function renderPhysics() {
             if (isHovering) {
                 // Lerp for smooth 'weighty' glass feeling
-                currentX += (targetX - currentX) * 0.2;
-                currentY += (targetY - currentY) * 0.2;
+                currentX += (targetX - currentX) * 0.25;
+                currentY += (targetY - currentY) * 0.25;
                 
-                // 1. Move the Lens
+                // Keep the zoom math bounded to the actual image size to prevent breaking, 
+                // but let the lens go outside if the user moves outside.
                 lens.style.transform = `translate3d(calc(${currentX}px - 50%), calc(${currentY}px - 50%), 0) scale(1)`;
                 
-                // 2. Move the Spotlight Mask on the Dark Overlay
                 darkOverlay.style.maskImage = `radial-gradient(circle 200px at ${currentX}px ${currentY}px, transparent 15%, black 80%)`;
                 darkOverlay.style.webkitMaskImage = `radial-gradient(circle 200px at ${currentX}px ${currentY}px, transparent 15%, black 80%)`;
                 
-                // 3. Move the Zoomed Image perfectly inside the lens
-                // We shift the image opposite to the cursor position, multiplied by zoom factor.
-                // We add LENS_RADIUS to keep it centered in the lens.
+                // Math for the zoomed image inside the lens
                 const imgLeft = -(currentX * ZOOM_LEVEL) + LENS_RADIUS;
                 const imgTop = -(currentY * ZOOM_LEVEL) + LENS_RADIUS;
                 zoomedImage.style.transform = `translate3d(${imgLeft}px, ${imgTop}px, 0)`;
 
-                // 4. Hotspot Detection Math
                 let activeHotspot = null;
                 const percentX = (currentX / containerRect.width) * 100;
                 const percentY = (currentY / containerRect.height) * 100;
@@ -356,8 +520,7 @@
                 for (let hp of hotspots) {
                     const dx = percentX - hp.x;
                     const dy = percentY - hp.y;
-                    const distance = Math.sqrt(dx*dx + dy*dy);
-                    if (distance < hp.radius) {
+                    if (Math.sqrt(dx*dx + dy*dy) < hp.radius) {
                         activeHotspot = hp;
                         break;
                     }
@@ -371,15 +534,11 @@
                     lensData.classList.remove('active');
                 }
             }
-            
             requestAnimationFrame(renderPhysics);
         }
-        
-        // Start engine
         renderPhysics();
-
         
-        // Premium Color Swap Logic
+        // Color Swap Logic
         const dots = document.querySelectorAll('.color-dot');
         const imagesSrc = {
             'spacegray': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000',
@@ -391,7 +550,6 @@
             dot.addEventListener('click', () => {
                 dots.forEach(d => d.classList.remove('active'));
                 dot.classList.add('active');
-                
                 const newImg = imagesSrc[dot.getAttribute('data-color')];
                 
                 baseImage.style.opacity = '0';
