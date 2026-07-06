@@ -3360,13 +3360,13 @@ body[data-global-mode="discord"] .pill-active-bg {
 }
 
 /* Ocultação de barras de rolagem para os mockups interativos de mini-sites */
-.scroll-mockup-container {
+.iframe-container {
     overflow-y: auto;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE */
     -webkit-overflow-scrolling: touch;
 }
-.scroll-mockup-container::-webkit-scrollbar {
+.iframe-container::-webkit-scrollbar {
     display: none; /* Chrome/Safari */
 }
 
@@ -4298,3 +4298,6 @@ body[data-global-mode="discord"] .pill-active-bg {
     to { opacity: 1; transform: translateY(0); }
 }
 
+
+.iframe-container { height: 55vh; }
+@media (max-width: 768px) { .iframe-container { height: 75vh; } }
