@@ -1852,19 +1852,19 @@ body[data-global-mode="discord"] .pill-active-bg {
 .form-group textarea {
     width: 100%;
     box-sizing: border-box;
-    background: rgba(255,255,255,0.03);
+    background: rgba(0,0,0,0.35);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: var(--border-radius-md);
-    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    padding: 0.85rem 1.15rem;
     color: #fff;
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     outline: none;
-    transition: var(--transition-fast);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .form-select-native option {
-    background-color: var(--bg-dark);
+    background-color: #0f0f17;
     color: #fff;
 }
 
@@ -1872,8 +1872,8 @@ body[data-global-mode="discord"] .pill-active-bg {
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--secondary);
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.15);
-    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.15), inset 0 0 0 1px var(--secondary);
+    background: rgba(0,0,0,0.5);
 }
 
 .form-group textarea {
