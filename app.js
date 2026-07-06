@@ -1327,6 +1327,34 @@ document.addEventListener('DOMContentLoaded', () => {
         updateWrapperUI(wrapper);
     });
 
+    // Make entire cards clickable to add to cart
+    document.querySelectorAll('.pizza-card, .highlight-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Prevent triggering if user clicked an inner button directly
+            if (e.target.closest('button')) return;
+            
+            let id, name, price;
+            if (card.classList.contains('highlight-card')) {
+                id = card.dataset.id;
+                name = card.dataset.name;
+                price = parseFloat(card.dataset.price);
+            } else {
+                const wrapper = card.querySelector('.cart-control-wrapper');
+                if (!wrapper) return;
+                id = wrapper.dataset.id;
+                name = wrapper.dataset.name;
+                price = parseFloat(wrapper.dataset.price);
+            }
+            if (id && name && !isNaN(price)) {
+                addToCart(id, name, price);
+                
+                // Add a small bounce animation to the card
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => card.style.transform = '', 150);
+            }
+        });
+    });
+
     function updateWrapperUI(wrapper) {
         const id = wrapper.dataset.id;
         const name = wrapper.dataset.name;
@@ -1420,19 +1448,19 @@ document.addEventListener('DOMContentLoaded', () => {
             totalPrice += item.qty * item.price;
 
             const itemRow = document.createElement('div');
-            itemRow.style.cssText = 'display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; border-radius: 6px; padding: 6px 10px; font-size: 0.78rem; box-sizing: border-box; margin-bottom: 4px;';
+            itemRow.style.cssText = 'display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 8px 12px; font-size: 0.8rem; box-sizing: border-box; margin-bottom: 6px;';
             itemRow.innerHTML = `
                 <div style="text-align: left; flex: 1; min-width: 0; padding-right: 8px;">
-                    <div style="font-weight: bold; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.78rem;">${item.name}</div>
-                    <div style="color: #64748b; font-size: 0.68rem;">R$ ${item.price.toFixed(2).replace('.', ',')} cada</div>
+                    <div style="font-weight: 800; color: #ffffff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.85rem;">${item.name}</div>
+                    <div style="color: #94a3b8; font-size: 0.7rem;">R$ ${item.price.toFixed(2).replace('.', ',')} cada</div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-                    <div style="display: flex; align-items: center; background: #ffffff; border-radius: 4px; border: 1px solid #e2e8f0; padding: 2px;">
-                        <button class="modal-qty-minus" data-id="${id}" style="background: none; border: none; color: #dc2626; font-size: 0.75rem; font-weight: bold; cursor: pointer; padding: 0 6px; line-height: 1;">-</button>
-                        <span style="font-weight: bold; color: #0f172a; padding: 0 4px; font-size: 0.72rem;">${item.qty}</span>
-                        <button class="modal-qty-plus" data-id="${id}" style="background: none; border: none; color: #16a34a; font-size: 0.75rem; font-weight: bold; cursor: pointer; padding: 0 6px; line-height: 1;">+</button>
+                <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
+                    <div style="display: flex; align-items: center; background: rgba(0,0,0,0.5); border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); padding: 2px;">
+                        <button class="modal-qty-minus" data-id="${id}" style="background: rgba(255,255,255,0.1); border-radius: 50%; border: none; color: #fff; font-size: 0.8rem; font-weight: 900; cursor: pointer; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; line-height: 1;">-</button>
+                        <span style="font-weight: 900; color: #fff; padding: 0 8px; font-size: 0.75rem;">${item.qty}</span>
+                        <button class="modal-qty-plus" data-id="${id}" style="background: #dc2626; border-radius: 50%; border: none; color: #fff; font-size: 0.8rem; font-weight: 900; cursor: pointer; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; line-height: 1;">+</button>
                     </div>
-                    <span style="font-weight: bold; color: #0f172a; min-width: 55px; text-align: right; font-size: 0.78rem;">R$ ${(item.qty * item.price).toFixed(2).replace('.', ',')}</span>
+                    <span style="font-weight: 900; color: #4ade80; min-width: 65px; text-align: right; font-size: 0.85rem;">R$ ${(item.qty * item.price).toFixed(2).replace('.', ',')}</span>
                 </div>
             `;
             checkoutItemsList.appendChild(itemRow);

@@ -475,7 +475,7 @@
                     </div>
                     
                     <!-- Smartphone Mockup (Portfolio item with Auto-scroll on hover) -->
-                    <div class="glass phone-mockup-portfolio" style="width: 360px; height: 680px; border-radius: 44px; border: 12px solid #1e1e24; box-shadow: 0 25px 60px rgba(0,0,0,0.65); position: relative; display: flex; flex-direction: column; overflow: hidden; margin: 0 auto; box-sizing: border-box; background: #000; z-index: 10;">
+                    <div class="glass phone-mockup-portfolio" style="width: 360px; height: 680px; border-radius: 44px; border: 10px solid #475569; box-shadow: 0 0 0 2px #94a3b8, 0 25px 60px rgba(0,0,0,0.65); position: relative; display: flex; flex-direction: column; overflow: hidden; margin: 0 auto; box-sizing: border-box; background: #000; z-index: 10;">
                         <!-- Speaker & Camera Notch (iPhone style Dynamic Island) -->
                         <div style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 105px; height: 22px; background: #000; border-radius: 12px; z-index: 50; display: flex; align-items: center; justify-content: center; gap: 8px;">
                             <span style="width: 5.5px; height: 5.5px; border-radius: 50%; background: #1a1a24;"></span>
@@ -537,17 +537,17 @@
                                     <h5 style="font-size: 0.85rem; font-weight: 800; color: #fff; margin: 0 0 10px 0;">Mais Pedidos 🔥</h5>
                                     <div style="display: flex; gap: 12px; overflow-x: auto; padding-right: 16px; scrollbar-width: none; -ms-overflow-style: none;">
                                         <!-- Highlight Card -->
-                                        <div style="width: 140px; height: 180px; border-radius: 20px; background-image: url('pizza-margherita.jpg'); background-size: cover; background-position: center; position: relative; flex-shrink: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.5); overflow: hidden;">
-                                            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);"></div>
+                                        <div class="highlight-card" data-id="margherita" data-name="Margherita Gourmet" data-price="42.90" style="width: 140px; height: 180px; border-radius: 20px; background-image: url('pizza-margherita.jpg'); background-size: cover; background-position: center; position: relative; flex-shrink: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.5); overflow: hidden; cursor: pointer; transition: transform 0.2s;">
+                                            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%); pointer-events: none;"></div>
                                             <div style="position: absolute; top: 8px; left: 8px; background: #dc2626; color: #fff; font-size: 0.55rem; font-weight: 900; padding: 3px 8px; border-radius: 12px; text-transform: uppercase;">Top 1</div>
-                                            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px;">
+                                            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px; pointer-events: none;">
                                                 <h6 style="font-size: 0.75rem; font-weight: 900; color: #fff; margin: 0 0 2px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Margherita</h6>
                                                 <div style="font-size: 0.85rem; font-weight: 900; color: #4ade80;">R$ 42,90</div>
                                             </div>
                                         </div>
-                                        <div style="width: 140px; height: 180px; border-radius: 20px; background-image: url('pizza-pepperoni.jpg'); background-size: cover; background-position: center; position: relative; flex-shrink: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.5); overflow: hidden;">
-                                            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);"></div>
-                                            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px;">
+                                        <div class="highlight-card" data-id="pepperoni" data-name="Pepperoni Speciale" data-price="48.90" style="width: 140px; height: 180px; border-radius: 20px; background-image: url('pizza-pepperoni.jpg'); background-size: cover; background-position: center; position: relative; flex-shrink: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.5); overflow: hidden; cursor: pointer; transition: transform 0.2s;">
+                                            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%); pointer-events: none;"></div>
+                                            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px; pointer-events: none;">
                                                 <h6 style="font-size: 0.75rem; font-weight: 900; color: #fff; margin: 0 0 2px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Pepperoni</h6>
                                                 <div style="font-size: 0.85rem; font-weight: 900; color: #4ade80;">R$ 48,90</div>
                                             </div>
@@ -676,47 +676,47 @@
                             <span id="phone-cart-total" style="font-size: 0.95rem; font-weight: 900; color: #ffffff;">R$ 0,00</span>
                         </div>
                         <!-- Checkout Modal -->
-                        <div id="phone-checkout-modal" style="position: absolute; bottom: 0; left: 0; right: 0; height: 85%; background: #ffffff; border-top-left-radius: 24px; border-top-right-radius: 24px; z-index: 35; box-shadow: 0 -8px 25px rgba(0,0,0,0.15); display: flex; flex-direction: column; transition: transform 0.3s cubic-bezier(0.1, 0, 0.25, 1); transform: translateY(100%); overflow: hidden; box-sizing: border-box; border-top: 1px solid #e2e8f0;">
+                        <div id="phone-checkout-modal" style="position: absolute; bottom: 0; left: 0; right: 0; height: 85%; background: #0f0f17; border-top-left-radius: 24px; border-top-right-radius: 24px; z-index: 35; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); display: flex; flex-direction: column; transition: transform 0.3s cubic-bezier(0.1, 0, 0.25, 1); transform: translateY(100%); overflow: hidden; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.1);">
                             <!-- Modal Header -->
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid #f1f5f9; background: #f8f9fa;">
-                                <h4 style="margin: 0; font-size: 1rem; font-weight: 800; color: #0f172a; font-family: var(--font-heading);">Sua Sacola</h4>
-                                <button id="close-checkout-btn" style="background: none; border: none; font-size: 1.2rem; font-weight: bold; color: #64748b; cursor: pointer; padding: 4px; line-height: 1;">✕</button>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); background: #151520;">
+                                <h4 style="margin: 0; font-size: 1.05rem; font-weight: 900; color: #ffffff; font-family: var(--font-heading);">Sua Sacola</h4>
+                                <button id="close-checkout-btn" style="background: rgba(255,255,255,0.1); border: none; border-radius: 50%; width: 28px; height: 28px; font-size: 1rem; font-weight: bold; color: #94a3b8; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;">✕</button>
                             </div>
                             
                             <!-- Modal Body -->
-                            <div style="flex: 1; overflow-y: auto; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px;">
+                            <div style="flex: 1; overflow-y: auto; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px;">
                                 <!-- Cart Items List -->
-                                <div id="checkout-items-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                                <div id="checkout-items-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
                                 
-                                <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 4px 0;">
+                                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 0;">
                                 
                                 <!-- Delivery/Mesa info -->
                                 <!-- Delivery Form Fields -->
-                                <div style="text-align: left; display: flex; flex-direction: column; gap: 8px;">
+                                <div style="text-align: left; display: flex; flex-direction: column; gap: 10px;">
                                     <div>
-                                        <label style="font-size: 0.62rem; font-weight: 800; color: #475569; display: block; margin-bottom: 2px; letter-spacing: 0.05em;">SEU NOME</label>
-                                        <input id="checkout-name-input" type="text" placeholder="Seu nome completo" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 7px 10px; font-size: 0.72rem; box-sizing: border-box; font-family: sans-serif;">
+                                        <label style="font-size: 0.65rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">SEU NOME</label>
+                                        <input id="checkout-name-input" type="text" placeholder="Seu nome completo" style="width: 100%; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 12px; font-size: 0.8rem; box-sizing: border-box; font-family: sans-serif; background: rgba(0,0,0,0.3); color: #fff;">
                                     </div>
                                     <div>
-                                        <label style="font-size: 0.62rem; font-weight: 800; color: #475569; display: block; margin-bottom: 2px; letter-spacing: 0.05em;">ENDEREÇO DE ENTREGA</label>
-                                        <input id="checkout-address-input" type="text" placeholder="Rua, número e bairro" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 7px 10px; font-size: 0.72rem; box-sizing: border-box; font-family: sans-serif;">
+                                        <label style="font-size: 0.65rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">ENDEREÇO DE ENTREGA</label>
+                                        <input id="checkout-address-input" type="text" placeholder="Rua, número e bairro" style="width: 100%; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 12px; font-size: 0.8rem; box-sizing: border-box; font-family: sans-serif; background: rgba(0,0,0,0.3); color: #fff;">
                                     </div>
-                                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 8px;">
+                                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 10px;">
                                         <div>
-                                            <label style="font-size: 0.62rem; font-weight: 800; color: #475569; display: block; margin-bottom: 2px; letter-spacing: 0.05em;">COMPLEMENTO</label>
-                                            <input id="checkout-complement-input" type="text" placeholder="Apto, Bloco, etc." style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 7px 10px; font-size: 0.72rem; box-sizing: border-box; font-family: sans-serif;">
+                                            <label style="font-size: 0.65rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">COMPLEMENTO</label>
+                                            <input id="checkout-complement-input" type="text" placeholder="Apto, Bloco" style="width: 100%; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 12px; font-size: 0.8rem; box-sizing: border-box; font-family: sans-serif; background: rgba(0,0,0,0.3); color: #fff;">
                                         </div>
                                         <div>
-                                            <label style="font-size: 0.62rem; font-weight: 800; color: #475569; display: block; margin-bottom: 2px; letter-spacing: 0.05em;">CONTATO (WHATSAPP)</label>
-                                            <input id="checkout-phone-input" type="text" placeholder="(99) 99999-9999" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 7px 10px; font-size: 0.72rem; box-sizing: border-box; font-family: sans-serif;">
+                                            <label style="font-size: 0.65rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">WHATSAPP</label>
+                                            <input id="checkout-phone-input" type="text" placeholder="(99) 99999-9999" style="width: 100%; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 12px; font-size: 0.8rem; box-sizing: border-box; font-family: sans-serif; background: rgba(0,0,0,0.3); color: #fff;">
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Payment method -->
                                 <div style="text-align: left;">
-                                    <label style="font-size: 0.62rem; font-weight: 800; color: #475569; display: block; margin-bottom: 3px; letter-spacing: 0.05em;">MÉTODO DE PAGAMENTO</label>
-                                    <select id="checkout-payment-select" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px; font-size: 0.75rem; box-sizing: border-box; font-family: sans-serif; background: #fff; color: #0f172a;">
+                                    <label style="font-size: 0.65rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">MÉTODO DE PAGAMENTO</label>
+                                    <select id="checkout-payment-select" style="width: 100%; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 12px; font-size: 0.8rem; box-sizing: border-box; font-family: sans-serif; background: #1a1a24; color: #fff;">
                                         <option value="pix">⚡ PIX (com desconto)</option>
                                         <option value="cartao">💳 Cartão de Crédito/Débito</option>
                                         <option value="dinheiro">💵 Dinheiro (Troco)</option>
@@ -724,38 +724,37 @@
                                 </div>
 
                                 <!-- Order Summary -->
-                                <div style="background: #f8f9fa; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px; font-size: 0.8rem;">
-                                    <div style="display: flex; justify-content: space-between; color: #64748b;">
+                                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+                                    <div style="display: flex; justify-content: space-between; color: #94a3b8;">
                                         <span>Subtotal</span>
-                                        <span id="summary-subtotal">R$ 0,00</span>
+                                        <span id="summary-subtotal" style="color: #cbd5e1;">R$ 0,00</span>
                                     </div>
-                                    <div style="display: flex; justify-content: space-between; color: #64748b;">
+                                    <div style="display: flex; justify-content: space-between; color: #94a3b8;">
                                         <span>Taxa de Entrega</span>
-                                        <span id="summary-delivery-fee" style="color: #64748b;">R$ 5,00</span>
+                                        <span id="summary-delivery-fee" style="color: #cbd5e1;">R$ 5,00</span>
                                     </div>
-                                    <hr style="border: 0; border-top: 1px dashed #e2e8f0; margin: 4px 0;">
-                                    <div style="display: flex; justify-content: space-between; font-weight: 800; color: #0f172a; font-size: 0.9rem;">
+                                    <hr style="border: 0; border-top: 1px dashed rgba(255,255,255,0.1); margin: 6px 0;">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 900; color: #ffffff; font-size: 1rem;">
                                         <span>Total Geral</span>
-                                        <span id="summary-total" style="color: #dc2626;">R$ 0,00</span>
+                                        <span id="summary-total" style="color: #4ade80;">R$ 0,00</span>
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- Modal Footer -->
-                            <div style="padding: 14px; border-top: 1px solid #f1f5f9; background: #ffffff;">
-                                <button id="submit-order-btn" style="width: 100%; background: #22c55e; color: #ffffff; border: none; border-radius: 6px; padding: 12px; font-size: 0.85rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 10px rgba(34,197,94,0.25);">Enviar Pedido p/ Cozinha 🍕</button>
+                            <div style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.05); background: #151520;">
+                                <button id="submit-order-btn" style="width: 100%; background: linear-gradient(135deg, #22c55e, #16a34a); color: #ffffff; border: none; border-radius: 10px; padding: 14px; font-size: 0.9rem; font-weight: 900; cursor: pointer; box-shadow: 0 6px 15px rgba(34,197,94,0.3); transition: transform 0.2s;">Enviar Pedido p/ Cozinha 🍕</button>
                             </div>
                         </div>
 
                         <!-- Success Screen -->
-                        <div id="phone-success-screen" style="position: absolute; inset: 0; background: #ffffff; z-index: 60; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; text-align: center; transition: all 0.3s ease; opacity: 0; pointer-events: none; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px;">
-                            <div style="width: 70px; height: 70px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; color: #22c55e; font-size: 2.2rem; font-weight: bold; box-shadow: 0 4px 12px rgba(34,197,94,0.15);">✓</div>
-                            <h4 style="margin: 0 0 10px 0; font-size: 1.1rem; font-weight: 800; color: #15803d; font-family: var(--font-heading);">Pedido Recebido!</h4>
-                            <p style="font-size: 0.85rem; color: #475569; line-height: 1.4; margin: 0 0 18px 0;">O forno já está quente! Seu pedido foi encaminhado para a cozinha e será servido em breve.</p>
-                            <span style="font-size: 0.75rem; background: #f1f5f9; color: #64748b; padding: 5px 14px; border-radius: 50px; font-weight: bold; letter-spacing: 0.05em;">CÓDIGO DO PEDIDO: #3917</span>
-                            <button id="restart-phone-demo-btn" style="margin-top: 28px; background: #0f172a; color: #ffffff; border: none; border-radius: 6px; padding: 10px 20px; font-size: 0.85rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(15,23,42,0.15);">Fazer Novo Pedido</button>
+                        <div id="phone-success-screen" style="position: absolute; inset: 0; background: #0f0f17; z-index: 60; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; text-align: center; transition: all 0.3s ease; opacity: 0; pointer-events: none; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px;">
+                            <div style="width: 80px; height: 80px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: #4ade80; font-size: 2.5rem; font-weight: bold; box-shadow: 0 0 30px rgba(34,197,94,0.2);">✓</div>
+                            <h4 style="margin: 0 0 12px 0; font-size: 1.25rem; font-weight: 900; color: #fff; font-family: var(--font-heading);">Pedido Recebido!</h4>
+                            <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.5; margin: 0 0 24px 0;">O forno já está quente! Seu pedido foi encaminhado para a cozinha e será servido em breve.</p>
+                            <span style="font-size: 0.75rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 6px 16px; border-radius: 50px; font-weight: 800; letter-spacing: 0.05em;">CÓDIGO: #3917</span>
+                            <button id="restart-phone-demo-btn" style="margin-top: 32px; background: #ffffff; color: #0f172a; border: none; border-radius: 8px; padding: 12px 24px; font-size: 0.9rem; font-weight: 900; cursor: pointer; box-shadow: 0 6px 15px rgba(255,255,255,0.2);">Fazer Novo Pedido</button>
                         </div>
-
                         <!-- iOS Home Indicator Overlay -->
                         <div style="position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); width: 110px; height: 4.5px; background: rgba(0,0,0,0.8); border-radius: 10px; z-index: 65; pointer-events: none;"></div>
                     </div>
