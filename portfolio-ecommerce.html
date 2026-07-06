@@ -3,192 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aeterna - Premium Audio</title>
+    <title>Aeterna - Masterpiece Audio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@200;300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #000000;
+            --primary: #ffffff;
             --text-main: #f5f5f7;
             --text-muted: #86868b;
             --glass-border: rgba(255, 255, 255, 0.08);
+            --accent: #2997ff;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Custom cursor */ }
         
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
-
+        ::-webkit-scrollbar { width: 0px; }
+        
         body { 
             background-color: var(--bg-dark); 
             color: var(--text-main); 
             font-family: 'Outfit', sans-serif;
             overflow-x: hidden; 
             min-width: 1280px; 
-            zoom: 0.7;
+            zoom: 0.75;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 60%),
+                radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.02), transparent 40%);
         }
 
-        /* Premium Minimalist Navbar */
+        /* CUSTOM CURSOR */
+        .cursor-dot {
+            position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+            background: #fff; border-radius: 50%; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%); transition: transform 0.1s;
+        }
+        .cursor-ring {
+            position: fixed; top: 0; left: 0; width: 40px; height: 40px;
+            border: 1px solid rgba(255,255,255,0.4); border-radius: 50%;
+            pointer-events: none; z-index: 9998;
+            transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, border-color 0.3s;
+        }
+
+        /* NAVBAR */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 80px; background: rgba(0, 0, 0, 0.6); 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border); 
-            position: sticky; top: 0; z-index: 100; 
+            padding: 30px 80px; position: sticky; top: 0; z-index: 100;
+            background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .logo { font-family: 'Syncopate', sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: 10px; color: #fff; }
+        .nav-links { display: flex; gap: 60px; }
+        .nav-links a { 
+            color: var(--text-muted); text-decoration: none; font-size: 0.85rem; 
+            text-transform: uppercase; font-weight: 600; letter-spacing: 3px; 
+            position: relative; transition: color 0.4s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: #fff; }
+        
+        /* HERO SECTION */
+        .hero { 
+            display: flex; padding: 0 80px; gap: 60px; min-height: 90vh; 
+            align-items: center; position: relative; 
         }
         
-        .logo { font-family: 'Syncopate', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 8px; text-transform: uppercase; color: #fff; cursor: pointer; }
-        .nav-links { display: flex; gap: 45px; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 2px; transition: color 0.4s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        .cart-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; color: #fff; }
-        .cart-badge { position: absolute; top: 0; right: 0; background: #fff; color: #000; font-size: 0.7rem; font-weight: 900; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-
-        /* Hero Section */
-        .hero { display: flex; padding: 0 80px; gap: 60px; min-height: 90vh; align-items: center; position: relative; }
+        .product-info { flex: 1; display: flex; flex-direction: column; gap: 40px; z-index: 10; }
+        .tag { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 6px; color: var(--text-muted); }
+        .title { font-size: 7rem; font-weight: 900; line-height: 0.9; letter-spacing: -3px; color: #fff; }
+        .title span { color: #333; font-weight: 300; }
+        .price { font-size: 2.5rem; font-weight: 300; color: #fff; }
+        .desc { font-size: 1.3rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; max-width: 90%; }
         
+        /* MAGNETIC BUTTON */
+        .magnetic-wrap { display: inline-block; align-self: flex-start; padding: 20px; margin: -20px; }
+        .btn-add { 
+            background: #fff; color: #000; border: none; 
+            padding: 24px 50px; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; 
+            letter-spacing: 3px; border-radius: 100px; display: inline-flex; align-items: center; gap: 15px; 
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+        }
+        .btn-add:hover { background: var(--accent); color: #fff; box-shadow: 0 20px 40px rgba(41, 151, 255, 0.4); }
+
+        /* COLOR PICKER */
+        .color-picker { display: flex; gap: 30px; align-items: center; }
+        .color-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); }
+        .color-options { display: flex; gap: 20px; }
+        .color-dot { 
+            width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); 
+            display: flex; align-items: center; justify-content: center; position: relative;
+            transition: 0.4s;
+        }
+        .color-dot::after {
+            content: ''; position: absolute; width: 48px; height: 48px; border-radius: 50%;
+            border: 1px solid #fff; opacity: 0; transform: scale(0.8); transition: 0.4s;
+        }
+        .color-dot.active::after { opacity: 1; transform: scale(1); }
+
         /* -----------------------------------------------------------
-           ELEGANT 3D HOVER EFFECT
+           ULTRA REALISTIC 3D PHYSICS SHOWCASE
         -------------------------------------------------------------*/
         .product-showcase { 
-            flex: 1.2; height: 800px; position: relative; 
+            flex: 1.3; height: 850px; position: relative; 
             display: flex; align-items: center; justify-content: center; 
-            perspective: 2000px; /* Add depth for the rotation */
+            perspective: 1500px; 
         }
 
-        .headphone-container {
-            position: relative;
-            width: 500px; height: 600px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer;
+        /* Ambient glowing backdrop */
+        .ambient-glow {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 700px; height: 700px; border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.06) 0%, transparent 60%);
+            pointer-events: none; z-index: 1;
         }
 
-        /* Subtle float animation for idle state */
-        .headphone-3d-wrapper {
-            position: relative;
-            width: 100%; height: 100%;
+        /* The main 3D rotational container */
+        .headphone-rig {
+            position: relative; width: 600px; height: 700px;
+            transform-style: preserve-3d; z-index: 10;
+        }
+
+        /* The actual image wrapper */
+        .headphone-asset {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
             transform-style: preserve-3d;
-            animation: floatSmooth 6s ease-in-out infinite;
-            /* Ultra smooth transition for the spin */
-            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        @keyframes floatSmooth { 
-            0%, 100% { transform: translateY(0px); } 
-            50% { transform: translateY(-15px); } 
         }
 
         .headphone-img {
             width: 100%; height: 100%; object-fit: contain;
-            /* Soft, highly realistic drop shadow */
-            filter: drop-shadow(0 40px 40px rgba(0,0,0,0.9));
-            transition: filter 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            /* Base dynamic shadow - will be updated via JS */
+            filter: drop-shadow(0 30px 40px rgba(0,0,0,0.8));
+            transform: translateZ(80px); /* Pushes the image forward in 3D space */
         }
 
-        /* Ground shadow below the headphone for grounding */
-        .ground-shadow {
-            position: absolute;
-            bottom: 20px;
-            width: 300px; height: 30px;
-            background: radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            transition: all 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            animation: shadowScale 6s ease-in-out infinite;
+        /* Faux Specular Reflection (Light Glare) mapped via JS */
+        .glare-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            mix-blend-mode: overlay; opacity: 0;
+            border-radius: 50%; transform: translateZ(81px); pointer-events: none;
+            transition: opacity 0.5s;
         }
 
-        @keyframes shadowScale {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(0.8); opacity: 0.2; }
+        /* Floor Shadow simulating distance */
+        .floor-shadow {
+            position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%) rotateX(70deg);
+            width: 400px; height: 150px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(15px); z-index: 1; pointer-events: none;
         }
 
-        /* 
-           THE HOVER ACTION
-           Very smooth, elegant 360 spin that feels weighty.
-        */
-        .headphone-container:hover .headphone-3d-wrapper {
-            animation: none; /* Pause float */
-            transform: rotateY(360deg) scale(1.05); /* Spin and slightly enlarge */
-        }
-
-        .headphone-container:hover .headphone-img {
-            /* Adjust shadow dynamically during the spin for realism */
-            filter: drop-shadow(0 60px 50px rgba(255,255,255,0.05));
-        }
-
-        .headphone-container:hover .ground-shadow {
-            animation: none;
-            transform: scale(1.1);
-            opacity: 0.8;
-            background: radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, transparent 70%);
-        }
-
-        /* Optional: Add a very subtle light sweep effect on the image during hover */
-        .headphone-img::after {
-            content: '';
-            position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
-            transform: skewX(-20deg);
-            transition: left 1s ease;
-        }
-        .headphone-container:hover .headphone-img::after {
-            left: 150%;
-        }
-
-
-        /* Minimal Background lighting */
-        .ambient-light {
-            position: absolute; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            z-index: 0; pointer-events: none;
-        }
-
-
-        /* Product Info - Ultra Clean layout */
-        .product-info { flex: 1; display: flex; flex-direction: column; gap: 35px; z-index: 10; }
-        .tag { display: inline-block; padding: 6px 0; color: var(--text-muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; }
-        .title { font-size: 6.5rem; font-weight: 900; line-height: 0.95; letter-spacing: -3px; color: #fff; }
-        .title span { color: var(--text-muted); font-weight: 300; }
-        .price { font-size: 2.2rem; font-weight: 300; color: #fff; display: flex; align-items: flex-start; gap: 8px; }
-        .price span { font-size: 1.2rem; margin-top: 6px; color: var(--text-muted); }
-        .desc { font-size: 1.2rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; max-width: 90%; }
-        
-        .color-picker { display: flex; gap: 30px; margin-top: 10px; align-items: center; }
-        .color-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); }
-        .color-options { display: flex; gap: 20px; }
-        .color-dot { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; transition: 0.4s; position: relative; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); }
-        .color-dot::before { content: ''; position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #fff; transform: scale(0.8); opacity: 0; transition: 0.4s; }
-        .color-dot:hover { transform: scale(1.1); }
-        .color-dot.active::before { transform: scale(1); opacity: 1; }
-        
-        .btn-add { background: #fff; color: #000; border: none; padding: 24px 50px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; border-radius: 100px; display: inline-flex; align-items: center; gap: 15px; align-self: flex-start; cursor: pointer; transition: 0.4s; margin-top: 10px; }
-        .btn-add:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 40px rgba(255,255,255,0.2); padding-right: 60px; }
-        
-        /* Features / Footer Minimalist Setup */
-        .showcase { padding: 140px 80px; text-align: center; }
-        .footer { padding: 120px 80px 40px; border-top: 1px solid var(--glass-border); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 80px; margin-bottom: 100px; }
-        .f-col h4 { font-size: 0.85rem; margin-bottom: 30px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #fff; }
-        .f-col p, .f-col a { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 16px; font-size: 1rem; font-weight: 300; }
-        
     </style>
 </head>
 <body>
 
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <div class="navbar">
         <div class="logo">AETERNA</div>
         <div class="nav-links">
-            <a href="#" class="active">Visão Geral</a>
-            <a href="#">Design</a>
-            <a href="#">Áudio</a>
-            <a href="#">Especificações</a>
+            <a href="#" class="active hover-target">Visão Geral</a>
+            <a href="#" class="hover-target">Engenharia</a>
+            <a href="#" class="hover-target">Acústica</a>
         </div>
-        <div class="cart-icon">
+        <div class="cart-icon hover-target">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-            <div class="cart-badge">2</div>
         </div>
     </div>
     
@@ -197,47 +179,179 @@
             <div class="tag">Engenharia Acústica</div>
             <h1 class="title">Orbital<br><span>NC-1 Pro</span></h1>
             <div class="price"><span>R$</span> 2.499,00</div>
-            <p class="desc">A evolução absoluta do silêncio. Um ecossistema sonoro esculpido em alumínio aeroespacial. Sinta cada frequência com clareza cristalina através de nossos drivers de grafeno otimizados por inteligência artificial.</p>
+            <p class="desc">Nossa arquitetura de áudio mais avançada. Usinado em alumínio aeroespacial puro, com drivers de grafeno que recriam o som com precisão nanométrica e realismo absoluto.</p>
             
             <div class="color-picker">
                 <span class="color-label">Acabamento:</span>
                 <div class="color-options">
-                    <div class="color-dot active" data-color="spacegray" style="background-color: #555555;"></div>
-                    <div class="color-dot" data-color="silver" style="background-color: #e3e4e5;"></div>
-                    <div class="color-dot" data-color="blue" style="background-color: #7b8e9b;"></div>
+                    <div class="color-dot active hover-target" data-color="spacegray" style="background-color: #555555;"></div>
+                    <div class="color-dot hover-target" data-color="silver" style="background-color: #e3e4e5;"></div>
+                    <div class="color-dot hover-target" data-color="blue" style="background-color: #7b8e9b;"></div>
                 </div>
             </div>
             
-            <button class="btn-add">
-                Comprar Agora
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </button>
+            <div class="magnetic-wrap hover-target" id="magneticBtn">
+                <button class="btn-add">
+                    Comprar Agora
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+            </div>
         </div>
         
         <div class="product-showcase">
-            <div class="ambient-light"></div>
+            <div class="ambient-glow"></div>
             
-            <div class="headphone-container">
-                
-                <!-- The 3D spinning wrapper -->
-                <div class="headphone-3d-wrapper">
+            <!-- The 3D Rig -->
+            <div class="headphone-rig" id="headphoneRig">
+                <div class="headphone-asset" id="headphoneAsset">
                     <img id="productImage" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000" alt="Headphone" class="headphone-img">
+                    <div class="glare-overlay" id="glare"></div>
                 </div>
-                
-                <!-- Ground shadow to anchor the 3D effect -->
-                <div class="ground-shadow"></div>
-
             </div>
             
+            <div class="floor-shadow" id="floorShadow"></div>
         </div>
     </div>
 
-    <!-- CLEAN JS -->
+    <!-- HIGH PERFORMANCE PHYSICS SCRIPT -->
     <script>
-        // Color picker interaction
+        // Custom Cursor Logic
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+        let isHovering = false;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            dot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+        });
+
+        // Hover targets expand the cursor ring
+        const hoverTargets = document.querySelectorAll('.hover-target');
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => {
+                isHovering = true;
+                ring.style.width = '60px'; ring.style.height = '60px';
+                ring.style.backgroundColor = 'rgba(255,255,255,0.1)';
+            });
+            target.addEventListener('mouseleave', () => {
+                isHovering = false;
+                ring.style.width = '40px'; ring.style.height = '40px';
+                ring.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // Render loop for smooth cursor easing
+        function renderCursor() {
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`;
+            requestAnimationFrame(renderCursor);
+        }
+        renderCursor();
+
+        // Magnetic Button Physics
+        const magnet = document.getElementById('magneticBtn');
+        const magnetBtn = magnet.querySelector('.btn-add');
+        magnet.addEventListener('mousemove', (e) => {
+            const rect = magnet.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            magnetBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        magnet.addEventListener('mouseleave', () => {
+            magnetBtn.style.transform = `translate(0px, 0px)`;
+            magnetBtn.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            setTimeout(() => magnetBtn.style.transition = '', 500);
+        });
+
+        /* 
+           ADVANCED 3D PHYSICS ENGINE FOR HEADPHONE
+           Simulates weighty rotation, dynamic shadow, and moving glare based on mouse position
+        */
+        const rig = document.getElementById('headphoneRig');
+        const asset = document.getElementById('headphoneAsset');
+        const glare = document.getElementById('glare');
+        const image = document.getElementById('productImage');
+        const floorShadow = document.getElementById('floorShadow');
+        
+        let targetRotateX = 0;
+        let targetRotateY = 0;
+        let currentRotateX = 0;
+        let currentRotateY = 0;
+        
+        // Idle animation variables
+        let time = 0;
+        let isRigHovered = false;
+
+        rig.addEventListener('mouseenter', () => {
+            isRigHovered = true;
+            glare.style.opacity = '1';
+        });
+
+        rig.addEventListener('mousemove', (e) => {
+            const rect = rig.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Map mouse position to intense 3D rotation (up to 35 degrees)
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            targetRotateX = ((y - centerY) / centerY) * -35;
+            targetRotateY = ((x - centerX) / centerX) * 35;
+        });
+
+        rig.addEventListener('mouseleave', () => {
+            isRigHovered = false;
+            glare.style.opacity = '0';
+            targetRotateX = 0;
+            targetRotateY = 0;
+        });
+
+        // Render loop for 3D Rig Physics
+        function renderPhysics() {
+            time += 0.02;
+
+            if (!isRigHovered) {
+                // Apply a natural, slow floating breathing effect when idle
+                targetRotateX = Math.sin(time) * 5;
+                targetRotateY = Math.cos(time) * 5;
+            }
+
+            // Smooth spring physics interpolation
+            currentRotateX += (targetRotateX - currentRotateX) * 0.08;
+            currentRotateY += (targetRotateY - currentRotateY) * 0.08;
+
+            // Apply 3D transform to asset
+            asset.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
+            
+            // Dynamically adjust the drop-shadow based on the tilt for extreme realism
+            const shadowX = currentRotateY * -1;
+            const shadowY = currentRotateX * 1;
+            image.style.filter = `drop-shadow(${shadowX}px ${shadowY + 40}px 30px rgba(0,0,0,0.8))`;
+
+            // Adjust floor shadow width and position based on rotation
+            const floorScale = 1 - Math.abs(currentRotateX) * 0.005;
+            const floorX = currentRotateY * 0.5;
+            floorShadow.style.transform = `translateX(calc(-50% + ${floorX}px)) rotateX(70deg) scale(${floorScale})`;
+
+            // Map glare translation based on rotation
+            const glareX = currentRotateY * -2;
+            const glareY = currentRotateX * 2;
+            glare.style.backgroundPosition = `${glareX}px ${glareY}px`;
+
+            requestAnimationFrame(renderPhysics);
+        }
+        renderPhysics();
+
+        // Color swap logic
         const dots = document.querySelectorAll('.color-dot');
-        const productImage = document.getElementById('productImage');
-        const images = {
+        const imagesSrc = {
             'spacegray': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000',
             'silver': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-silver-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604021221000',
             'blue': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-skyblue-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604022222000'
@@ -247,18 +361,20 @@
             dot.addEventListener('click', () => {
                 dots.forEach(d => d.classList.remove('active'));
                 dot.classList.add('active');
-                const color = dot.getAttribute('data-color');
                 
-                // Fade effect when changing color
-                productImage.style.opacity = '0';
-                productImage.style.transform = 'scale(0.95)';
+                // Fancy swipe transition
+                image.style.transition = 'opacity 0.3s, transform 0.5s';
+                image.style.opacity = '0';
+                image.style.transform = 'translateZ(0px) scale(0.9)';
+                
                 setTimeout(() => {
-                    productImage.src = images[color];
-                    productImage.style.opacity = '1';
-                    productImage.style.transform = 'scale(1)';
+                    image.src = imagesSrc[dot.getAttribute('data-color')];
+                    image.style.opacity = '1';
+                    image.style.transform = 'translateZ(80px) scale(1)';
                 }, 300);
             });
         });
+
     </script>
 </body>
 </html>
