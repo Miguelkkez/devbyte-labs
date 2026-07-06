@@ -492,80 +492,97 @@
                         </div>
 
                         <!-- Scrollable Screen Area (Real Interactive HTML Pizzeria Cardapio!) -->
-                        <div class="scroll-screen-container" style="flex: 1; overflow: auto; scrollbar-width: none; -ms-overflow-style: none; position: relative; background: #ffffff; cursor: pointer; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px;">
+                        <div class="scroll-screen-container" style="flex: 1; overflow: auto; scrollbar-width: none; -ms-overflow-style: none; position: relative; background: #0a0a0f; cursor: pointer; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px;">
                             <div class="scroll-screen-content" style="width: 100%; display: flex; flex-direction: column;">
-                                <!-- Restaurant Header Banner (Real background image overlayed with dark gradient) -->
-                                <div style="background-image: url('pizzeria-cover.jpg'); background-size: cover; background-position: center; height: 95px; position: relative; display: flex; align-items: flex-end; padding: 12px 14px; box-sizing: border-box; flex-shrink: 0;">
-                                    <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.75) 100%);"></div>
-                                    <div style="position: absolute; top: 6px; right: 14px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; padding: 2px 8px; font-size: 0.52rem; color: #ffffff; font-weight: bold; display: flex; align-items: center; gap: 3px; backdrop-filter: blur(2px); z-index: 2;">
-                                        <span style="width: 4.5px; height: 4.5px; border-radius: 50%; background: #22c55e; display: inline-block;"></span> Forno Ativo
+                                <!-- Restaurant Header Banner -->
+                                <div style="background-image: url('pizzeria-cover.jpg'); background-size: cover; background-position: center; height: 160px; position: relative; display: flex; align-items: flex-start; padding: 16px; box-sizing: border-box; flex-shrink: 0;">
+                                    <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, #0a0a0f 100%);"></div>
+                                    
+                                    <!-- Floating Top Buttons -->
+                                    <div style="position: relative; z-index: 2; display: flex; justify-content: space-between; width: 100%;">
+                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1);">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                        </div>
+                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1);">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                                        </div>
                                     </div>
-                                    <div style="display: flex; align-items: center; gap: 10px; z-index: 2;">
-                                        <div style="width: 38px; height: 38px; border-radius: 50%; background: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+
+                                    <!-- Floating Info Card -->
+                                    <div style="position: absolute; bottom: 0; left: 16px; right: 16px; background: rgba(25, 25, 35, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 12px; z-index: 5; transform: translateY(20px);">
+                                        <div style="width: 44px; height: 44px; border-radius: 14px; background: #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M20 20a17.09 17.09 0 0 0-4-15 17.09 17.09 0 0 0-15 4l19 11Z"/>
                                                 <path d="M7 11.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM11.5 15a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM14 10.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/>
                                             </svg>
                                         </div>
-                                        <div style="text-align: left; line-height: 1.15;">
-                                            <h4 style="font-size: 0.88rem; font-weight: 800; color: #ffffff; margin: 0; font-family: var(--font-heading); text-shadow: 0 1px 2px rgba(0,0,0,0.2);">Pizzaria Don Rafaelle</h4>
-                                            <span style="font-size: 0.6rem; color: #e2e8f0; font-weight: 500;">Tempo médio: 30-40 min</span>
+                                        <div style="flex: 1;">
+                                            <h4 style="font-size: 0.9rem; font-weight: 900; color: #ffffff; margin: 0 0 2px 0; font-family: var(--font-heading);">Don Rafaelle</h4>
+                                            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.65rem; font-weight: 600; color: #94a3b8;">
+                                                <span style="color: #fbbf24;">★ 4.9</span>
+                                                <span style="width: 3px; height: 3px; border-radius: 50%; background: #475569;"></span>
+                                                <span>30-40 min</span>
+                                            </div>
+                                        </div>
+                                        <div style="background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); color: #4ade80; font-size: 0.55rem; font-weight: 800; padding: 4px 8px; border-radius: 20px; display: flex; align-items: center; gap: 4px; text-transform: uppercase; letter-spacing: 0.5px;">
+                                            <span style="width: 4px; height: 4px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 6px #4ade80;"></span> Forno
                                         </div>
                                     </div>
                                 </div>
                                 
+                                <div style="height: 35px;"></div> <!-- Spacer for floating card -->
+
+                                <!-- Horizontal Scroll: Destaques -->
+                                <div style="padding: 0 0 16px 16px;">
+                                    <h5 style="font-size: 0.85rem; font-weight: 800; color: #fff; margin: 0 0 10px 0;">Mais Pedidos 🔥</h5>
+                                    <div style="display: flex; gap: 12px; overflow-x: auto; padding-right: 16px; scrollbar-width: none; -ms-overflow-style: none;">
+                                        <!-- Highlight Card -->
+                                        <div style="width: 140px; height: 180px; border-radius: 20px; background-image: url('pizza-margherita.jpg'); background-size: cover; background-position: center; position: relative; flex-shrink: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.5); overflow: hidden;">
+                                            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);"></div>
+                                            <div style="position: absolute; top: 8px; left: 8px; background: #dc2626; color: #fff; font-size: 0.55rem; font-weight: 900; padding: 3px 8px; border-radius: 12px; text-transform: uppercase;">Top 1</div>
+                                            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px;">
+                                                <h6 style="font-size: 0.75rem; font-weight: 900; color: #fff; margin: 0 0 2px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Margherita</h6>
+                                                <div style="font-size: 0.85rem; font-weight: 900; color: #4ade80;">R$ 42,90</div>
+                                            </div>
+                                        </div>
+                                        <div style="width: 140px; height: 180px; border-radius: 20px; background-image: url('pizza-pepperoni.jpg'); background-size: cover; background-position: center; position: relative; flex-shrink: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.5); overflow: hidden;">
+                                            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);"></div>
+                                            <div style="position: absolute; bottom: 12px; left: 12px; right: 12px;">
+                                                <h6 style="font-size: 0.75rem; font-weight: 900; color: #fff; margin: 0 0 2px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Pepperoni</h6>
+                                                <div style="font-size: 0.85rem; font-weight: 900; color: #4ade80;">R$ 48,90</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Categories Tabs -->
-                                <div style="display: flex; gap: 8px; padding: 14px 12px; background: #ffffff; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; box-sizing: border-box; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;">
-                                    <div style="background: #dc2626; color: #ffffff; border-radius: 50px; padding: 6px 18px; font-size: 0.75rem; font-weight: 800; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 10px rgba(220,38,38,0.25);">Pizzas</div>
-                                    <div style="background: #f1f5f9; color: #475569; border-radius: 50px; padding: 6px 18px; font-size: 0.75rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.3s;">Bebidas</div>
-                                    <div style="background: #f1f5f9; color: #475569; border-radius: 50px; padding: 6px 18px; font-size: 0.75rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.3s;">Sobremesas</div>
+                                <div style="display: flex; gap: 10px; padding: 4px 16px 14px 16px; flex-shrink: 0; box-sizing: border-box; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;">
+                                    <div style="background: linear-gradient(135deg, #ef4444, #dc2626); color: #ffffff; border-radius: 12px; padding: 10px 16px; font-size: 0.75rem; font-weight: 800; cursor: pointer; white-space: nowrap; box-shadow: 0 6px 15px rgba(220,38,38,0.3); display: flex; align-items: center; gap: 6px;">
+                                        <span style="font-size: 1rem;">🍕</span> Pizzas
+                                    </div>
+                                    <div style="background: #151520; color: #94a3b8; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 10px 16px; font-size: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 6px;">
+                                        <span style="font-size: 1rem;">🥤</span> Bebidas
+                                    </div>
+                                    <div style="background: #151520; color: #94a3b8; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 10px 16px; font-size: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 6px;">
+                                        <span style="font-size: 1rem;">🍰</span> Doces
+                                    </div>
                                 </div>
                                 
                                 <!-- Items List -->
-                                <div style="padding: 12px; display: flex; flex-direction: column; gap: 0; box-sizing: border-box; background: #f8fafc;">
+                                <div style="padding: 0 16px 16px 16px; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box;">
                                 <style>
-                                    .pizza-card { display: flex; gap: 14px; background: #ffffff; border: none; border-radius: 18px; padding: 12px; align-items: center; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.04); position: relative; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); margin-bottom: 12px; cursor: pointer; }
-                                    .pizza-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 25px rgba(220, 38, 38, 0.12); }
-                                    .pizza-img { width: 85px; height: 85px; border-radius: 14px; object-fit: cover; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-                                    .pizza-title { font-size: 0.95rem; font-weight: 800; color: #0f172a; margin: 0 0 4px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: 'Outfit', sans-serif;}
-                                    .pizza-desc { font-size: 0.7rem; color: #64748b; line-height: 1.4; margin: 0 0 8px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+                                    .pizza-card { display: flex; gap: 14px; background: rgba(25, 25, 35, 0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 12px; align-items: center; box-sizing: border-box; box-shadow: 0 8px 20px rgba(0,0,0,0.2); position: relative; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; backdrop-filter: blur(10px);}
+                                    .pizza-card:hover { transform: translateY(-3px) scale(1.02); background: rgba(30, 30, 45, 0.8); border-color: rgba(220, 38, 38, 0.2); box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px rgba(220, 38, 38, 0.1); }
+                                    .pizza-img { width: 85px; height: 85px; border-radius: 14px; object-fit: cover; flex-shrink: 0; box-shadow: 0 6px 15px rgba(0,0,0,0.5); }
+                                    .pizza-title { font-size: 0.9rem; font-weight: 800; color: #ffffff; margin: 0 0 4px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: 'Outfit', sans-serif;}
+                                    .pizza-desc { font-size: 0.65rem; color: #94a3b8; line-height: 1.4; margin: 0 0 8px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
                                     .pizza-price-row { display: flex; justify-content: space-between; align-items: center; }
-                                    .pizza-price { font-size: 1rem; font-weight: 900; color: #dc2626; letter-spacing: -0.5px;}
-                                    .add-btn { background: linear-gradient(135deg, #ef4444, #dc2626); color: #ffffff; border: none; border-radius: 50px; padding: 6px 16px; font-size: 0.75rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); transition: 0.3s; display: flex; align-items: center; gap: 4px; }
+                                    .pizza-price { font-size: 0.95rem; font-weight: 900; color: #fff; letter-spacing: -0.5px;}
+                                    .add-btn { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+                                    .add-btn:hover { background: #dc2626; border-color: #dc2626; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.5); transform: scale(1.1);}
                                     .add-btn:active { transform: scale(0.9); }
-                                    .badge-popular { position: absolute; top: -8px; left: -8px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; font-size: 0.6rem; font-weight: 900; padding: 3px 8px; border-radius: 20px; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4); text-transform: uppercase; letter-spacing: 1px; z-index: 10; border: 2px solid #fff;}
                                 </style>
-                                    <!-- Item 1 (Pizza Margherita) -->
-                                    <div class="pizza-card">
-                                        <div class="badge-popular">★ Top 1</div>
-                                        <img src="pizza-margherita.jpg" alt="Pizza Margherita" class="pizza-img">
-                                        <div style="text-align: left; flex: 1; min-width: 0;">
-                                            <h5 class="pizza-title">Margherita Gourmet</h5>
-                                            <p class="pizza-desc">Molho fresco, mozzarella di bufala, manjericão e azeite trufado.</p>
-                                            <div class="pizza-price-row">
-                                                <span class="pizza-price">R$ 42,90</span>
-                                                <div class="cart-control-wrapper" data-id="margherita" data-name="Margherita Gourmet" data-price="42.90">
-                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     
-                                    <!-- Item 2 (Pizza Pepperoni) -->
-                                    <div class="pizza-card">
-                                        <img src="pizza-pepperoni.jpg" alt="Pizza Pepperoni" class="pizza-img">
-                                        <div style="text-align: left; flex: 1; min-width: 0;">
-                                            <h5 class="pizza-title">Pepperoni Speciale</h5>
-                                            <p class="pizza-desc">Pepperoni curado crocante, cebola roxa e orégano fresco.</p>
-                                            <div class="pizza-price-row">
-                                                <span class="pizza-price">R$ 48,90</span>
-                                                <div class="cart-control-wrapper" data-id="pepperoni" data-name="Pepperoni Speciale" data-price="48.90">
-                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <!-- Item 3 (Pizza Portuguesa) -->
                                     <div class="pizza-card">
                                         <img src="pizza-portuguesa.jpg" alt="Pizza Portuguesa" class="pizza-img">
@@ -575,7 +592,7 @@
                                             <div class="pizza-price-row">
                                                 <span class="pizza-price">R$ 46,90</span>
                                                 <div class="cart-control-wrapper" data-id="portuguesa" data-name="Portuguesa Tradicional" data-price="46.90">
-                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
+                                                    <button class="add-to-cart-btn add-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -590,7 +607,7 @@
                                             <div class="pizza-price-row">
                                                 <span class="pizza-price">R$ 49,95</span>
                                                 <div class="cart-control-wrapper" data-id="quatro-queijos" data-name="Quatro Queijos Premium" data-price="49.95">
-                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
+                                                    <button class="add-to-cart-btn add-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -605,14 +622,14 @@
                                             <div class="pizza-price-row">
                                                 <span class="pizza-price">R$ 45,90</span>
                                                 <div class="cart-control-wrapper" data-id="frango" data-name="Frango com Catupiry" data-price="45.90">
-                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
+                                                    <button class="add-to-cart-btn add-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     
                                     <!-- Item 6 (Coca-Cola Zero 2L) -->
-                                    <div class="pizza-card">
+                                    <div class="pizza-card" style="margin-bottom: 90px;">
                                         <img src="coca-cola.jpg" alt="Coca Cola Zero 2L" class="pizza-img">
                                         <div style="text-align: left; flex: 1; min-width: 0;">
                                             <h5 class="pizza-title">Coca-Cola Zero 2L</h5>
@@ -620,42 +637,44 @@
                                             <div class="pizza-price-row">
                                                 <span class="pizza-price">R$ 12,00</span>
                                                 <div class="cart-control-wrapper" data-id="coca-cola" data-name="Coca-Cola Zero 2L" data-price="12.00">
-                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Item 7 (Suco de Laranja) -->
-                                    <div class="pizza-card" style="margin-bottom: 60px;">
-                                        <img src="suco-laranja.jpg" alt="Suco de Laranja Natural" class="pizza-img">
-                                        <div style="text-align: left; flex: 1; min-width: 0;">
-                                            <h5 class="pizza-title">Suco Laranja Natural</h5>
-                                            <p class="pizza-desc">Suco de laranja natural de 500ml espremido na hora com gelo.</p>
-                                            <div class="pizza-price-row">
-                                                <span class="pizza-price">R$ 9,90</span>
-                                                <div class="cart-control-wrapper" data-id="suco-laranja" data-name="Suco Laranja Natural" data-price="9.90">
-                                                    <button class="add-to-cart-btn add-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
+                                                    <button class="add-to-cart-btn add-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Glass Nav Bar -->
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 75px; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-around; align-items: center; padding-bottom: 15px; z-index: 20;">
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #ef4444; cursor: pointer;">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                <span style="font-size: 0.55rem; font-weight: 700;">Início</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #64748b; cursor: pointer;">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                <span style="font-size: 0.55rem; font-weight: 700;">Busca</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #64748b; cursor: pointer;">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                <span style="font-size: 0.55rem; font-weight: 700;">Perfil</span>
                             </div>
                         </div>
 
                         <!-- Floating Sacola / Cart Bar -->
-                        <div id="phone-cart-bar" style="position: absolute; bottom: 24px; left: 12px; right: 12px; background: #dc2626; border-radius: 10px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(220,38,38,0.35); box-sizing: border-box; cursor: pointer; z-index: 25; transition: all 0.3s ease; opacity: 0; transform: translateY(15px); pointer-events: none;">
-                            <div style="display: flex; align-items: center; gap: 8px; color: #ffffff;">
-                                <span style="font-size: 0.9rem;">🛒</span>
+                        <div id="phone-cart-bar" style="position: absolute; bottom: 85px; left: 16px; right: 16px; background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 20px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 25px rgba(220,38,38,0.4); box-sizing: border-box; cursor: pointer; z-index: 25; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; transform: translateY(20px) scale(0.95); pointer-events: none;">
+                            <div style="display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                                </div>
                                 <div style="text-align: left; line-height: 1.1;">
-                                    <div style="font-size: 0.8rem; font-weight: 800; color: #ffffff;">Ver Sacola</div>
-                                    <span id="phone-cart-count" style="font-size: 0.68rem; font-weight: 600; color: #ffedd5;">0 itens</span>
+                                    <div style="font-size: 0.85rem; font-weight: 900; color: #ffffff;">Ver Sacola</div>
+                                    <span id="phone-cart-count" style="font-size: 0.65rem; font-weight: 600; color: #ffedd5;">0 itens</span>
                                 </div>
                             </div>
-                            <span id="phone-cart-total" style="font-size: 0.9rem; font-weight: 900; color: #facc15;">R$ 0,00</span>
+                            <span id="phone-cart-total" style="font-size: 0.95rem; font-weight: 900; color: #ffffff;">R$ 0,00</span>
                         </div>
-
                         <!-- Checkout Modal -->
                         <div id="phone-checkout-modal" style="position: absolute; bottom: 0; left: 0; right: 0; height: 85%; background: #ffffff; border-top-left-radius: 24px; border-top-right-radius: 24px; z-index: 35; box-shadow: 0 -8px 25px rgba(0,0,0,0.15); display: flex; flex-direction: column; transition: transform 0.3s cubic-bezier(0.1, 0, 0.25, 1); transform: translateY(100%); overflow: hidden; box-sizing: border-box; border-top: 1px solid #e2e8f0;">
                             <!-- Modal Header -->

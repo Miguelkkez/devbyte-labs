@@ -1335,7 +1335,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (qty === 0) {
             wrapper.innerHTML = `
-                <button class="add-to-cart-btn" style="background: #dc2626; color: #ffffff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.72rem; font-weight: bold; cursor: pointer; transition: background 0.2s;">Adicionar</button>
+                <button class="add-to-cart-btn add-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
             `;
             const btn = wrapper.querySelector('.add-to-cart-btn');
             btn.addEventListener('click', (e) => {
@@ -1344,10 +1344,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } else {
             wrapper.innerHTML = `
-                <div style="display: flex; align-items: center; background: #f8f9fa; border-radius: 4px; border: 1px solid #e2e8f0; width: 100%; justify-content: space-between; box-sizing: border-box; padding: 2px;">
-                    <button class="qty-minus" style="background: none; border: none; color: #dc2626; font-size: 0.8rem; font-weight: 900; cursor: pointer; padding: 0 6px; line-height: 1;">-</button>
-                    <span class="qty-val" style="color: #0f172a; font-size: 0.75rem; font-weight: 900;">${qty}</span>
-                    <button class="qty-plus" style="background: none; border: none; color: #16a34a; font-size: 0.8rem; font-weight: 900; cursor: pointer; padding: 0 6px; line-height: 1;">+</button>
+                <div style="display: flex; align-items: center; background: rgba(0,0,0,0.5); border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); width: 75px; justify-content: space-between; box-sizing: border-box; padding: 2px;">
+                    <button class="qty-minus" style="background: rgba(255,255,255,0.1); border-radius: 50%; border: none; color: #fff; font-size: 0.8rem; font-weight: 900; cursor: pointer; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; line-height: 1;">-</button>
+                    <span class="qty-val" style="color: #fff; font-size: 0.75rem; font-weight: 900;">${qty}</span>
+                    <button class="qty-plus" style="background: #dc2626; border-radius: 50%; border: none; color: #fff; font-size: 0.8rem; font-weight: 900; cursor: pointer; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; line-height: 1;">+</button>
                 </div>
             `;
             wrapper.querySelector('.qty-plus').addEventListener('click', (e) => {
