@@ -3,233 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus - SaaS Landing Page Premium</title>
+    <title>Nexus - SaaS Landing Page Ultra</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #06020c;
-            --bg-card: rgba(15, 8, 25, 0.6);
-            --border: rgba(139, 92, 246, 0.15);
+            --bg-dark: #030108;
+            --bg-card: rgba(10, 5, 20, 0.5);
+            --border: rgba(139, 92, 246, 0.2);
             --primary: #a855f7;
-            --primary-glow: rgba(168, 85, 247, 0.4);
-            --secondary: #ec4899;
+            --primary-glow: rgba(168, 85, 247, 0.6);
+            --secondary: #3b82f6;
+            --tertiary: #ec4899;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #22153b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
         body { 
             background-color: var(--bg-dark); 
             color: var(--text-main); 
+            font-family: 'Outfit', sans-serif;
             overflow-x: hidden; 
-            pointer-events: none; /* acts as an image */
-            zoom: 0.65; 
-            min-width: 1280px; 
+            min-width: 1280px;
+            zoom: 0.65;
+            pointer-events: auto;
+            /* Animated Grid Background */
             background-image: 
-                radial-gradient(ellipse at top center, rgba(168, 85, 247, 0.15), transparent 60%),
-                radial-gradient(ellipse at bottom left, rgba(236, 72, 153, 0.1), transparent 50%);
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100px 100px;
+            background-position: center top;
+            animation: moveGrid 20s linear infinite;
         }
+        @keyframes moveGrid { 0% { background-position: 0 0; } 100% { background-position: 0 100px; } }
         
-        /* Navbar */
+        /* Advanced Navbar */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 24px 60px; position: sticky; top: 0; left: 0; right: 0; z-index: 100; 
-            background: rgba(6, 2, 12, 0.6); backdrop-filter: blur(25px); 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            padding: 24px 80px; position: sticky; top: 0; left: 0; right: 0; z-index: 100; 
+            background: rgba(3, 1, 8, 0.7); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: 0.4s;
         }
+        
         .logo { 
-            font-size: 1.8rem; font-weight: 900; letter-spacing: 2px; 
-            display: flex; align-items: center; gap: 12px; 
-            background: linear-gradient(135deg, #fff, var(--primary));
+            font-size: 2rem; font-weight: 900; letter-spacing: 3px; 
+            display: flex; align-items: center; gap: 15px; 
+            background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
             -webkit-background-clip: text; color: transparent;
+            animation: pulseColor 4s infinite alternate;
         }
-        .nav-links { display: flex; gap: 48px; }
+        @keyframes pulseColor { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(45deg); } }
+        
+        .logo svg { color: var(--primary); animation: spinSlow 10s linear infinite; }
+        @keyframes spinSlow { 100% { transform: rotate(360deg); } }
+
+        .nav-links { display: flex; gap: 50px; }
         .nav-links a { 
-            color: var(--text-muted); text-decoration: none; font-size: 1rem; 
-            font-weight: 600; transition: color 0.3s; 
+            color: var(--text-muted); text-decoration: none; font-size: 1.1rem; 
+            font-weight: 700; transition: all 0.3s; position: relative;
         }
-        .nav-links a.active { color: var(--text-main); }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--primary); bottom: -12px; left: 50%; transform: translateX(-50%) scale(0);
+            transition: 0.3s; box-shadow: 0 0 10px var(--primary);
+        }
+        .nav-links a:hover { color: #fff; text-shadow: 0 0 15px var(--primary-glow); }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: translateX(-50%) scale(1); }
+        .nav-links a.active { color: #fff; }
+        
         .btn-nav { 
-            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
-            color: #fff; padding: 12px 32px; border-radius: 12px; 
-            text-decoration: none; font-size: 1rem; font-weight: 800; 
-            box-shadow: 0 0 25px var(--primary-glow); 
-            border: 1px solid rgba(255,255,255,0.2);
+            background: linear-gradient(135deg, var(--primary), var(--tertiary)); 
+            color: #fff; padding: 14px 35px; border-radius: 12px; 
+            text-decoration: none; font-size: 1.1rem; font-weight: 800; 
+            box-shadow: 0 0 30px var(--primary-glow); 
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: 0.3s; position: relative; overflow: hidden;
         }
+        .btn-nav::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: rgba(255,255,255,0.2); transform: rotate(45deg);
+            transition: 0.5s; left: -200%;
+        }
+        .btn-nav:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 0 50px var(--primary-glow); }
+        .btn-nav:hover::before { left: 100%; }
         
         /* Hero Section */
         .hero { 
             min-height: 90vh; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center; 
-            padding: 140px 20px 80px; position: relative; 
+            padding: 160px 20px 100px; position: relative; 
         }
-        .hero::after {
-            content: ''; position: absolute; width: 600px; height: 600px;
-            background: var(--primary); filter: blur(150px); opacity: 0.15;
-            z-index: -1; top: 20%; left: 50%; transform: translateX(-50%);
+        /* Massive Glowing Orb Background */
+        .hero::before {
+            content: ''; position: absolute; width: 800px; height: 800px;
+            background: radial-gradient(circle, var(--primary) 0%, var(--secondary) 50%, transparent 70%); 
+            filter: blur(150px); opacity: 0.2; z-index: -1; top: 10%; left: 50%; 
+            transform: translateX(-50%); animation: orbPulse 8s ease-in-out infinite alternate;
         }
+        @keyframes orbPulse { 0% { transform: translateX(-50%) scale(1); opacity: 0.15; } 100% { transform: translateX(-50%) scale(1.2); opacity: 0.25; filter: hue-rotate(30deg) blur(180px); } }
         
         .badge { 
-            background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); 
-            color: #d8b4fe; padding: 10px 24px; border-radius: 50px; 
-            font-size: 0.95rem; font-weight: 700; margin-bottom: 35px; 
-            display: inline-flex; align-items: center; gap: 12px; 
-            backdrop-filter: blur(10px);
+            background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.5); 
+            color: #d8b4fe; padding: 12px 30px; border-radius: 50px; 
+            font-size: 1rem; font-weight: 800; margin-bottom: 40px; 
+            display: inline-flex; align-items: center; gap: 15px; 
+            backdrop-filter: blur(10px); box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+            animation: slideDown 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
-        .badge span { background: var(--primary); color: #fff; padding: 2px 8px; border-radius: 20px; font-size: 0.8rem; }
+        @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .badge span { background: var(--primary); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; box-shadow: 0 0 10px var(--primary); }
         
         .title { 
-            font-size: 6.5rem; font-weight: 900; line-height: 1.05; 
-            letter-spacing: -3px; margin-bottom: 32px; max-width: 1000px; 
+            font-size: 7.5rem; font-weight: 900; line-height: 1.1; 
+            letter-spacing: -3px; margin-bottom: 35px; max-width: 1200px; 
+            opacity: 0; animation: slideUp 1s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: relative;
         }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
         .title span { 
-            background: linear-gradient(to right, #e879f9, #a855f7, #3b82f6); 
+            background: linear-gradient(to right, #e879f9, var(--primary), var(--secondary)); 
             -webkit-background-clip: text; color: transparent; 
+            display: inline-block; animation: textShine 5s linear infinite;
+            background-size: 200% auto;
         }
+        @keyframes textShine { to { background-position: 200% center; } }
         
         .lead { 
-            font-size: 1.4rem; color: var(--text-muted); max-width: 750px; 
-            line-height: 1.7; margin-bottom: 60px; 
+            font-size: 1.6rem; color: var(--text-muted); max-width: 850px; 
+            line-height: 1.8; margin-bottom: 70px; 
+            opacity: 0; animation: slideUp 1s 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         
-        .hero-btns { display: flex; gap: 24px; margin-bottom: 100px; }
+        .hero-btns { 
+            display: flex; gap: 30px; margin-bottom: 120px; 
+            opacity: 0; animation: slideUp 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
         .btn-primary { 
             background: linear-gradient(135deg, var(--primary), #7e22ce); 
-            color: #fff; padding: 22px 48px; border-radius: 16px; 
-            text-decoration: none; font-size: 1.2rem; font-weight: 800; 
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3); border: 1px solid rgba(255,255,255,0.2); 
+            color: #fff; padding: 25px 60px; border-radius: 100px; 
+            text-decoration: none; font-size: 1.3rem; font-weight: 900; 
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.4); border: 1px solid rgba(255,255,255,0.3); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
         }
+        .btn-primary:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 25px 60px rgba(168, 85, 247, 0.6); }
         .btn-secondary { 
-            background: rgba(255,255,255,0.03); color: #fff; 
-            padding: 22px 48px; border-radius: 16px; text-decoration: none; 
-            font-size: 1.2rem; font-weight: 800; border: 1px solid rgba(255,255,255,0.1); 
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02); color: #fff; 
+            padding: 25px 60px; border-radius: 100px; text-decoration: none; 
+            font-size: 1.3rem; font-weight: 900; border: 1px solid rgba(255,255,255,0.1); 
+            backdrop-filter: blur(20px); transition: 0.4s;
         }
+        .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); transform: translateY(-5px); }
         
-        /* Dashboard Mockup Preview */
+        /* 3D Dashboard Mockup Preview */
+        .dashboard-wrapper {
+            perspective: 2000px; width: 100%; display: flex; justify-content: center;
+            opacity: 0; animation: slideUp 1.5s 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
         .dashboard-preview { 
-            width: 95%; max-width: 1300px; height: 700px; 
-            background: rgba(10, 5, 20, 0.8); border-radius: 30px; 
-            border: 1px solid rgba(168, 85, 247, 0.2); margin: 0 auto; 
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 80px rgba(168, 85, 247, 0.15); 
+            width: 95%; max-width: 1400px; height: 750px; 
+            background: rgba(10, 5, 20, 0.7); border-radius: 40px; 
+            border: 1px solid var(--border); margin: 0 auto; 
+            box-shadow: 0 50px 100px rgba(0,0,0,0.9), 0 0 80px rgba(168, 85, 247, 0.2); 
             position: relative; overflow: hidden; display: flex; flex-direction: column;
-            backdrop-filter: blur(30px);
+            backdrop-filter: blur(40px);
+            /* 3D Transform effect */
+            transform: rotateX(15deg) translateY(0);
+            transition: transform 0.5s ease-out;
+            transform-style: preserve-3d;
         }
+        .dashboard-wrapper:hover .dashboard-preview {
+            transform: rotateX(5deg) translateY(-20px);
+            box-shadow: 0 80px 120px rgba(0,0,0,0.9), 0 0 120px rgba(168, 85, 247, 0.3); 
+        }
+        /* Top Glass Shine */
+        .dashboard-preview::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 200px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
+            pointer-events: none;
+        }
+
         .dash-header { 
-            height: 50px; background: rgba(0,0,0,0.3); 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-            display: flex; align-items: center; padding: 0 24px; gap: 10px; 
+            height: 60px; background: rgba(0,0,0,0.5); 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+            display: flex; align-items: center; padding: 0 30px; gap: 12px; 
+            position: relative; z-index: 2;
         }
-        .dot { width: 14px; height: 14px; border-radius: 50%; }
-        .dot.r { background: #ef4444; } .dot.y { background: #f59e0b; } .dot.g { background: #10b981; }
+        .dot { width: 16px; height: 16px; border-radius: 50%; }
+        .dot.r { background: #ef4444; box-shadow: 0 0 10px #ef4444; } 
+        .dot.y { background: #f59e0b; box-shadow: 0 0 10px #f59e0b;} 
+        .dot.g { background: #10b981; box-shadow: 0 0 10px #10b981;}
         
         .dash-body { 
-            flex: 1; padding: 50px; display: grid; grid-template-columns: 1fr 1fr 1fr; 
-            gap: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.02), transparent); 
+            flex: 1; padding: 60px; display: grid; grid-template-columns: 1fr 1fr 1fr; 
+            gap: 50px; background: linear-gradient(to bottom, rgba(255,255,255,0.02), transparent); 
+            position: relative; z-index: 2;
         }
         .dash-card { 
             background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); 
-            border-radius: 24px; padding: 40px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-radius: 30px; padding: 50px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: 0.3s;
         }
-        .dash-card-title { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .dash-card-value { font-size: 3.5rem; font-weight: 900; letter-spacing: -1px; }
-        .dash-chart { height: 200px; margin-top: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); position: relative; }
-        .dash-line { 
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 120px; 
-            background: linear-gradient(to top, rgba(168, 85, 247, 0.3), transparent); 
-            border-top: 4px solid var(--primary); border-radius: 4px 4px 0 0;
-            filter: drop-shadow(0 0 10px var(--primary-glow));
-        }
+        .dash-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); }
+        .dash-card-title { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        .dash-card-value { font-size: 4rem; font-weight: 900; letter-spacing: -2px; }
         
-        /* Features Grid */
-        .features { padding: 160px 60px; position: relative; }
-        .section-header { text-align: center; margin-bottom: 100px; }
-        .section-header h2 { font-size: 4rem; font-weight: 900; margin-bottom: 24px; letter-spacing: -2px; }
-        .section-header p { font-size: 1.3rem; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.7; }
+        /* Animated SVG Charts */
+        .dash-chart { height: 220px; margin-top: 50px; border-bottom: 2px solid rgba(255,255,255,0.1); position: relative; display: flex; align-items: flex-end; }
         
-        .f-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; max-width: 1300px; margin: 0 auto; }
+        .chart-svg { width: 100%; height: 100%; overflow: visible; }
+        .chart-path { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 3s ease-out forwards; animation-delay: 1s; }
+        @keyframes drawLine { to { stroke-dashoffset: 0; } }
+
+        /* Floating Interactive Features Grid */
+        .features { padding: 180px 80px; position: relative; }
+        .section-header { text-align: center; margin-bottom: 120px; }
+        .section-header h2 { font-size: 5rem; font-weight: 900; margin-bottom: 30px; letter-spacing: -2px; }
+        .section-header p { font-size: 1.5rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; line-height: 1.7; }
+        
+        .f-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; max-width: 1400px; margin: 0 auto; }
+        
+        /* Glassmorphism Tilt Cards */
         .f-card { 
-            background: var(--bg-card); border: 1px solid var(--border); 
-            padding: 50px; border-radius: 32px; backdrop-filter: blur(20px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            background: rgba(20, 10, 40, 0.4); border: 1px solid rgba(255,255,255,0.05); 
+            padding: 60px; border-radius: 40px; backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
+            /* Using CSS only hover lift since JS tilt is not practical in a pure HTML mockup */
         }
+        .f-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 40px 80px rgba(168, 85, 247, 0.2), inset 0 0 30px rgba(168, 85, 247, 0.1);
+        }
+        /* Gradient blob inside card */
+        .f-card::before {
+            content: ''; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px;
+            background: var(--primary); border-radius: 50%; filter: blur(60px); opacity: 0; transition: 0.5s;
+        }
+        .f-card:hover::before { opacity: 0.3; }
+
         .f-icon { 
-            width: 80px; height: 80px; background: rgba(168, 85, 247, 0.1); 
-            border-radius: 24px; display: flex; align-items: center; justify-content: center; 
-            color: var(--primary); margin-bottom: 40px; border: 1px solid rgba(168, 85, 247, 0.2);
-            box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.1);
+            width: 90px; height: 90px; background: rgba(168, 85, 247, 0.1); 
+            border-radius: 28px; display: flex; align-items: center; justify-content: center; 
+            color: var(--text-main); margin-bottom: 40px; border: 1px solid rgba(168, 85, 247, 0.3);
+            box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.2);
+            position: relative; z-index: 2; transition: 0.4s;
         }
-        .f-card h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.5px; }
-        .f-card p { color: var(--text-muted); line-height: 1.7; font-size: 1.1rem; }
+        .f-card:hover .f-icon { background: var(--primary); color: #fff; transform: rotate(10deg) scale(1.1); box-shadow: 0 0 30px var(--primary-glow); }
         
-        /* Pricing */
-        .pricing { padding: 160px 60px; background: #030108; position: relative; }
+        .f-card h3 { font-size: 2rem; font-weight: 800; margin-bottom: 25px; letter-spacing: -0.5px; position: relative; z-index: 2;}
+        .f-card p { color: var(--text-muted); line-height: 1.8; font-size: 1.2rem; position: relative; z-index: 2;}
+        
+        /* Ultra Pricing Section */
+        .pricing { padding: 180px 80px; background: #020005; position: relative; overflow: hidden; }
         .pricing::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3), transparent);
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            box-shadow: 0 0 20px var(--primary);
         }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1300px; margin: 0 auto; }
-        .price-card { 
-            background: rgba(15, 8, 25, 0.4); border: 1px solid rgba(255,255,255,0.05); 
-            padding: 60px 50px; border-radius: 32px; position: relative; backdrop-filter: blur(20px);
-        }
-        .price-card.popular { 
-            border-color: var(--primary); transform: scale(1.05); 
-            box-shadow: 0 30px 80px rgba(168, 85, 247, 0.2); z-index: 2;
-            background: rgba(20, 10, 40, 0.8);
-        }
-        .popular-tag { 
-            position: absolute; top: -18px; left: 50%; transform: translateX(-50%); 
-            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
-            color: #fff; padding: 8px 24px; border-radius: 50px; font-size: 0.9rem; font-weight: 800; 
-            box-shadow: 0 0 20px var(--primary-glow); border: 1px solid rgba(255,255,255,0.3);
-        }
-        .plan-name { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .plan-price { font-size: 4.5rem; font-weight: 900; margin-bottom: 40px; letter-spacing: -2px; }
-        .plan-price span { font-size: 1.4rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0; }
-        .plan-features { list-style: none; margin-bottom: 50px; }
-        .plan-features li { margin-bottom: 20px; display: flex; align-items: center; gap: 16px; color: #e2e8f0; font-size: 1.1rem; }
-        .plan-features li svg { color: var(--primary); }
-        .btn-plan {
-            width: 100%; padding: 20px; border-radius: 16px; font-size: 1.1rem; font-weight: 800;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff;
-        }
-        .price-card.popular .btn-plan {
-            background: var(--primary); border-color: rgba(255,255,255,0.2); box-shadow: 0 10px 20px var(--primary-glow);
-        }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; max-width: 1400px; margin: 0 auto; align-items: center; }
         
-        /* CTA Section */
-        .cta { padding: 160px 60px; text-align: center; position: relative; }
-        .cta-box { 
-            max-width: 1200px; margin: 0 auto; 
-            background: linear-gradient(135deg, rgba(20, 10, 40, 0.9), rgba(10, 5, 20, 0.9)); 
-            padding: 100px 60px; border-radius: 40px; border: 1px solid rgba(168, 85, 247, 0.4); 
-            box-shadow: 0 40px 100px rgba(168, 85, 247, 0.2), inset 0 0 80px rgba(168, 85, 247, 0.1); 
-            backdrop-filter: blur(30px); position: relative; overflow: hidden;
+        .price-card { 
+            background: rgba(15, 8, 25, 0.5); border: 1px solid rgba(255,255,255,0.05); 
+            padding: 70px 50px; border-radius: 40px; position: relative; backdrop-filter: blur(25px);
+            transition: 0.4s;
         }
+        .price-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-10px); }
+        
+        .price-card.popular { 
+            border-color: var(--primary); transform: scale(1.08); 
+            box-shadow: 0 40px 100px rgba(168, 85, 247, 0.2); z-index: 2;
+            background: linear-gradient(180deg, rgba(30, 15, 60, 0.8), rgba(15, 8, 25, 0.9));
+            padding: 90px 50px; /* Taller */
+        }
+        .price-card.popular:hover { transform: scale(1.1) translateY(-10px); box-shadow: 0 50px 120px rgba(168, 85, 247, 0.4); }
+        
+        .popular-tag { 
+            position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); 
+            background: linear-gradient(90deg, var(--primary), var(--secondary)); 
+            color: #fff; padding: 12px 30px; border-radius: 50px; font-size: 1rem; font-weight: 900; 
+            box-shadow: 0 10px 20px var(--primary-glow); border: 1px solid rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+        }
+        .plan-name { font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; }
+        .plan-price { font-size: 5.5rem; font-weight: 900; margin-bottom: 50px; letter-spacing: -3px; display: flex; align-items: baseline; gap: 10px; }
+        .plan-price span { font-size: 1.5rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0; }
+        .plan-features { list-style: none; margin-bottom: 60px; }
+        .plan-features li { margin-bottom: 25px; display: flex; align-items: center; gap: 20px; color: #e2e8f0; font-size: 1.2rem; font-weight: 500;}
+        .plan-features li svg { color: var(--primary); width: 24px; height: 24px; }
+        
+        .btn-plan {
+            width: 100%; padding: 25px; border-radius: 20px; font-size: 1.3rem; font-weight: 900;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff;
+            cursor: pointer; transition: 0.3s;
+        }
+        .btn-plan:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        .price-card.popular .btn-plan {
+            background: var(--primary); border-color: rgba(255,255,255,0.3); box-shadow: 0 15px 30px var(--primary-glow);
+        }
+        .price-card.popular .btn-plan:hover { background: #fff; color: var(--primary); box-shadow: 0 20px 40px rgba(255,255,255,0.3); }
+        
+        /* Interactive CTA Section */
+        .cta { padding: 180px 80px; text-align: center; position: relative; }
+        .cta-box { 
+            max-width: 1400px; margin: 0 auto; 
+            background: linear-gradient(135deg, rgba(40, 20, 80, 0.9), rgba(15, 8, 30, 0.9)); 
+            padding: 120px 80px; border-radius: 50px; border: 1px solid rgba(168, 85, 247, 0.5); 
+            box-shadow: 0 50px 120px rgba(168, 85, 247, 0.3), inset 0 0 100px rgba(168, 85, 247, 0.2); 
+            backdrop-filter: blur(40px); position: relative; overflow: hidden;
+            transition: 0.5s; cursor: pointer;
+        }
+        .cta-box:hover { transform: scale(1.02); box-shadow: 0 60px 150px rgba(168, 85, 247, 0.5), inset 0 0 150px rgba(168, 85, 247, 0.3); }
         .cta-box::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(168, 85, 247, 0.1) 90deg, transparent 180deg);
-            animation: rotate 15s linear infinite; pointer-events: none;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(168, 85, 247, 0.2) 90deg, transparent 180deg);
+            animation: rotate 10s linear infinite; pointer-events: none;
         }
-        .cta-box h2 { font-size: 4.5rem; font-weight: 900; margin-bottom: 24px; letter-spacing: -2px; position: relative; }
-        .cta-box p { font-size: 1.4rem; color: var(--text-muted); margin-bottom: 50px; position: relative; }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+        
+        .cta-box h2 { font-size: 5.5rem; font-weight: 900; margin-bottom: 30px; letter-spacing: -2px; position: relative; }
+        .cta-box p { font-size: 1.6rem; color: #d8b4fe; margin-bottom: 60px; position: relative; }
         
         /* Footer */
-        .footer { padding: 100px 60px 40px; border-top: 1px solid rgba(255,255,255,0.05); background: #030106; }
-        .footer-content { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 60px; }
-        .f-logo { font-size: 1.8rem; font-weight: 900; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;}
+        .footer { padding: 120px 80px 40px; border-top: 1px solid rgba(255,255,255,0.05); background: #020104; position: relative;}
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 80px; position: relative; z-index: 2;}
+        .f-logo { font-size: 2.2rem; font-weight: 900; margin-bottom: 30px; display: flex; align-items: center; gap: 15px;}
         .f-logo svg { color: var(--primary); }
-        .footer-col h4 { font-size: 1.2rem; font-weight: 800; margin-bottom: 30px; color: #fff; }
-        .footer-col a { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 16px; font-size: 1rem; }
+        .footer-col h4 { font-size: 1.3rem; font-weight: 900; margin-bottom: 35px; color: #fff; text-transform: uppercase; letter-spacing: 2px;}
+        .footer-col a { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 20px; font-size: 1.1rem; transition: 0.3s; }
+        .footer-col a:hover { color: var(--primary); transform: translateX(5px); }
     </style>
 </head>
 <body>
+    
     <div class="navbar">
         <div class="logo">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             NEXUS
         </div>
         <div class="nav-links">
@@ -239,7 +364,7 @@
             <a href="#">Preços</a>
         </div>
         <div>
-            <a href="#" style="color: #fff; text-decoration: none; font-weight: 700; margin-right: 30px;">Entrar</a>
+            <a href="#" style="color: #fff; text-decoration: none; font-weight: 800; font-size:1.1rem; margin-right: 40px; transition: 0.3s;" onmouseover="this.style.color='#a855f7'" onmouseout="this.style.color='#fff'">Entrar</a>
             <a href="#" class="btn-nav">Teste Grátis</a>
         </div>
     </div>
@@ -247,39 +372,74 @@
     <div class="hero">
         <div class="badge">
             <span>NOVO</span> Nexus AI v2.0 já está disponível
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </div>
         
         <h1 class="title">Escale seu fluxo com <span>automação inteligente</span></h1>
-        <p class="lead">O Nexus conecta todas as suas ferramentas em um único ecossistema movido a IA. Reduza o trabalho manual em 80% e libere o verdadeiro potencial do seu time.</p>
+        <p class="lead">O Nexus conecta todas as suas ferramentas em um único ecossistema movido a Inteligência Artificial. Reduza o trabalho manual em 80% e libere o verdadeiro potencial do seu time.</p>
         
         <div class="hero-btns">
             <a href="#" class="btn-primary">Comece Gratuitamente</a>
             <a href="#" class="btn-secondary">Agendar Demo</a>
         </div>
         
-        <div class="dashboard-preview">
-            <div class="dash-header">
-                <div class="dot r"></div>
-                <div class="dot y"></div>
-                <div class="dot g"></div>
-                <span style="margin-left: 10px; font-size: 0.8rem; color: #888; font-family: monospace;">app.nexus.io/dashboard</span>
-            </div>
-            <div class="dash-body">
-                <div class="dash-card">
-                    <div class="dash-card-title">Tarefas Automatizadas</div>
-                    <div class="dash-card-value">14.291</div>
-                    <div class="dash-chart"><div class="dash-line" style="height: 120px;"></div></div>
+        <div class="dashboard-wrapper">
+            <div class="dashboard-preview" id="dash3D">
+                <div class="dash-header">
+                    <div class="dot r"></div>
+                    <div class="dot y"></div>
+                    <div class="dot g"></div>
+                    <span style="margin-left: 15px; font-size: 0.9rem; color: #888; font-family: monospace;">app.nexus.io/dashboard</span>
                 </div>
-                <div class="dash-card">
-                    <div class="dash-card-title">Horas Economizadas</div>
-                    <div class="dash-card-value">2.845</div>
-                    <div class="dash-chart"><div class="dash-line" style="height: 80px; background: linear-gradient(to top, rgba(236, 72, 153, 0.2), transparent); border-color: #ec4899;"></div></div>
-                </div>
-                <div class="dash-card">
-                    <div class="dash-card-title">Fluxos Ativos</div>
-                    <div class="dash-card-value">342</div>
-                    <div class="dash-chart"><div class="dash-line" style="height: 150px; background: linear-gradient(to top, rgba(59, 130, 246, 0.2), transparent); border-color: #3b82f6;"></div></div>
+                <div class="dash-body">
+                    <div class="dash-card">
+                        <div class="dash-card-title">Tarefas Automatizadas</div>
+                        <div class="dash-card-value">14.291</div>
+                        <div class="dash-chart">
+                            <svg class="chart-svg" viewBox="0 0 100 50" preserveAspectRatio="none">
+                                <path class="chart-path" d="M0,50 Q10,40 20,45 T40,20 T60,30 T80,10 T100,5" fill="none" stroke="var(--primary)" stroke-width="3" style="filter: drop-shadow(0 5px 10px rgba(168, 85, 247, 0.5));" />
+                                <path d="M0,50 Q10,40 20,45 T40,20 T60,30 T80,10 T100,5 L100,50 Z" fill="url(#grad1)" opacity="0.3"/>
+                                <defs>
+                                    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:var(--primary);stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:var(--primary);stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-card-title">Horas Economizadas</div>
+                        <div class="dash-card-value" style="color: var(--tertiary);">2.845</div>
+                        <div class="dash-chart">
+                            <svg class="chart-svg" viewBox="0 0 100 50" preserveAspectRatio="none">
+                                <path class="chart-path" d="M0,45 Q15,40 25,35 T50,25 T75,15 T100,2" fill="none" stroke="var(--tertiary)" stroke-width="3" style="filter: drop-shadow(0 5px 10px rgba(236, 72, 153, 0.5));" />
+                                <path d="M0,45 Q15,40 25,35 T50,25 T75,15 T100,2 L100,50 Z" fill="url(#grad2)" opacity="0.3"/>
+                                <defs>
+                                    <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:var(--tertiary);stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:var(--tertiary);stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-card-title">Fluxos Ativos</div>
+                        <div class="dash-card-value" style="color: var(--secondary);">342</div>
+                        <div class="dash-chart">
+                            <svg class="chart-svg" viewBox="0 0 100 50" preserveAspectRatio="none">
+                                <path class="chart-path" d="M0,40 Q20,30 40,35 T70,20 T100,15" fill="none" stroke="var(--secondary)" stroke-width="3" style="filter: drop-shadow(0 5px 10px rgba(59, 130, 246, 0.5));" />
+                                <path d="M0,40 Q20,30 40,35 T70,20 T100,15 L100,50 Z" fill="url(#grad3)" opacity="0.3"/>
+                                <defs>
+                                    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:var(--secondary);stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:var(--secondary);stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -288,29 +448,29 @@
     <div class="features">
         <div class="section-header">
             <h2>Tudo o que você precisa para escalar</h2>
-            <p>Recursos poderosos desenhados para automatizar o óbvio e deixar seu time focar no que realmente importa.</p>
+            <p>Recursos superpoderosos desenhados para automatizar o óbvio e deixar seu time focar na estratégia e no que realmente importa.</p>
         </div>
         <div class="f-grid">
             <div class="f-card">
                 <div class="f-icon">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                 </div>
-                <h3>Sincronização em Tempo Real</h3>
-                <p>Os dados fluem perfeitamente entre todos os seus aplicativos conectados em tempo real, eliminando silos.</p>
+                <h3>Sincronização Neural</h3>
+                <p>Os dados fluem perfeitamente entre todos os seus 500+ aplicativos conectados em tempo real (latência < 5ms), eliminando silos operacionais para sempre.</p>
             </div>
             <div class="f-card">
                 <div class="f-icon">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                 </div>
-                <h3>Segurança Corporativa</h3>
-                <p>Criptografia a nível bancário e conformidade com SOC2 garantem que seus dados estejam sempre protegidos.</p>
+                <h3>Segurança Militar</h3>
+                <p>Criptografia AES-256 de ponta a ponta, conformidade automática com SOC2 Tipo II e GDPR garantem que seus dados empresariais estejam blindados.</p>
             </div>
             <div class="f-card">
                 <div class="f-icon">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </div>
-                <h3>Insights por IA</h3>
-                <p>Machine learning integrado analisa seus processos diários e sugere automações para poupar tempo.</p>
+                <h3>Insights por IA (GPT-4)</h3>
+                <p>Machine learning nativo analisa seus processos diários silenciosamente e constrói de forma autônoma templates de automações para poupar 40h/mês.</p>
             </div>
         </div>
     </div>
@@ -318,17 +478,17 @@
     <div class="pricing">
         <div class="section-header">
             <h2>Preços simples e transparentes</h2>
-            <p>Comece de graça, faça upgrade quando precisar. Sem taxas escondidas.</p>
+            <p>Comece de graça, faça upgrade quando escalar. Sem pegadinhas, sem taxas escondidas.</p>
         </div>
         <div class="pricing-grid">
             <div class="price-card">
                 <div class="plan-name">Iniciante</div>
                 <div class="plan-price">R$0<span>/mês</span></div>
                 <ul class="plan-features">
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Até 3 membros no time</li>
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 5 fluxos ativos</li>
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 1.000 tarefas / mês</li>
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Suporte da comunidade</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Até 3 membros no time</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> 5 fluxos ativos</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> 1.000 tarefas / mês</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Suporte da comunidade</li>
                 </ul>
                 <button class="btn-plan">Começar Agora</button>
             </div>
@@ -338,11 +498,11 @@
                 <div class="plan-name">Pro</div>
                 <div class="plan-price">R$149<span>/mês</span></div>
                 <ul class="plan-features">
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Membros ilimitados</li>
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Fluxos ilimitados</li>
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 50.000 tarefas / mês</li>
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Suporte 24/7 prioritário</li>
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Analytics avançado</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Membros ilimitados</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Fluxos ilimitados</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> 50.000 tarefas / mês</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Suporte 24/7 prioritário</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Motor IA Avançado</li>
                 </ul>
                 <button class="btn-plan">Teste Grátis 14 Dias</button>
             </div>
@@ -351,10 +511,10 @@
                 <div class="plan-name">Enterprise</div>
                 <div class="plan-price">R$899<span>/mês</span></div>
                 <ul class="plan-features">
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Tudo do plano Pro</li>
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Tarefas ilimitadas</li>
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Integrações personalizadas</li>
-                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Gerente de sucesso dedicado</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Tudo do plano Pro</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Tarefas ilimitadas</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Integrações personalizadas</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Gerente de sucesso dedicado</li>
                 </ul>
                 <button class="btn-plan">Falar com Vendas</button>
             </div>
@@ -373,10 +533,10 @@
         <div class="footer-content">
             <div style="grid-column: span 2;">
                 <div class="f-logo">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                     NEXUS
                 </div>
-                <p style="color: var(--text-muted); line-height: 1.6; max-width: 300px; margin-bottom: 20px;">A plataforma unificada para times modernos automatizarem rotinas e escalarem suas operações.</p>
+                <p style="color: var(--text-muted); line-height: 1.8; font-size: 1.1rem; max-width: 400px; margin-bottom: 20px;">A plataforma unificada para times modernos automatizarem rotinas e escalarem suas operações para a nuvem.</p>
             </div>
             <div class="footer-col">
                 <h4>Produto</h4>
@@ -401,5 +561,23 @@
             </div>
         </div>
     </div>
+
+    <!-- Mouse Parallax Interaction -->
+    <script>
+        document.addEventListener('mousemove', function(e) {
+            const dash = document.getElementById('dash3D');
+            // Calculate mouse position relative to center of screen
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+            
+            // Limit rotation
+            dash.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis + 10}deg) translateY(-10px)`;
+        });
+        
+        document.querySelector('.dashboard-wrapper').addEventListener('mouseleave', function() {
+            const dash = document.getElementById('dash3D');
+            dash.style.transform = `rotateX(15deg) translateY(0)`;
+        });
+    </script>
 </body>
 </html>
