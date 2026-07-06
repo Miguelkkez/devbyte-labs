@@ -584,6 +584,7 @@ p {
     text-transform: uppercase;
     letter-spacing: 0.18em;
     margin-top: -1px;
+    padding-left: 2px;
 }
 
 .nav-menu {
