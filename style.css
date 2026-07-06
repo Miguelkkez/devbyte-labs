@@ -402,14 +402,14 @@ p {
 }
 
 .btn-switch-to-mode.btn-web {
-    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-    color: #07080c;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #ffffff;
 }
 
 .btn-switch-to-mode.btn-web:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
-    filter: brightness(1.05);
+    box-shadow: 0 8px 25px rgba(2, 132, 199, 0.4);
+    filter: brightness(1.1);
 }
 
 .btn-switch-to-mode.btn-discord {
