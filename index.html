@@ -211,50 +211,74 @@
                             </div>
                         </div>
                         
-                        <!-- Minimalist Discord Embed Mockup -->
-                        <div class="discord-embed-window glass" style="width: 58%; position: absolute; bottom: 5px; right: 0; z-index: 6; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.65); animation: float-phone 4.5s ease-in-out infinite; background: #111214; text-align: left; font-family: 'Inter', sans-serif;">
+                        <!-- Real Discord Bot Profile Card Mockup -->
+                        <div class="discord-profile-card glass" style="width: 58%; position: absolute; bottom: 5px; right: 0; z-index: 6; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.65); animation: float-phone 4.5s ease-in-out infinite; background: #232428; text-align: left; font-family: 'Inter', sans-serif;">
                             
-                            <!-- Discord Bot Header (Author) -->
-                            <div style="padding: 12px 14px 4px 14px; display: flex; align-items: center; gap: 8px;">
-                                <img src="logo.jpg" alt="DevByte Bot" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">
-                                <span style="font-size: 0.65rem; color: #fff; font-weight: 700;">DevByte Bot</span>
-                                <span style="background: var(--discord-blurple); color: #fff; font-size: 0.4rem; font-weight: 800; padding: 1px 4px; border-radius: 3px; display: inline-flex; align-items: center; gap: 2px;">
-                                    <svg viewBox="0 0 24 24" width="6" height="6" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>BOT
-                                </span>
+                            <!-- Profile Banner -->
+                            <div style="height: 60px; background: #111214; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.02);">
+                                <span style="color: rgba(255,255,255,0.08); font-size: 1.2rem; font-weight: 900; letter-spacing: 0.1em; font-family: var(--font-heading);">DEVBYTE TEAM</span>
+                                <!-- Dots in top right corner -->
+                                <div style="position: absolute; top: 8px; right: 8px; display: flex; gap: 2px;">
+                                    <div style="width: 3px; height: 3px; border-radius: 50%; background: #b5bac1;"></div>
+                                    <div style="width: 3px; height: 3px; border-radius: 50%; background: #b5bac1;"></div>
+                                    <div style="width: 3px; height: 3px; border-radius: 50%; background: #b5bac1;"></div>
+                                </div>
                             </div>
-
-                            <!-- The Embed Box -->
-                            <div style="margin: 6px 14px 14px 14px; background: #2b2d31; border-radius: 4px; border-left: 4px solid var(--discord-blurple); padding: 12px; display: flex; flex-direction: column; gap: 8px;">
-                                <h3 style="margin: 0; color: #fff; font-size: 0.75rem; font-weight: 700;">Sistema de Integração Ativo</h3>
-                                <p style="margin: 0; color: #dbdee1; font-size: 0.55rem; line-height: 1.4;">
-                                    Seu ecossistema <strong>DevByte Labs</strong> está rodando com alta performance. Proteção anti-raid e bots inteligentes integrados com sucesso.
+                            
+                            <!-- Avatar Container -->
+                            <div style="position: relative; margin-top: -30px; margin-left: 12px; margin-bottom: 6px; display: inline-flex;">
+                                <img src="logo.jpg" alt="DevByte Logo" style="width: 54px; height: 54px; border-radius: 50%; border: 4px solid #232428; object-fit: cover; background: #000;">
+                                <!-- Offline Status Dot -->
+                                <div style="width: 14px; height: 14px; border-radius: 50%; background: #232428; position: absolute; bottom: 2px; right: 2px; display: flex; align-items: center; justify-content: center;">
+                                    <div style="width: 10px; height: 10px; border-radius: 50%; background: #80848e; border: 2.5px solid #232428;"></div>
+                                    <div style="width: 4px; height: 4px; border-radius: 50%; background: #232428; position: absolute;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Info Body -->
+                            <div style="padding: 0 14px 14px 14px;">
+                                <!-- Name and Badge -->
+                                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px;">
+                                    <h4 style="font-size: 0.85rem; color: #f2f3f5; margin: 0; font-weight: 800; letter-spacing: 0.01em;">DevByte Team</h4>
+                                    <span style="background: #5865F2; color: #fff; font-size: 0.45rem; font-weight: 700; padding: 2px 4px; border-radius: 4px; text-transform: uppercase;">APP</span>
+                                </div>
+                                <div style="font-size: 0.55rem; color: #dbdee1; margin-bottom: 10px; font-weight: 500;">DevByte Team#6377</div>
+                                
+                                <!-- Mutual Server -->
+                                <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 10px;">
+                                    <img src="logo.jpg" style="width: 12px; height: 12px; border-radius: 50%; filter: grayscale(100%); opacity: 0.8;">
+                                    <span style="font-size: 0.55rem; color: #b5bac1; font-weight: 500;">1 servidor mútuo</span>
+                                </div>
+                                
+                                <!-- Add Button -->
+                                <div style="background: #4E5058; color: #fff; font-size: 0.6rem; font-weight: 600; text-align: center; padding: 7px 0; border-radius: 4px; margin-bottom: 12px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#5C5E66'" onmouseout="this.style.background='#4E5058'">
+                                    + Adicionar app
+                                </div>
+                                
+                                <!-- Bio -->
+                                <p style="font-size: 0.55rem; color: #dbdee1; line-height: 1.4; margin: 0 0 10px 0; font-weight: 500;">
+                                    🛡️ Seu parceiro para cuidar do servidor! Moderação, tickets, segurança, comunidade e muito mais em um só bot....
                                 </p>
                                 
-                                <div style="display: flex; gap: 12px; margin-top: 4px;">
-                                    <div style="flex: 1;">
-                                        <div style="font-size: 0.5rem; color: #b5bac1; font-weight: 700; text-transform: uppercase; margin-bottom: 2px;">Status</div>
-                                        <div style="font-size: 0.55rem; color: #23a55a; font-weight: 600; display: flex; align-items: center; gap: 4px;">
-                                            <span style="width: 6px; height: 6px; background: #23a55a; border-radius: 50%; display: inline-block;"></span>
-                                            Online & Otimizado
-                                        </div>
+                                <div style="font-size: 0.55rem; color: #f2f3f5; font-weight: 700; margin-bottom: 12px; cursor: pointer;">
+                                    Ver Biografia Completa
+                                </div>
+                                
+                                <!-- Roles -->
+                                <div style="font-size: 0.55rem; font-weight: 800; color: #f2f3f5; margin-bottom: 6px;">Cargos</div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                    <!-- Role 1 -->
+                                    <div style="background: #2b2d31; border: 1px solid #1e1f22; border-radius: 4px; padding: 4px 6px; display: flex; align-items: center; gap: 4px;">
+                                        <div style="width: 8px; height: 8px; border-radius: 50%; background: #b5bac1;"></div>
+                                        <span style="font-size: 0.5rem; color: #dbdee1; font-weight: 500;">DublaX Team</span>
                                     </div>
-                                    <div style="flex: 1;">
-                                        <div style="font-size: 0.5rem; color: #b5bac1; font-weight: 700; text-transform: uppercase; margin-bottom: 2px;">Ping</div>
-                                        <div style="font-size: 0.55rem; color: #dbdee1; font-weight: 500;">12ms</div>
+                                    <!-- Role 2 -->
+                                    <div style="background: #2b2d31; border: 1px solid #1e1f22; border-radius: 4px; padding: 4px 6px; display: flex; align-items: center; gap: 4px;">
+                                        <div style="width: 8px; height: 8px; border-radius: 50%; background: #00a8fc;"></div>
+                                        <span style="font-size: 0.5rem; color: #dbdee1; font-weight: 500;">🤖 · Bots</span>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- Discord Buttons Row -->
-                            <div style="padding: 0 14px 14px 14px; display: flex; gap: 6px;">
-                                <div style="flex: 1; background: #2b2d31; color: #dbdee1; font-size: 0.55rem; font-weight: 600; text-align: center; padding: 6px 0; border-radius: 3px; cursor: pointer; transition: 0.2s; border: 1px solid rgba(255,255,255,0.02);" onmouseover="this.style.background='#3f4147'" onmouseout="this.style.background='#2b2d31'">
-                                    📊 Dashboard
-                                </div>
-                                <div style="flex: 1; background: #248046; color: #fff; font-size: 0.55rem; font-weight: 600; text-align: center; padding: 6px 0; border-radius: 3px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#1a6334'" onmouseout="this.style.background='#248046'">
-                                    ✉️ Abrir Ticket
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                     
