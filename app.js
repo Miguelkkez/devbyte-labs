@@ -1073,8 +1073,8 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                if (window.supabase) {
-                    const { error } = await window.supabase
+                if (window.supabaseClient) {
+                    const { error } = await window.supabaseClient
                         .from('leads')
                         .insert([leadData]);
                     if (error) throw error;
