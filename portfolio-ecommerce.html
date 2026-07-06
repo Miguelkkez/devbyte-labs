@@ -26,7 +26,6 @@
             overflow-x: hidden; 
             min-width: 1280px; 
             zoom: 0.8;
-            /* Premium dark ambient background */
             background-image: 
                 radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.03), transparent 25%),
                 radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.03), transparent 25%);
@@ -39,18 +38,19 @@
             background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
         }
-        .logo { font-family: 'Syncopate', sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: 10px; color: #fff; }
+        .logo { font-family: 'Syncopate', sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: 10px; color: #fff; cursor: pointer; }
         .nav-links { display: flex; gap: 60px; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-weight: 600; letter-spacing: 3px; transition: color 0.4s; }
         .nav-links a:hover, .nav-links a.active { color: #fff; }
+        .cart-icon { cursor: pointer; color: #fff; }
         
         /* HERO SECTION */
-        .hero { display: flex; padding: 0 80px; gap: 60px; height: 90vh; align-items: center; }
+        .hero { display: flex; padding: 0 80px; gap: 80px; height: 90vh; align-items: center; }
         
         /* Product Info */
         .product-info { flex: 1; display: flex; flex-direction: column; gap: 40px; z-index: 10; }
         .tag { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 6px; color: var(--text-muted); }
-        .title { font-size: 7rem; font-weight: 900; line-height: 0.9; letter-spacing: -3px; color: #fff; }
+        .title { font-size: 7.5rem; font-weight: 900; line-height: 0.9; letter-spacing: -3px; color: #fff; }
         .title span { color: #333; font-weight: 300; }
         .price { font-size: 2.5rem; font-weight: 300; color: #fff; }
         .desc { font-size: 1.3rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; max-width: 90%; }
@@ -73,100 +73,123 @@
         .btn-add:hover { background: #e0e0e0; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,255,255,0.15); }
 
         /* -----------------------------------------------------------
-           CINEMATIC MAGNIFIER & SPOTLIGHT SHOWCASE
+           BUTTERY SMOOTH CINEMATIC MAGNIFIER
         -------------------------------------------------------------*/
         .product-showcase { 
-            flex: 1.3; height: 100%; position: relative; 
+            flex: 1.2; height: 100%; position: relative; 
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* The container that detects mouse movement */
+        /* Fixed aspect ratio container to ensure perfect math (940x1112 -> 500x591.5) */
         .magnifier-container {
             position: relative;
-            width: 600px; height: 750px;
-            cursor: none; /* Hide default cursor */
-            overflow: visible;
+            width: 500px; height: 591px; /* Exact aspect ratio */
+            cursor: none;
+            /* Give it some breathing room for the lens to go outside the bounds slightly */
         }
 
-        /* The base image, sitting perfectly still and elegant */
+        /* The base image layer */
         .base-image {
+            position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 30px 40px rgba(0,0,0,0.8));
+            object-fit: cover;
+            filter: drop-shadow(0 40px 50px rgba(0,0,0,0.9));
             transition: opacity 0.4s ease;
         }
 
-        /* The darkened overlay that covers the image when hovering (cinematic lighting) */
+        /* Cinematic Spotlight Overlay - Perfectly smooth CSS mask */
         .dark-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000');
-            background-size: contain; background-repeat: no-repeat; background-position: center;
-            filter: brightness(0.2) drop-shadow(0 0 0 rgba(0,0,0,1));
+            background-color: rgba(0, 0, 0, 0.85);
+            /* Soft blur over the dark area */
+            backdrop-filter: blur(2px);
             opacity: 0; transition: opacity 0.5s ease;
             pointer-events: none;
+            /* The mask will be updated via JS to reveal the image under the cursor */
+            mask-image: radial-gradient(circle 180px at 50% 50%, transparent 10%, black 100%);
+            -webkit-mask-image: radial-gradient(circle 180px at 50% 50%, transparent 10%, black 100%);
         }
 
-        /* THE MAGNIFYING LENS */
+        /* THE LENS (Hardware Accelerated, Lerp Physics) */
         .magnifying-lens {
             position: absolute;
             width: 280px; height: 280px;
             border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.3);
-            /* Glass edge effect */
+            border: 2px solid rgba(255,255,255,0.25);
             box-shadow: 
-                0 0 0 1px rgba(255,255,255,0.1), 
-                inset 0 0 20px rgba(255,255,255,0.3),
-                0 30px 60px rgba(0,0,0,0.8),
+                inset 0 0 40px rgba(255,255,255,0.2),
+                0 30px 60px rgba(0,0,0,0.9),
                 0 0 100px rgba(255,255,255,0.1);
-            
-            /* The actual zoomed image is a background here */
-            background-image: url('https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000');
-            background-repeat: no-repeat;
-            
-            pointer-events: none;
+            overflow: hidden; /* Clips the zoomed image */
+            pointer-events: none; /* Crucial so it doesn't block mousemove */
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0.8);
-            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Using translate3d for GPU acceleration */
+            transform: translate3d(-50%, -50%, 0) scale(0.8);
+            transition: opacity 0.4s ease; /* Do NOT transition transform here to avoid stuttering */
             z-index: 50;
-            
-            /* Subtle chromatic aberration on the glass edge */
-            backdrop-filter: blur(2px);
+            background: #000; /* Backdrop for the zoomed image */
         }
-
-        /* Add a sleek crosshair inside the lens */
+        
+        /* The Crosshair inside the lens */
         .lens-crosshair {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 20px; height: 20px;
-            border: 1px solid rgba(255,255,255,0.4); border-radius: 50%;
+            width: 30px; height: 30px; z-index: 51;
+            border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; pointer-events: none;
         }
-        .lens-crosshair::before { content:''; position:absolute; top: 50%; left: -10px; width: 40px; height: 1px; background: rgba(255,255,255,0.3); }
-        .lens-crosshair::after { content:''; position:absolute; top: -10px; left: 50%; width: 1px; height: 40px; background: rgba(255,255,255,0.3); }
+        .lens-crosshair::before { content:''; position:absolute; top: 50%; left: -15px; width: 60px; height: 1px; background: rgba(255,255,255,0.2); }
+        .lens-crosshair::after { content:''; position:absolute; top: -15px; left: 50%; width: 1px; height: 60px; background: rgba(255,255,255,0.2); }
 
-        /* The interactive data panel that slides out of the lens */
+        /* The actual zoomed image inside the lens */
+        .zoomed-image {
+            position: absolute;
+            top: 0; left: 0;
+            /* Container is 500x591. Zoom level 2.5 => 1250x1477.5 */
+            width: 1250px; height: 1477.5px;
+            object-fit: cover;
+            pointer-events: none;
+            /* We will translate this image perfectly in JS */
+        }
+
+        /* Glassmorphism Panel attached to the Lens */
         .lens-data-panel {
             position: absolute;
-            top: 50%; left: 110%; /* Slide out to the right */
+            top: 50%; left: 110%; /* Attach to the right edge */
             transform: translateY(-50%) translateX(-20px);
-            background: rgba(20, 20, 22, 0.8);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            background: rgba(20, 20, 22, 0.7);
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255,255,255,0.15);
-            padding: 20px 25px; border-radius: 16px;
-            min-width: 220px;
+            padding: 24px 30px; border-radius: 20px;
+            min-width: 260px;
             opacity: 0; pointer-events: none;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 52;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
-        .lens-data-panel h4 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted); margin-bottom: 8px; }
-        .lens-data-panel p { font-size: 1.2rem; font-weight: 700; color: #fff; margin: 0; }
+        
+        .lens-data-panel h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; color: var(--accent); margin-bottom: 8px; }
+        .lens-data-panel p { font-size: 1.3rem; font-weight: 700; color: #fff; margin: 0; line-height: 1.4;}
         
         .lens-data-panel.active {
             opacity: 1; transform: translateY(-50%) translateX(0);
         }
 
-        /* Invisible Hotspots placed over the base image */
-        .hotspot { position: absolute; width: 100px; height: 100px; border-radius: 50%; /* border: 1px solid red; */ z-index: 20; }
-        #hotspot-headband { top: 10%; left: 50%; transform: translateX(-50%); }
-        #hotspot-earcup-l { top: 60%; left: 20%; }
-        #hotspot-earcup-r { top: 60%; left: 60%; }
+        /* Physical Hotspot Markers on the base image */
+        .hotspot-marker {
+            position: absolute; width: 12px; height: 12px; border-radius: 50%;
+            background: rgba(255,255,255,0.8); box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            z-index: 20; pointer-events: none; opacity: 0; transition: 0.3s;
+        }
+        /* Ring animation */
+        .hotspot-marker::after {
+            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 1px solid rgba(255,255,255,0.5); border-radius: 50%;
+            animation: pulseRing 2s infinite cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes pulseRing { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
+
+        #marker-1 { top: 18%; left: 50%; transform: translate(-50%, -50%); }
+        #marker-2 { top: 58%; left: 24%; transform: translate(-50%, -50%); }
+        #marker-3 { top: 58%; left: 74%; transform: translate(-50%, -50%); }
 
     </style>
 </head>
@@ -189,7 +212,7 @@
             <div class="tag">Análise Microscópica</div>
             <h1 class="title">Orbital<br><span>NC-1 Pro</span></h1>
             <div class="price"><span>R$</span> 2.499,00</div>
-            <p class="desc">A perfeição está nos detalhes. Passe o mouse sobre o produto para ativar a lente de inspeção e descobrir a engenharia microscópica por trás da nossa acústica lendária.</p>
+            <p class="desc">A perfeição está nos detalhes. Passe o mouse sobre o produto para ativar a lente de inspeção em tempo real e descobrir a engenharia por trás da nossa acústica lendária.</p>
             
             <div class="color-picker">
                 <span class="color-label">Acabamento:</span>
@@ -215,13 +238,14 @@
                 <!-- Dark Overlay for Dramatic Spotlight Effect -->
                 <div class="dark-overlay" id="darkOverlay"></div>
                 
-                <!-- Invisible Hotspots -->
-                <div class="hotspot" id="hotspot-headband" data-title="Arco Acústico" data-desc="Malha respirável avançada"></div>
-                <div class="hotspot" id="hotspot-earcup-l" data-title="Driver Esquerdo" data-desc="Grafeno de 40mm"></div>
-                <div class="hotspot" id="hotspot-earcup-r" data-title="Chip Neural H2" data-desc="ANC com IA Integrada"></div>
+                <!-- Visual Hotspot Markers -->
+                <div class="hotspot-marker" id="marker-1"></div>
+                <div class="hotspot-marker" id="marker-2"></div>
+                <div class="hotspot-marker" id="marker-3"></div>
 
-                <!-- The Magnifying Lens -->
+                <!-- The Magnifying Lens Assembly -->
                 <div class="magnifying-lens" id="magLens">
+                    <img id="zoomedImage" class="zoomed-image" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000" alt="Zoomed">
                     <div class="lens-crosshair"></div>
                     
                     <!-- Dynamic Data Panel -->
@@ -236,78 +260,126 @@
     </div>
 
     <script>
+        /* BUTTERY SMOOTH LENS ENGINE */
         const container = document.getElementById('magContainer');
         const lens = document.getElementById('magLens');
         const darkOverlay = document.getElementById('darkOverlay');
         const baseImage = document.getElementById('baseImage');
+        const zoomedImage = document.getElementById('zoomedImage');
         const lensData = document.getElementById('lensData');
         const lensTitle = document.getElementById('lensTitle');
         const lensDesc = document.getElementById('lensDesc');
-        const hotspots = document.querySelectorAll('.hotspot');
+        const markers = document.querySelectorAll('.hotspot-marker');
         
-        // Settings for Magnifier
         const ZOOM_LEVEL = 2.5; 
+        const LENS_RADIUS = 140; // 280 / 2
         
-        container.addEventListener('mouseenter', () => {
-            // Activate Lens and cinematic lighting
-            lens.style.opacity = '1';
-            lens.style.transform = 'translate(-50%, -50%) scale(1)';
-            darkOverlay.style.opacity = '0.85'; // Dim the background
+        // Physics variables for smooth lerping
+        let targetX = 250;
+        let targetY = 295;
+        let currentX = 250;
+        let currentY = 295;
+        let isHovering = false;
+        
+        // Define exact hotspot regions (percentage based coordinates x, y, radius)
+        const hotspots = [
+            { x: 50, y: 18, radius: 10, title: "Arco Acústico", desc: "Malha knit projetada para distribuir o peso e reduzir a pressão." },
+            { x: 24, y: 58, radius: 12, title: "Driver de Grafeno", desc: "Distorção ultrabaixa em toda a faixa audível. Graves profundos." },
+            { x: 74, y: 58, radius: 12, title: "Chip Neural H2", desc: "Áudio computacional de 10 núcleos que bloqueia o som externo." }
+        ];
+
+        // Ensure container dimensions are locked on load
+        let containerRect = container.getBoundingClientRect();
+        window.addEventListener('resize', () => {
+            containerRect = container.getBoundingClientRect();
+        });
+
+        container.addEventListener('mouseenter', (e) => {
+            isHovering = true;
+            containerRect = container.getBoundingClientRect();
+            // Snap target immediately to avoid fly-in from corner if desired
+            targetX = e.clientX - containerRect.left;
+            targetY = e.clientY - containerRect.top;
+            currentX = targetX;
+            currentY = targetY;
             
-            // Set background size of lens to match zoomed image
-            const rect = container.getBoundingClientRect();
-            lens.style.backgroundSize = `${rect.width * ZOOM_LEVEL}px ${rect.height * ZOOM_LEVEL}px`;
+            lens.style.opacity = '1';
+            lens.style.transform = `translate3d(calc(${currentX}px - 50%), calc(${currentY}px - 50%), 0) scale(1)`;
+            darkOverlay.style.opacity = '1';
+            
+            // Show markers
+            markers.forEach(m => m.style.opacity = '1');
         });
 
         container.addEventListener('mousemove', (e) => {
-            const rect = container.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            // Move the lens
-            lens.style.left = `${x}px`;
-            lens.style.top = `${y}px`;
-            
-            // Calculate background position for the zoomed image inside the lens
-            // The math aligns the center of the lens with the scaled coordinate of the mouse
-            const bgX = (x * ZOOM_LEVEL) - (lens.offsetWidth / 2);
-            const bgY = (y * ZOOM_LEVEL) - (lens.offsetHeight / 2);
-            lens.style.backgroundPosition = `-${bgX}px -${bgY}px`;
-            
-            // Spotlight effect on the dark overlay (CSS Masking)
-            darkOverlay.style.maskImage = `radial-gradient(circle 140px at ${x}px ${y}px, transparent 100%, black 100%)`;
-            darkOverlay.style.webkitMaskImage = `radial-gradient(circle 140px at ${x}px ${y}px, transparent 100%, black 100%)`;
-            
-            // Hotspot detection logic
-            let isHoveringHotspot = false;
-            hotspots.forEach(hotspot => {
-                const hRect = hotspot.getBoundingClientRect();
-                // Check if mouse is inside this hotspot
-                if (e.clientX >= hRect.left && e.clientX <= hRect.right &&
-                    e.clientY >= hRect.top && e.clientY <= hRect.bottom) {
-                    
-                    isHoveringHotspot = true;
-                    lensTitle.innerText = hotspot.getAttribute('data-title');
-                    lensDesc.innerText = hotspot.getAttribute('data-desc');
-                }
-            });
-            
-            if (isHoveringHotspot) {
-                lensData.classList.add('active');
-            } else {
-                lensData.classList.remove('active');
-            }
+            targetX = e.clientX - containerRect.left;
+            targetY = e.clientY - containerRect.top;
         });
 
         container.addEventListener('mouseleave', () => {
-            // Deactivate
+            isHovering = false;
             lens.style.opacity = '0';
-            lens.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            lens.style.transform = `translate3d(calc(${currentX}px - 50%), calc(${currentY}px - 50%), 0) scale(0.8)`;
             darkOverlay.style.opacity = '0';
             lensData.classList.remove('active');
+            
+            // Hide markers
+            markers.forEach(m => m.style.opacity = '0');
         });
+
+        // The high-performance render loop using requestAnimationFrame
+        function renderPhysics() {
+            if (isHovering) {
+                // Lerp for smooth 'weighty' glass feeling
+                currentX += (targetX - currentX) * 0.2;
+                currentY += (targetY - currentY) * 0.2;
+                
+                // 1. Move the Lens
+                lens.style.transform = `translate3d(calc(${currentX}px - 50%), calc(${currentY}px - 50%), 0) scale(1)`;
+                
+                // 2. Move the Spotlight Mask on the Dark Overlay
+                darkOverlay.style.maskImage = `radial-gradient(circle 200px at ${currentX}px ${currentY}px, transparent 15%, black 80%)`;
+                darkOverlay.style.webkitMaskImage = `radial-gradient(circle 200px at ${currentX}px ${currentY}px, transparent 15%, black 80%)`;
+                
+                // 3. Move the Zoomed Image perfectly inside the lens
+                // We shift the image opposite to the cursor position, multiplied by zoom factor.
+                // We add LENS_RADIUS to keep it centered in the lens.
+                const imgLeft = -(currentX * ZOOM_LEVEL) + LENS_RADIUS;
+                const imgTop = -(currentY * ZOOM_LEVEL) + LENS_RADIUS;
+                zoomedImage.style.transform = `translate3d(${imgLeft}px, ${imgTop}px, 0)`;
+
+                // 4. Hotspot Detection Math
+                let activeHotspot = null;
+                const percentX = (currentX / containerRect.width) * 100;
+                const percentY = (currentY / containerRect.height) * 100;
+
+                for (let hp of hotspots) {
+                    const dx = percentX - hp.x;
+                    const dy = percentY - hp.y;
+                    const distance = Math.sqrt(dx*dx + dy*dy);
+                    if (distance < hp.radius) {
+                        activeHotspot = hp;
+                        break;
+                    }
+                }
+
+                if (activeHotspot) {
+                    lensTitle.innerText = activeHotspot.title;
+                    lensDesc.innerText = activeHotspot.desc;
+                    lensData.classList.add('active');
+                } else {
+                    lensData.classList.remove('active');
+                }
+            }
+            
+            requestAnimationFrame(renderPhysics);
+        }
         
-        // Color Swap Logic
+        // Start engine
+        renderPhysics();
+
+        
+        // Premium Color Swap Logic
         const dots = document.querySelectorAll('.color-dot');
         const imagesSrc = {
             'spacegray': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000',
@@ -322,14 +394,14 @@
                 
                 const newImg = imagesSrc[dot.getAttribute('data-color')];
                 
-                // Fade effect
                 baseImage.style.opacity = '0';
+                zoomedImage.style.opacity = '0';
                 
                 setTimeout(() => {
                     baseImage.src = newImg;
-                    lens.style.backgroundImage = `url('${newImg}')`;
-                    darkOverlay.style.backgroundImage = `url('${newImg}')`;
+                    zoomedImage.src = newImg;
                     baseImage.style.opacity = '1';
+                    zoomedImage.style.opacity = '1';
                 }, 300);
             });
         });
