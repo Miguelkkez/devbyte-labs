@@ -349,6 +349,32 @@
         .footer-col h4 { font-size: 1.3rem; font-weight: 900; margin-bottom: 35px; color: #fff; text-transform: uppercase; letter-spacing: 2px;}
         .footer-col a { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 20px; font-size: 1.1rem; transition: 0.3s; }
         .footer-col a:hover { color: var(--primary); transform: translateX(5px); }
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body { overflow-x: hidden; }
+            .hero { padding: 150px 20px 80px; }
+            .hero-title { font-size: 3.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .hero-btns { flex-direction: column; gap: 15px; margin-bottom: 60px; width: 100%; }
+            .btn-primary, .btn-secondary { width: 100%; padding: 20px; font-size: 1.1rem; text-align: center; }
+            
+            .dashboard-preview { height: auto; transform: none !important; border-radius: 20px; }
+            .dashboard-wrapper:hover .dashboard-preview { transform: none; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+            
+            .dash-body { grid-template-columns: 1fr; gap: 20px; padding: 20px; }
+            .dash-card { padding: 25px; }
+            .dash-card-title { font-size: 1rem; margin-bottom: 10px; }
+            .dash-card-value { font-size: 2.5rem; }
+            
+            .features { padding: 80px 20px; }
+            .f-grid { grid-template-columns: 1fr; gap: 30px; }
+            .f-card { padding: 30px; }
+            .section-header h2 { font-size: 3rem; }
+            .section-header p { font-size: 1.1rem; }
+            
+            .cta { padding: 80px 20px; }
+            .cta h2 { font-size: 3rem; }
+        }
     </style>
 </head>
 <body>

@@ -271,7 +271,29 @@
         .traffic-card { animation-delay: 0.6s; }
         .table-card { animation-delay: 0.7s; }
 
-    </style>
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body { overflow-x: hidden; }
+            .dashboard-container { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .main-content { padding: 20px; }
+            
+            .topbar { flex-direction: column; gap: 15px; align-items: flex-start; }
+            .top-search { width: 100%; max-width: none; }
+            
+            .dashboard-grid { grid-template-columns: 1fr; gap: 15px; }
+            
+            .kpi-card { grid-column: span 1; padding: 20px; }
+            .chart-card { grid-column: span 1; padding: 20px; }
+            .traffic-card { grid-column: span 1; padding: 20px; }
+            .table-card { grid-column: span 1; padding: 20px; }
+            
+            .donut-container { height: 150px; }
+            .donut { width: 120px; height: 120px; }
+            .donut::after { width: 90px; height: 90px; }
+            
+            .chart-container { min-height: 200px; }
+        }    </style>
 </head>
 <body>
     
