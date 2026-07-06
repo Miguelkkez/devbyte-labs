@@ -10,18 +10,17 @@
     <style>
         :root {
             --bg-dark: #000000;
-            --bg-card: rgba(20, 20, 22, 0.6);
             --primary: #ffffff;
-            --accent: #d1d1d6;
             --text-main: #f5f5f7;
             --text-muted: #86868b;
             --glass-border: rgba(255, 255, 255, 0.08);
-            --glow: rgba(255, 255, 255, 0.15);
+            --neon-blue: #00f0ff;
+            --neon-purple: #8a2be2;
+            --neon-pink: #ff003c;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
         ::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
@@ -32,285 +31,178 @@
             font-family: 'Outfit', sans-serif;
             overflow-x: hidden; 
             min-width: 1280px; 
-            background-image: 
-                radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.1), transparent 40%);
-            animation: fadeIn 1.5s ease-out;
-            perspective: 1000px;
+            background-image: radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.1), transparent 40%);
             zoom: 0.7;
-            pointer-events: auto; 
         }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* Premium Minimalist Navbar */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 80px; 
-            background: rgba(0, 0, 0, 0.5); 
-            backdrop-filter: blur(25px); 
-            -webkit-backdrop-filter: blur(25px);
+            padding: 20px 80px; background: rgba(0, 0, 0, 0.5); 
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border-bottom: 1px solid var(--glass-border); 
             position: sticky; top: 0; z-index: 100; 
-            transition: all 0.4s ease;
         }
         
-        .logo { 
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1.2rem; font-weight: 700; letter-spacing: 8px; 
-            text-transform: uppercase; color: #fff;
-            cursor: pointer; transition: 0.3s;
-        }
-        .logo:hover { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
-
+        .logo { font-family: 'Syncopate', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 8px; text-transform: uppercase; color: #fff; cursor: pointer; }
         .nav-links { display: flex; gap: 45px; }
-        .nav-links a { 
-            color: var(--text-muted); text-decoration: none; font-size: 0.8rem; 
-            text-transform: uppercase; font-weight: 600; letter-spacing: 2px; 
-            position: relative; transition: color 0.4s;
-        }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 2px; transition: color 0.4s; }
         .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 1px;
-            background: #fff; transform: scaleX(0); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-origin: right;
-        }
-        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
-
-        .cart-icon { 
-            width: 40px; height: 40px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; position: relative; 
-            transition: 0.3s; cursor: pointer; color: #fff;
-        }
-        .cart-icon:hover { background: rgba(255,255,255,0.1); }
-        .cart-badge { 
-            position: absolute; top: 0; right: 0; 
-            background: #fff; color: #000; 
-            font-size: 0.7rem; font-weight: 900; width: 18px; height: 18px; 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-        }
+        .cart-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; color: #fff; }
+        .cart-badge { position: absolute; top: 0; right: 0; background: #fff; color: #000; font-size: 0.7rem; font-weight: 900; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
         /* Hero Section */
-        .hero { 
-            display: flex; padding: 0 80px; gap: 60px; min-height: 90vh; 
-            align-items: center; position: relative; 
-        }
+        .hero { display: flex; padding: 0 80px; gap: 60px; min-height: 90vh; align-items: center; position: relative; }
         
-        /* 3D Product Image Container */
+        /* -----------------------------------------------------------
+           INSANE HOVER EFFECT CONTAINER
+        -------------------------------------------------------------*/
         .product-showcase { 
-            flex: 1.2; height: 800px; 
-            position: relative; 
+            flex: 1.2; height: 800px; position: relative; 
             display: flex; align-items: center; justify-content: center; 
-            perspective: 2000px;
-        }
-        
-        .ambient-light {
-            position: absolute; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            z-index: 0; pointer-events: none;
         }
 
-        /* The Headphone Image */
-        .headphone-wrapper {
-            position: relative; z-index: 10;
+        .headphone-container {
+            position: relative;
             width: 500px; height: 600px;
+            perspective: 2000px;
+            z-index: 20;
             display: flex; align-items: center; justify-content: center;
-            transform-style: preserve-3d;
-            animation: float 6s ease-in-out infinite;
-            cursor: grab;
         }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        /* Floating animation for normal state */
+        .headphone-3d-wrapper {
+            position: relative;
+            width: 100%; height: 100%;
+            transform-style: preserve-3d;
+            animation: floatSlow 8s ease-in-out infinite;
+            transition: transform 0.1s; /* smooth mouse tracking */
+        }
         
+        @keyframes floatSlow { 0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); } 50% { transform: translateY(-20px) rotateX(2deg) rotateY(-2deg); } }
+
+        /* The actual image */
         .headphone-img {
             width: 100%; height: 100%; object-fit: contain;
             filter: drop-shadow(0 40px 50px rgba(0,0,0,0.8));
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
-            transform: translateZ(50px);
+            transition: filter 0.5s ease, opacity 0.4s;
+            transform: translateZ(100px); /* Pops out in 3D */
+            position: relative;
+            z-index: 5;
         }
 
-        /* Interactive 3D Spin effect on Hover */
-        .product-showcase:hover .headphone-wrapper {
-            animation: none; /* pause float when spinning */
-            transform: rotateY(360deg) scale(1.05);
-            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        /* GLARE EFFECT ON IMAGE */
+        .glare {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 0%, transparent 60%);
+            mix-blend-mode: overlay;
+            opacity: 0; transition: opacity 0.5s;
+            transform: translateZ(101px);
+            pointer-events: none;
+            z-index: 6;
+            border-radius: 50%;
         }
-        .product-showcase:hover .headphone-img {
-            filter: drop-shadow(0 60px 70px rgba(255,255,255,0.1));
-        }
-        
-        /* Elegant Rings */
-        .ring {
+
+        /* SOUND WAVES / PORTAL EFFECT (Hidden by default) */
+        .sound-wave {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            border-radius: 50%; border: 1px solid rgba(255,255,255,0.03);
-            z-index: 1; pointer-events: none; box-shadow: inset 0 0 40px rgba(255,255,255,0.01);
+            border-radius: 50%; border: 2px solid transparent;
+            opacity: 0; pointer-events: none; z-index: 1;
         }
-        .ring-1 { width: 500px; height: 500px; animation: pulseRing 4s infinite alternate; }
-        .ring-2 { width: 700px; height: 700px; animation: pulseRing 5s infinite alternate-reverse; }
-        @keyframes pulseRing { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; border-color: rgba(255,255,255,0.02); } 100% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; border-color: rgba(255,255,255,0.06); } }
-
-        /* Floating Spec Card */
-        .spec-card {
-            position: absolute; bottom: 120px; right: 20px; 
-            background: rgba(20, 20, 22, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            padding: 20px 30px; border-radius: 20px; border: 1px solid var(--glass-border); 
-            display: flex; align-items: center; gap: 15px; 
-            transform: translateZ(80px); box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            animation: slideInRight 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0;
+        
+        /* HOVER STATES TRIGGERED BY PARENT */
+        .headphone-container:hover .headphone-3d-wrapper {
+            animation: none; /* stop floating, hand over to JS mouse tracking */
         }
-        @keyframes slideInRight { from { transform: translateZ(80px) translateX(50px); opacity: 0; } to { transform: translateZ(80px) translateX(0); opacity: 1; } }
+        
+        .headphone-container:hover .glare { opacity: 1; }
+        
+        /* Chromatic Aberration Shadow on hover */
+        .headphone-container:hover .headphone-img {
+            filter: drop-shadow(-20px 20px 30px rgba(0, 240, 255, 0.5)) 
+                    drop-shadow(20px -20px 30px rgba(255, 0, 60, 0.5))
+                    drop-shadow(0 50px 80px rgba(255, 255, 255, 0.2));
+        }
 
-        /* Product Info */
+        /* Pulse waves active on hover */
+        .headphone-container:hover .sound-wave:nth-child(1) { animation: insanePulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite; border-color: var(--neon-blue); }
+        .headphone-container:hover .sound-wave:nth-child(2) { animation: insanePulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite 0.4s; border-color: var(--neon-purple); }
+        .headphone-container:hover .sound-wave:nth-child(3) { animation: insanePulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite 0.8s; border-color: var(--neon-pink); }
+
+        @keyframes insanePulse {
+            0% { width: 400px; height: 400px; opacity: 1; border-width: 10px; box-shadow: 0 0 50px currentColor, inset 0 0 50px currentColor; }
+            100% { width: 1200px; height: 1200px; opacity: 0; border-width: 1px; box-shadow: 0 0 0 currentColor; }
+        }
+
+        /* -----------------------------------------------------------
+           DYNAMIC SPEC CALLOUTS (Shooting out on hover)
+        -------------------------------------------------------------*/
+        .spec-callout {
+            position: absolute;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 20px; border-radius: 12px;
+            color: #fff; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+            opacity: 0; pointer-events: none; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255,255,255,0.1);
+            display: flex; flex-direction: column; gap: 5px;
+            z-index: 30;
+        }
+        .spec-callout span { font-size: 1.2rem; color: var(--neon-blue); font-family: 'JetBrains Mono', monospace; font-weight: 900;}
+        
+        /* Line connecting spec to headphone */
+        .spec-callout::before {
+            content: ''; position: absolute; background: rgba(255,255,255,0.5);
+            transition: all 0.5s; opacity: 0;
+        }
+
+        .spec-top { top: 0; left: 50%; transform: translate(-50%, -50px) scale(0.5); }
+        .spec-top::before { width: 2px; height: 0; top: 100%; left: 50%; }
+        
+        .spec-left { top: 60%; left: -50px; transform: translate(-50px, -50%) scale(0.5); }
+        .spec-left::before { height: 2px; width: 0; top: 50%; left: 100%; }
+        
+        .spec-right { top: 70%; right: -50px; transform: translate(50px, -50%) scale(0.5); text-align: right;}
+        .spec-right::before { height: 2px; width: 0; top: 50%; right: 100%; }
+
+        /* Activate callouts on hover */
+        .headphone-container:hover .spec-top { opacity: 1; transform: translate(-50%, -100px) scale(1) translateZ(120px); }
+        .headphone-container:hover .spec-top::before { height: 60px; opacity: 1; }
+
+        .headphone-container:hover .spec-left { opacity: 1; transform: translate(-80px, -50%) scale(1) translateZ(150px); }
+        .headphone-container:hover .spec-left::before { width: 80px; opacity: 1; }
+
+        .headphone-container:hover .spec-right { opacity: 1; transform: translate(80px, -50%) scale(1) translateZ(150px); }
+        .headphone-container:hover .spec-right::before { width: 80px; opacity: 1; }
+
+
+        /* Product Info - Clean layout */
         .product-info { flex: 1; display: flex; flex-direction: column; gap: 35px; z-index: 10; }
-        
-        .tag { 
-            display: inline-block; padding: 6px 0; 
-            color: var(--text-muted); 
-            font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; 
-            animation: fadeUp 1s forwards; opacity: 0;
-        }
-        @keyframes fadeUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
-        .title { 
-            font-size: 6.5rem; font-weight: 900; line-height: 0.95; letter-spacing: -3px; 
-            color: #fff;
-            animation: fadeUp 1s 0.1s forwards; opacity: 0;
-        }
+        .tag { display: inline-block; padding: 6px 0; color: var(--text-muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; }
+        .title { font-size: 6.5rem; font-weight: 900; line-height: 0.95; letter-spacing: -3px; color: #fff; }
         .title span { color: var(--text-muted); font-weight: 300; }
-        
-        .price { 
-            font-size: 2.2rem; font-weight: 300; color: #fff; 
-            display: flex; align-items: flex-start; gap: 8px;
-            animation: fadeUp 1s 0.2s forwards; opacity: 0;
-        }
+        .price { font-size: 2.2rem; font-weight: 300; color: #fff; display: flex; align-items: flex-start; gap: 8px; }
         .price span { font-size: 1.2rem; margin-top: 6px; color: var(--text-muted); }
+        .desc { font-size: 1.2rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; max-width: 90%; }
         
-        .desc { 
-            font-size: 1.2rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; max-width: 90%; 
-            animation: fadeUp 1s 0.3s forwards; opacity: 0;
-        }
-        
-        /* Premium Color Picker */
-        .color-picker { 
-            display: flex; gap: 30px; margin-top: 10px; align-items: center; 
-            animation: fadeUp 1s 0.4s forwards; opacity: 0;
-        }
+        .color-picker { display: flex; gap: 30px; margin-top: 10px; align-items: center; }
         .color-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); }
         .color-options { display: flex; gap: 20px; }
-        
-        .color-dot { 
-            width: 32px; height: 32px; border-radius: 50%; cursor: pointer; 
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative; display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .color-dot::before {
-            content: ''; position: absolute; width: 44px; height: 44px; border-radius: 50%;
-            border: 1px solid #fff; transform: scale(0.8); opacity: 0; transition: 0.4s;
-        }
+        .color-dot { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; transition: 0.4s; position: relative; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); }
+        .color-dot::before { content: ''; position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #fff; transform: scale(0.8); opacity: 0; transition: 0.4s; }
         .color-dot:hover { transform: scale(1.1); }
         .color-dot.active::before { transform: scale(1); opacity: 1; }
         
-        /* Ultra sleek button */
-        .btn-add { 
-            background: #fff; color: #000; border: none; 
-            padding: 24px 50px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; 
-            letter-spacing: 3px; border-radius: 100px; display: inline-flex; align-items: center; gap: 15px; 
-            align-self: flex-start; cursor: pointer; position: relative; overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            animation: fadeUp 1s 0.5s forwards; opacity: 0;
-            margin-top: 10px;
-        }
-        .btn-add:hover { 
-            transform: translateY(-4px) scale(1.02); 
-            box-shadow: 0 20px 40px rgba(255,255,255,0.2); 
-            padding-right: 60px; /* expands to show arrow movement */
-        }
-        .btn-add svg { transition: 0.4s; }
-        .btn-add:hover svg { transform: translateX(10px); }
-
-        /* Feature Cards with Glassmorphism */
-        .features { 
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; 
-            padding: 160px 80px; position: relative;
-        }
+        .btn-add { background: #fff; color: #000; border: none; padding: 24px 50px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; border-radius: 100px; display: inline-flex; align-items: center; gap: 15px; align-self: flex-start; cursor: pointer; transition: 0.4s; margin-top: 10px; }
+        .btn-add:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 40px rgba(255,255,255,0.2); padding-right: 60px; }
         
-        .feature-card { 
-            background: rgba(20, 20, 22, 0.4); border: 1px solid var(--glass-border); 
-            padding: 60px 50px; border-radius: 32px; backdrop-filter: blur(30px);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative; overflow: hidden;
-        }
-        
-        .feature-card:hover { 
-            transform: translateY(-10px); 
-            background: rgba(30, 30, 35, 0.6);
-            border-color: rgba(255,255,255,0.2); 
-            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-        }
-        
-        .f-icon-wrap { 
-            margin-bottom: 40px; color: #fff; opacity: 0.8;
-            transition: 0.4s;
-        }
-        .feature-card:hover .f-icon-wrap { opacity: 1; transform: scale(1.1) translateX(10px); }
-        
-        .f-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
-        .f-desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
-
-        /* Immersive Showcase Gallery */
+        /* Features / Footer Minimalist Setup */
         .showcase { padding: 140px 80px; text-align: center; }
-        .section-header { margin-bottom: 100px; }
-        .section-title { 
-            font-size: 5rem; font-weight: 900; margin-bottom: 24px; letter-spacing: -2px; 
-            background: linear-gradient(to bottom right, #fff, #666); -webkit-background-clip: text; color: transparent;
-        }
-        
-        .grid-showcase { 
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; 
-        }
-        .grid-item { 
-            height: 500px; background: var(--bg-card); border-radius: 40px; 
-            border: 1px solid var(--glass-border); overflow: hidden; position: relative; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 60px;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
-        }
-        .grid-item:hover { 
-            border-color: rgba(255,255,255,0.3); transform: scale(0.98);
-        }
-        
-        .grid-item h3 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -1px; }
-        .grid-item p { color: var(--text-muted); font-size: 1.2rem; line-height: 1.6; font-weight: 300; max-width: 80%; }
-        
-        /* Subtle Marquee */
-        .marquee-container {
-            width: 100%; padding: 30px 0; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);
-            overflow: hidden; white-space: nowrap; display: flex; align-items: center; margin: 80px 0;
-        }
-        .marquee {
-            font-family: 'Syncopate', sans-serif; font-size: 1.5rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted);
-            animation: marquee 30s linear infinite; display: flex; gap: 80px;
-        }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* Elegant Footer */
         .footer { padding: 120px 80px 40px; border-top: 1px solid var(--glass-border); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 80px; margin-bottom: 100px; }
         .f-col h4 { font-size: 0.85rem; margin-bottom: 30px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #fff; }
-        .f-col p { color: var(--text-muted); line-height: 1.8; margin-bottom: 20px; font-size: 1rem; font-weight: 300; }
-        .f-col a { 
-            color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 16px; font-size: 1rem; font-weight: 300;
-            transition: 0.3s; 
-        }
-        .f-col a:hover { color: #fff; }
+        .f-col p, .f-col a { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 16px; font-size: 1rem; font-weight: 300; }
         
-        .footer-bottom { 
-            border-top: 1px solid var(--glass-border); padding-top: 40px; 
-            display: flex; justify-content: space-between; align-items: center;
-            color: var(--text-muted); font-size: 0.9rem; font-weight: 300;
-        }
-
     </style>
 </head>
 <body>
@@ -332,21 +224,16 @@
     <div class="hero">
         <div class="product-info">
             <div class="tag">Engenharia Acústica</div>
-            
             <h1 class="title">Orbital<br><span>NC-1 Pro</span></h1>
-            
-            <div class="price">
-                <span>R$</span> 2.499,00
-            </div>
-            
+            <div class="price"><span>R$</span> 2.499,00</div>
             <p class="desc">A evolução absoluta do silêncio. Um ecossistema sonoro esculpido em alumínio aeroespacial. Sinta cada frequência com clareza cristalina através de nossos drivers de grafeno otimizados por inteligência artificial.</p>
             
             <div class="color-picker">
                 <span class="color-label">Acabamento:</span>
                 <div class="color-options">
-                    <div class="color-dot active" data-color="spacegray" style="background-color: #555555;" title="Cinza Espacial"></div>
-                    <div class="color-dot" data-color="silver" style="background-color: #e3e4e5;" title="Prata Estelar"></div>
-                    <div class="color-dot" data-color="blue" style="background-color: #7b8e9b;" title="Azul Oceano"></div>
+                    <div class="color-dot active" data-color="spacegray" style="background-color: #555555;"></div>
+                    <div class="color-dot" data-color="silver" style="background-color: #e3e4e5;"></div>
+                    <div class="color-dot" data-color="blue" style="background-color: #7b8e9b;"></div>
                 </div>
             </div>
             
@@ -357,130 +244,99 @@
         </div>
         
         <div class="product-showcase">
-            <div class="ambient-light"></div>
-            <div class="ring ring-1"></div>
-            <div class="ring ring-2"></div>
             
-            <!-- 3D Wrapper for the image -->
-            <div class="headphone-wrapper" id="headphoneWrapper">
-                <!-- Using highly reliable transparent Apple AirPods Max images as a premium placeholder -->
-                <img id="productImage" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000" alt="Headphone" class="headphone-img">
-            </div>
-            
-            <div class="spec-card">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                <div>
-                    <div style="font-size: 0.65rem; color: #888; text-transform: uppercase; font-weight: 700; letter-spacing: 2px;">Áudio sem perdas</div>
-                    <div style="font-size: 1.1rem; font-weight: 800; color: #fff;">24-bit / 192kHz</div>
+            <div class="headphone-container" id="headphoneContainer">
+                
+                <!-- Sound waves that explode on hover -->
+                <div class="sound-wave"></div>
+                <div class="sound-wave"></div>
+                <div class="sound-wave"></div>
+                
+                <!-- The 3D tracking wrapper -->
+                <div class="headphone-3d-wrapper" id="headphone3D">
+                    <img id="productImage" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000" alt="Headphone" class="headphone-img">
+                    
+                    <!-- Dynamic Glare overlay -->
+                    <div class="glare" id="glare"></div>
+                    
+                    <!-- High-tech spec callouts that shoot out -->
+                    <div class="spec-callout spec-top">
+                        Arco Acústico
+                        <span>Titanium</span>
+                    </div>
+                    
+                    <div class="spec-callout spec-left">
+                        Chip Neural
+                        <span>H2 Pro</span>
+                    </div>
+                    
+                    <div class="spec-callout spec-right">
+                        ANC Dinâmico
+                        <span>-45dB</span>
+                    </div>
                 </div>
+
             </div>
+            
         </div>
     </div>
-
-    <div class="marquee-container">
-        <div class="marquee">
-            <span>Áudio de Alta Resolução</span> <span>•</span>
-            <span>Cancelamento Ativo de Ruído</span> <span>•</span>
-            <span>Áudio Espacial 360°</span> <span>•</span>
-            <span>Drivers de Grafeno</span> <span>•</span>
-            <span>Áudio de Alta Resolução</span> <span>•</span>
-            <span>Cancelamento Ativo de Ruído</span> <span>•</span>
-            <span>Áudio Espacial 360°</span> <span>•</span>
-            <span>Drivers de Grafeno</span>
-        </div>
+    
+    <div style="text-align: center; padding: 100px; color: var(--text-muted); font-weight: 300;">
+        Role para baixo para mais...
     </div>
 
-    <div class="features">
-        <div class="feature-card">
-            <div class="f-icon-wrap">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
-            </div>
-            <h3 class="f-title">ANC Computacional</h3>
-            <p class="f-desc">Oito microfones medem continuamente o ruído ambiente, criando um contra-sinal perfeitamente invertido antes que o som alcance seus ouvidos.</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="f-icon-wrap">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"></path><path d="M12 5v14"></path><circle cx="12" cy="12" r="10"></circle></svg>
-            </div>
-            <h3 class="f-title">Áudio Espacial</h3>
-            <p class="f-desc">Giroscópios embutidos rastreiam o movimento da sua cabeça, ancorando os sons ao dispositivo e criando uma experiência de cinema 3D imersiva.</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="f-icon-wrap">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
-            </div>
-            <h3 class="f-title">Energia Infinita</h3>
-            <p class="f-desc">Até 40 horas de reprodução contínua. O modo de ultra-economia é ativado automaticamente quando guardado, preservando a carga por meses.</p>
-        </div>
-    </div>
-
-    <div class="showcase">
-        <div class="section-header">
-            <h2 class="section-title">Design Sem Compromissos</h2>
-        </div>
-        
-        <div class="grid-showcase">
-            <div class="grid-item">
-                <h3>Corpo em Alumínio</h3>
-                <p>Usinado a partir de um único bloco sólido para eliminar vibrações acústicas indesejadas e garantir durabilidade eterna.</p>
-            </div>
-            <div class="grid-item">
-                <h3>Malha Acústica</h3>
-                <p>O arco superior distribui o peso perfeitamente, reduzindo a pressão na cabeça para conforto durante o dia inteiro.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <div class="footer-grid">
-            <div class="f-col">
-                <div class="logo" style="margin-bottom: 20px;">AETERNA</div>
-                <p>O som absoluto. Redefinindo os limites da acústica pessoal através do design extremo e tecnologia de ponta.</p>
-            </div>
-            <div class="f-col">
-                <h4>Explorar</h4>
-                <a href="#">Orbital NC1 Pro</a>
-                <a href="#">Echo Pods X</a>
-                <a href="#">Soundbar Nexus</a>
-            </div>
-            <div class="f-col">
-                <h4>Suporte</h4>
-                <a href="#">Central de Ajuda</a>
-                <a href="#">Garantia Premium</a>
-                <a href="#">Assistência Técnica</a>
-            </div>
-            <div class="f-col">
-                <h4>Empresa</h4>
-                <a href="#">Sobre Nós</a>
-                <a href="#">Sustentabilidade</a>
-                <a href="#">Carreiras</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span>&copy; 2026 Aeterna Áudio. Masterpiece Collection.</span>
-        </div>
-    </div>
-
-    <!-- Mouse Interaction Script -->
+    <!-- INSANE 3D INTERACTION SCRIPT -->
     <script>
-        // Interactive 3D Parallax on hover over the entire hero area
-        document.addEventListener('mousemove', function(e) {
-            const wrapper = document.getElementById('headphoneWrapper');
-            // Only apply gentle parallax if we are NOT currently hovering directly on the product showcase (which triggers the 360 spin)
-            const showcase = document.querySelector('.product-showcase');
-            if(!showcase.matches(':hover')) {
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
-                wrapper.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        const container = document.getElementById('headphoneContainer');
+        const wrapper = document.getElementById('headphone3D');
+        const glare = document.getElementById('glare');
+        
+        let bounds;
+
+        container.addEventListener('mouseenter', () => {
+            bounds = container.getBoundingClientRect();
+            wrapper.style.transition = 'transform 0.1s cubic-bezier(0.1, 1, 0.3, 1)';
+        });
+
+        container.addEventListener('mousemove', (e) => {
+            if(!bounds) return;
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            const leftX = mouseX - bounds.x;
+            const topY = mouseY - bounds.y;
+            
+            const center = {
+                x: leftX - bounds.width / 2,
+                y: topY - bounds.height / 2
             }
+            
+            // Extreme 3D rotation logic (up to 30 degrees)
+            const xAxis = (center.y / (bounds.height / 2)) * -30;
+            const yAxis = (center.x / (bounds.width / 2)) * 30;
+            
+            // Apply 3D transform
+            wrapper.style.transform = `rotateX(${xAxis}deg) rotateY(${yAxis}deg) scale3d(1.1, 1.1, 1.1)`;
+            
+            // Move glare dynamically based on mouse
+            const glareX = (leftX / bounds.width) * 100;
+            const glareY = (topY / bounds.height) * 100;
+            glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.8) 0%, transparent 60%)`;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            // Spring back to center smoothly
+            wrapper.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            wrapper.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            setTimeout(() => {
+                // Remove transition so mousemove is snappy again
+                wrapper.style.transition = '';
+            }, 1000);
         });
         
         // Color picker interaction
         const dots = document.querySelectorAll('.color-dot');
         const productImage = document.getElementById('productImage');
-        
         const images = {
             'spacegray': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604709508000',
             'silver': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-silver-202011?wid=940&hei=1112&fmt=png-alpha&.v=1604021221000',
@@ -491,17 +347,11 @@
             dot.addEventListener('click', () => {
                 dots.forEach(d => d.classList.remove('active'));
                 dot.classList.add('active');
-                
                 const color = dot.getAttribute('data-color');
-                
-                // Add a cool fade and scale animation when changing colors
                 productImage.style.opacity = '0';
-                productImage.style.transform = 'scale(0.9) translateZ(0)';
-                
                 setTimeout(() => {
                     productImage.src = images[color];
                     productImage.style.opacity = '1';
-                    productImage.style.transform = 'scale(1) translateZ(50px)';
                 }, 300);
             });
         });
