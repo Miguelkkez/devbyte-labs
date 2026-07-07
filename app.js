@@ -1772,6 +1772,13 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: 'Canal dedicado a registrar todas as ações importantes do servidor em tempo real — bans, kicks, edições de mensagens, uso de comandos administrativos e alterações de cargos.',
             bullets: ['Log de mensagens editadas e deletadas', 'Histórico de bans, kicks e punições', 'Alterações de cargos, regras e permissões', 'Registro de comandos e ações da moderação'],
             service: 'Servidor Completo com Logs'
+        },
+        'embeds': {
+            tag: 'CUSTOMIZAÇÃO',
+            title: 'Janelas Customizadas Embed v2',
+            desc: 'Crie mensagens incrivelmente profissionais com o formato Embed v2 (quadros, cores e botões) direto pelo Discord através de comandos fáceis.',
+            bullets: ['Criação de anúncios estilizados e informativos', 'Botões interativos direto na mensagem', 'Painéis de regras e FAQs super organizados', 'Sem necessidade de programar para atualizar textos'],
+            service: 'Bot com Comandos de Customização de Embeds'
         }
     };
 
