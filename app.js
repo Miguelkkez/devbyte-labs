@@ -937,7 +937,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 basePriceText = `R$ ${matches[1]}`;
             }
         }
-        formBudgetEst.value = basePriceText || "";
+        if (formBudgetEst) {
+            formBudgetEst.value = basePriceText || "";
+        }
         
         // Rola até o contato
         document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
@@ -1071,7 +1073,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 telefone: document.getElementById('form-phone').value,
                 servico: formInterest.value,
                 status: 'Pendente',
-                estimativa: formBudgetEst.value || "Sem simulação de adicionais",
+                estimativa: formBudgetEst ? formBudgetEst.value : "Sem simulação de adicionais",
                 mensagem: document.getElementById('form-message').value
             };
 
