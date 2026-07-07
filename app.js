@@ -1212,16 +1212,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (stepNum === '1') {
                 if (val === 'corp') {
                     if (bpPages) bpPages.className = 'blueprint-block glow';
-                    if (bpEcommerce) bpEcommerce.className = 'blueprint-block glow';
                 } else {
                     if (bpPages) bpPages.className = 'blueprint-block locked';
-                    if (bpEcommerce) bpEcommerce.className = 'blueprint-block locked';
                 }
             } else if (stepNum === '2') {
                 if (val === 'corp') {
                     if (bpAdmin) bpAdmin.className = 'blueprint-block glow';
                 } else {
                     if (bpAdmin) bpAdmin.className = 'blueprint-block locked';
+                }
+            } else if (stepNum === '3') {
+                if (val === 'corp') {
+                    if (bpEcommerce) bpEcommerce.className = 'blueprint-block glow';
+                } else {
+                    if (bpEcommerce) bpEcommerce.className = 'blueprint-block locked';
                 }
             }
 
