@@ -1150,8 +1150,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const lpVotes = (quizAnswers.q1 === 'lp' ? 1 : 0) + (quizAnswers.q2 === 'lp' ? 1 : 0) + (quizAnswers.q3 === 'lp' ? 1 : 0);
         const corpVotes = (quizAnswers.q1 === 'corp' ? 1 : 0) + (quizAnswers.q2 === 'corp' ? 1 : 0) + (quizAnswers.q3 === 'corp' ? 1 : 0);
         
-        // Define o plano vencedor
-        if (corpVotes >= 2) {
+        // Define o plano vencedor (Força corporativo se escolheu E-commerce)
+        if (corpVotes >= 2 || quizAnswers.q3 === 'corp') {
             recommendedPlanGlobal = "corp";
             quizResultTitle.textContent = "Corporativo / E-commerce";
             quizResultDesc.textContent = "Seu projeto necessita de uma estrutura mais completa e autônoma. O plano Corporativo é ideal para marcas que buscam credibilidade sólida, catálogo de produtos expansível, checkout ou múltiplos serviços organizados, além da liberdade total de editar dados pelo Painel Administrativo sem custos adicionais de suporte.";
@@ -1182,9 +1182,14 @@ document.addEventListener('DOMContentLoaded', () => {
             finalPrice += 500; // Painel Admin
         }
         
-        // Pergunta 3 (Tráfego Pago vs SEO)
+        // Pergunta 3 (E-commerce)
         if (quizAnswers.q3 === 'corp') {
-            finalPrice += 300; // SEO Avançado
+            finalPrice += 300; // Loja Virtual / E-commerce
+            
+            // Se escolheu E-commerce, precisa de Admin obrigatoriamente
+            if (quizAnswers.q2 !== 'corp') {
+                finalPrice += 500; // Força soma do Painel Admin
+            }
         }
 
         finalEstimatedBudget = finalPrice;
@@ -1224,8 +1229,15 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (stepNum === '3') {
                 if (val === 'corp') {
                     if (bpEcommerce) bpEcommerce.className = 'blueprint-block glow';
+                    if (bpAdmin) bpAdmin.className = 'blueprint-block glow';
                 } else {
                     if (bpEcommerce) bpEcommerce.className = 'blueprint-block locked';
+                    // Reavalia o Admin baseado na resposta da Q2
+                    if (quizAnswers['q2'] === 'corp') {
+                        if (bpAdmin) bpAdmin.className = 'blueprint-block glow';
+                    } else {
+                        if (bpAdmin) bpAdmin.className = 'blueprint-block locked';
+                    }
                 }
             }
 
