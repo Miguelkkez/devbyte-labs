@@ -1976,4 +1976,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Auto-open portfolio modals based on route
+    const path = window.location.pathname;
+    if (path === '/dashboard' || path === '/dashbord') {
+        setTimeout(() => window.openPreviewModal(1), 300);
+    } else if (path === '/ecommerce') {
+        setTimeout(() => window.openPreviewModal(2), 300);
+    } else if (path === '/landingpage') {
+        setTimeout(() => window.openPreviewModal(3), 300);
+    }
+
 });

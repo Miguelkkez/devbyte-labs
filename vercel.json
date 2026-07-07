@@ -1,3 +1,9 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/dashboard", "destination": "/" },
+    { "source": "/dashbord", "destination": "/" },
+    { "source": "/ecommerce", "destination": "/" },
+    { "source": "/landingpage", "destination": "/" }
+  ]
 }
