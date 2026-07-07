@@ -1769,8 +1769,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'logs': {
             tag: 'AUDITORIA',
             title: 'Logs de Auditoria',
-            desc: 'Canal dedicado a registrar todas as ações importantes do servidor em tempo real — entradas, saídas, bans, edições de mensagens e alterações de cargos.',
-            bullets: ['Registro de entradas e saídas de membros', 'Log de mensagens editadas e deletadas', 'Histórico de bans, kicks e punições', 'Alterações de cargos e permissões'],
+            desc: 'Canal dedicado a registrar todas as ações importantes do servidor em tempo real — bans, kicks, edições de mensagens, uso de comandos administrativos e alterações de cargos.',
+            bullets: ['Log de mensagens editadas e deletadas', 'Histórico de bans, kicks e punições', 'Alterações de cargos, regras e permissões', 'Registro de comandos e ações da moderação'],
             service: 'Servidor Completo com Logs'
         }
     };
