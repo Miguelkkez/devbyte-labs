@@ -1878,7 +1878,7 @@ body[data-global-mode="discord"] .pill-active-bg {
 
 .pricing-card.featured .btn:hover {
     background: #fff;
-    color: var(--primary);
+    color: #4c1d95;
     box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
     border-color: transparent;
 }
