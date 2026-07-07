@@ -1810,7 +1810,7 @@ body[data-global-mode="discord"] .pill-active-bg {
 
 .plan-header h3 {
     font-size: 1.45rem;
-    color: #fff;
+    color: var(--discord-blurple);
     margin-bottom: 0.5rem;
 }
 
