@@ -1161,11 +1161,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><strong>Integração de Catálogo</strong> com opção de carrinho de compras</li>
                 <li>Hospedagem VPS de alto nível configurada por 1 ano</li>
             `;
-            
-            // Ativa o brilho neon nos blocos avançados do Blueprint
-            if (bpPages) bpPages.className = 'blueprint-block glow';
-            if (bpEcommerce) bpEcommerce.className = 'blueprint-block glow';
-            if (bpAdmin) bpAdmin.className = 'blueprint-block glow';
         } else {
             recommendedPlanGlobal = "lp";
             quizResultTitle.textContent = "Landing Page Start";
@@ -1176,11 +1171,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li>Formulários de captação de leads otimizados</li>
                 <li>Design de conversão focado em contatos</li>
             `;
-            
-            // Mantém os blocos avançados travados / cinzas no Blueprint
-            if (bpPages) bpPages.className = 'blueprint-block locked';
-            if (bpEcommerce) bpEcommerce.className = 'blueprint-block locked';
-            if (bpAdmin) bpAdmin.className = 'blueprint-block locked';
         }
 
         // --- CÁLCULO DINÂMICO DE ORÇAMENTO BASEADO NAS ESCOLHAS DO QUIZ ---
@@ -1217,6 +1207,23 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Grava a resposta da pergunta atual
             quizAnswers['q' + stepNum] = val;
+
+            // Lógica de Iluminação em Tempo Real do Blueprint
+            if (stepNum === '1') {
+                if (val === 'corp') {
+                    if (bpPages) bpPages.className = 'blueprint-block glow';
+                    if (bpEcommerce) bpEcommerce.className = 'blueprint-block glow';
+                } else {
+                    if (bpPages) bpPages.className = 'blueprint-block locked';
+                    if (bpEcommerce) bpEcommerce.className = 'blueprint-block locked';
+                }
+            } else if (stepNum === '2') {
+                if (val === 'corp') {
+                    if (bpAdmin) bpAdmin.className = 'blueprint-block glow';
+                } else {
+                    if (bpAdmin) bpAdmin.className = 'blueprint-block locked';
+                }
+            }
 
             const nextStepNum = btn.dataset.next;
 
