@@ -1613,7 +1613,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Dashboard de Alta Performance",
             url: "https://analise.devbytelabs.com.br/dashboard",
             iframeUrl: "portfolio-dashboard.html",
-            desc: "Painel de controle corporativo de alta performance integrado a APIs em tempo real, bancos de dados relotados e métricas interativas.",
+            desc: "Painel de controle corporativo de alta performance integrado a APIs em tempo real, bancos de dados relotados e métricas interativas. (Site ilustrativo)",
             tags: ["React", "Node.js", "Chart.js", "PostgreSQL"],
             tagColors: ["rgba(0, 242, 254, 0.15)", "rgba(59, 130, 246, 0.15)", "rgba(168, 85, 247, 0.15)", "rgba(16, 185, 129, 0.15)"],
             tagTextColors: ["var(--secondary)", "#93c5fd", "#d8b4fe", "#34d399"]
@@ -1622,7 +1622,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Lojas Virtuais & E-commerce",
             url: "https://aeterna.devbytelabs.com.br/headphone-orbital",
             iframeUrl: "portfolio-ecommerce.html",
-            desc: "Plataforma de e-commerce otimizada para conversão, carrinho reativo, catálogo de alta velocidade e checkout integrado com Pix/Cartão.",
+            desc: "Plataforma de e-commerce otimizada para conversão, carrinho reativo, catálogo de alta velocidade e checkout integrado com Pix/Cartão. (Site ilustrativo)",
             tags: ["Next.js", "TailwindCSS", "Stripe API", "Vercel"],
             tagColors: ["rgba(255, 255, 255, 0.08)", "rgba(59, 130, 246, 0.15)", "rgba(239, 68, 68, 0.15)", "rgba(16, 185, 129, 0.15)"],
             tagTextColors: ["#fff", "#93c5fd", "#fca5a5", "#34d399"]
@@ -1631,7 +1631,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Landing Pages & Sites de Conversão",
             url: "https://nexus.devbytelabs.com.br/scale-your-stack",
             iframeUrl: "portfolio-landing.html",
-            desc: "Página de conversão moderna de alta velocidade focada em tráfego pago, SEO local e design visual premium para capturar leads de vendas.",
+            desc: "Página de conversão moderna de alta velocidade focada em tráfego pago, SEO local e design visual premium para capturar leads de vendas. (Site ilustrativo)",
             tags: ["HTML5", "Vanilla CSS", "JavaScript", "SEO Local"],
             tagColors: ["rgba(249, 115, 22, 0.15)", "rgba(59, 130, 246, 0.15)", "rgba(234, 179, 8, 0.15)", "rgba(168, 85, 247, 0.15)"],
             tagTextColors: ["#fdba74", "#93c5fd", "#fde047", "#d8b4fe"]
@@ -1679,7 +1679,7 @@ document.addEventListener('DOMContentLoaded', () => {
             span.style.borderRadius = '5px';
             span.style.fontSize = '0.65rem';
             span.style.fontWeight = 'bold';
-            span.style.fontFamily = 'monospace';
+            span.style.fontFamily = 'var(--font-main), sans-serif';
             span.style.background = project.tagColors[idx] || 'rgba(255,255,255,0.08)';
             span.style.color = project.tagTextColors[idx] || '#fff';
             modalTags.appendChild(span);
