@@ -1755,6 +1755,21 @@ body[data-global-mode="discord"] .pill-active-bg {
     backdrop-filter: blur(15px);
 }
 
+.pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.pricing-card:hover::before {
+    left: 150%;
+}
+
 .pricing-card:hover {
     transform: translateY(-12px);
     border-color: rgba(255, 255, 255, 0.15);
@@ -1780,16 +1795,17 @@ body[data-global-mode="discord"] .pill-active-bg {
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    background: linear-gradient(90deg, #8b5cf6, #3b82f6);
     color: #fff;
     font-size: 0.75rem;
     font-weight: 800;
-    padding: 0.4rem 1.2rem;
+    padding: 0.4rem 1.5rem;
     border-radius: 50px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    box-shadow: 0 5px 15px var(--primary-glow);
+    letter-spacing: 0.15em;
+    box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
 }
 
 .plan-header h3 {
