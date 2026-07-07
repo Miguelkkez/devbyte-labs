@@ -1159,7 +1159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><strong>Múltiplas páginas estruturadas</strong> (Sobre Nós, Galeria, Serviços, FAQ)</li>
                 <li><strong>Painel Administrativo completo</strong> para gerenciar fotos, banners e textos</li>
                 <li><strong>Integração de Catálogo</strong> com opção de carrinho de compras</li>
-                <li>Hospedagem VPS de alto nível configurada por 1 ano</li>
+                <li>Hospedagem de alto desempenho configurada por 1 ano</li>
             `;
         } else {
             recommendedPlanGlobal = "lp";
