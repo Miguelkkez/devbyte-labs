@@ -431,7 +431,7 @@
 
                                 <!-- Floating Element 3: Discord User Interface Mini Info Badge -->
                                 <div style="position: absolute; width: 270px; background: rgba(30, 32, 48, 0.9); backdrop-filter: blur(16px); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 12px; z-index: 4; box-shadow: 0 20px 40px rgba(0,0,0,0.5); transform: perspective(800px) rotateY(15deg) rotateX(12deg) translate(110px, -125px); padding: 14px 16px; box-sizing: border-box; transition: 0.3s; cursor: pointer; display: flex; align-items: center; gap: 12px;" onmouseover="this.style.transform='perspective(800px) rotateY(8deg) rotateX(8deg) translate(110px, -130px)'; this.style.borderColor='var(--discord-blurple)';" onmouseout="this.style.transform='perspective(800px) rotateY(15deg) rotateX(12deg) translate(110px, -125px)'; this.style.borderColor='rgba(255,255,255,0.12)';">
-                                    <div style="position: relative; width: 46px; height: 46px;">
+                                    <div style="position: relative; width: 46px; height: 46px; flex-shrink: 0;">
                                         <img src="logo.jpg" alt="Logo DevByte" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(255,255,255,0.15);">
                                         <div style="width: 10px; height: 10px; border-radius: 50%; background: #23a55a; border: 1.5px solid #1e2030; position: absolute; bottom: -1px; right: -1px;"></div>
                                     </div>
@@ -1158,7 +1158,7 @@
                         <h3>BOTS DE IA & AUTOMAÇÕES</h3>
                         <div style="font-size: 0.8rem; font-weight: bold; color: var(--text-muted); margin-bottom: 0.85rem;">R$ 199 a R$ 999 · Entrega em 2 a 5 dias</div>
                         <ul class="service-bullet-list">
-                            <li>Assistentes de Inteligência Artificial inteligentes (Gemini/GPT)</li>
+                            <li>Assistentes de Inteligência Artificial (Gemini/GPT)</li>
                             <li>Painéis de vendas profissionais exclusivos e integrados</li>
                             <li>Comandos personalizados para jogos (GTA RP, Valorant, etc.)</li>
                             <li>Toda a estrutura de mensagens e avisos em Embed v2</li>
@@ -1206,7 +1206,7 @@
                                     <!-- Card 1: IA chat -->
                                     <div class="bot-float-card bot-float-1 glass" style="position:absolute;width:295px;z-index:4;box-shadow:0 20px 50px rgba(0,0,0,0.6);padding:16px;left:50%;top:50%;margin-left:-210px;margin-top:-115px;">
                                         <div style="font-size:0.56rem;font-weight:900;color:rgba(0,242,254,0.5);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;display:flex;align-items:center;gap:6px;"><span style="width:5px;height:5px;border-radius:50%;background:var(--secondary);box-shadow:0 0 6px var(--secondary);animation:bot-pulse 2s infinite;"></span>IA respondendo no servidor</div>
-                                        <div style="display:flex;justify-content:flex-end;margin-bottom:8px;"><div style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.2);border-radius:12px 12px 3px 12px;padding:7px 12px;font-size:0.72rem;color:rgba(255,255,255,0.75);max-width:80%;">Quais os planos disponíveis?</div></div>
+                                        <div style="display:flex;justify-content:flex-end;margin-bottom:8px;"><div style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.2);border-radius:12px 12px 3px 12px;padding:7px 12px;font-size:0.72rem;color:rgba(255,255,255,0.75);max-width:80%;line-height:1.5;">Quais os planos disponíveis?</div></div>
                                         <div style="display:flex;gap:8px;align-items:flex-start;"><div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,rgba(0,242,254,0.15),rgba(168,85,247,0.15));border:1px solid rgba(0,242,254,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg></div><div><div style="font-size:0.58rem;color:var(--secondary);font-weight:800;margin-bottom:4px;">DevByte IA</div><div style="background:rgba(0,242,254,0.06);border:1px solid rgba(0,242,254,0.12);border-radius:3px 12px 12px 12px;padding:7px 12px;font-size:0.72rem;color:rgba(255,255,255,0.65);line-height:1.5;">Temos configuração de servidor, bot com IA e assinatura mensal. Qual se encaixa melhor?</div></div></div>
                                     </div>
                                     <!-- Card 2: Protection stats -->
@@ -1254,7 +1254,7 @@
                 <div class="mode-web-only">
                     <div class="comparator-container glass">
                         <!-- Diagnostic Quiz (Left Side) -->
-                        <div class="comparator-quiz">
+                        <div class="comparator-quiz" style="display: flex; flex-direction: column;">
                             <div class="quiz-step active" data-step="1">
                                 <div class="quiz-step-count">PERGUNTA 1 DE 3</div>
                                 <h4>Qual é o seu objetivo principal com o site?</h4>
@@ -1318,6 +1318,17 @@
                                 </div>
                             </div>
                             
+                            <!-- Spacer to fill empty area -->
+                            <div class="quiz-footer" style="margin-top: auto; padding-top: 1.5rem; display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(0,242,254,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                                </div>
+                                <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.4;">
+                                    <strong style="color: #fff; display: block; margin-bottom: 2px;">Análise em Tempo Real</strong>
+                                    Suas respostas moldam a arquitetura do projeto.
+                                </div>
+                            </div>
+
                             <!-- Quiz Result State -->
                             <div class="quiz-result-state" id="quiz-result" style="display: none;">
                                 <div class="result-badge">Recomendação DevByte Labs</div>
@@ -1721,6 +1732,22 @@
                                     </label>
                                 </div>
                             </div>
+                        </div>
+                        
+                        <!-- Benefícios Inclusos (Fills empty left area) -->
+                        <div class="included-benefits" style="margin-top: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem;">
+                            <h4 style="font-size: 0.85rem; color: #fff; margin: 0 0 1rem 0; text-transform: uppercase; letter-spacing: 0.05em;">Todos os projetos incluem:</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--text-muted);">
+                                    <span style="color: #10b981; font-weight: bold;">✓</span> Suporte técnico prioritário pós-entrega
+                                </li>
+                                <li style="display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--text-muted);">
+                                    <span style="color: #10b981; font-weight: bold;">✓</span> Alta performance e segurança
+                                </li>
+                                <li style="display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--text-muted);">
+                                    <span style="color: #10b981; font-weight: bold;">✓</span> Código limpo, moderno e escalável
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     
