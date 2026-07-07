@@ -1743,32 +1743,53 @@ body[data-global-mode="discord"] .pill-active-bg {
 }
 
 .pricing-card {
-    padding: 3rem 2rem;
+    padding: 3.5rem 2.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    transition: var(--transition-smooth);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(15, 8, 25, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    backdrop-filter: blur(15px);
+}
+
+.pricing-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .pricing-card.featured {
     border: 2px solid var(--primary);
-    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.18);
-    transform: scale(1.03);
+    box-shadow: 0 20px 50px rgba(139, 92, 246, 0.25);
+    transform: scale(1.05);
+    background: linear-gradient(180deg, rgba(30, 15, 60, 0.6) 0%, rgba(15, 8, 25, 0.8) 100%);
+    z-index: 2;
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.08) translateY(-12px);
+    box-shadow: 0 30px 60px rgba(139, 92, 246, 0.4);
+    border-color: #a78bfa;
 }
 
 .popular-tag {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: var(--primary);
-    color: var(--bg-dark);
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.25rem 0.75rem;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.4rem 1.2rem;
     border-radius: 50px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    box-shadow: 0 5px 15px var(--primary-glow);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .plan-header h3 {
@@ -1821,8 +1842,29 @@ body[data-global-mode="discord"] .pill-active-bg {
     font-size: 0.88rem;
     color: var(--text-main);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.75rem;
+    line-height: 1.4;
+}
+
+.pricing-card .btn {
+    transition: all 0.3s ease;
+}
+
+.pricing-card:not(.featured) .btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.pricing-card.featured .btn {
+    box-shadow: 0 10px 25px var(--primary-glow);
+}
+
+.pricing-card.featured .btn:hover {
+    background: #fff;
+    color: var(--primary);
+    box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
+    border-color: transparent;
 }
 
 .plan-features li span {
